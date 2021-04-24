@@ -158,4 +158,35 @@
 	<SubTexture name="spooky dance idle BLACK LINES0013" x="2164" y="3066" width="357" height="484" frameX="-79" frameY="-61" frameWidth="492" frameHeight="549"/>
 	<SubTexture name="spooky dance idle BLACK LINES0014" x="2531" y="3066" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
 	<SubTexture name="spooky dance idle BLACK LINES0015" x="2531" y="3066" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
+	<SubTexture name="spooky dance idle BLACK LINES0015" x="2531" y="3066" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
+
+	<SubTexture name="Cross and Sickle0000" x="4304" y="2814" width="624" height="662" frameX="-32" frameY="-9" frameWidth="656" frameHeight="671"/><!--0-->
+	<SubTexture name="Cross and Sickle0001" x="4304" y="2814" width="624" height="662" frameX="-32" frameY="-9" frameWidth="656" frameHeight="671"/><!--0-->
+	<SubTexture name="Cross and Sickle0002" x="5893" y="2843" width="656" height="631" frameX="0" frameY="-40" frameWidth="656" frameHeight="671"/><!--2-->
+	<SubTexture name="Cross and Sickle0003" x="5893" y="2843" width="656" height="631" frameX="0" frameY="-40" frameWidth="656" frameHeight="671"/><!--2-->
+	<SubTexture name="Cross and Sickle0004" x="7487" y="2806" width="637" height="670" frameX="-19" frameY="-1" frameWidth="656" frameHeight="671"/><!--4-->
+	<SubTexture name="Cross and Sickle0005" x="7487" y="2806" width="637" height="670" frameX="-19" frameY="-1" frameWidth="656" frameHeight="671"/><!--4-->
+	<SubTexture name="Cross and Sickle0006" x="5100" y="3629" width="626" height="669" frameX="-30" frameY="-2" frameWidth="656" frameHeight="671"/><!--6-->
+	<SubTexture name="Cross and Sickle0007" x="5100" y="3629" width="626" height="669" frameX="-30" frameY="-2" frameWidth="656" frameHeight="671"/><!--6-->
+	<SubTexture name="Cross and Sickle0008" x="5896" y="3633" width="625" height="665" frameX="-31" frameY="-6" frameWidth="656" frameHeight="671"/><!--7-->
+	<SubTexture name="Cross and Sickle0009" x="5896" y="3633" width="625" height="665" frameX="-31" frameY="-6" frameWidth="656" frameHeight="671"/><!--7-->
+	<SubTexture name="Cross and Sickle0010" x="6693" y="3637" width="623" height="661" frameX="-33" frameY="-10" frameWidth="656" frameHeight="671"/><!--8-->
+	<SubTexture name="Cross and Sickle0011" x="6693" y="3637" width="623" height="661" frameX="-33" frameY="-10" frameWidth="656" frameHeight="671"/><!--8-->
+	<SubTexture name="Cross and Sickle0012" x="6693" y="3637" width="623" height="661" frameX="-33" frameY="-10" frameWidth="656" frameHeight="671"/><!--8-->
+	<SubTexture name="Cross and Sickle0013" x="6693" y="3637" width="623" height="661" frameX="-33" frameY="-10" frameWidth="656" frameHeight="671"/><!--8-->
+
+	<!--SubTexture name="Cross and Sickle0000" x="4304" y="2814" width="624" height="662" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-0->
+	<SubTexture name="Cross and Sickle0001" x="4304" y="2814" width="624" height="662" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-0->
+	<SubTexture name="Cross and Sickle0002" x="5099" y="2829" width="636" height="646" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-1->
+	<SubTexture name="Cross and Sickle0003" x="5099" y="2829" width="636" height="646" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-1->
+	<SubTexture name="Cross and Sickle0004" x="5893" y="2843" width="656" height="631" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-2->
+	<SubTexture name="Cross and Sickle0005" x="5893" y="2843" width="656" height="631" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-2->
+	<SubTexture name="Cross and Sickle0006" x="6690" y="2823" width="647" height="652" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-3->
+	<SubTexture name="Cross and Sickle0007" x="7487" y="2806" width="637" height="670" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-4->
+	<SubTexture name="Cross and Sickle0008" x="4304" y="3627" width="631" height="671" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-5->
+	<SubTexture name="Cross and Sickle0009" x="5100" y="3629" width="626" height="669" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-6->
+	<SubTexture name="Cross and Sickle0010" x="5896" y="3633" width="625" height="665" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-7->
+	<SubTexture name="Cross and Sickle0011" x="5896" y="3633" width="625" height="665" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-7->
+	<SubTexture name="Cross and Sickle0012" x="6693" y="3637" width="623" height="661" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-8->
+	<SubTexture name="Cross and Sickle0013" x="6693" y="3637" width="623" height="661" frameX="0" frameY="0" frameWidth="656" frameHeight="671"/><!-8-->
 </TextureAtlas>

@@ -17,3 +17,7 @@ Winter-Horrorland:monster-christmas:5
 Senpai:senpai:6
 Roses:senpai:6
 Thorns:spirit:6
+Parish:sarvente:7
+Worship:sarvente:7
+Zavodila:ruv:7
+Gospel:luci-sarv:7
