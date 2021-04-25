@@ -4197,12 +4197,12 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim('hey', true);
 		}
 
-		if (curBeat % 16 == 15 == SONG.song == 'Parish' && curBeat > 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat < 176)
+		if (curBeat % 16 == 15 ==curSong == 'Parish' && curBeat > 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat != 176 && curBeat < 177)
 		{
 			boyfriend.playAnim('hey', true);
 		}
 
-		if (curBeat % 16 == 15 && SONG.song == 'Parish' && dad.curCharacter == 'sarvente' && curBeat > 32 && curBeat != 64 && curBeat != 96 && curBeat != 128 && curBeat < 160)
+		if (curBeat % 16 == 15 && curSong == 'Parish' && dad.curCharacter == 'sarvente' && curBeat > 32 && curBeat != 64 && curBeat != 96 && curBeat != 128 && curBeat != 160 && curBeat < 161)
 		{
 			dad.playAnim('hey', true);
 		}
