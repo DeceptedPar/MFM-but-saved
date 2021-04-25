@@ -86,49 +86,49 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 				updateHitbox();
 
-			case 'church1-dark':
-				frames = Paths.getSparrowAtlas('NOTE_assets_dark');
+            case 'church1-dark':
+                frames = Paths.getSparrowAtlas('NOTE_assets_dark');
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
+                animation.addByPrefix('greenScroll', 'green0');
+                animation.addByPrefix('redScroll', 'red0');
+                animation.addByPrefix('blueScroll', 'blue0');
+                animation.addByPrefix('purpleScroll', 'purple0');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
+                animation.addByPrefix('purpleholdend', 'pruple end hold');
+                animation.addByPrefix('greenholdend', 'green hold end');
+                animation.addByPrefix('redholdend', 'red hold end');
+                animation.addByPrefix('blueholdend', 'blue hold end');
 
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
+                animation.addByPrefix('purplehold', 'purple hold piece');
+                animation.addByPrefix('greenhold', 'green hold piece');
+                animation.addByPrefix('redhold', 'red hold piece');
+                animation.addByPrefix('bluehold', 'blue hold piece');
 
-				setGraphicSize(Std.int(width * 0.7));
-				updateHitbox();
-				antialiasing = true;
+                setGraphicSize(Std.int(width * 0.7));
+                updateHitbox();
+                antialiasing = true;
 
-			case 'church3':
-				frames = Paths.getSparrowAtlas('NOTE_assets2');
+            case 'church3':
+                frames = Paths.getSparrowAtlas('NOTE_assets2');
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
+                animation.addByPrefix('greenScroll', 'green0');
+                animation.addByPrefix('redScroll', 'red0');
+                animation.addByPrefix('blueScroll', 'blue0');
+                animation.addByPrefix('purpleScroll', 'purple0');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
+                animation.addByPrefix('purpleholdend', 'pruple end hold');
+                animation.addByPrefix('greenholdend', 'green hold end');
+                animation.addByPrefix('redholdend', 'red hold end');
+                animation.addByPrefix('blueholdend', 'blue hold end');
 
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
+                animation.addByPrefix('purplehold', 'purple hold piece');
+                animation.addByPrefix('greenhold', 'green hold piece');
+                animation.addByPrefix('redhold', 'red hold piece');
+                animation.addByPrefix('bluehold', 'blue hold piece');
 
-				setGraphicSize(Std.int(width * 0.7));
-				updateHitbox();
-				antialiasing = true;
+                setGraphicSize(Std.int(width * 0.7));
+                updateHitbox();
+                antialiasing = true;
 
 			default:
 				frames = Paths.getSparrowAtlas('NOTE_assets');
@@ -232,13 +232,13 @@ class Note extends FlxSprite
 		if (mustPress)
 		{
 			// The * 0.5 is so that it's easier to hit them too late, instead of too early
-			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
+			if (strumTime > Conductor.songPosition - (Conductor.safeZoneOffset * 1.5)
 				&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.5))
 				canBeHit = true;
 			else
 				canBeHit = false;
 
-			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset && !wasGoodHit)
+			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset * Conductor.timeScale && !wasGoodHit)
 				tooLate = true;
 		}
 		else
