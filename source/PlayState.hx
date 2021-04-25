@@ -1142,11 +1142,29 @@ class PlayState extends MusicBeatState
 				gf.x += 180;
 				gf.y += 300;
 
-			case 'church1' || 'church1-dark' || 'church2' || 'church3':
+			case 'church1':
 				boyfriend.x -= 370;
 				boyfriend.y -= 30;
 				gf.x -= 30;
 				gf.y -= 70;
+
+            case 'church1-dark':
+                boyfriend.x -= 370;
+                boyfriend.y -= 30;
+                gf.x -= 30;
+                gf.y -= 70;
+
+            case 'church2':
+                boyfriend.x -= 370;
+                boyfriend.y -= 30;
+                gf.x -= 30;
+                gf.y -= 70;
+
+            case 'church3':
+                boyfriend.x -= 370;
+                boyfriend.y -= 30;
+                gf.x -= 30;
+                gf.y -= 70;
 		}
 
 		add(gf);
@@ -4179,7 +4197,7 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim('hey', true);
 		}
 
-		if (curBeat % 16 == 15 == Song.song == 'Parish' && curBeat > 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat < 176)
+		if (curBeat % 16 == 15 == SONG.song == 'Parish' && curBeat > 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat < 176)
 		{
 			boyfriend.playAnim('hey', true);
 		}
