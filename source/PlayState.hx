@@ -12,7 +12,7 @@ import flixel.system.FlxAssets;
 
 // Lua
 
-#if cpp
+#if windows
 import llua.Convert;
 import llua.Lua;
 import llua.State;
@@ -65,7 +65,7 @@ import openfl.filters.ShaderFilter;
 #if windows
 import Discord.DiscordClient;
 #end
-#if cpp
+#if windows
 import Sys;
 import sys.FileSystem;
 #end
@@ -213,7 +213,7 @@ class PlayState extends MusicBeatState
 
 	// LUA SHIT
 	
-	#if cpp
+	#if windows
 
 	public static var lua:State = null;
 
@@ -465,10 +465,10 @@ class PlayState extends MusicBeatState
 				iconRPC = 'monster';
 			case 'mom-car':
 				iconRPC = 'mom';
-			case 'bf-dark':
-				iconRPC = 'bf';
-			case 'sarvente-dark':
-				iconRPC = 'sarvente';
+            case 'bf-dark':
+                iconRPC = 'bf';
+            case 'sarvente-dark':
+                iconRPC = 'sarvente';
 		}
 
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
@@ -522,30 +522,30 @@ class PlayState extends MusicBeatState
 					"You're going to have to go \nthrough ME first!"
 				];
 			case 'fresh':
-				dialogue = [
-				"Not too bad shabby boy.", 
-				"But this is just getting started!"
-				];
-			case 'dadbattle':
-				dialogue = [
-					"gah you think you're hot stuff?",
-					"If you can beat me here...",
-					"Only then I will even CONSIDER letting you\ndate my daughter!"
-				];
-			case 'senpai':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiDialogue'));
-			case 'roses':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
-			case 'thorns':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
-			//case 'parish':
-			//	dialogue = CoolUtil.coolTextFile(Paths.txt('parish/parishDialogue'));
-			//case 'worship':
-			//	dialogue = CoolUtil.coolTextFile(Paths.txt('worship/worshipDialogue'));
-			//case 'zavodila':
-			//	dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/zavodilaDialogue'));
-			//case 'gospel':
-			//	dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/gospelDialogue'));
+                dialogue = [
+                "Not too bad shabby boy.", 
+                "But this is just getting started!"
+                ];
+            case 'dadbattle':
+                dialogue = [
+                    "gah you think you're hot stuff?",
+                    "If you can beat me here...",
+                    "Only then I will even CONSIDER letting you\ndate my daughter!"
+                ];
+            case 'senpai':
+                dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiDialogue'));
+            case 'roses':
+                dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
+            case 'thorns':
+                dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
+            //case 'parish':
+            //  dialogue = CoolUtil.coolTextFile(Paths.txt('parish/parishDialogue'));
+            //case 'worship':
+            //  dialogue = CoolUtil.coolTextFile(Paths.txt('worship/worshipDialogue'));
+            //case 'zavodila':
+            //  dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/zavodilaDialogue'));
+            //case 'gospel':
+            //  dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/gospelDialogue'));
 		}
 
 		switch(SONG.song.toLowerCase())
@@ -855,150 +855,150 @@ class PlayState extends MusicBeatState
 								add(waveSpriteFG);
 						*/
 			}
-			case 'parish':
-			{
-					defaultCamZoom = 0.7;
-					curStage = 'church1';
-					var bg:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church1/bg'));
-					bg.antialiasing = true;
-					bg.scrollFactor.set(0.9, 0.9);
-					bg.active = false;
-					add(bg);
+            case 'parish':
+            {
+                    defaultCamZoom = 0.7;
+                    curStage = 'church1';
+                    var bg:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church1/bg'));
+                    bg.antialiasing = true;
+                    bg.scrollFactor.set(0.9, 0.9);
+                    bg.active = false;
+                    add(bg);
 
-					var stageFront:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church1/floor'));
-					stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-					stageFront.updateHitbox();
-					stageFront.antialiasing = true;
-					stageFront.scrollFactor.set(0.9, 0.9);
-					stageFront.active = false;
-					add(stageFront);
+                    var stageFront:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church1/floor'));
+                    stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+                    stageFront.updateHitbox();
+                    stageFront.antialiasing = true;
+                    stageFront.scrollFactor.set(0.9, 0.9);
+                    stageFront.active = false;
+                    add(stageFront);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church1/pillars'));
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(1.3, 1.3);
-					stageCurtains.active = false;
+                    var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church1/pillars'));
+                    stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+                    stageCurtains.updateHitbox();
+                    stageCurtains.antialiasing = true;
+                    stageCurtains.scrollFactor.set(1.3, 1.3);
+                    stageCurtains.active = false;
 
-					add(stageCurtains);
-			}
-			case 'worship':
-			{
-					defaultCamZoom = 0.7;
-					curStage = 'church1-dark';
-					var bg:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church1/bg-dark'));
-					bg.antialiasing = true;
-					bg.scrollFactor.set(0.9, 0.9);
-					bg.active = false;
-					add(bg);
+                    add(stageCurtains);
+            }
+            case 'worship':
+            {
+                    defaultCamZoom = 0.7;
+                    curStage = 'church1-dark';
+                    var bg:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church1/bg-dark'));
+                    bg.antialiasing = true;
+                    bg.scrollFactor.set(0.9, 0.9);
+                    bg.active = false;
+                    add(bg);
 
-					var stageFront:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church1/floor-dark'));
-					stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-					stageFront.updateHitbox();
-					stageFront.antialiasing = true;
-					stageFront.scrollFactor.set(0.9, 0.9);
-					stageFront.active = false;
-					add(stageFront);
+                    var stageFront:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church1/floor-dark'));
+                    stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+                    stageFront.updateHitbox();
+                    stageFront.antialiasing = true;
+                    stageFront.scrollFactor.set(0.9, 0.9);
+                    stageFront.active = false;
+                    add(stageFront);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church1/pillars-dark'));
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(1.3, 1.3);
-					stageCurtains.active = false;
+                    var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church1/pillars-dark'));
+                    stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+                    stageCurtains.updateHitbox();
+                    stageCurtains.antialiasing = true;
+                    stageCurtains.scrollFactor.set(1.3, 1.3);
+                    stageCurtains.active = false;
 
-					add(stageCurtains);
-			}
-			case 'zavodila':
-			{
-					defaultCamZoom = 0.7;
-					curStage = 'church2';
-					var bg:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church2/bg'));
-					bg.antialiasing = true;
-					bg.scrollFactor.set(0.9, 0.9);
-					bg.active = false;
-					add(bg);
+                    add(stageCurtains);
+            }
+            case 'zavodila':
+            {
+                    defaultCamZoom = 0.7;
+                    curStage = 'church2';
+                    var bg:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church2/bg'));
+                    bg.antialiasing = true;
+                    bg.scrollFactor.set(0.9, 0.9);
+                    bg.active = false;
+                    add(bg);
 
-					var stageFront:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church2/floor'));
-					stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-					stageFront.updateHitbox();
-					stageFront.antialiasing = true;
-					stageFront.scrollFactor.set(0.9, 0.9);
-					stageFront.active = false;
-					add(stageFront);
+                    var stageFront:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church2/floor'));
+                    stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+                    stageFront.updateHitbox();
+                    stageFront.antialiasing = true;
+                    stageFront.scrollFactor.set(0.9, 0.9);
+                    stageFront.active = false;
+                    add(stageFront);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church2/pillars'));
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(1.3, 1.3);
-					stageCurtains.active = false;
+                    var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church2/pillars'));
+                    stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+                    stageCurtains.updateHitbox();
+                    stageCurtains.antialiasing = true;
+                    stageCurtains.scrollFactor.set(1.3, 1.3);
+                    stageCurtains.active = false;
 
-					add(stageCurtains);
+                    add(stageCurtains);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church2/pillarbroke'));
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(1.3, 1.3);
-					stageCurtains.active = false;
+                    var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church2/pillarbroke'));
+                    stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+                    stageCurtains.updateHitbox();
+                    stageCurtains.antialiasing = true;
+                    stageCurtains.scrollFactor.set(1.3, 1.3);
+                    stageCurtains.active = false;
 
-					add(stageCurtains);
-			}
-			case 'gospel':
-			{
-					defaultCamZoom = 0.7;
-					curStage = 'church3';
-					var bg:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church3/bg'));
-					bg.antialiasing = true;
-					bg.scrollFactor.set(0.9, 0.9);
-					bg.active = false;
-					add(bg);
+                    add(stageCurtains);
+            }
+            case 'gospel':
+            {
+                    defaultCamZoom = 0.7;
+                    curStage = 'church3';
+                    var bg:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church3/bg'));
+                    bg.antialiasing = true;
+                    bg.scrollFactor.set(0.9, 0.9);
+                    bg.active = false;
+                    add(bg);
 
-					var stageFront:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church3/floor'));
-					stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-					stageFront.updateHitbox();
-					stageFront.antialiasing = true;
-					stageFront.scrollFactor.set(0.9, 0.9);
-					stageFront.active = false;
-					add(stageFront);
+                    var stageFront:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church3/floor'));
+                    stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+                    stageFront.updateHitbox();
+                    stageFront.antialiasing = true;
+                    stageFront.scrollFactor.set(0.9, 0.9);
+                    stageFront.active = false;
+                    add(stageFront);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church3/circ0'));
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(1.3, 1.3);
-					stageCurtains.active = false;
+                    var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church3/circ0'));
+                    stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+                    stageCurtains.updateHitbox();
+                    stageCurtains.antialiasing = true;
+                    stageCurtains.scrollFactor.set(1.3, 1.3);
+                    stageCurtains.active = false;
 
-					add(stageCurtains);
+                    add(stageCurtains);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church3/circ1'));
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(1.3, 1.3);
-					stageCurtains.active = false;
+                    var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church3/circ1'));
+                    stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+                    stageCurtains.updateHitbox();
+                    stageCurtains.antialiasing = true;
+                    stageCurtains.scrollFactor.set(1.3, 1.3);
+                    stageCurtains.active = false;
 
-					add(stageCurtains);
+                    add(stageCurtains);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church3/circ2'));
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(1.3, 1.3);
-					stageCurtains.active = false;
+                    var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church3/circ2'));
+                    stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+                    stageCurtains.updateHitbox();
+                    stageCurtains.antialiasing = true;
+                    stageCurtains.scrollFactor.set(1.3, 1.3);
+                    stageCurtains.active = false;
 
-					add(stageCurtains);
+                    add(stageCurtains);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('church3/pillars'));
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(1.3, 1.3);
-					stageCurtains.active = false;
+                    var stageCurtains:FlxSprite = new FlxSprite(-382, -880).loadGraphic(Paths.image('sacredmass/church3/pillars'));
+                    stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+                    stageCurtains.updateHitbox();
+                    stageCurtains.antialiasing = true;
+                    stageCurtains.scrollFactor.set(1.3, 1.3);
+                    stageCurtains.active = false;
 
-					add(stageCurtains);
-			}
+                    add(stageCurtains);
+            }
 			default:
 			{
 					defaultCamZoom = 0.9;
@@ -1039,8 +1039,8 @@ class PlayState extends MusicBeatState
 				gfVersion = 'gf-pixel';
 			case 'schoolEvil':
 				gfVersion = 'gf-pixel';
-			case 'church1-dark':
-				gfVersion = 'gf-dark';
+            case 'church1-dark':
+                gfVersion = 'gf-dark';
 		}
 
 		if (curStage == 'limo')
@@ -1089,18 +1089,18 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-			case 'sarvente':
-				dad.x -= 340;
-				dad.y -= 270;
-			case 'sarvente-dark':
-				dad.x -= 340;
-				dad.y -= 270;
-			case 'ruv':
-				dad.x -= 340;
-				dad.y -= 270;
-			case 'luci-sarv':
-				dad.x -= 85;
-				dad.y -= 580;
+            case 'sarvente':
+                dad.x -= 340;
+                dad.y -= 270;
+            case 'sarvente-dark':
+                dad.x -= 340;
+                dad.y -= 270;
+            case 'ruv':
+                dad.x -= 340;
+                dad.y -= 270;
+            case 'luci-sarv':
+                dad.x -= 85;
+                dad.y -= 580;
 		}
 
 
@@ -1142,28 +1142,28 @@ class PlayState extends MusicBeatState
 				gf.x += 180;
 				gf.y += 300;
 
-			case 'church1':
-				boyfriend.x -= 370;
-				boyfriend.y -= 30;
-				gf.x -= 30;
-				gf.y -= 70;
+            case 'church1':
+                boyfriend.x -= 370;
+                boyfriend.y += 30;
+                gf.x += 30;
+                gf.y -= 70;
 
             case 'church1-dark':
                 boyfriend.x -= 370;
-                boyfriend.y -= 30;
-                gf.x -= 30;
+                boyfriend.y += 30;
+                gf.x += 30;
                 gf.y -= 70;
 
             case 'church2':
                 boyfriend.x -= 370;
-                boyfriend.y -= 30;
-                gf.x -= 30;
+                boyfriend.y += 30;
+                gf.x += 30;
                 gf.y -= 70;
 
             case 'church3':
                 boyfriend.x -= 370;
-                boyfriend.y -= 30;
-                gf.x -= 30;
+                boyfriend.y += 30;
+                gf.x += 30;
                 gf.y -= 70;
 		}
 
@@ -1474,7 +1474,7 @@ class PlayState extends MusicBeatState
 		generateStaticArrows(1);
 
 
-		#if cpp
+		#if windows
 		if (executeModchart) // dude I hate lua (jkjkjkjk)
 			{
 				trace('opening a lua state (because we are cool :))');
@@ -1675,7 +1675,7 @@ class PlayState extends MusicBeatState
 					getActorByName(id).x = x;
 				}));
 	
-				trace(Lua_helper.add_callback(lua,"setActorAlpha", function(alpha:Int,id:String) {
+				trace(Lua_helper.add_callback(lua,"setActorAlpha", function(alpha:Float,id:String) {
 					getActorByName(id).alpha = alpha;
 				}));
 	
@@ -2038,7 +2038,7 @@ class PlayState extends MusicBeatState
 		var playerCounter:Int = 0;
 
 		// Per song offset check
-		#if cpp
+		#if windows
 			var songPath = 'assets/data/' + PlayState.SONG.song.toLowerCase() + '/';
 			for(file in sys.FileSystem.readDirectory(songPath))
 			{
@@ -2177,76 +2177,75 @@ class PlayState extends MusicBeatState
 							babyArrow.animation.add('confirm', [15, 19], 24, false);
 					}
 
-				case 'church1-dark':
+                case 'church1-dark':
 
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets_dark');
-					babyArrow.animation.addByPrefix('green', 'arrowUP');
-					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets_dark');
+                    babyArrow.animation.addByPrefix('green', 'arrowUP');
+                    babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+                    babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+                    babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
-					babyArrow.antialiasing = true;
-					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+                    babyArrow.antialiasing = true;
+                    babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
-					switch (Math.abs(i))
-					{
-						case 0:
-							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-						case 1:
-							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-						case 2:
-							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrowUP');
-							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-						case 3:
-							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-					}
+                    switch (Math.abs(i))
+                    {
+                        case 0:
+                            babyArrow.x += Note.swagWidth * 0;
+                            babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+                            babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+                        case 1:
+                            babyArrow.x += Note.swagWidth * 1;
+                            babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+                            babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+                        case 2:
+                            babyArrow.x += Note.swagWidth * 2;
+                            babyArrow.animation.addByPrefix('static', 'arrowUP');
+                            babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+                        case 3:
+                            babyArrow.x += Note.swagWidth * 3;
+                            babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+                            babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+                    }
 
-				case 'church3':
+                case 'church3':
 
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets2');
-					babyArrow.animation.addByPrefix('green', 'arrowUP');
-					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets2');
+                    babyArrow.animation.addByPrefix('green', 'arrowUP');
+                    babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+                    babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+                    babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
-					babyArrow.antialiasing = true;
-					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+                    babyArrow.antialiasing = true;
+                    babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
-					switch (Math.abs(i))
-					{
-						case 0:
-							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-						case 1:
-							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-						case 2:
-							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrowUP');
-							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-						case 3:
-							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-					}
-
+                    switch (Math.abs(i))
+                    {
+                        case 0:
+                            babyArrow.x += Note.swagWidth * 0;
+                            babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+                            babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+                        case 1:
+                            babyArrow.x += Note.swagWidth * 1;
+                            babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+                            babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+                        case 2:
+                            babyArrow.x += Note.swagWidth * 2;
+                            babyArrow.animation.addByPrefix('static', 'arrowUP');
+                            babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+                        case 3:
+                            babyArrow.x += Note.swagWidth * 3;
+                            babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+                            babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+                    }
 
 				default:
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
@@ -2388,7 +2387,7 @@ class PlayState extends MusicBeatState
 		perfectMode = false;
 		#end
 
-		#if cpp
+		#if windows
 		if (executeModchart && lua != null && songStarted)
 		{
 			setVar('songPos',Conductor.songPosition);
@@ -2508,7 +2507,7 @@ class PlayState extends MusicBeatState
 			DiscordClient.changePresence("Chart Editor", null, null, true);
 			#end
 			FlxG.switchState(new ChartingState());
-			#if cpp
+			#if windows
 			if (lua != null)
 			{
 				Lua.close(lua);
@@ -2695,7 +2694,7 @@ class PlayState extends MusicBeatState
 				}
 			}
 			
-			#if cpp
+			#if windows
 			if (lua != null)
 				setVar("mustHit",PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection);
 			#end
@@ -2704,7 +2703,7 @@ class PlayState extends MusicBeatState
 			{
 				var offsetX = 0;
 				var offsetY = 0;
-				#if cpp
+				#if windows
 				if (lua != null)
 				{
 					offsetX = getVar("followXOffset", "float");
@@ -2712,7 +2711,7 @@ class PlayState extends MusicBeatState
 				}
 				#end
 				camFollow.setPosition(dad.getMidpoint().x + 150 + offsetX, dad.getMidpoint().y - 100 + offsetY);
-				#if cpp
+				#if windows
 				if (lua != null)
 					callLua('playerTwoTurn', []);
 				#end
@@ -2738,7 +2737,7 @@ class PlayState extends MusicBeatState
 			{
 				var offsetX = 0;
 				var offsetY = 0;
-				#if cpp
+				#if windows
 				if (lua != null)
 				{
 					offsetX = getVar("followXOffset", "float");
@@ -2747,7 +2746,7 @@ class PlayState extends MusicBeatState
 				#end
 				camFollow.setPosition(boyfriend.getMidpoint().x - 100 + offsetX, boyfriend.getMidpoint().y - 100 + offsetY);
 
-				#if cpp
+				#if windows
 				if (lua != null)
 					callLua('playerOneTurn', []);
 				#end
@@ -2863,6 +2862,49 @@ class PlayState extends MusicBeatState
 						daNote.visible = true;
 						daNote.active = true;
 					}
+					
+					if (!daNote.modifiedByLua)
+					{
+						if (FlxG.save.data.downscroll)
+						{
+							daNote.y = (strumLine.y + 0.45 * (Conductor.songPosition - daNote.strumTime) * FlxMath.roundDecimal(FlxG.save.data.scrollSpeed == 1 ? SONG.speed : FlxG.save.data.scrollSpeed, 2));
+							if(daNote.isSustainNote)
+							{
+								// Remember = minus makes notes go up, plus makes them go down
+								if(daNote.animation.curAnim.name.endsWith('end') && daNote.prevNote != null)
+									daNote.y += daNote.prevNote.height;
+								else
+									daNote.y += daNote.height / 2;
+
+								if((!daNote.mustPress || daNote.wasGoodHit || daNote.prevNote.wasGoodHit && !daNote.canBeHit) && daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= (strumLine.y + Note.swagWidth / 2))
+								{
+									// Clip to strumline
+									var swagRect = new FlxRect(0, 0, daNote.frameWidth * 2, daNote.frameHeight * 2);
+									swagRect.height = (strumLine.y + Note.swagWidth / 2 - daNote.y) / daNote.scale.y;
+									swagRect.y = daNote.frameHeight - swagRect.height;
+
+									daNote.clipRect = swagRect;
+								}
+							}
+						}else
+						{
+							daNote.y = (strumLine.y - 0.45 * (Conductor.songPosition - daNote.strumTime) * FlxMath.roundDecimal(FlxG.save.data.scrollSpeed == 1 ? SONG.speed : FlxG.save.data.scrollSpeed, 2));
+							if(daNote.isSustainNote)
+							{
+								daNote.y -= daNote.height / 2;
+
+								if((!daNote.mustPress || daNote.wasGoodHit || daNote.prevNote.wasGoodHit && !daNote.canBeHit) && daNote.y + daNote.offset.y * daNote.scale.y <= (strumLine.y + Note.swagWidth / 2))
+								{
+									// Clip to strumline
+									var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
+									swagRect.y = (strumLine.y + Note.swagWidth / 2 - daNote.y) / daNote.scale.y;
+									swagRect.height -= swagRect.y;
+
+									daNote.clipRect = swagRect;
+								}
+							}
+						}
+					}
 	
 					if (!daNote.mustPress && daNote.wasGoodHit)
 					{
@@ -2887,9 +2929,9 @@ class PlayState extends MusicBeatState
 								dad.playAnim('singDOWN' + altAnim, true);
 							case 0:
 								dad.playAnim('singLEFT' + altAnim, true);
-						}
+            }
 	
-						#if cpp
+						#if windows
 						if (lua != null)
 							callLua('playerTwoSing', [Math.abs(daNote.noteData), Conductor.songPosition]);
 						#end
@@ -2904,14 +2946,6 @@ class PlayState extends MusicBeatState
 						daNote.kill();
 						notes.remove(daNote, true);
 						daNote.destroy();
-					}
-	
-					if (!daNote.modifiedByLua)
-					{
-						if (FlxG.save.data.downscroll)
-							daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (-0.45 * FlxMath.roundDecimal(FlxG.save.data.scrollSpeed == 1 ? SONG.speed : FlxG.save.data.scrollSpeed, 2)));
-						else
-							daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(FlxG.save.data.scrollSpeed == 1 ? SONG.speed : FlxG.save.data.scrollSpeed, 2)));
 					}
 
 					if (daNote.mustPress && !daNote.modifiedByLua)
@@ -2983,7 +3017,7 @@ class PlayState extends MusicBeatState
 		if (!loadRep)
 			rep.SaveReplay();
 
-		#if cpp
+		#if windows
 		if (executeModchart)
 		{
 			Lua.close(lua);
@@ -3025,7 +3059,7 @@ class PlayState extends MusicBeatState
 
 					FlxG.switchState(new StoryMenuState());
 
-					#if cpp
+					#if windows
 					if (lua != null)
 					{
 						Lua.close(lua);
@@ -3506,36 +3540,8 @@ class PlayState extends MusicBeatState
 								if (controlArray[coolNote.noteData])
 								{
 				
-									// ANTI MASH CODE FOR THE BOYS
-				
-									if (mashing > getKeyPresses(coolNote) && mashViolations < 2)
-										{
-											mashViolations++;
-											
-											goodNoteHit(coolNote, (mashing > getKeyPresses(coolNote)));
-										}
-										else
-										{
-											// this is bad but fuck you
-											playerStrums.members[0].animation.play('static');
-											playerStrums.members[1].animation.play('static');
-											playerStrums.members[2].animation.play('static');
-											playerStrums.members[3].animation.play('static');
-											health -= 0.2;
-											trace('mash ' + mashing);
-										}
-					
-										if (mashing != 0)
-											mashing = 0;
-								}
-								else
-								{
-									var inIgnoreList:Bool = false;
-									for (shit in 0...ignoreList.length)
-									{
-										if (controlArray[ignoreList[shit]])
-											inIgnoreList = true;
-									}
+									goodNoteHit(coolNote, (mashing > getKeyPresses(coolNote)));
+
 								}
 							}
 						}
@@ -3819,7 +3825,7 @@ class PlayState extends MusicBeatState
 					boyfriend.playAnim('singRIGHTmiss', true);
 			}
 
-			#if cpp
+			#if windows
 			if (lua != null)
 				callLua('playerOneMiss', [direction, Conductor.songPosition]);
 			#end
@@ -3900,7 +3906,9 @@ class PlayState extends MusicBeatState
 			else if (controlArray[note.noteData])
 				{
 
-					if (mashing > getKeyPresses(note) && mashViolations <= 2)
+					goodNoteHit(note, (mashing > getKeyPresses(note)));
+					
+					/*if (mashing > getKeyPresses(note) && mashViolations <= 2)
 					{
 						mashViolations++;
 
@@ -3919,7 +3927,7 @@ class PlayState extends MusicBeatState
 							mashing = 0;
 					}
 					else
-						goodNoteHit(note, false);
+						goodNoteHit(note, false);*/
 
 				}
 		}
@@ -3968,7 +3976,7 @@ class PlayState extends MusicBeatState
 							boyfriend.playAnim('singLEFT', true);
 					}
 		
-					#if cpp
+					#if windows
 					if (lua != null)
 						callLua('playerOneSing', [note.noteData, Conductor.songPosition]);
 					#end
@@ -4091,7 +4099,7 @@ class PlayState extends MusicBeatState
 			resyncVocals();
 		}
 
-		#if cpp
+		#if windows
 		if (executeModchart && lua != null)
 		{
 			setVar('curStep',curStep);
@@ -4127,10 +4135,10 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic)
 		{
-			notes.sort(FlxSort.byY, FlxSort.DESCENDING);
+			notes.sort(FlxSort.byY, (FlxG.save.data.downscroll ? FlxSort.ASCENDING : FlxSort.DESCENDING));
 		}
 
-		#if cpp
+		#if windows
 		if (executeModchart && lua != null)
 		{
 			setVar('curBeat',curBeat);

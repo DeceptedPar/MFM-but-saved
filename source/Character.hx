@@ -63,7 +63,7 @@ class Character extends FlxSprite
 				playAnim('danceRight');
 
 			case 'gf-dark':
-				tex = Paths.getSparrowAtlas('GF_DARK','week+');
+				tex = Paths.getSparrowAtlas('sacredmass/GF_DARK','shared');
 				frames = tex;
 				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
 				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
@@ -337,7 +337,7 @@ class Character extends FlxSprite
 				flipX = true;
 
 			case 'bf-dark':
-				var tex = Paths.getSparrowAtlas('BF_DARK','week+');
+				var tex = Paths.getSparrowAtlas('sacredmass/BF_DARK','shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -567,7 +567,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'sarvente':
-				frames = Paths.getSparrowAtlas('sarvente_sheet','week+');
+				frames = Paths.getSparrowAtlas('sacredmass/sarvente_sheet','shared');
 				animation.addByPrefix('idle', 'SarventeIdle', 24, false);
 				animation.addByPrefix('singUP', 'SarventeUp', 24, false);
 				animation.addByPrefix('singRIGHT', 'SarventeRight', 24, false);
@@ -585,7 +585,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'sarvente-dark':
-				frames = Paths.getSparrowAtlas('sarvente_dark','week+');
+				frames = Paths.getSparrowAtlas('sacredmass/sarvente_dark','shared');
 				animation.addByPrefix('idle', 'SarvDarkIdle', 24, false);
 				animation.addByPrefix('singUP', 'SarvDarkUp', 24, false);
 				animation.addByPrefix('singRIGHT', 'SarvDarkRight', 24, false);
@@ -601,7 +601,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'ruv':
-				frames = Paths.getSparrowAtlas('ruv_sheet','week+');
+				frames = Paths.getSparrowAtlas('sacredmass/ruv_sheet','shared');
 				animation.addByPrefix('idle', 'RuvIdle', 24, false);
 				animation.addByPrefix('singUP', 'RuvUp', 24, false);
 				animation.addByPrefix('singRIGHT', 'RuvRight', 24, false);
@@ -617,7 +617,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'luci-sarv':
-				frames = Paths.getSparrowAtlas('luci_sarv','week+');
+				frames = Paths.getSparrowAtlas('sacredmass/luci_sarv','shared');
 				animation.addByPrefix('idle', 'LuciferSarvIdle', 24, false);
 				animation.addByPrefix('singUP', 'LuciferSarvUp', 24, false);
 				animation.addByPrefix('singRIGHT', 'LuciferSarvRight', 24, false);

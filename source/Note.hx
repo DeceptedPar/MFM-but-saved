@@ -86,49 +86,49 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 				updateHitbox();
 
-            case 'church1-dark':
-                frames = Paths.getSparrowAtlas('NOTE_assets_dark');
+			case 'church1-dark':
+				frames = Paths.getSparrowAtlas('NOTE_assets_dark');
 
-                animation.addByPrefix('greenScroll', 'green0');
-                animation.addByPrefix('redScroll', 'red0');
-                animation.addByPrefix('blueScroll', 'blue0');
-                animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('greenScroll', 'green0');
+				animation.addByPrefix('redScroll', 'red0');
+				animation.addByPrefix('blueScroll', 'blue0');
+				animation.addByPrefix('purpleScroll', 'purple0');
 
-                animation.addByPrefix('purpleholdend', 'pruple end hold');
-                animation.addByPrefix('greenholdend', 'green hold end');
-                animation.addByPrefix('redholdend', 'red hold end');
-                animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('purpleholdend', 'pruple end hold');
+				animation.addByPrefix('greenholdend', 'green hold end');
+				animation.addByPrefix('redholdend', 'red hold end');
+				animation.addByPrefix('blueholdend', 'blue hold end');
 
-                animation.addByPrefix('purplehold', 'purple hold piece');
-                animation.addByPrefix('greenhold', 'green hold piece');
-                animation.addByPrefix('redhold', 'red hold piece');
-                animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('purplehold', 'purple hold piece');
+				animation.addByPrefix('greenhold', 'green hold piece');
+				animation.addByPrefix('redhold', 'red hold piece');
+				animation.addByPrefix('bluehold', 'blue hold piece');
 
-                setGraphicSize(Std.int(width * 0.7));
-                updateHitbox();
-                antialiasing = true;
+				setGraphicSize(Std.int(width * 0.7));
+				updateHitbox();
+				antialiasing = true;
 
-            case 'church3':
-                frames = Paths.getSparrowAtlas('NOTE_assets2');
+			case 'church3':
+				frames = Paths.getSparrowAtlas('NOTE_assets2');
 
-                animation.addByPrefix('greenScroll', 'green0');
-                animation.addByPrefix('redScroll', 'red0');
-                animation.addByPrefix('blueScroll', 'blue0');
-                animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('greenScroll', 'green0');
+				animation.addByPrefix('redScroll', 'red0');
+				animation.addByPrefix('blueScroll', 'blue0');
+				animation.addByPrefix('purpleScroll', 'purple0');
 
-                animation.addByPrefix('purpleholdend', 'pruple end hold');
-                animation.addByPrefix('greenholdend', 'green hold end');
-                animation.addByPrefix('redholdend', 'red hold end');
-                animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('purpleholdend', 'pruple end hold');
+				animation.addByPrefix('greenholdend', 'green hold end');
+				animation.addByPrefix('redholdend', 'red hold end');
+				animation.addByPrefix('blueholdend', 'blue hold end');
 
-                animation.addByPrefix('purplehold', 'purple hold piece');
-                animation.addByPrefix('greenhold', 'green hold piece');
-                animation.addByPrefix('redhold', 'red hold piece');
-                animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('purplehold', 'purple hold piece');
+				animation.addByPrefix('greenhold', 'green hold piece');
+				animation.addByPrefix('redhold', 'red hold piece');
+				animation.addByPrefix('bluehold', 'blue hold piece');
 
-                setGraphicSize(Std.int(width * 0.7));
-                updateHitbox();
-                antialiasing = true;
+				setGraphicSize(Std.int(width * 0.7));
+				updateHitbox();
+				antialiasing = true;
 
 			default:
 				frames = Paths.getSparrowAtlas('NOTE_assets');
@@ -218,7 +218,10 @@ class Note extends FlxSprite
 				}
 
 				
-				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.8 * FlxG.save.data.scrollSpeed;
+				if(FlxG.save.data.scrollSpeed != 1)
+					prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * FlxG.save.data.scrollSpeed;
+				else
+					prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.SONG.speed;
 				prevNote.updateHitbox();
 				// prevNote.setGraphicSize();
 			}
