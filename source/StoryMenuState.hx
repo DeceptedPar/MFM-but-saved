@@ -31,7 +31,7 @@ class StoryMenuState extends MusicBeatState
 		['Satin-Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
 		['Senpai', 'Roses', 'Thorns'],
-		['Parish', 'Worship', 'Zavodila', 'Gospel']
+		['Parish', 'Worship', 'Zavodila', 'Gospel', 'Casanova']
 	];
 	var curDifficulty:Int = 1;
 
@@ -377,26 +377,26 @@ class StoryMenuState extends MusicBeatState
 	}
 
 	function updateText()
-	{
-		grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
-		grpWeekCharacters.members[1].setCharacter(weekCharacters[curWeek][1]);
-		grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
+    {
+        grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
+        grpWeekCharacters.members[1].setCharacter(weekCharacters[curWeek][1]);
+        grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
 
-		txtTracklist.text = "Tracks\n";
-		var stringThing:Array<String> = weekData[curWeek];
+        txtTracklist.text = "Tracks\n";
+        var stringThing:Array<String> = weekData[curWeek];
 
-		for (i in stringThing)
-		{
-			txtTracklist.text += "\n" + i;
-		}
+        for (i in stringThing)
+        {
+            txtTracklist.text += "\n" + i;
+        }
+        txtTracklist.text += "\n";
+        txtTracklist.text = txtTracklist.text.toUpperCase();
 
-		txtTracklist.text = txtTracklist.text.toUpperCase();
+        txtTracklist.screenCenter(X);
+        txtTracklist.x -= FlxG.width * 0.35;
 
-		txtTracklist.screenCenter(X);
-		txtTracklist.x -= FlxG.width * 0.35;
-
-		#if !switch
-		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
-		#end
-	}
+        #if !switch
+        intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
+        #end
+    }
 }

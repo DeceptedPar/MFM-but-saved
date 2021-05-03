@@ -20,3 +20,4 @@ bf-dark
 sarvente-dark
 ruv
 luci-sarv
+selever

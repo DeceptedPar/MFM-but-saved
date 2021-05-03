@@ -42,6 +42,7 @@ class HealthIcon extends FlxSprite
         animation.add('sarvente-dark', [24, 25], 0, false, isPlayer);
         animation.add('ruv', [32, 33], 0, false, isPlayer);
         animation.add('luci-sarv', [34, 35], 0, false, isPlayer);
+        animation.add('selever', [36, 37], 0, false, isPlayer);
 		animation.play(char);
 		switch(char){
 			case 'bf-pixel' | 'senpai' | 'senpai-angry' | 'spirit' | 'gf-pixel':

@@ -631,6 +631,24 @@ class Character extends FlxSprite
 				addOffset('singDOWN');
 
 				playAnim('idle');
+
+			case 'selever':
+				frames = Paths.getSparrowAtlas('selever/selever_sheet','shared');
+				animation.addByPrefix('idle', 'SelIdle', 24, false);
+				animation.addByPrefix('singUP', 'SelUp', 24, false);
+				animation.addByPrefix('singRIGHT', 'SelRight', 24, false);
+				animation.addByPrefix('singLEFT', 'SelLeft', 24, false);
+				animation.addByPrefix('singDOWN', 'SelDown', 24, false);
+				animation.addByPrefix('hey', 'SelHey', 24, false);
+
+				addOffset('idle');
+				addOffset('singUP');
+				addOffset('singRIGHT');
+				addOffset('singLEFT');
+				addOffset('singDOWN');
+				addOffset('hey');
+
+				playAnim('idle');
 		}
 
 		dance();
