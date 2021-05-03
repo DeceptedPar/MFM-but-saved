@@ -857,7 +857,7 @@ class PlayState extends MusicBeatState
 			}
 			case 'parish':
 			{
-					defaultCamZoom = 0.9;
+					defaultCamZoom = 0.80;
 					curStage = 'church1';
 					var bg:FlxSprite = new FlxSprite(200, -880).loadGraphic(Paths.image('sacredmass/church1/base'));
 					bg.antialiasing = true;
@@ -869,7 +869,6 @@ class PlayState extends MusicBeatState
 					//stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 					//stageFront.updateHitbox();
 					//stageFront.antialiasing = true;
-					//stageFront.scrollFactor.set(0, 0);
 					//stageFront.active = false;
 					//add(stageFront);
 
@@ -877,18 +876,16 @@ class PlayState extends MusicBeatState
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(0, 0);
 					stageCurtains.active = false;
 
 					add(stageCurtains);
 			}
 			case 'worship':
 			{
-					defaultCamZoom = 0.9;
+					defaultCamZoom = 0.80;
 					curStage = 'church1-dark';
 					var bg:FlxSprite = new FlxSprite(200, -880).loadGraphic(Paths.image('sacredmass/church1/base-dark'));
 					bg.antialiasing = true;
-					bg.scrollFactor.set(0, 0);
 					bg.active = false;
 					add(bg);
 
@@ -896,7 +893,6 @@ class PlayState extends MusicBeatState
 					//stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 					//stageFront.updateHitbox();
 					//stageFront.antialiasing = true;
-					//stageFront.scrollFactor.set(0, 0);
 					//stageFront.active = false;
 					//add(stageFront);
 
@@ -904,18 +900,16 @@ class PlayState extends MusicBeatState
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(0, 0);
 					stageCurtains.active = false;
 
 					add(stageCurtains);
 			}
 			case 'zavodila':
 			{
-					defaultCamZoom = 0.9;
+					defaultCamZoom = 0.80;
 					curStage = 'church2';
 					var bg:FlxSprite = new FlxSprite(200, -880).loadGraphic(Paths.image('sacredmass/church2/base'));
 					bg.antialiasing = true;
-					bg.scrollFactor.set(0, 0);
 					bg.active = false;
 					add(bg);
 
@@ -923,7 +917,6 @@ class PlayState extends MusicBeatState
 					//stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 					//stageFront.updateHitbox();
 					//stageFront.antialiasing = true;
-					//stageFront.scrollFactor.set(0, 0);
 					//stageFront.active = false;
 					//add(stageFront);
 
@@ -931,7 +924,6 @@ class PlayState extends MusicBeatState
 					//stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					//stageCurtains.updateHitbox();
 					//stageCurtains.antialiasing = true;
-					//stageCurtains.scrollFactor.set(0, 0);
 					//stageCurtains.active = false;
 
 					//add(stageCurtains);
@@ -940,14 +932,13 @@ class PlayState extends MusicBeatState
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(0, 0);
 					stageCurtains.active = false;
 
 					add(stageCurtains);
 			}
 			case 'gospel':
 			{
-					defaultCamZoom = 0.9;
+					defaultCamZoom = 0.80;
 					curStage = 'church3';
 					var bg:FlxSprite = new FlxSprite(200, -880).loadGraphic(Paths.image('sacredmass/church3/base'));
 					bg.antialiasing = true;
@@ -959,7 +950,6 @@ class PlayState extends MusicBeatState
 					//stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 					//stageFront.updateHitbox();
 					//stageFront.antialiasing = true;
-					//stageFront.scrollFactor.set(0, 0);
 					//stageFront.active = false;
 					//add(stageFront);
 
@@ -967,7 +957,6 @@ class PlayState extends MusicBeatState
 					//stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					//stageCurtains.updateHitbox();
 					//stageCurtains.antialiasing = true;
-					//stageCurtains.scrollFactor.set(0, 0);
 					//stageCurtains.active = false;
 
 					//add(stageCurtains);
@@ -976,7 +965,6 @@ class PlayState extends MusicBeatState
 					//stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					//stageCurtains.updateHitbox();
 					//stageCurtains.antialiasing = true;
-					//stageCurtains.scrollFactor.set(0, 0);
 					//stageCurtains.active = false;
 
 					//add(stageCurtains);
@@ -985,7 +973,6 @@ class PlayState extends MusicBeatState
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(0, 0);
 					stageCurtains.active = false;
 
 					add(stageCurtains);
@@ -994,18 +981,16 @@ class PlayState extends MusicBeatState
 					//stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					//stageCurtains.updateHitbox();
 					//stageCurtains.antialiasing = true;
-					//stageCurtains.scrollFactor.set(1.3, 1.3);
 					//stageCurtains.active = false;
 
 					//add(stageCurtains);
 			}
 			case 'casanova':
 			{
-					defaultCamZoom = 0.9;
-					curStage = 'churchselever';
+					defaultCamZoom = 0.80;
+					curStage = 'churchSelever';
 					var bg:FlxSprite = new FlxSprite(200, -880).loadGraphic(Paths.image('selever/churchSelever/base'));
 					bg.antialiasing = true;
-					bg.scrollFactor.set(0, 0);
 					bg.active = false;
 					add(bg);
 
@@ -1013,7 +998,6 @@ class PlayState extends MusicBeatState
 					//stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 					//stageFront.updateHitbox();
 					//stageFront.antialiasing = true;
-					//stageFront.scrollFactor.set(0, 0);
 					//stageFront.active = false;
 					//add(stageFront);
 
@@ -1021,7 +1005,6 @@ class PlayState extends MusicBeatState
 					//stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					//stageCurtains.updateHitbox();
 					//stageCurtains.antialiasing = true;
-					//stageCurtains.scrollFactor.set(0, 0);
 					//stageCurtains.active = false;
 
 					//add(stageCurtains);
@@ -1131,7 +1114,6 @@ class PlayState extends MusicBeatState
 			case 'luci-sarv':
 				dad.x = 392;
 				dad.y = 73;
-                camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
             case 'selever':
                 dad.x = 426;
                 dad.y = 313;
@@ -1178,24 +1160,34 @@ class PlayState extends MusicBeatState
 				gf.y += 300;
 
 			case 'church1':
-				boyfriend.setPosition(719, 239);
-				gf.setPosition(343, -165);
+				boyfriend.x = 719; 
+				boyfriend.y = 239;
+				gf.x = 343;
+				gf.y = 165;
 
 			case 'church1-dark':
-				boyfriend.setPosition(719, 239);
-				gf.setPosition(343, -165);
+				boyfriend.x = 719; 
+				boyfriend.y = 239;
+				gf.x = 343;
+				gf.y = 165;
 
 			case 'church2':
-				boyfriend.setPosition(719, 239);
-				gf.setPosition(343, -165);
+				boyfriend.x = 719; 
+				boyfriend.y = 239;
+				gf.x = 343;
+				gf.y = 165;
 
 			case 'church3':
-				boyfriend.setPosition(719, 239);
-				gf.setPosition(343, -165);
+				boyfriend.x = 719; 
+				boyfriend.y = 239;
+				gf.x = 343;
+				gf.y = 165;
 
-			case 'churchselever':
-				boyfriend.setPosition(719, 239);
-				gf.setPosition(343, -165);
+			case 'churchSelever':
+				boyfriend.x = 719; 
+				boyfriend.y = 239;
+				gf.x = 343;
+				gf.y = 165;
 		}
 
 		add(gf);

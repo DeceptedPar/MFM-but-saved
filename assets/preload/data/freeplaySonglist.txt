@@ -20,4 +20,5 @@ Thorns:spirit:6
 Parish:sarvente:7
 Worship:sarvente:7
 Zavodila:ruv:7
-Gospel:luci-sarv:7Casanova:selever:7
+Gospel:luci-sarv:7
+Casanova:selever:7
