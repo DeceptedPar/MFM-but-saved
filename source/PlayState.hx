@@ -1117,24 +1117,24 @@ class PlayState extends MusicBeatState
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'sarvente':
-				dad.x = 427,5;
-				dad.y = 314,4;
+				dad.x = 426;
+				dad.y = 313;
                 camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'sarvente-dark':
-				dad.x = 427,5;
-				dad.y = 314,4;
+				dad.x = 426;
+				dad.y = 313;
                 camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'ruv':
-				dad.x = 427,5;
-				dad.y = 314,4;
+				dad.x = 426;
+				dad.y = 313;
                 camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'luci-sarv':
-				dad.x = 393,25;
-				dad.y = 74,3;
+				dad.x = 392;
+				dad.y = 73;
                 camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
             case 'selever':
-                dad.x = 427,5;
-                dad.y = 314,4;
+                dad.x = 426;
+                dad.y = 313;
                 camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 		}
 
