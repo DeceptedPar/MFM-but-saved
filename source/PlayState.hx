@@ -987,19 +987,19 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.80;
 					curStage = 'churchSelever';
-					var bg:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('selever/churchSelever/base'));
+					var bg:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('sacredmass/churchSelever/base'));
 					bg.antialiasing = true;
 					bg.active = false;
 					add(bg);
 
-					//var stageFront:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('selever/churchSelever/floor'));
+					//var stageFront:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('sacredmass/churchSelever/floor'));
 					//stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 					//stageFront.updateHitbox();
 					//stageFront.antialiasing = true;
 					//stageFront.active = false;
 					//add(stageFront);
 
-					//var stageCurtains:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('selever/churchSelever/pillars'));
+					//var stageCurtains:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('sacredmass/churchSelever/pillars'));
 					//stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					//stageCurtains.updateHitbox();
 					//stageCurtains.antialiasing = true;

@@ -633,7 +633,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'selever':
-				frames = Paths.getSparrowAtlas('selever/selever_sheet','shared');
+				frames = Paths.getSparrowAtlas('sacredmass/selever_sheet','shared');
 				animation.addByPrefix('idle', 'SelIdle', 24, false);
 				animation.addByPrefix('singUP', 'SelUp', 24, false);
 				animation.addByPrefix('singRIGHT', 'SelRight', 24, false);

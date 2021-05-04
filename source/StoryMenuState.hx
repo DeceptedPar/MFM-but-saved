@@ -56,7 +56,7 @@ class StoryMenuState extends MusicBeatState
 		"MOMMY MUST MURDER",
 		"RED SNOW",
 		"Hating Simulator ft. Moawling",
-		"Mid-Fight Masses"
+		"Mid-Fight Masses ft. Selever"
 	];
 
 	var txtWeekTitle:FlxText;
