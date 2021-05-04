@@ -859,7 +859,7 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.80;
 					curStage = 'church1';
-					var bg:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('sacredmass/church1/base'));
+					var bg:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church1/base'));
 					bg.antialiasing = true;
 					bg.active = false;
 					add(bg);
@@ -871,7 +871,7 @@ class PlayState extends MusicBeatState
 					//stageFront.active = false;
 					//add(stageFront);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('sacredmass/church1/pillars'));
+					var stageCurtains:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church1/pillars'));
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
@@ -883,7 +883,7 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.80;
 					curStage = 'church1-dark';
-					var bg:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('sacredmass/church1/base-dark'));
+					var bg:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church1/base-dark'));
 					bg.antialiasing = true;
 					bg.active = false;
 					add(bg);
@@ -895,7 +895,7 @@ class PlayState extends MusicBeatState
 					//stageFront.active = false;
 					//add(stageFront);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('sacredmass/church1/pillars-dark'));
+					var stageCurtains:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church1/pillars-dark'));
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
@@ -907,7 +907,7 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.80;
 					curStage = 'church2';
-					var bg:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('sacredmass/church2/base'));
+					var bg:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church2/base'));
 					bg.antialiasing = true;
 					bg.active = false;
 					add(bg);
@@ -927,7 +927,7 @@ class PlayState extends MusicBeatState
 
 					//add(stageCurtains);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('sacredmass/church2/pillarbroke'));
+					var stageCurtains:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church2/pillarbroke'));
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
@@ -939,7 +939,7 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.80;
 					curStage = 'church3';
-					var bg:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('sacredmass/church3/base'));
+					var bg:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church3/base'));
 					bg.antialiasing = true;
 					bg.active = false;
 					add(bg);
@@ -967,7 +967,7 @@ class PlayState extends MusicBeatState
 
 					//add(stageCurtains);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('sacredmass/church3/circ1'));
+					var stageCurtains:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church3/circ1'));
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
@@ -987,7 +987,7 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.80;
 					curStage = 'churchSelever';
-					var bg:FlxSprite = new FlxSprite(-332, -794).loadGraphic(Paths.image('sacredmass/churchSelever/base'));
+					var bg:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/churchSelever/base'));
 					bg.antialiasing = true;
 					bg.active = false;
 					add(bg);
@@ -1100,18 +1100,22 @@ class PlayState extends MusicBeatState
 			case 'sarvente':
 				dad.x = 437.35;
 				dad.y = 359.9;
+				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'sarvente-dark':
 				dad.x = 437.35;
 				dad.y = 359.9;
+				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'ruv':
 				dad.x = 437.35;
 				dad.y = 359.9;
+				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'luci-sarv':
-				dad.x = 313.3;
-				dad.y = 105.8;
+				dad.x += 200;
+				dad.y += 100;
 			case 'selever':
 				dad.x = 437.35;
 				dad.y = 359.9;
+				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 		}
 
 
@@ -1154,23 +1158,23 @@ class PlayState extends MusicBeatState
 				gf.y += 300;
 
 			case 'church1':
-				boyfriend.setPosition(520.45, 509.15);
+				boyfriend.setPosition(580.45, 479.15);
 				gf.setPosition(420.6, 143.1);
 
 			case 'church1-dark':
-				boyfriend.setPosition(520.45, 509.15);
+				boyfriend.setPosition(580.45, 479.15);
 				gf.setPosition(420.6, 143.1);
 
 			case 'church2':
-				boyfriend.setPosition(520.45, 509.15);
+				boyfriend.setPosition(580.45, 479.15);
 				gf.setPosition(420.6, 143.1);
 
 			case 'church3':
-				boyfriend.setPosition(520.45, 509.15);
+				boyfriend.setPosition(580.45, 479.15);
 				gf.setPosition(420.6, 143.1);
 
 			case 'churchSelever':
-				boyfriend.setPosition(520.45, 509.15);
+				boyfriend.setPosition(580.45, 479.15);
 				gf.setPosition(420.6, 143.1);
 		}
 
@@ -1939,6 +1943,10 @@ class PlayState extends MusicBeatState
 					});
 					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
 				case 4:
+					if (dad.curCharacter == 'selever');
+					{
+						dad.playAnim('hey', true);
+					}
 			}
 
 			swagCounter += 1;
@@ -2184,9 +2192,79 @@ class PlayState extends MusicBeatState
 							babyArrow.animation.add('confirm', [15, 19], 24, false);
 					}
 
+                case 'church1':
+
+                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets_parish');
+                    babyArrow.animation.addByPrefix('green', 'arrowUP');
+                    babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+                    babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+                    babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+
+                    babyArrow.antialiasing = true;
+                    babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+
+                    switch (Math.abs(i))
+                    {
+                        case 0:
+                            babyArrow.x += Note.swagWidth * 0;
+                            babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+                            babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+                        case 1:
+                            babyArrow.x += Note.swagWidth * 1;
+                            babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+                            babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+                        case 2:
+                            babyArrow.x += Note.swagWidth * 2;
+                            babyArrow.animation.addByPrefix('static', 'arrowUP');
+                            babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+                        case 3:
+                            babyArrow.x += Note.swagWidth * 3;
+                            babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+                            babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+                    }
+
                 case 'church1-dark':
 
-                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets_dark');
+                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets_worship');
+                    babyArrow.animation.addByPrefix('green', 'arrowUP');
+                    babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+                    babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+                    babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+
+                    babyArrow.antialiasing = true;
+                    babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+
+                    switch (Math.abs(i))
+                    {
+                        case 0:
+                            babyArrow.x += Note.swagWidth * 0;
+                            babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+                            babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+                        case 1:
+                            babyArrow.x += Note.swagWidth * 1;
+                            babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+                            babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+                        case 2:
+                            babyArrow.x += Note.swagWidth * 2;
+                            babyArrow.animation.addByPrefix('static', 'arrowUP');
+                            babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+                        case 3:
+                            babyArrow.x += Note.swagWidth * 3;
+                            babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+                            babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+                            babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+                    }
+
+                case 'church2':
+
+                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets_zavodila');
                     babyArrow.animation.addByPrefix('green', 'arrowUP');
                     babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
                     babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
