@@ -976,7 +976,7 @@ class PlayState extends MusicBeatState
 					//add(stageCurtains);
 
 					var stagePentagram:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church3/circ1'));
-					stagePentagram.setGraphicSize(Std.int(stagePentagram.angle:Float = 360));
+					stagePentagram.angle:Float = 360;
 					stagePentagram.updateHitbox();
 					stagePentagram.antialiasing = true;
 					stagePentagram.active = false;
