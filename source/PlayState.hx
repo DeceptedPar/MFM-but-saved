@@ -859,7 +859,7 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.80;
 					curStage = 'church1';
-					var bg:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church1/base'));
+					var bg:FlxSprite = new FlxSprite(-332, -674).loadGraphic(Paths.image('sacredmass/church1/base'));
 					bg.antialiasing = true;
 					bg.active = false;
 					add(bg);
@@ -871,7 +871,7 @@ class PlayState extends MusicBeatState
 					//stageFront.active = false;
 					//add(stageFront);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church1/pillars'));
+					var stageCurtains:FlxSprite = new FlxSprite(-352, -674).loadGraphic(Paths.image('sacredmass/church1/pillars'));
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
@@ -883,7 +883,7 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.80;
 					curStage = 'church1-dark';
-					var bg:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church1/base-dark'));
+					var bg:FlxSprite = new FlxSprite(-332, -674).loadGraphic(Paths.image('sacredmass/church1/base-dark'));
 					bg.antialiasing = true;
 					bg.active = false;
 					add(bg);
@@ -895,7 +895,7 @@ class PlayState extends MusicBeatState
 					//stageFront.active = false;
 					//add(stageFront);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church1/pillars-dark'));
+					var stageCurtains:FlxSprite = new FlxSprite(-352, -674).loadGraphic(Paths.image('sacredmass/church1/pillars-dark'));
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
@@ -907,7 +907,7 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.80;
 					curStage = 'church2';
-					var bg:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church2/base'));
+					var bg:FlxSprite = new FlxSprite(-332, -674).loadGraphic(Paths.image('sacredmass/church2/base'));
 					bg.antialiasing = true;
 					bg.active = false;
 					add(bg);
@@ -927,7 +927,7 @@ class PlayState extends MusicBeatState
 
 					//add(stageCurtains);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church2/pillarbroke'));
+					var stageCurtains:FlxSprite = new FlxSprite(-352, -674).loadGraphic(Paths.image('sacredmass/church2/pillarbroke'));
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
@@ -939,7 +939,7 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.80;
 					curStage = 'church3';
-					var bg:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church3/base'));
+					var bg:FlxSprite = new FlxSprite(-332, -674).loadGraphic(Paths.image('sacredmass/church3/base'));
 					bg.antialiasing = true;
 					bg.active = false;
 					add(bg);
@@ -967,7 +967,7 @@ class PlayState extends MusicBeatState
 
 					//add(stageCurtains);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/church3/circ1'));
+					var stageCurtains:FlxSprite = new FlxSprite(-352, -674).loadGraphic(Paths.image('sacredmass/church3/circ1'));
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					stageCurtains.antialiasing = true;
@@ -987,7 +987,7 @@ class PlayState extends MusicBeatState
 			{
 					defaultCamZoom = 0.80;
 					curStage = 'churchSelever';
-					var bg:FlxSprite = new FlxSprite(-332, -694).loadGraphic(Paths.image('sacredmass/churchSelever/base'));
+					var bg:FlxSprite = new FlxSprite(-332, -674).loadGraphic(Paths.image('sacredmass/churchSelever/base'));
 					bg.antialiasing = true;
 					bg.active = false;
 					add(bg);
@@ -1098,23 +1098,23 @@ class PlayState extends MusicBeatState
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'sarvente':
-				dad.x = 437.35;
-				dad.y = 359.9;
+				dad.x = 417.35;
+				dad.y = 339.9;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'sarvente-dark':
-				dad.x = 437.35;
-				dad.y = 359.9;
+				dad.x = 417.35;
+				dad.y = 339.9;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'ruv':
-				dad.x = 437.35;
-				dad.y = 359.9;
+				dad.x = 417.35;
+				dad.y = 339.9;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'luci-sarv':
 				dad.x += 200;
 				dad.y += 100;
 			case 'selever':
-				dad.x = 437.35;
-				dad.y = 359.9;
+				dad.x = 407.35;
+				dad.y = 329.9;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 		}
 
@@ -1158,23 +1158,23 @@ class PlayState extends MusicBeatState
 				gf.y += 300;
 
 			case 'church1':
-				boyfriend.setPosition(580.45, 479.15);
+				boyfriend.setPosition(600.45, 479.15);
 				gf.setPosition(420.6, 143.1);
 
 			case 'church1-dark':
-				boyfriend.setPosition(580.45, 479.15);
+				boyfriend.setPosition(600.45, 479.15);
 				gf.setPosition(420.6, 143.1);
 
 			case 'church2':
-				boyfriend.setPosition(580.45, 479.15);
+				boyfriend.setPosition(600.45, 479.15);
 				gf.setPosition(420.6, 143.1);
 
 			case 'church3':
-				boyfriend.setPosition(580.45, 479.15);
+				boyfriend.setPosition(600.45, 479.15);
 				gf.setPosition(420.6, 143.1);
 
 			case 'churchSelever':
-				boyfriend.setPosition(580.45, 479.15);
+				boyfriend.setPosition(600.45, 479.15);
 				gf.setPosition(420.6, 143.1);
 		}
 
