@@ -1100,22 +1100,18 @@ class PlayState extends MusicBeatState
 			case 'sarvente':
 				dad.x = 417.35;
 				dad.y = 339.9;
-				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'sarvente-dark':
 				dad.x = 417.35;
 				dad.y = 339.9;
-				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'ruv':
 				dad.x = 417.35;
 				dad.y = 339.9;
-				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'luci-sarv':
 				dad.x += 200;
 				dad.y += 100;
 			case 'selever':
 				dad.x = 407.35;
 				dad.y = 329.9;
-				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 		}
 
 
@@ -1158,24 +1154,24 @@ class PlayState extends MusicBeatState
 				gf.y += 300;
 
 			case 'church1':
-				boyfriend.setPosition(600.45, 479.15);
-				gf.setPosition(420.6, 143.1);
+				boyfriend.setPosition(650.45, 479.15);
+				gf.setPosition(370.6, 93.1);
 
 			case 'church1-dark':
-				boyfriend.setPosition(600.45, 479.15);
-				gf.setPosition(420.6, 143.1);
+				boyfriend.setPosition(650.45, 479.15);
+                gf.setPosition(370.6, 93.1);
 
 			case 'church2':
-				boyfriend.setPosition(600.45, 479.15);
-				gf.setPosition(420.6, 143.1);
+				boyfriend.setPosition(650.45, 479.15);
+                gf.setPosition(370.6, 93.1);
 
 			case 'church3':
-				boyfriend.setPosition(600.45, 479.15);
-				gf.setPosition(420.6, 143.1);
+				boyfriend.setPosition(650.45, 479.15);
+                gf.setPosition(370.6, 93.1);
 
 			case 'churchSelever':
-				boyfriend.setPosition(600.45, 479.15);
-				gf.setPosition(420.6, 143.1);
+				boyfriend.setPosition(650.45, 479.15);
+                gf.setPosition(370.6, 93.1);
 		}
 
 		add(gf);
