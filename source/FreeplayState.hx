@@ -233,9 +233,35 @@ class FreeplayState extends MusicBeatState
 			case 0:
 				diffText.text = "EASY";
 			case 1:
-				diffText.text = 'NORMAL';
+				diffText.text = "NORMAL";
 			case 2:
 				diffText.text = "HARD";
+			case 3:
+				diffText.text = "ALT";
+			case 4:
+				diffText.text = "EASY-OG";
+			case 5:
+				diffText.text = "NORMAL-OG";
+			case 6:
+				diffText.text = "HARD-OG";
+			case 7:
+				diffText.text = "ALT-OG";
+			case 8:
+				diffText.text = "EASY-A";
+			case 9:
+				diffText.text = "NORMAL-A";
+			case 10:
+				diffText.text = "HARD-A";
+			case 11:
+				diffText.text = "ALT-A";
+			case 12:
+				diffText.text = "EASY-OLD";
+			case 13:
+				diffText.text = "NORMAL-OLD";
+			case 14:
+				diffText.text = "HARD-OLD";
+			case 15:
+				diffText.text = "ALT-OLD";
 		}
 	}
 

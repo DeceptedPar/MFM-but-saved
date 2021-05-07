@@ -169,6 +169,7 @@ class StoryMenuState extends MusicBeatState
 		sprDifficulty.animation.addByPrefix('easy', 'EASY');
 		sprDifficulty.animation.addByPrefix('normal', 'NORMAL');
 		sprDifficulty.animation.addByPrefix('hard', 'HARD');
+		sprDifficulty.animation.addByPrefix('alt', 'ALT');
 		sprDifficulty.animation.play('easy');
 		changeDifficulty();
 
@@ -296,6 +297,32 @@ class StoryMenuState extends MusicBeatState
 					diffic = '-easy';
 				case 2:
 					diffic = '-hard';
+				case 3:
+					diffic = '-alt';
+				case 4:
+					diffic = '-easy-original';
+				case 5:
+					diffic = '-normal-original';
+				case 6:
+					diffic = '-hard-original';
+				case 7:
+					diffic = '-alt-original';
+				case 8:
+					diffic = '-easy-alpha';
+				case 9:
+					diffic = '-normal-alpha';
+				case 10:
+					diffic = '-hard-alpha';
+				case 11:
+					diffic = '-alt-alpha';
+				case 12:
+					diffic = '-easy-old';
+				case 13:
+					diffic = '-normal-old';
+				case 14:
+					diffic = '-hard-old';
+				case 15:
+					diffic = '-alt-old';
 			}
 
 			PlayState.storyDifficulty = curDifficulty;
@@ -332,6 +359,9 @@ class StoryMenuState extends MusicBeatState
 			case 2:
 				sprDifficulty.animation.play('hard');
 				sprDifficulty.offset.x = 20;
+			case 3:
+				sprDifficulty.animation.play('alt');
+				sprDifficulty.offset.x = 50;
 		}
 
 		sprDifficulty.alpha = 0;
