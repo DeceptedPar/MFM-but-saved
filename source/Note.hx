@@ -197,7 +197,7 @@ class Note extends FlxSprite
 				updateHitbox();
 				antialiasing = true;
 
-			case 'luci-sarv':
+			case 'gf':
 				frames = Paths.getSparrowAtlas('NOTE_Assets_GF');
 
 				animation.addByPrefix('greenScroll', 'green0');
