@@ -27,7 +27,7 @@ class StoryMenuState extends MusicBeatState
 		['Tutorial'],
 		['Bopeebo', 'Fresh', 'Dadbattle'],
 		['Spookeez', 'South', "Monster"],
-		['Pico', 'Philly', "Blammed"],
+		['Pico', 'Philly Nice', "Blammed"],
 		['Satin-Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
 		['Senpai', 'Roses', 'Thorns'],
@@ -299,30 +299,6 @@ class StoryMenuState extends MusicBeatState
 					diffic = '-hard';
 				case 3:
 					diffic = '-alt';
-				case 4:
-					diffic = '-easy-original';
-				case 5:
-					diffic = '-normal-original';
-				case 6:
-					diffic = '-hard-original';
-				case 7:
-					diffic = '-alt-original';
-				case 8:
-					diffic = '-easy-alpha';
-				case 9:
-					diffic = '-normal-alpha';
-				case 10:
-					diffic = '-hard-alpha';
-				case 11:
-					diffic = '-alt-alpha';
-				case 12:
-					diffic = '-easy-old';
-				case 13:
-					diffic = '-normal-old';
-				case 14:
-					diffic = '-hard-old';
-				case 15:
-					diffic = '-alt-old';
 			}
 
 			PlayState.storyDifficulty = curDifficulty;
@@ -407,26 +383,26 @@ class StoryMenuState extends MusicBeatState
 	}
 
 	function updateText()
-    {
-        grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
-        grpWeekCharacters.members[1].setCharacter(weekCharacters[curWeek][1]);
-        grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
+	{
+		grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
+		grpWeekCharacters.members[1].setCharacter(weekCharacters[curWeek][1]);
+		grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
 
-        txtTracklist.text = "Tracks\n";
-        var stringThing:Array<String> = weekData[curWeek];
+		txtTracklist.text = "Tracks\n";
+		var stringThing:Array<String> = weekData[curWeek];
 
-        for (i in stringThing)
-        {
-            txtTracklist.text += "\n" + i;
-        }
-        txtTracklist.text += "\n";
-        txtTracklist.text = txtTracklist.text.toUpperCase();
+		for (i in stringThing)
+			txtTracklist.text += "\n" + i;
 
-        txtTracklist.screenCenter(X);
-        txtTracklist.x -= FlxG.width * 0.35;
+		txtTracklist.text = txtTracklist.text.toUpperCase();
 
-        #if !switch
-        intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
-        #end
-    }
+		txtTracklist.screenCenter(X);
+		txtTracklist.x -= FlxG.width * 0.35;
+
+		txtTracklist.text += "\n";
+
+		#if !switch
+		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
+		#end
+	}
 }

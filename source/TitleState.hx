@@ -43,6 +43,7 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	var keSpr:FlxSprite;
 
 	var curWacky:Array<String> = [];
 
@@ -220,6 +221,14 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = true;
 
+		keSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('KadeEngineLogo'));
+		add(keSpr);
+		keSpr.visible = false;
+		keSpr.setGraphicSize(Std.int(keSpr.width * 0.8));
+		keSpr.updateHitbox();
+		keSpr.screenCenter(X);
+		keSpr.antialiasing = true;
+
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		FlxG.mouse.visible = false;
@@ -295,7 +304,8 @@ class TitleState extends MusicBeatState
 				NGio.unlockMedal(61034);
 			#end
 
-			titleText.animation.play('press');
+			if (FlxG.save.data.flashing)
+				titleText.animation.play('press');
 
 			FlxG.camera.flash(FlxColor.WHITE, 1);
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
@@ -403,21 +413,32 @@ class TitleState extends MusicBeatState
 			// credTextShit.screenCenter();
 			case 5:
 				if (Main.watermarks)
-					createCoolText(['Kade Engine', 'by']);
+					createCoolText(['Built on']);
 				else
 					createCoolText(['In Partnership', 'with']);
 			case 7:
 				if (Main.watermarks)
-					addMoreText('KadeDeveloper');
+					{
+						addMoreText('KadeEngine');
+						keSpr.visible = true;
+					}
 				else
-				{
-					addMoreText('Newgrounds');
-					ngSpr.visible = true;
-				}
+					{
+						addMoreText('Newgrounds');
+						ngSpr.visible = true;
+					}
 			// credTextShit.text += '\nNewgrounds';
 			case 8:
-				deleteCoolText();
-				ngSpr.visible = false;
+				if (Main.watermarks)
+					{
+						deleteCoolText();
+						keSpr.visible = false;
+					}
+				else
+					{
+						deleteCoolText();
+						ngSpr.visible = false;
+					}
 			// credTextShit.visible = false;
 
 			// credTextShit.text = 'Shoutouts Tom Fulp';
