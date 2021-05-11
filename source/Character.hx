@@ -614,14 +614,14 @@ class Character extends FlxSprite
 				addOffset('singLEFT');
 				addOffset('singDOWN');
 
-				shake(Intensity:Float = 0.2)
+				shake(Intensity = 0.2);
 
 				boyfriend.playAnim('scared', true);
 				gf.playAnim('scared', true);
 
 				playAnim('idle');
 
-				shake(Force:Bool = true)
+				shake(Force = true);
 
 			case 'luci-sarv':
 				frames = Paths.getSparrowAtlas('sacredmass/luci_sarv');
