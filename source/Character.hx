@@ -614,7 +614,14 @@ class Character extends FlxSprite
 				addOffset('singLEFT');
 				addOffset('singDOWN');
 
+				shake(Intensity:Float = 0.2)
+
+				boyfriend.playAnim('scared', true);
+				gf.playAnim('scared', true);
+
 				playAnim('idle');
+
+				shake(Force:Bool = true)
 
 			case 'luci-sarv':
 				frames = Paths.getSparrowAtlas('sacredmass/luci_sarv');
@@ -633,7 +640,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'selever':
-				frames = Paths.getSparrowAtlas('selever/selever_sheet');
+				frames = Paths.getSparrowAtlas('sacredmass/selever_sheet');
 				animation.addByPrefix('idle', 'SelIdle', 24, false);
 				animation.addByPrefix('singUP', 'SelUp', 24, false);
 				animation.addByPrefix('singRIGHT', 'SelRight', 24, false);
