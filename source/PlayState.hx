@@ -324,7 +324,7 @@ class PlayState extends MusicBeatState
 				];
 			case 'fresh':
 				dialogue = ["Not too bad shabby boy.", ""];
-			case 'dadbattle':
+			case 'dad battle':
 				dialogue = [
 					"gah you think you're hot stuff?",
 					"If you can beat me here...",
@@ -775,19 +775,14 @@ class PlayState extends MusicBeatState
 						//add(stageCurtains);
 
 						var stageCurtains = new FlxSprite(-48, -448).loadGraphic(Paths.image('sacredmass/church3/circ1'));
-						stageCurtains.setGraphicSize(0, 2000);
+						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 						stageCurtains.antialiasing = true;
-						stageCurtains.scrollFactor.set(1, 1);
-						stageCurtains.origin.set(0, 0);
-						add(stageCurtains);
-
-						FlxTween.tween(stageCurtains, {angle: 360}, 150, {
-							ease: FlxEase.smootherStepIn,
-							onComplete: function(twn:FlxTween)
-							{
-								stageCurtains.angle=360;
-							}
+						stageCurtains.scrollFactor.set(0.1, 0.1);
+						FlxTween.angle(stageCurtains, {angle: 360}, 5, {
+							ease: FlxEase.smootherStepIn
 						});
+
+						add(stageCurtains);
 
 						//var stageCurtains:FlxSprite = new FlxSprite(-48, -448).loadGraphic(Paths.image('sacredmass/church3/circ2'));
 						//stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
@@ -1234,10 +1229,10 @@ class PlayState extends MusicBeatState
 				case 'thorns':
 					schoolIntro(doof);
 				case 'tutorial remix':
-					if (curBeat == 12)
+					new FlxTimer().start(0.725, function(tmr:FlxTimer)
 					{
 						startCountdown();
-					}
+					});
 				default:
 					startCountdown();
 			}
@@ -1451,22 +1446,6 @@ class PlayState extends MusicBeatState
 					if (curStage.startsWith('school'))
 						go.setGraphicSize(Std.int(go.width * daPixelZoom));
 
-					go.updateHitbox();
-
-					go.screenCenter();
-					add(go);
-					FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							go.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
-				case 4:
-					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
-					go.scrollFactor.set();
-
 					if (curSong == 'casanova' && dad.curCharacter == 'selever')
 					{
 						dad.playAnim('hey', true);
@@ -1484,6 +1463,7 @@ class PlayState extends MusicBeatState
 						}
 					});
 					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
+				case 4:
 			}
 
 			swagCounter += 1;
@@ -3764,14 +3744,10 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			switch (dad.curCharacter)
-			{
-				case 'sing':
-					FlxG.camera.shake(0.2, 0.1);
-				case 'scared':
-					boyfriend.playAnim('scared', true);
-					gf.playAnim('scared', true);
-			}
+			
+			FlxG.camera.shake(0.2, null, true);
+			boyfriend.playAnim('scared', true);
+			gf.playAnim('scared', true);
 		}
 
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));

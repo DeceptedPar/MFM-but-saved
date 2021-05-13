@@ -25,7 +25,7 @@ class StoryMenuState extends MusicBeatState
 
 	var weekData:Array<Dynamic> = [
 		['Tutorial', 'Tutorial Remix'],
-		['Bopeebo', 'Fresh', 'Dadbattle'],
+		['Bopeebo', 'Fresh', 'Dad Battle'],
 		['Spookeez', 'South', "Monster"],
 		['Pico', 'Philly Nice', "Blammed"],
 		['Satin-Panties', "High", "Milf"],
@@ -337,7 +337,7 @@ class StoryMenuState extends MusicBeatState
 				sprDifficulty.offset.x = 20;
 			case 3:
 				sprDifficulty.animation.play('alt');
-				sprDifficulty.offset.x = 10;
+				sprDifficulty.offset.x = 15;
 		}
 
 		sprDifficulty.alpha = 0;

@@ -230,37 +230,37 @@ class FreeplayState extends MusicBeatState
 
 		switch (curDifficulty)
 		{
-			case 0:
+			case 'tutorial', 'tutorial remix', 'bopeebo', 'fresh', 'dad battle', 'spookeez', 'south', 'monster', 'pico', 'philly nice', 'blammed', 'satin-panties', 'high', 'milf', 'cocoa', 'eggnog', 'winter-horrorland', 'senpai', 'roses', 'thorns', 'parish', 'worship', 'zavodila', 'gospel', 'casanova':
 				diffText.text = "EASY";
-			case 1:
+			case 'tutorial', 'tutorial remix', 'bopeebo', 'fresh', 'dad battle', 'spookeez', 'south', 'monster', 'pico', 'philly nice', 'blammed', 'satin-panties', 'high', 'milf', 'cocoa', 'eggnog', 'winter-horrorland', 'senpai', 'roses', 'thorns', 'parish', 'worship', 'zavodila', 'gospel', 'casanova':
 				diffText.text = "NORMAL";
-			case 2:
+			case 'tutorial', 'tutorial remix', 'bopeebo', 'fresh', 'dad battle', 'spookeez', 'south', 'monster', 'pico', 'philly nice', 'blammed', 'satin-panties', 'high', 'milf', 'cocoa', 'eggnog', 'winter-horrorland', 'senpai', 'roses', 'thorns', 'parish', 'worship', 'zavodila', 'gospel', 'casanova':
 				diffText.text = "HARD";
-			case 3:
+			case 'tutorial', 'tutorial remix', 'bopeebo', 'fresh', 'dad battle', 'spookeez', 'south', 'monster', 'pico', 'philly nice', 'blammed', 'satin-panties', 'high', 'milf', 'cocoa', 'eggnog', 'winter-horrorland', 'senpai', 'roses', 'thorns', 'parish', 'worship', 'zavodila', 'gospel', 'casanova':
 				diffText.text = "ALT";
-			case 4:
+			case 'tutorial remix', 'parish', 'worship', 'zavodila', 'gospel', 'casanova':
 				diffText.text = "EASY-OG";
-			case 5:
+			case 'tutorial remix', 'parish', 'worship', 'zavodila', 'gospel':
 				diffText.text = "NORMAL-OG";
-			case 6:
+			case 'tutorial remix', 'parish', 'worship', 'zavodila', 'gospel', 'casanova':
 				diffText.text = "HARD-OG";
-			case 7:
+			case 'tutorial remix', 'parish', 'worship', 'zavodila', 'gospel', 'casanova':
 				diffText.text = "ALT-OG";
-			case 8:
+			case 'tutorial remix', 'parish', 'worship', 'zavodila', 'gospel':
 				diffText.text = "EASY-A";
-			case 9:
+			case 'tutorial remix', 'parish', 'worship', 'zavodila', 'gospel':
 				diffText.text = "NORMAL-A";
-			case 10:
+			case 'tutorial remix', 'parish', 'worship', 'zavodila', 'gospel':
 				diffText.text = "HARD-A";
-			case 11:
+			case 'tutorial remix', 'parish', 'worship', 'zavodila', 'gospel':
 				diffText.text = "ALT-A";
-			case 12:
+			case 'tutorial remix', 'parish', 'worship', 'zavodila', 'gospel':
 				diffText.text = "EASY-OLD";
-			case 13:
+			case 'tutorial remix', 'parish', 'worship', 'zavodila', 'gospel', 'casanova':
 				diffText.text = "NORMAL-OLD";
-			case 14:
+			case 'tutorial remix', 'parish', 'worship', 'zavodila', 'gospel':
 				diffText.text = "HARD-OLD";
-			case 15:
+			case 'tutorial remix', 'parish', 'worship', 'zavodila', 'gospel', 'casanova':
 				diffText.text = "ALT-OLD";
 		}
 	}
