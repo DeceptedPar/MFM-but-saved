@@ -781,7 +781,7 @@ class PlayState extends MusicBeatState
 						stageCurtains.origin.set(0, 0);
 						add(stageCurtains);
 
-						FlxTween.tween(circ1, {angle: 360}, 150, {
+						FlxTween.tween(stageCurtains, {angle: 360}, 150, {
 							ease: FlxEase.smootherStepIn,
 							onComplete: function(twn:FlxTween)
 							{
@@ -3762,7 +3762,7 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (dad.curCharacter == 'ruv' && animation.curAnim.name.startsWith('sing'))
+		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
 			switch (dad.curCharacter)
 			{
