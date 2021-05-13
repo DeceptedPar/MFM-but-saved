@@ -781,6 +781,9 @@ class PlayState extends MusicBeatState
 						FlxTween.angle(stageCurtains, {angle: 360}, 5, {
 							ease: FlxEase.smootherStepIn,
 							onComplete: function(twn:FlxTween)
+							{
+								stageCurtains.angle=360;
+							}
 						});
 
 						add(stageCurtains);
