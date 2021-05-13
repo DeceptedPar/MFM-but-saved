@@ -256,7 +256,7 @@ class Character extends FlxSprite
 				addOffset("singUP", -20, 50);
 				addOffset("singRIGHT", -51);
 				addOffset("singLEFT", -30);
-				addOffset("singDOWN", -40, -94);
+				addOffset("singDOWN", -30, -40);
 				playAnim('idle');
 			case 'pico':
 				tex = Paths.getSparrowAtlas('characters/Pico_FNF_assetss');
@@ -614,15 +614,6 @@ class Character extends FlxSprite
 				addOffset('singLEFT');
 				addOffset('singDOWN');
 
-				shake(Intensity = 0.2);
-
-				boyfriend.playAnim('scared', true);
-				gf.playAnim('scared', true);
-
-				playAnim('idle');
-
-				shake(Force = true);
-
 			case 'luci-sarv':
 				frames = Paths.getSparrowAtlas('sacredmass/luci_sarv');
 				animation.addByPrefix('idle', 'LuciferSarvIdle', 24, false);
@@ -708,6 +699,17 @@ class Character extends FlxSprite
 			case 'gf':
 				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
 					playAnim('danceRight');
+		}
+
+		switch (curCharacter)
+		{
+			case 'ruv':
+				if (animation.curAnim.name.startsWith('sing'))
+				{
+					shake(Intensity:Float = 0.2, OnComplete:() ‑> Void, Force:Bool = true):Void
+					boyfriend.playAnim('scared', true);
+					gf.playAnim('scared', true);
+				}
 		}
 
 		super.update(elapsed);

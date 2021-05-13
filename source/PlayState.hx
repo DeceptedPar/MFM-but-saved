@@ -774,12 +774,12 @@ class PlayState extends MusicBeatState
 
 						//add(stageCurtains);
 
-						gospelInnerCircle = new FlxSprite(-48, -448).loadGraphic(Paths.image('sacredmass/church3/circ1'));
-						gospelInnerCircle.setGraphicSize(0, 2000);
-						gospelInnerCircle.antialiasing = true;
-						gospelInnerCircle.scrollFactor.set(1, 1);
-						gospelInnerCircle.origin.set(0, 0);
-						add(gospelInnerCircle);
+						var stageCurtains:FlxObject = new FlxSprite(-48, -448).loadGraphic(Paths.image('sacredmass/church3/circ1'));
+						stageCurtains.setGraphicSize(0, 2000);
+						stageCurtains.antialiasing = true;
+						stageCurtains.scrollFactor.set(1, 1);
+						stageCurtains.origin.set(0, 0);
+						add(stageCurtains);
 
 						//var stageCurtains:FlxSprite = new FlxSprite(-48, -448).loadGraphic(Paths.image('sacredmass/church3/circ2'));
 						//stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
