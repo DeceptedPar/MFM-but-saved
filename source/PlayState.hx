@@ -779,7 +779,7 @@ class PlayState extends MusicBeatState
 						stageCurtains.antialiasing = true;
 						stageCurtains.scrollFactor.set(0.1, 0.1);
 
-						FlxTween.angle(stageCurtains, 0, 360, DURATION, options);
+						FlxTween.angle(stageCurtains, 0, 360);
 						{
 							ease: FlxEase.smootherStepIn,
 							onComplete: function(twn:FlxTween)
