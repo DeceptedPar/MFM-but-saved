@@ -3764,11 +3764,14 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv' && animation.curAnim.name.startsWith('sing'))
 		{
-			
-			shake(Intensity:Float = 0.2, OnComplete:() ‑> Void, Force:Bool = true):Void
-			boyfriend.playAnim('scared', true);
-			gf.playAnim('scared', true);
-			
+			switch (dad.curCharacter)
+			{
+				case 1:
+					FlxG.camera.shake(0.2, 0.1);
+				case 2:
+					boyfriend.playAnim('scared', true);
+					gf.playAnim('scared', true);
+			}
 		}
 
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
