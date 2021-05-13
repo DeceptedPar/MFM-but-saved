@@ -787,7 +787,7 @@ class PlayState extends MusicBeatState
 							{
 								circ1.angle=360;
 							}
-						})
+						});
 
 						//var stageCurtains:FlxSprite = new FlxSprite(-48, -448).loadGraphic(Paths.image('sacredmass/church3/circ2'));
 						//stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
