@@ -3766,9 +3766,9 @@ class PlayState extends MusicBeatState
 		{
 			switch (dad.curCharacter)
 			{
-				case 1:
+				case 'sing':
 					FlxG.camera.shake(0.2, 0.1);
-				case 2:
+				case 'scared':
 					boyfriend.playAnim('scared', true);
 					gf.playAnim('scared', true);
 			}
