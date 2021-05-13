@@ -781,6 +781,14 @@ class PlayState extends MusicBeatState
 						stageCurtains.origin.set(0, 0);
 						add(stageCurtains);
 
+						FlxTween.tween(circ1, {angle: 360}, 150, {
+							ease: FlxEase.smootherStepIn,
+							onComplete: function(twn:FlxTween)
+							{
+								circ1.angle=360;
+							}
+						})
+
 						//var stageCurtains:FlxSprite = new FlxSprite(-48, -448).loadGraphic(Paths.image('sacredmass/church3/circ2'));
 						//stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 						//stageCurtains.updateHitbox();
@@ -2840,6 +2848,9 @@ class PlayState extends MusicBeatState
 					if (storyDifficulty == 2)
 						difficulty = '-hard';
 
+					if (storyDifficulty == 3)
+						difficulty = '-alt';
+
 					trace('LOADING NEXT SONG');
 					trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
 
@@ -3749,6 +3760,15 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
+		}
+
+		if (dad.curCharacter == 'ruv' && animation.curAnim.name.startsWith('sing'))
+		{
+			
+			shake(Intensity:Float = 0.2, OnComplete:() ‑> Void, Force:Bool = true):Void
+			boyfriend.playAnim('scared', true);
+			gf.playAnim('scared', true);
+			
 		}
 
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));

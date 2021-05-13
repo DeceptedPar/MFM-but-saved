@@ -701,17 +701,6 @@ class Character extends FlxSprite
 					playAnim('danceRight');
 		}
 
-		switch (curCharacter)
-		{
-			case 'ruv':
-				if (animation.curAnim.name.startsWith('sing'))
-				{
-					shake(Intensity:Float = 0.2, OnComplete:() ‑> Void, Force:Bool = true):Void
-					boyfriend.playAnim('scared', true);
-					gf.playAnim('scared', true);
-				}
-		}
-
 		super.update(elapsed);
 	}
 

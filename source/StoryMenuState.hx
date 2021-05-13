@@ -24,7 +24,7 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 
 	var weekData:Array<Dynamic> = [
-		['Tutorial'],
+		['Tutorial', 'Tutorial Remix'],
 		['Bopeebo', 'Fresh', 'Dadbattle'],
 		['Spookeez', 'South', "Monster"],
 		['Pico', 'Philly Nice', "Blammed"],
@@ -318,8 +318,8 @@ class StoryMenuState extends MusicBeatState
 		curDifficulty += change;
 
 		if (curDifficulty < 0)
-			curDifficulty = 2;
-		if (curDifficulty > 2)
+			curDifficulty = 3;
+		if (curDifficulty > 3)
 			curDifficulty = 0;
 
 		sprDifficulty.offset.x = 0;
@@ -337,7 +337,7 @@ class StoryMenuState extends MusicBeatState
 				sprDifficulty.offset.x = 20;
 			case 3:
 				sprDifficulty.animation.play('alt');
-				sprDifficulty.offset.x = 50;
+				sprDifficulty.offset.x = 10;
 		}
 
 		sprDifficulty.alpha = 0;
