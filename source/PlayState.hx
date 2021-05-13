@@ -3751,7 +3751,7 @@ class PlayState extends MusicBeatState
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
 			
-			FlxG.camera.shake(0.2, null, true);
+			FlxG.camera.shake(0.2, true);
 			boyfriend.playAnim('scared', true);
 			gf.playAnim('scared', true);
 		}
