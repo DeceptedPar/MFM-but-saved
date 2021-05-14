@@ -576,11 +576,11 @@ class Character extends FlxSprite
 				animation.addByPrefix('hey', 'SarventeHey', 24, false);
 
 				addOffset('idle');
-				addOffset('singUP');
-				addOffset('singRIGHT');
-				addOffset('singLEFT');
-				addOffset('singDOWN');
-				addOffset('hey');
+				addOffset('singUP', -17, -17);
+				addOffset('singRIGHT', 25, -3);
+				addOffset('singLEFT', -38, -20);
+				addOffset('singDOWN', -70, -94);
+				addOffset('hey', -1, -6);
 
 				playAnim('idle');
 
@@ -591,12 +591,20 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'SarvDarkRight', 24, false);
 				animation.addByPrefix('singLEFT', 'SarvDarkLeft', 24, false);
 				animation.addByPrefix('singDOWN', 'SarvDarkDown', 24, false);
+				animation.addByPrefix('singUP-alt', 'DarkSarvUp', 24, false);
+				animation.addByPrefix('singRIGHT-alt', 'DarkSarvRight', 24, false);
+				animation.addByPrefix('singLEFT-alt', 'DarkSarvLeft', 24, false);
+				animation.addByPrefix('singDOWN-alt', 'DarkSarvDown', 24, false);
 
 				addOffset('idle');
-				addOffset('singUP');
-				addOffset('singRIGHT');
-				addOffset('singLEFT');
-				addOffset('singDOWN');
+				addOffset('singUP', -18, -60);
+				addOffset('singRIGHT', -25, -4);
+				addOffset('singLEFT', -38, 18);
+				addOffset('singDOWN', -95, -67);
+				addOffset('singUP-alt', -37, -60);
+				addOffset('singRIGHT-alt', -22, -2);
+				addOffset('singLEFT-alt', -14, -22);
+				addOffset('singDOWN-alt', -36, -80);
 
 				playAnim('idle');
 
@@ -609,10 +617,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'RuvDown', 24, false);
 
 				addOffset('idle');
-				addOffset('singUP');
-				addOffset('singRIGHT');
-				addOffset('singLEFT');
-				addOffset('singDOWN');
+				addOffset('singUP', -80, -87);
+				addOffset('singRIGHT', -42, -42);
+				addOffset('singLEFT', -46, -7);
+				addOffset('singDOWN', -63, -34);
 
 			case 'luci-sarv':
 				frames = Paths.getSparrowAtlas('sacredmass/luci_sarv');

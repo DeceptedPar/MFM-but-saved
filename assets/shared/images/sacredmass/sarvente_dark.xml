@@ -88,78 +88,78 @@
 	<SubTexture name="SarvDarkUp0014" x="84" y="1044" width="406" height="819" frameX="0" frameY="-9" frameWidth="406" frameHeight="828"/><!--0 -->
 	<!--ALTS HERE -->
 	
-	<SubTexture name="SarvDarkUp20000" x="85" y="3697" width="374" height="815" frameX="0" frameY="-5" frameWidth="374" frameHeight="820"/><!--0 -->
-	<SubTexture name="SarvDarkUp20001" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
-	<SubTexture name="SarvDarkUp20002" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
-	<SubTexture name="SarvDarkUp20003" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
-	<SubTexture name="SarvDarkUp20004" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
-	<SubTexture name="SarvDarkUp20005" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
-	<SubTexture name="SarvDarkUp20006" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
-	<SubTexture name="SarvDarkUp20007" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
-	<SubTexture name="SarvDarkUp20008" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
-	<SubTexture name="SarvDarkUp20009" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
-	<SubTexture name="SarvDarkUp20010" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
-	<SubTexture name="SarvDarkUp20011" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
-	<SubTexture name="SarvDarkUp20012" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
-	<SubTexture name="SarvDarkUp20013" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
-	<SubTexture name="SarvDarkUp20014" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
-	<SubTexture name="SarvDarkUp20015" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
-	<SubTexture name="SarvDarkUp20016" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
-	<SubTexture name="SarvDarkUp20017" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
-	<SubTexture name="SarvDarkUp20018" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
-	<SubTexture name="SarvDarkUp20019" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
+	<SubTexture name="DarkSarvUp20000" x="85" y="3697" width="374" height="815" frameX="0" frameY="-5" frameWidth="374" frameHeight="820"/><!--0 -->
+	<SubTexture name="DarkSarvUp20001" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
+	<SubTexture name="DarkSarvUp20002" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
+	<SubTexture name="DarkSarvUp20003" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
+	<SubTexture name="DarkSarvUp20004" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
+	<SubTexture name="DarkSarvUp20005" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
+	<SubTexture name="DarkSarvUp20006" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
+	<SubTexture name="DarkSarvUp20007" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
+	<SubTexture name="DarkSarvUp20008" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
+	<SubTexture name="DarkSarvUp20009" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
+	<SubTexture name="DarkSarvUp20010" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
+	<SubTexture name="DarkSarvUp20011" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
+	<SubTexture name="DarkSarvUp20012" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
+	<SubTexture name="DarkSarvUp20013" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
+	<SubTexture name="DarkSarvUp20014" x="991" y="3696" width="388" height="816" frameX="-5" frameY="0" frameWidth="388" frameHeight="816"/><!--2 -->
+	<SubTexture name="DarkSarvUp20015" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
+	<SubTexture name="DarkSarvUp20016" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
+	<SubTexture name="DarkSarvUp20017" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
+	<SubTexture name="DarkSarvUp20018" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
+	<SubTexture name="DarkSarvUp20019" x="549" y="3697" width="378" height="815" frameX="0" frameY="-9" frameWidth="378" frameHeight="824"/><!--1 -->
 
-	<SubTexture name="SarvDarkLeft20000" x="1720" y="3711" width="468" height="738" frameX="0" frameY="0" frameWidth="468" frameHeight="738"/><!--0 -->
-	<SubTexture name="SarvDarkLeft20001" x="1720" y="3711" width="468" height="738" frameX="0" frameY="0" frameWidth="468" frameHeight="738"/><!--0 -->
-	<SubTexture name="SarvDarkLeft20002" x="1720" y="3711" width="468" height="738" frameX="0" frameY="0" frameWidth="468" frameHeight="738"/><!--0 -->
-	<SubTexture name="SarvDarkLeft20003" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
-	<SubTexture name="SarvDarkLeft20004" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
-	<SubTexture name="SarvDarkLeft20005" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
-	<SubTexture name="SarvDarkLeft20006" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
-	<SubTexture name="SarvDarkLeft20007" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
-	<SubTexture name="SarvDarkLeft20008" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
-	<SubTexture name="SarvDarkLeft20009" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
-	<SubTexture name="SarvDarkLeft20010" x="2750" y="3712" width="464" height="737" frameX="-2" frameY="-2" frameWidth="470" frameHeight="739"/><!--2 -->
-	<SubTexture name="SarvDarkLeft20011" x="2750" y="3712" width="464" height="737" frameX="-2" frameY="-2" frameWidth="470" frameHeight="739"/><!--2 -->
-	<SubTexture name="SarvDarkLeft20012" x="2750" y="3712" width="464" height="737" frameX="-2" frameY="-2" frameWidth="470" frameHeight="739"/><!--2 -->
-	<SubTexture name="SarvDarkLeft20013" x="2750" y="3712" width="464" height="737" frameX="-2" frameY="-2" frameWidth="470" frameHeight="739"/><!--2 -->
-	<SubTexture name="SarvDarkLeft20014" x="2750" y="3712" width="464" height="737" frameX="-2" frameY="-2" frameWidth="470" frameHeight="739"/><!--2 -->
+	<SubTexture name="DarkSarvLeft20000" x="1720" y="3711" width="468" height="738" frameX="0" frameY="0" frameWidth="468" frameHeight="738"/><!--0 -->
+	<SubTexture name="DarkSarvLeft20001" x="1720" y="3711" width="468" height="738" frameX="0" frameY="0" frameWidth="468" frameHeight="738"/><!--0 -->
+	<SubTexture name="DarkSarvLeft20002" x="1720" y="3711" width="468" height="738" frameX="0" frameY="0" frameWidth="468" frameHeight="738"/><!--0 -->
+	<SubTexture name="DarkSarvLeft20003" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
+	<SubTexture name="DarkSarvLeft20004" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
+	<SubTexture name="DarkSarvLeft20005" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
+	<SubTexture name="DarkSarvLeft20006" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
+	<SubTexture name="DarkSarvLeft20007" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
+	<SubTexture name="DarkSarvLeft20008" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
+	<SubTexture name="DarkSarvLeft20009" x="2227" y="3714" width="464" height="738" frameX="-2" frameY="0" frameWidth="470" frameHeight="738"/><!--1 -->
+	<SubTexture name="DarkSarvLeft20010" x="2750" y="3712" width="464" height="737" frameX="-2" frameY="-2" frameWidth="470" frameHeight="739"/><!--2 -->
+	<SubTexture name="DarkSarvLeft20011" x="2750" y="3712" width="464" height="737" frameX="-2" frameY="-2" frameWidth="470" frameHeight="739"/><!--2 -->
+	<SubTexture name="DarkSarvLeft20012" x="2750" y="3712" width="464" height="737" frameX="-2" frameY="-2" frameWidth="470" frameHeight="739"/><!--2 -->
+	<SubTexture name="DarkSarvLeft20013" x="2750" y="3712" width="464" height="737" frameX="-2" frameY="-2" frameWidth="470" frameHeight="739"/><!--2 -->
+	<SubTexture name="DarkSarvLeft20014" x="2750" y="3712" width="464" height="737" frameX="-2" frameY="-2" frameWidth="470" frameHeight="739"/><!--2 -->
 
-	<SubTexture name="SarvDarkRight20000" x="53" y="2805" width="484" height="760"/><!--0 -->
-	<SubTexture name="SarvDarkRight20001" x="53" y="2805" width="484" height="760"/><!--0 -->
-	<SubTexture name="SarvDarkRight20002" x="53" y="2805" width="484" height="760"/><!--0 -->
-	<SubTexture name="SarvDarkRight20003" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
-	<SubTexture name="SarvDarkRight20004" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
-	<SubTexture name="SarvDarkRight20005" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
-	<SubTexture name="SarvDarkRight20006" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
-	<SubTexture name="SarvDarkRight20007" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
-	<SubTexture name="SarvDarkRight20008" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
-	<SubTexture name="SarvDarkRight20009" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
-	<SubTexture name="SarvDarkRight20010" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
-	<SubTexture name="SarvDarkRight20011" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
-	<SubTexture name="SarvDarkRight20012" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
-	<SubTexture name="SarvDarkRight20013" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
-	<SubTexture name="SarvDarkRight20014" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
-	<SubTexture name="SarvDarkRight20015" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
-	<SubTexture name="SarvDarkRight20016" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
-	<SubTexture name="SarvDarkRight20017" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
-	<SubTexture name="SarvDarkRight20018" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="484" frameHeight="768"/><!--1 -->
-	<SubTexture name="SarvDarkRight20019" x="596" y="2805" width="484" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
+	<SubTexture name="DarkSarvRight20000" x="53" y="2805" width="484" height="760"/><!--0 -->
+	<SubTexture name="DarkSarvRight20001" x="53" y="2805" width="484" height="760"/><!--0 -->
+	<SubTexture name="DarkSarvRight20002" x="53" y="2805" width="484" height="760"/><!--0 -->
+	<SubTexture name="DarkSarvRight20003" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
+	<SubTexture name="DarkSarvRight20004" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
+	<SubTexture name="DarkSarvRight20005" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
+	<SubTexture name="DarkSarvRight20006" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
+	<SubTexture name="DarkSarvRight20007" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
+	<SubTexture name="DarkSarvRight20008" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
+	<SubTexture name="DarkSarvRight20009" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
+	<SubTexture name="DarkSarvRight20010" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
+	<SubTexture name="DarkSarvRight20011" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
+	<SubTexture name="DarkSarvRight20012" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
+	<SubTexture name="DarkSarvRight20013" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
+	<SubTexture name="DarkSarvRight20014" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
+	<SubTexture name="DarkSarvRight20015" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
+	<SubTexture name="DarkSarvRight20016" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
+	<SubTexture name="DarkSarvRight20017" x="1115" y="2808" width="486" height="759"  frameX="-1" frameY="-5" frameWidth="487" frameHeight="764"/><!--2 -->
+	<SubTexture name="DarkSarvRight20018" x="596" y="2805" width="480" height="761" frameX="0" frameY="-7" frameWidth="484" frameHeight="768"/><!--1 -->
+	<SubTexture name="DarkSarvRight20019" x="596" y="2805" width="484" height="761" frameX="0" frameY="-7" frameWidth="480" frameHeight="768"/><!--1 -->
 
-	<SubTexture name="SarvDarkDown20000" x="1794" y="2885" width="511" height="678" frameX="-1" frameY="-12" frameWidth="512" frameHeight="690"/><!--0 -->
-	<SubTexture name="SarvDarkDown20001" x="1794" y="2885" width="511" height="678" frameX="-1" frameY="-12" frameWidth="512" frameHeight="690"/><!--0 -->
-	<SubTexture name="SarvDarkDown20002" x="1794" y="2885" width="511" height="678" frameX="-1" frameY="-12" frameWidth="512" frameHeight="690"/><!--0 -->
-	<SubTexture name="SarvDarkDown20003" x="1794" y="2885" width="511" height="678" frameX="-1" frameY="-12" frameWidth="512" frameHeight="690"/><!--0 -->
-	<SubTexture name="SarvDarkDown20004" x="1794" y="2885" width="511" height="678" frameX="-1" frameY="-12" frameWidth="512" frameHeight="690"/><!--0 -->
-	<SubTexture name="SarvDarkDown20005" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
-	<SubTexture name="SarvDarkDown20006" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
-	<SubTexture name="SarvDarkDown20007" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
-	<SubTexture name="SarvDarkDown20008" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
-	<SubTexture name="SarvDarkDown20009" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
-	<SubTexture name="SarvDarkDown20010" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
-	<SubTexture name="SarvDarkDown20011" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
-	<SubTexture name="SarvDarkDown20012" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
-	<SubTexture name="SarvDarkDown20013" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
-	<SubTexture name="SarvDarkDown20014" x="1794" y="2885" width="511" height="678" frameX="0" frameY="-10" frameWidth="511" frameHeight="688"/><!--0 -->
+	<SubTexture name="DarkSarvDown20000" x="1794" y="2885" width="511" height="678" frameX="-1" frameY="-12" frameWidth="512" frameHeight="690"/><!--0 -->
+	<SubTexture name="DarkSarvDown20001" x="1794" y="2885" width="511" height="678" frameX="-1" frameY="-12" frameWidth="512" frameHeight="690"/><!--0 -->
+	<SubTexture name="DarkSarvDown20002" x="1794" y="2885" width="511" height="678" frameX="-1" frameY="-12" frameWidth="512" frameHeight="690"/><!--0 -->
+	<SubTexture name="DarkSarvDown20003" x="1794" y="2885" width="511" height="678" frameX="-1" frameY="-12" frameWidth="512" frameHeight="690"/><!--0 -->
+	<SubTexture name="DarkSarvDown20004" x="1794" y="2885" width="511" height="678" frameX="-1" frameY="-12" frameWidth="512" frameHeight="690"/><!--0 -->
+	<SubTexture name="DarkSarvDown20005" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
+	<SubTexture name="DarkSarvDown20006" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
+	<SubTexture name="DarkSarvDown20007" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
+	<SubTexture name="DarkSarvDown20008" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
+	<SubTexture name="DarkSarvDown20009" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
+	<SubTexture name="DarkSarvDown20010" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
+	<SubTexture name="DarkSarvDown20011" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
+	<SubTexture name="DarkSarvDown20012" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
+	<SubTexture name="DarkSarvDown20013" x="2350" y="2893" width="512" height="671" frameX="0" frameY="-10" frameWidth="512" frameHeight="681"/><!--1 -->
+	<SubTexture name="DarkSarvDown20014" x="1794" y="2885" width="511" height="678" frameX="0" frameY="-10" frameWidth="511" frameHeight="688"/><!--0 -->
 
 </TextureAtlas>
