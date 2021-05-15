@@ -39,14 +39,16 @@ class LoadReplayState extends MusicBeatState
 
         controlsStrings.sort(Reflect.compare);
 
-        addWeek(['Bopeebo', 'Fresh', 'Dadbattle'], 1, ['dad']);
+        addWeek(['Bopeebo', 'Fresh', 'Dad Battle'], 1, ['dad']);
         addWeek(['Spookeez', 'South', 'Monster'], 2, ['spooky']);
-        addWeek(['Pico', 'Philly', 'Blammed'], 3, ['pico']);
+        addWeek(['Pico', 'Philly Nice', 'Blammed'], 3, ['pico']);
 
         addWeek(['Satin-Panties', 'High', 'Milf'], 4, ['mom']);
         addWeek(['Cocoa', 'Eggnog', 'Winter-Horrorland'], 5, ['parents-christmas', 'parents-christmas', 'monster-christmas']);
         
         addWeek(['Senpai', 'Roses', 'Thorns'], 6, ['senpai', 'senpai', 'spirit']);
+
+        addWeek(['Parish', 'Worship', 'Zavodila', 'Gospel', 'Casanova'], 7, ['sarvente', 'sarvente-dark', 'ruv', 'luci-sarv', 'selever']);
 
 
         for(i in 0...controlsStrings.length)
@@ -54,7 +56,7 @@ class LoadReplayState extends MusicBeatState
             var string:String = controlsStrings[i];
             actualNames[i] = string;
 			var rep:Replay = Replay.LoadReplay(string);
-            controlsStrings[i] = string.split("time")[0] + " " + (rep.replay.songDiff == 2 ? "HARD" : rep.replay.songDiff == 1 ? "EASY" : "NORMAL");
+            controlsStrings[i] = string.split("time")[0] + " " + (rep.replay.songDiff == 15 ? "ALT-OLD" : rep.replay.songDiff == 14 ? "HARD-OLD" : rep.replay.songDiff == 13 ? "NORMAL-OLD" : rep.replay.songDiff == 12 ? "EASY-OLD" : rep.replay.songDiff == 11 ? "ALT-A" : rep.replay.songDiff == 10 ? "HARD-A" : rep.replay.songDiff == 9 ? "NORMAL-A" : rep.replay.songDiff == 8 ? "EASY-A" : rep.replay.songDiff == 7 ? "ALT-OG" : rep.replay.songDiff == 6 ? "HARD-OG" : rep.replay.songDiff == 5 ? "NORMAL-OG" : rep.replay.songDiff == 4 ? "EASY-OG" : rep.replay.songDiff == 3 ? "ALT" : rep.replay.songDiff == 2 ? "HARD" : rep.replay.songDiff == 1 ? "EASY" : "NORMAL");
         }
 
         if (controlsStrings.length == 0)

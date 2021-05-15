@@ -1258,10 +1258,10 @@ class PlayState extends MusicBeatState
 				case 'thorns':
 					schoolIntro(doof);
 				case 'tutorial remix':
-					new FlxTimer().start(0.725, function(tmr:FlxTimer)
+					if (curBeat == 12 && curSong == 'Tutorial Remix')
 					{
 						startCountdown();
-					});
+					}
 				default:
 					startCountdown();
 			}
@@ -1271,10 +1271,10 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				case 'tutorial remix':
-					if (curBeat == 12)
+					if (curBeat == 12 && curSong == 'Tutorial Remix')
 					{
 						startCountdown();
-					});
+					}
 
 				default:
 					startCountdown();
