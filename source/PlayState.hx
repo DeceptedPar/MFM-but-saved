@@ -802,7 +802,7 @@ class PlayState extends MusicBeatState
 						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, 0, 360);
+						FlxTween.angle(stageCurtains, 0, 0);
 						{
 							ease: FlxEase.smootherStepInOut,
 							onComplete: function(twn:FlxTween)
@@ -1258,10 +1258,10 @@ class PlayState extends MusicBeatState
 				case 'thorns':
 					schoolIntro(doof);
 				case 'tutorial remix':
-					new FlxTimer().start(0.725, function(tmr:FlxTimer)
+					new FlxTimer().start(7.25, function(tmr:FlxTimer)
 					{
 						startCountdown();
-					}
+					});
 				default:
 					startCountdown();
 			}
@@ -1271,10 +1271,10 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				case 'tutorial remix':
-					new FlxTimer().start(0.725, function(tmr:FlxTimer)
+					new FlxTimer().start(7.25, function(tmr:FlxTimer)
 					{
 						startCountdown();
-					}
+					});
 
 				default:
 					startCountdown();
@@ -3815,7 +3815,7 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			FlxG.camera.shake(0.02, true);
+			FlxG.camera.shake(0.01, true);
 			boyfriend.playAnim('scared', true);
 			gf.playAnim('scared', true);
 		}
