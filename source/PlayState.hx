@@ -1496,12 +1496,12 @@ class PlayState extends MusicBeatState
 					});
 					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
 
-					if (SONG.song == 'casanova' && dad.curCharacter == 'selever')
+					if (SONG.song.toLowerCase() == 'casanova' && dad.curCharacter == 'selever')
 					{
 						dad.playAnim('hey', true);
 					}
 
-					if (SONG.song == 'tutorial remix' && dad.curCharacter == 'gf')
+					if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
 					{
 						dad.playAnim('cheer', true);
 					}
@@ -2292,7 +2292,7 @@ class PlayState extends MusicBeatState
 				luaModchart.die();
 				luaModchart = null;
 			}
-			if (SONG.song 'gospel' && storyDifficulty == 3)
+			if (curSong == 'gospel' && storyDifficulty == 3)
 			{
 				switchState = null;
 			}
