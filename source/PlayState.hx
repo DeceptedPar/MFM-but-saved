@@ -2294,7 +2294,7 @@ class PlayState extends MusicBeatState
 			}
 			if (curSong == 'gospel' && storyDifficulty == 3)
 			{
-				switchState = null;
+				FlxG.switchState = null;
 			}
 			#end
 		}
@@ -3853,16 +3853,11 @@ class PlayState extends MusicBeatState
 		}
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
-
-			switch (zavShake)
-			{
-				case 1:
-					FlxG.camera.shake(0.01, true);
-
-				case 2:
-					boyfriend.playAnim('scared', true);
-					gf.playAnim('scared', true);
-			}
+		{
+			FlxG.camera.shake(0.01, true);
+			boyfriend.playAnim('scared', true);
+			gf.playAnim('scared', true);
+		}
 
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
 		iconP2.setGraphicSize(Std.int(iconP2.width + 30));
