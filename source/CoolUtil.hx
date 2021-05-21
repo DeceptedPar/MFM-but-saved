@@ -6,12 +6,22 @@ using StringTools;
 
 class CoolUtil
 {
-	public static var difficultyArray:Array<String>
-	{
+	public static var difficultyArray:Array<String> = ['EASY', "NORMAL", "HARD", "ALT", "EASY-OG", "NORMAL-OG", "HARD-OG", "ALT-OG", "EASY-ALPHA", "NORMAL-ALPHA", "HARD-ALPHA", "ALT-ALPHA", "EASY-OLD", "NORMAL-OLD", "HARD-OLD", "ALT-OLD"];
+	/*{
 		switch (curSong.toLowerCase())
 		{
 			case 'tutorial':
 				difficulty = 'NORMAL';
+
+			case 'tutorial remix':
+				difficulty = 'NORMAL';
+				difficulty = 'EASY-OG';
+				difficulty = 'NORMAL-OG';
+				difficulty = 'HARD-OG';
+				difficulty = 'ALT-OG';
+				difficulty = 'NORMAL-ALPHA';
+				difficulty = 'HARD-ALPHA';
+				difficulty = 'ALT-ALPHA';
 
 			case 'bopeebo':
 				difficulty = 'EASY';
@@ -259,7 +269,7 @@ class CoolUtil
 				difficulty = 'NORMAL-OLD';
 				difficulty = 'ALT-OLD';
 		}
-	}
+	}*/
 
 	public static function difficultyString():String
 	{

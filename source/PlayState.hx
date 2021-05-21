@@ -802,12 +802,12 @@ class PlayState extends MusicBeatState
 						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, 0, 0);
+						FlxTween.angle(stageCurtains, 360, 0);
 						{
-							ease: FlxEase.smootherStepInOut,
+							ease: FlxEase.smootherStepIn,
 							onComplete: function(twn:FlxTween)
 							{
-								stageCurtains.angle=360;
+								stageCurtains.angle=0;
 							}
 						}
 
@@ -1154,7 +1154,7 @@ class PlayState extends MusicBeatState
 		add(healthBar);
 
 		// Add Kade Engine watermark
-		kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 15 ? "Alt-Old" : storyDifficulty == 14 ? "Hard-Old" : storyDifficulty == 13 ? "Normal-Old" : storyDifficulty == 12 ? "Easy-Old" : storyDifficulty == 11 ? "Alt-Alpha" : storyDifficulty == 10 ? "Hard-Alpha" : storyDifficulty == 9 ? "Normal-Alpha" : storyDifficulty == 8 ? "Easy-Alpha" : storyDifficulty == 7 ? "Alt-Original Game" : storyDifficulty == 6 ? "Hard-Original Game" : storyDifficulty == 5 ? "Normal-Original Game" : storyDifficulty == 4 ? "Easy-Original Game" : storyDifficulty == 3 ? "Alt" : storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + (Main.watermarks ? " - KE " + MainMenuState.kadeEngineVer : ""), 16);
+		kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 15 ? "Alt-Old" : storyDifficulty == 14 ? "Hard-Old" : storyDifficulty == 13 ? "Normal-Old" : storyDifficulty == 12 ? "Easy-Old" : storyDifficulty == 11 ? "Alt-Alpha" : storyDifficulty == 10 ? "Hard-Alpha" : storyDifficulty == 9 ? "Normal-Alpha" : storyDifficulty == 8 ? "Easy-Alpha" : storyDifficulty == 7 ? "Alt-Original Mod V3" : storyDifficulty == 6 ? "Hard-Original Mod V3" : storyDifficulty == 5 ? "Normal-Original Mod V3" : storyDifficulty == 4 ? "Easy-Original Mod V3" : storyDifficulty == 3 ? "Alt" : storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + (Main.watermarks ? " - KE " + MainMenuState.kadeEngineVer : ""), 16);
 		kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
 		add(kadeEngineWatermark);
@@ -1496,12 +1496,12 @@ class PlayState extends MusicBeatState
 					});
 					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
 
-					if (curSong == 'casanova' && dad.curCharacter == 'selever')
+					if (SONG.song == 'casanova' && dad.curCharacter == 'selever')
 					{
 						dad.playAnim('hey', true);
 					}
 
-					if (curSong == 'tutorial remix' && dad.curCharacter == 'gf')
+					if (SONG.song == 'tutorial remix' && dad.curCharacter == 'gf')
 					{
 						dad.playAnim('cheer', true);
 					}
@@ -2245,14 +2245,6 @@ class PlayState extends MusicBeatState
 		else
 			currentFrames++;
 
-		if (FlxG.keys.justPressed.NINE)
-		{
-			if (iconP1.animation.curAnim.name == 'bf-old')
-				iconP1.animation.play(SONG.player1);
-			else
-				iconP1.animation.play('bf-old');
-		}
-
 		switch (curStage)
 		{
 			case 'philly':
@@ -2299,6 +2291,10 @@ class PlayState extends MusicBeatState
 			{
 				luaModchart.die();
 				luaModchart = null;
+			}
+			if (SONG.song 'gospel' && storyDifficulty == 3)
+			{
+				switchState = null;
 			}
 			#end
 		}
@@ -2922,16 +2918,16 @@ class PlayState extends MusicBeatState
                         difficulty = '-alt-og';
 
                     if (storyDifficulty == 8)
-                        difficulty = '-easy-a';
+                        difficulty = '-easy-alpha';
 
                     if (storyDifficulty == 9)
-                        difficulty = '-normal-a';
+                        difficulty = '-normal-alpha';
 
                     if (storyDifficulty == 10)
-                        difficulty = '-hard-a';
+                        difficulty = '-hard-alpha';
 
                     if (storyDifficulty == 11)
-                        difficulty = '-alt-a';
+                        difficulty = '-alt-alpha';
 
                     if (storyDifficulty == 12)
                         difficulty = '-easy-old';
@@ -3844,7 +3840,7 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (curSong.toLowerCase() == 'tutorial remix' && curBeat >= 8 && curBeat < 16 && camZooming && FlxG.camera.zoom < 1.35)
+		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 48 && curStep < 96 && camZooming && FlxG.camera.zoom < 1.35)
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
@@ -3857,11 +3853,16 @@ class PlayState extends MusicBeatState
 		}
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
-		{
-			FlxG.camera.shake(0.01, true);
-			boyfriend.playAnim('scared', true);
-			gf.playAnim('scared', true);
-		}
+
+			switch (zavShake)
+			{
+				case 1:
+					FlxG.camera.shake(0.01, true);
+
+				case 2:
+					boyfriend.playAnim('scared', true);
+					gf.playAnim('scared', true);
+			}
 
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
 		iconP2.setGraphicSize(Std.int(iconP2.width + 30));
