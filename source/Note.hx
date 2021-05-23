@@ -175,6 +175,28 @@ class Note extends FlxSprite
 				updateHitbox();
 				antialiasing = true;
 
+            case 'luci-sarv-alt':
+                frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv-Alt');
+
+                animation.addByPrefix('greenScroll', 'green0');
+                animation.addByPrefix('redScroll', 'red0');
+                animation.addByPrefix('blueScroll', 'blue0');
+                animation.addByPrefix('purpleScroll', 'purple0');
+
+                animation.addByPrefix('purpleholdend', 'pruple end hold');
+                animation.addByPrefix('greenholdend', 'green hold end');
+                animation.addByPrefix('redholdend', 'red hold end');
+                animation.addByPrefix('blueholdend', 'blue hold end');
+
+                animation.addByPrefix('purplehold', 'purple hold piece');
+                animation.addByPrefix('greenhold', 'green hold piece');
+                animation.addByPrefix('redhold', 'red hold piece');
+                animation.addByPrefix('bluehold', 'blue hold piece');
+
+                setGraphicSize(Std.int(width * 0.7));
+                updateHitbox();
+                antialiasing = true;
+
 			case 'luci-sarv':
 				frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv');
 

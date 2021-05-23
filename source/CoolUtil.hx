@@ -6,8 +6,8 @@ using StringTools;
 
 class CoolUtil
 {
-	public static var difficultyArray:Array<String>/* = ['EASY', "NORMAL", "HARD", "ALT", "EASY-OG", "NORMAL-OG", "HARD-OG", "ALT-OG", "EASY-ALPHA", "NORMAL-ALPHA", "HARD-ALPHA", "ALT-ALPHA", "EASY-OLD", "NORMAL-OLD", "HARD-OLD", "ALT-OLD"];*/
-	{
+	public static var difficultyArray:Array<String> = ['EASY', "NORMAL", "HARD", "ALT", "EASY-OG", "NORMAL-OG", "HARD-OG", "ALT-OG", "EASY-ALPHA", "NORMAL-ALPHA", "HARD-ALPHA", "ALT-ALPHA", "EASY-OLD", "NORMAL-OLD", "HARD-OLD", "ALT-OLD"];
+	/*{
 		switch (curSong.toLowerCase())
 		{
 			case 'tutorial':
@@ -317,7 +317,7 @@ class CoolUtil
 					'ALT-OLD',
 				];
 		});
-	});
+	});*/
 
 	public static function storyDifficultyTextString():String
 	{
