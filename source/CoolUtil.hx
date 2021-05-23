@@ -316,8 +316,8 @@ class CoolUtil
 					'NORMAL-OLD',
 					'ALT-OLD',
 				];
-		});
-	});*/
+		};*/
+	}
 
 	public static function storyDifficultyTextString():String
 	{

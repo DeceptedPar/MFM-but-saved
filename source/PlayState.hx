@@ -3831,7 +3831,6 @@ class PlayState extends MusicBeatState
 
 	var lightningStrikeBeat:Int = 0;
 	var lightningOffset:Int = 8;
-	var RuvSing:Int = 0;
 
 	override function beatHit()
 	{
