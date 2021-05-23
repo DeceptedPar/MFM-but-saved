@@ -2292,10 +2292,6 @@ class PlayState extends MusicBeatState
 				luaModchart.die();
 				luaModchart = null;
 			}
-			if (curSong == 'gospel' && storyDifficulty == 3)
-			{
-				FlxG.switchState = null;
-			}
 			#end
 		}
 
@@ -3752,6 +3748,17 @@ class PlayState extends MusicBeatState
 		gf.playAnim('scared', true);
 	}
 
+	function RuvSing()
+	{
+		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
+
+		camHUD.shake(0.02, 0.2);
+		FlxG.camera.shake(0.005, 0.2);
+
+		boyfriend.playAnim('scared', true);
+		gf.playAnim('scared', true);
+	}
+
 	override function stepHit()
 	{
 		super.stepHit();
@@ -3789,6 +3796,7 @@ class PlayState extends MusicBeatState
 
 	var lightningStrikeBeat:Int = 0;
 	var lightningOffset:Int = 8;
+	var screenshakeStep:Int = 0;
 
 	override function beatHit()
 	{
@@ -3850,13 +3858,6 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
-		}
-
-		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
-		{
-			FlxG.camera.shake(0.01, true);
-			boyfriend.playAnim('scared', true);
-			gf.playAnim('scared', true);
 		}
 
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
