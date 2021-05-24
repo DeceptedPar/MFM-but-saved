@@ -778,11 +778,11 @@ class PlayState extends MusicBeatState
 						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, {x: 647, y: 666, angle: 360})
-							ease: FlxEase.smootherStepIn,
+						FlxTween.angle(stageCurtains, {x: 647, y: 666, angle: 360}, {
+							ease: FlxEase.smootherstepIn,
 							onComplete: function(twn:FlxTween)
 							{
-								stageCurtains.angle=0;
+								stageCurtains.width=647;
 							}
 						});
 
