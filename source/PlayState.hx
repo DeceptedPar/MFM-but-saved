@@ -778,7 +778,7 @@ class PlayState extends MusicBeatState
 						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, 360, 0);
+						FlxTween.circularMotion(stageCurtains, 0, 0, 360, 0, true);
 						{
 							ease: FlxEase.smootherStepIn,
 							onComplete: function(twn:FlxTween)
