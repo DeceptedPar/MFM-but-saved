@@ -253,30 +253,6 @@ class PlayState extends MusicBeatState
 				storyDifficultyText = "Hard";
 			case 3:
 				storyDifficultyText = "Alt";
-            case 4:
-                storyDifficultyText = "Easy Original Mod";
-            case 5:
-                storyDifficultyText = "Normal Original Mod";
-            case 6:
-                storyDifficultyText = "Hard Original Mod";
-            case 7:
-                storyDifficultyText = "Alt Original Mod";
-            case 8:
-                storyDifficultyText = "Easy Alpha";
-            case 9:
-                storyDifficultyText = "Normal Alpha";
-            case 10:
-                storyDifficultyText = "Hard Alpha";
-            case 11:
-                storyDifficultyText = "Alt Alpha";
-            case 12:
-                storyDifficultyText = "Easy Old";
-            case 13:
-                storyDifficultyText = "Normal Old";
-            case 14:
-                storyDifficultyText = "Hard Old";
-            case 15:
-                storyDifficultyText = "Alt Old";
 		}
 
 		iconRPC = SONG.player2;
@@ -1154,7 +1130,7 @@ class PlayState extends MusicBeatState
 		add(healthBar);
 
 		// Add Kade Engine watermark
-		kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 15 ? "Alt-Old" : storyDifficulty == 14 ? "Hard-Old" : storyDifficulty == 13 ? "Normal-Old" : storyDifficulty == 12 ? "Easy-Old" : storyDifficulty == 11 ? "Alt-Alpha" : storyDifficulty == 10 ? "Hard-Alpha" : storyDifficulty == 9 ? "Normal-Alpha" : storyDifficulty == 8 ? "Easy-Alpha" : storyDifficulty == 7 ? "Alt-Original Mod V3" : storyDifficulty == 6 ? "Hard-Original Mod V3" : storyDifficulty == 5 ? "Normal-Original Mod V3" : storyDifficulty == 4 ? "Easy-Original Mod V3" : storyDifficulty == 3 ? "Alt" : storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + (Main.watermarks ? " - KE " + MainMenuState.kadeEngineVer : ""), 16);
+		kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 3 ? "Alt" : storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + (Main.watermarks ? " - KE " + MainMenuState.kadeEngineVer : ""), 16);
 		kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
 		add(kadeEngineWatermark);
@@ -1257,12 +1233,6 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'thorns':
 					schoolIntro(doof);
-				case 'tutorial remix':
-					songStarted = true;
-					new FlxTimer().start(7.25, function(tmr:FlxTimer)
-					{
-						startCountdown();
-					});
 				default:
 					startCountdown();
 			}
@@ -2936,42 +2906,6 @@ class PlayState extends MusicBeatState
 					if (storyDifficulty == 3)
 						difficulty = '-alt';
 
-                    if (storyDifficulty == 4)
-                        difficulty = '-easy-og';
-
-                    if (storyDifficulty == 5)
-                        difficulty = '-normal-og';
-
-                    if (storyDifficulty == 6)
-                        difficulty = '-hard-og';
-
-                    if (storyDifficulty == 7)
-                        difficulty = '-alt-og';
-
-                    if (storyDifficulty == 8)
-                        difficulty = '-easy-alpha';
-
-                    if (storyDifficulty == 9)
-                        difficulty = '-normal-alpha';
-
-                    if (storyDifficulty == 10)
-                        difficulty = '-hard-alpha';
-
-                    if (storyDifficulty == 11)
-                        difficulty = '-alt-alpha';
-
-                    if (storyDifficulty == 12)
-                        difficulty = '-easy-old';
-
-                    if (storyDifficulty == 13)
-                        difficulty = '-norma-old';
-
-                    if (storyDifficulty == 14)
-                        difficulty = '-hard-old';
-
-                    if (storyDifficulty == 15)
-                        difficulty = '-alt-old';
-
 					trace('LOADING NEXT SONG');
 					trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
 
@@ -3783,7 +3717,7 @@ class PlayState extends MusicBeatState
 		gf.playAnim('scared', true);
 	}
 
-	function RuvSing()
+	function RuvSing():Void
 	{
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 
@@ -3831,6 +3765,7 @@ class PlayState extends MusicBeatState
 
 	var lightningStrikeBeat:Int = 0;
 	var lightningOffset:Int = 8;
+	var RuvSing:Int = 0;
 
 	override function beatHit()
 	{
@@ -3882,10 +3817,15 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 48 && curStep < 96 && camZooming && FlxG.camera.zoom < 1.35)
+		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 32 && curStep < 48 && camZooming && FlxG.camera.zoom < 1.35)
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
+		}
+
+		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 48 && curStep < 64)
+		{
+			startCountdown();
 		}
 
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
