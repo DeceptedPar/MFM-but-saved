@@ -778,12 +778,12 @@ class PlayState extends MusicBeatState
 						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.circularMotion(stageCurtains, 0, 0, 360, 0, true);
+						FlxTween.angle(stageCurtains, 0, 360);
 						{
 							ease: FlxEase.smootherStepIn,
 							onComplete: function(twn:FlxTween)
 							{
-								stageCurtains.angle=0;
+								stageCurtains.angle=center;
 							}
 						}
 
@@ -1722,9 +1722,9 @@ class PlayState extends MusicBeatState
 							babyArrow.animation.add('confirm', [15, 19], 24, false);
 					}
 
-				case 'christmas':
+				case 'xmas':
 
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Christmas');
+					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Xmas');
 					babyArrow.animation.addByPrefix('green', 'arrowUP');
 					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
@@ -3720,12 +3720,12 @@ class PlayState extends MusicBeatState
 	function RuvSing():Void
 	{
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
-
-		camHUD.shake(0.02, 0.2);
-		FlxG.camera.shake(0.005, 0.2);
-
-		boyfriend.playAnim('scared', true);
-		gf.playAnim('scared', true);
+		{
+			camHUD.shake(0.02, 0.2);
+			FlxG.camera.shake(0.005, 0.2);
+			boyfriend.playAnim('scared', true);
+			gf.playAnim('scared', true);
+		}
 	}
 
 	override function stepHit()

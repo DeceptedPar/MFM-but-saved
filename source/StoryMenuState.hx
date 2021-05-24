@@ -45,7 +45,8 @@ class StoryMenuState extends MusicBeatState
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf', 'gf'],
 		['senpai', 'bf', 'gf'],
-		['masses', 'bf', 'gf']
+		['masses', 'bf', 'gf']/*,
+		['', 'bf', 'gf']*/
 	];
 
 	var weekNames:Array<String> = [
@@ -56,7 +57,8 @@ class StoryMenuState extends MusicBeatState
 		"MOMMY MUST MURDER",
 		"RED SNOW",
 		"Hating Simulator ft. Moawling",
-		"Mid-Fight Masses ft. Selever"
+		"Mid-Fight Masses ft. Selever"/*,
+		"Mid-Fight Masses Extras"*/
 	];
 
 	var txtWeekTitle:FlxText;
@@ -337,7 +339,7 @@ class StoryMenuState extends MusicBeatState
 				sprDifficulty.offset.x = 20;
 			case 3:
 				sprDifficulty.animation.play('alt');
-				sprDifficulty.offset.x = 70;
+				sprDifficulty.offset.x = 30;
 		}
 
 		sprDifficulty.alpha = 0;
