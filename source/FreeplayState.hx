@@ -220,8 +220,8 @@ class FreeplayState extends MusicBeatState
 		curDifficulty += change;
 
 		if (curDifficulty < 0)
-			curDifficulty = 15;
-		if (curDifficulty > 15)
+			curDifficulty = 3;
+		if (curDifficulty > 3)
 			curDifficulty = 0;
 
 		#if !switch
@@ -238,7 +238,7 @@ class FreeplayState extends MusicBeatState
 				diffText.text = "HARD";
 			case 3:
 				diffText.text = "ALT";
-			case 4:
+			/*case 4:
 				diffText.text = "EASY-OG";
 			case 5:
 				diffText.text = "NORMAL-OG";
@@ -261,7 +261,7 @@ class FreeplayState extends MusicBeatState
 			case 14:
 				diffText.text = "HARD-OLD";
 			case 15:
-				diffText.text = "ALT-OLD";
+				diffText.text = "ALT-OLD";*/
 		}
 	}
 
