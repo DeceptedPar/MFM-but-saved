@@ -30,7 +30,7 @@ install:
   - haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
   - haxelib install linc_luajit
   - haxelib list
-  - cd /Users/appveyor/projects/kade-engine-macos
+  - cd /Users/appveyor/projects/kadeengine-sarvente
 
 build_script:
   - haxelib run lime build mac
