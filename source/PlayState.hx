@@ -72,7 +72,7 @@ class PlayState extends MusicBeatState
 	public static var isStoryMode:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
-	public static var storyDifficulty:Int = 1;
+	public static var storyDifficulty:Int = 3;
 	public static var weekSong:Int = 0;
 	public static var shits:Int = 0;
 	public static var bads:Int = 0;
@@ -664,7 +664,7 @@ class PlayState extends MusicBeatState
 			}
 			case 'church1':
 				{
-						defaultCamZoom = 0.85;
+						defaultCamZoom = 0.88;
 						curStage = 'church1';
 						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/floor'));
 						stageFront.updateHitbox();
@@ -686,7 +686,7 @@ class PlayState extends MusicBeatState
 				}
 			case 'church1-dark':
 				{
-						defaultCamZoom = 0.85;
+						defaultCamZoom = 0.88;
 						curStage = 'church1-dark';
 						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/floor-dark'));
 						stageFront.updateHitbox();
@@ -708,7 +708,7 @@ class PlayState extends MusicBeatState
 				}
 			case 'church2':
 				{
-						defaultCamZoom = 0.85;
+						defaultCamZoom = 0.88;
 						curStage = 'church2';
 						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/pillarbroke'));
 						stageCurtains.updateHitbox();
@@ -737,7 +737,7 @@ class PlayState extends MusicBeatState
 				}
 			case 'church3':
 				{
-						defaultCamZoom = 0.85;
+						defaultCamZoom = 0.88;
 						curStage = 'church3';
 						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/floor'));
 						stageFront.updateHitbox();
@@ -767,7 +767,7 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ1'));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, 0, 0);
+						FlxTween.angle(stageCurtains, 0, 0, 10, type:FlxTween.LOOPING);
 						{
 							ease: FlxEase.smootherStepIn,
 							onComplete: function(twn:FlxTween)
@@ -787,7 +787,7 @@ class PlayState extends MusicBeatState
 				}
 			case 'churchSelever':
 				{
-						defaultCamZoom = 0.85;
+						defaultCamZoom = 0.88;
 						curStage = 'churchSelever';
 						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/churchSelever/floor'));
 						stageFront.updateHitbox();
@@ -1229,7 +1229,8 @@ class PlayState extends MusicBeatState
 				case 'thorns':
 					schoolIntro(doof);
 				case 'tutorial remix':
-					startSong();
+					songStarted();
+					tutCoutndown();
 				default:
 					startCountdown();
 			}
@@ -1239,7 +1240,8 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				case 'tutorial remix':
-					startSong();
+					songStarted();
+					tutCoutndown();
 				default:
 					startCountdown();
 			}
@@ -1344,6 +1346,91 @@ class PlayState extends MusicBeatState
 	public static var luaModchart:ModchartState = null;
 	#end
 
+	function tutCoutndown():Void
+	{
+		generateStaticArrows(0);
+		generateStaticArrows(1);
+
+		startedCountdown = false;
+
+		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
+		{
+			gf.dance();
+			boyfriend.playAnim('idle');
+
+			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+			introAssets.set('default', ['ready', "set", "go"]);
+
+			var introAlts:Array<String> = introAssets.get('default');
+			var altSuffix:String = "";
+
+			switch (swagCounter)
+
+			{
+				case 0:
+					FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
+
+				case 1:
+					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
+					ready.scrollFactor.set();
+					ready.updateHitbox();
+
+					ready.screenCenter();
+					add(ready);
+					FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+						ease: FlxEase.cubeInOut,
+						onComplete: function(twn:FlxTween)
+						{
+							ready.destroy();
+						}
+					});
+					FlxG.sound.play(Paths.sound('intro2' + altSuffix), 0.6);
+
+				case 2:
+					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
+					set.scrollFactor.set();
+
+					set.screenCenter();
+					add(set);
+					FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+						ease: FlxEase.cubeInOut,
+						onComplete: function(twn:FlxTween)
+						{
+							set.destroy();
+						}
+					});
+					FlxG.sound.play(Paths.sound('intro1' + altSuffix), 0.6);
+
+				case 3:
+					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
+					go.scrollFactor.set();
+
+					go.updateHitbox();
+
+					go.screenCenter();
+					add(go);
+					FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+						ease: FlxEase.cubeInOut,
+						onComplete: function(twn:FlxTween)
+						{
+							go.destroy();
+						}
+					});
+					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
+
+					if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
+					{
+						dad.playAnim('cheer', true);
+					}
+
+				case 4:
+			}
+
+			swagCounter += 1;
+			// generateSong('fresh');
+		}, 5);
+	}
+
 	function startCountdown():Void
 	{
 		inCutscene = false;
@@ -1404,11 +1491,6 @@ class PlayState extends MusicBeatState
 				case 0:
 					FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
 
-					if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
-					{
-						dad.playAnim('singRIGHT', true);
-					}
-
 				case 1:
 					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
 					ready.scrollFactor.set();
@@ -1428,11 +1510,6 @@ class PlayState extends MusicBeatState
 					});
 					FlxG.sound.play(Paths.sound('intro2' + altSuffix), 0.6);
 
-					if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
-					{
-						dad.playAnim('singUP', true);
-					}
-
 				case 2:
 					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
 					set.scrollFactor.set();
@@ -1450,11 +1527,6 @@ class PlayState extends MusicBeatState
 						}
 					});
 					FlxG.sound.play(Paths.sound('intro1' + altSuffix), 0.6);
-
-					if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
-					{
-						dad.playAnim('singLEFT', true);
-					}
 
 				case 3:
 					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
@@ -1479,11 +1551,6 @@ class PlayState extends MusicBeatState
 					if (SONG.song.toLowerCase() == 'casanova' && dad.curCharacter == 'selever')
 					{
 						dad.playAnim('hey', true);
-					}
-
-					if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
-					{
-						dad.playAnim('cheer', true);
 					}
 
 				case 4:
@@ -3823,7 +3890,7 @@ class PlayState extends MusicBeatState
 
 		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 50 && curStep < 64)
 		{
-			startCountdown();
+			startedCountdown = true;
 		}
 
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
