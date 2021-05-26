@@ -1222,8 +1222,8 @@ class PlayState extends MusicBeatState
 				case 'thorns':
 					schoolIntro(doof);
 				case 'tutorial remix':
-					songStarted();
-					tutCoutndown();
+					startCountdown();
+					startedCountdown = false;
 				default:
 					startCountdown();
 			}
@@ -1233,8 +1233,8 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				case 'tutorial remix':
-					songStarted();
-					tutCoutndown();
+					startCountdown();
+					startedCountdown = false;
 				default:
 					startCountdown();
 			}
@@ -1338,91 +1338,6 @@ class PlayState extends MusicBeatState
 	#if windows
 	public static var luaModchart:ModchartState = null;
 	#end
-
-	function tutCoutndown():Void
-	{
-		generateStaticArrows(0);
-		generateStaticArrows(1);
-
-		startedCountdown = false;
-
-		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
-		{
-			gf.dance();
-			boyfriend.playAnim('idle');
-
-			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-			introAssets.set('default', ['ready', "set", "go"]);
-
-			var introAlts:Array<String> = introAssets.get('default');
-			var altSuffix:String = "";
-
-			switch (swagCounter)
-
-			{
-				case 0:
-					FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
-
-				case 1:
-					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
-					ready.scrollFactor.set();
-					ready.updateHitbox();
-
-					ready.screenCenter();
-					add(ready);
-					FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							ready.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('intro2' + altSuffix), 0.6);
-
-				case 2:
-					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
-					set.scrollFactor.set();
-
-					set.screenCenter();
-					add(set);
-					FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							set.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('intro1' + altSuffix), 0.6);
-
-				case 3:
-					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
-					go.scrollFactor.set();
-
-					go.updateHitbox();
-
-					go.screenCenter();
-					add(go);
-					FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							go.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
-
-					if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
-					{
-						dad.playAnim('cheer', true);
-					}
-
-				case 4:
-			}
-
-			swagCounter += 1;
-			// generateSong('fresh');
-		}, 5);
-	}
 
 	function startCountdown():Void
 	{
@@ -1544,6 +1459,11 @@ class PlayState extends MusicBeatState
 					if (SONG.song.toLowerCase() == 'casanova' && dad.curCharacter == 'selever')
 					{
 						dad.playAnim('hey', true);
+					}
+
+					if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
+					{
+						dad.playAnim('cheer', true);
 					}
 
 				case 4:
