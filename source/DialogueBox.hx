@@ -87,30 +87,81 @@ class DialogueBox extends FlxSpriteGroup
 				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
+
+			case 'tutorial remix':
+				hasDialog = true;
+				box.frames = Paths.getSparrowAtlas('speech_bubble_talking', 'shared');
+				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
+				box.animation.addByIndices('normal', 'speech bubble normal', [11], "", 24);
 		}
 
 		this.dialogueList = dialogueList;
 		
 		if (!hasDialog)
 			return;
-		
-		portraitLeft = new FlxSprite(-20, 40);
-		portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
-		portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
-		portraitLeft.updateHitbox();
-		portraitLeft.scrollFactor.set();
-		add(portraitLeft);
-		portraitLeft.visible = false;
+		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
+		{
+			portraitLeft = new FlxSprite(-20, 40);
+			portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
+			portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+			portraitLeft.updateHitbox();
+			portraitLeft.scrollFactor.set();
+			add(portraitLeft);
+			portraitLeft.visible = false;
+		}
 
-		portraitRight = new FlxSprite(0, 40);
-		portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
-		portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
-		portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
-		portraitRight.updateHitbox();
-		portraitRight.scrollFactor.set();
-		add(portraitRight);
-		portraitRight.visible = false;
+		else if(PlayState.SONG.song.toLowerCase() == 'tutorial remix')
+		{
+			portraitLeft = new FlxSprite(-1500, 40);
+			portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits', 'shared');
+			
+			switch(PlayState.SONG.song.toLowerCase())
+			{
+				case 'tutorial remix':
+					portraitLeft.animation.addByPrefix('smile', 'gfPortSmile', 24, false);
+					portraitLeft.animation.addByPrefix('cheer', 'gfPortCheer', 24, false);
+				case 'parish':
+					portraitLeft.animation.addByPrefix('happy', 'SarvHappy', 24, false);
+					portraitLeft.animation.addByPrefix('pout', 'SarvPout', 24, false);
+					portraitLeft.animation.addByPrefix('smile', 'SarvSmile', 24, false);
+				case 'worship':
+					portraitLeft.animation.addByPrefix('upset', 'DarkSarvUpset', 24, true);
+					portraitLeft.animation.addByPrefix('angery', 'DarkSarvAngery', 24, true);
+				case 'zavodila':
+					portraitLeft.animation.addByPrefix('normal', 'RuvNormal', 24, true);
+					portraitLeft.animation.addByPrefix('talk', 'RuvTalk', 24, true);
+					portraitLeft.animation.addByPrefix('ugh', 'RuvUgh', 24, true);
+				case 'gospel':
+					portraitLeft.animation.addByPrefix('devil', 'SarvDevil', 24, true);
+				case 'casanova':
+					portraitLeft.animation.addByPrefix('happy', 'SelHappy', 24, true);
+					portraitLeft.animation.addByPrefix('smile', 'SelSmile', 24, true);
+					portraitLeft.animation.addByPrefix('huh', 'SelHuh', 24, true);
+					portraitLeft.animation.addByPrefix('XD', 'SelXD', 24, true);
+					portraitLeft.animation.addByPrefix('ha', 'SelHa!', 24, true);
+					portraitLeft.animation.addByPrefix('normal', 'RasNormal', 24, true);
+					portraitLeft.animation.addByPrefix('sigh', 'RasSigh', 24, true);
+			}
+
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.175));
+			portraitLeft.updateHitbox();
+			portraitLeft.scrollFactor.set();
+			add(portraitLeft);
+			portraitLeft.visible = false;
+		}
+
+		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
+		{
+			portraitRight = new FlxSprite(0, 40);
+			portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
+			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
+			portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+			portraitRight.updateHitbox();
+			portraitRight.scrollFactor.set();
+			add(portraitRight);
+			portraitRight.visible = false;
+		}
 		
 		box.animation.play('normalOpen');
 		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));

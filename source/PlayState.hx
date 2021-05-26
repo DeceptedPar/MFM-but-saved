@@ -336,6 +336,8 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
+			case 'tutorial remix':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial remix/Dialogue'));
 		}
 
 		switch(SONG.stage)
@@ -767,14 +769,7 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ1'));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, 0, 0, 10, type:FlxTween.LOOPING);
-						{
-							ease: FlxEase.smootherStepIn,
-							onComplete: function(twn:FlxTween)
-							{
-								stageCurtains.angle=360;
-							}
-						}
+						FlxTween.angle(stageCurtains, -360, 360, 10, {ease: FlxEase.smootherStepIn, onComplete: function(twn:FlxTween), type:FlxTweenType.LOOPING});
 
 						add(stageCurtains);
 
