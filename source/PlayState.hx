@@ -767,6 +767,15 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ1'));
 						stageCurtains.antialiasing = true;
 
+						FlxTween.angle(stageCurtains, 0, 0);
+						{
+							ease: FlxEase.smootherStepIn,
+							onComplete: function(twn:FlxTween)
+							{
+								stageCurtains.angle=360;
+							}
+						}
+
 						add(stageCurtains);
 
 						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ2'));
@@ -1219,12 +1228,8 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				case 'tutorial remix':
-					songStarted = true;
-					new FlxTimer().start(7.25, function(tmr:FlxTimer)
-					{
-						startCountdown();
-					});
-
+					startSong();
+					new FlxTimer().start(7.25, function(tmr:FlxTimer);
 				default:
 					startCountdown();
 			}
@@ -1388,6 +1393,12 @@ class PlayState extends MusicBeatState
 			{
 				case 0:
 					FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
+
+					if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
+					{
+						dad.playAnim('singRIGHT', true);
+					}
+
 				case 1:
 					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
 					ready.scrollFactor.set();
@@ -1406,6 +1417,12 @@ class PlayState extends MusicBeatState
 						}
 					});
 					FlxG.sound.play(Paths.sound('intro2' + altSuffix), 0.6);
+
+					if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
+					{
+						dad.playAnim('singUP', true);
+					}
+
 				case 2:
 					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
 					set.scrollFactor.set();
@@ -1423,6 +1440,12 @@ class PlayState extends MusicBeatState
 						}
 					});
 					FlxG.sound.play(Paths.sound('intro1' + altSuffix), 0.6);
+
+					if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
+					{
+						dad.playAnim('singLEFT', true);
+					}
+
 				case 3:
 					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
 					go.scrollFactor.set();
@@ -3788,7 +3811,7 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 48 && curStep < 64)
+		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 50 && curStep < 64)
 		{
 			startCountdown();
 		}
@@ -3822,8 +3845,8 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.02, 0.2);
-			FlxG.camera.shake(0.005, 0.2);
+			camHUD.shake(0.01, true);
+			FlxG.camera.shake(0.01, true);
 			boyfriend.playAnim('idle', false);
 			boyfriend.playAnim('scared', true);
 			gf.playAnim('dance', false);
