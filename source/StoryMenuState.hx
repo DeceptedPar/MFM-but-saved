@@ -339,7 +339,7 @@ class StoryMenuState extends MusicBeatState
 				sprDifficulty.offset.x = 20;
 			case 3:
 				sprDifficulty.animation.play('alt');
-				sprDifficulty.offset.x = 30;
+				sprDifficulty.offset.x = 5;
 		}
 
 		sprDifficulty.alpha = 0;
