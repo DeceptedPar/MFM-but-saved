@@ -1228,6 +1228,8 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'thorns':
 					schoolIntro(doof);
+				case 'tutorial remix':
+					startSong();
 				default:
 					startCountdown();
 			}
@@ -1238,7 +1240,6 @@ class PlayState extends MusicBeatState
 			{
 				case 'tutorial remix':
 					startSong();
-					new FlxTimer().start(7.25, function(tmr:FlxTimer);
 				default:
 					startCountdown();
 			}
