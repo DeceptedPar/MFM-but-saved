@@ -2322,6 +2322,9 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.EIGHT)
 		{
+			#if windows
+			DiscordClient.changePresence("Animation Debug", null, null, true);
+			#end
 			FlxG.switchState(new AnimationDebug(SONG.player2));
 			#if windows
 			if (luaModchart != null)
@@ -2331,8 +2334,6 @@ class PlayState extends MusicBeatState
 			}
 			#end
 		}
-		
-		#end
 
 		if (startingSong)
 		{
