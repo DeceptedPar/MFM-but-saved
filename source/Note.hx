@@ -88,7 +88,7 @@ class Note extends FlxSprite
 				updateHitbox();
 
 			case 'xmas':
-				frames = Paths.getSparrowAtlas('NOTE_Assets_Xmas');
+				frames = Paths.getSparrowAtlas('christmas/xmas_ui/notes_xmas', 'week5');
 
 				animation.addByPrefix('greenScroll', 'green0');
 				animation.addByPrefix('redScroll', 'red0');

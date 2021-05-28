@@ -575,12 +575,12 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'SarventeDown', 24, false);
 				animation.addByPrefix('hey', 'SarventeHey', 24, false);
 
-				addOffset('idle');
-				addOffset('singUP');
-				addOffset('singRIGHT');
-				addOffset('singLEFT');
-				addOffset('singDOWN');
-				addOffset('hey');
+				addOffset('idle', 0, 50);
+				addOffset('singUP', -50, 111);
+				addOffset('singRIGHT', 15, 59);
+				addOffset('singLEFT', 60, 39);
+				addOffset('singDOWN', 50, -14);
+				addOffset('hey', -10, 56);
 
 				playAnim('idle');
 
@@ -596,15 +596,15 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT-alt', 'DarkSarvLeft', 24, false);
 				animation.addByPrefix('singDOWN-alt', 'DarkSarvDown', 24, false);
 
-				addOffset('idle');
-				addOffset('singUP');
-				addOffset('singRIGHT');
-				addOffset('singLEFT');
-				addOffset('singDOWN');
-				addOffset('singUP-alt');
-				addOffset('singRIGHT-alt');
-				addOffset('singLEFT-alt');
-				addOffset('singDOWN-alt');
+				addOffset('idle', 30, 14);
+				addOffset('singUP', -5, 82);
+				addOffset('singRIGHT', 40, 26);
+				addOffset('singLEFT', 100, 5);
+				addOffset('singDOWN', 65, -43);
+				addOffset('singUP-alt', -5, 81);
+				addOffset('singRIGHT-alt', 0, 23);
+				addOffset('singLEFT-alt', 50, -5);
+				addOffset('singDOWN-alt', 72, -57);
 
 				playAnim('idle');
 
@@ -616,11 +616,11 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'RuvLeft', 24, false);
 				animation.addByPrefix('singDOWN', 'RuvDown', 24, false);
 
-				addOffset('idle');
-				addOffset('singUP');
-				addOffset('singRIGHT');
-				addOffset('singLEFT');
-				addOffset('singDOWN');
+				addOffset('idle', 0, 48);
+				addOffset('singUP', 40, 50);
+				addOffset('singRIGHT', 15, 54);
+				addOffset('singLEFT', 80, -15);
+				addOffset('singDOWN', 55, 55);
 
 			case 'luci-sarv':
 				frames = Paths.getSparrowAtlas('sacredmass/luci_sarv');
@@ -630,11 +630,11 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'LuciferSarvLeft', 24, false);
 				animation.addByPrefix('singDOWN', 'LuciferSarvDown', 24, false);
 
-				addOffset('idle');
-				addOffset('singUP');
-				addOffset('singRIGHT');
-				addOffset('singLEFT');
-				addOffset('singDOWN');
+				addOffset('idle', 0, 47);
+				addOffset('singUP', -10, 47);
+				addOffset('singRIGHT', 0, 47);
+				addOffset('singLEFT', 65, 47);
+				addOffset('singDOWN', 0, 47);
 
 				playAnim('idle');
 
@@ -647,12 +647,12 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'SelDown', 24, false);
 				animation.addByPrefix('hey', 'SelHey', 24, false);
 
-				addOffset('idle');
-				addOffset('singUP');
-				addOffset('singRIGHT');
-				addOffset('singLEFT');
-				addOffset('singDOWN');
-				addOffset('hey');
+				addOffset('idle', 50, 44);
+				addOffset('singUP', 63, 47);
+				addOffset('singRIGHT', 40, 43);
+				addOffset('singLEFT', 41, 46);
+				addOffset('singDOWN', 40, 47);
+				addOffset('hey', 0, 47);
 
 				playAnim('idle');
 		}

@@ -337,7 +337,21 @@ class PlayState extends MusicBeatState
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 			case 'tutorial remix':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial remix/Dialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial remix/dialogue'));
+			/*case 'parish':
+				dialogue = CoolUtil.coolTextFile(Paths.dat('parish/dialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.dat('parish/dialogue2'));
+				dialogue = CoolUtil.coolTextFile(Paths.dat('parish/dialogue3'));
+			case 'worship':
+				dialogue = CoolUtil.coolTextFile(Paths.dat('worship/dialogue1'));
+			case 'zavodila':
+				dialogue = CoolUtil.coolTextFile(Paths.dat('zavodila/dialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.dat('zavodila/dialogue2'));*/
+			case 'casanova':
+				dialogue = CoolUtil.coolTextFile(Paths.dat('casanova/dialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.dat('casanova/dialogue2'));
+				dialogue = CoolUtil.coolTextFile(Paths.dat('casanova/dialogue3'));
+				dialogue = CoolUtil.coolTextFile(Paths.dat('casanova/dialogue4'));
 		}
 
 		switch(SONG.stage)
@@ -1246,6 +1260,40 @@ class PlayState extends MusicBeatState
 		super.create();
 	}
 
+	function casanovaIntro(?dialogueBox:DialogueBox):Void
+	{
+		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+		black.scrollFactor.set();
+		camHUD.visible = false;
+
+		if (SONG.song.toLowerCase() == 'casanova')
+		{
+			add(black);
+			remove(black);
+		}
+
+		new FlxTimer().start(0.3, function(tmr:FlxTimer)
+		{
+
+			black.alpha -= 0.15;
+
+			if (black.alpha > 0)
+			{
+				tmr.reset(0.3);
+			}
+			else
+			{
+
+				if (dialogueBox != null)
+					{
+						inCutscene = true;
+						add(dialogueBox);
+					}
+				remove(black);
+			}
+		});
+	}
+
 	function schoolIntro(?dialogueBox:DialogueBox):Void
 	{
 		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
@@ -1714,7 +1762,7 @@ class PlayState extends MusicBeatState
 
 				case 'xmas':
 
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Xmas');
+					babyArrow.frames = Paths.getSparrowAtlas('christmas/xmas_ui/notes_xmas', 'week5');
 					babyArrow.animation.addByPrefix('green', 'arrowUP');
 					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
