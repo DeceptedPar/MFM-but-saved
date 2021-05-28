@@ -339,19 +339,19 @@ class PlayState extends MusicBeatState
 			case 'tutorial remix':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial remix/dialogue'));
 			/*case 'parish':
-				dialogue = CoolUtil.coolTextFile(Paths.dat('parish/dialogue1'));
-				dialogue = CoolUtil.coolTextFile(Paths.dat('parish/dialogue2'));
-				dialogue = CoolUtil.coolTextFile(Paths.dat('parish/dialogue3'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('parish/dialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('parish/dialogue2'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('parish/dialogue3'));
 			case 'worship':
-				dialogue = CoolUtil.coolTextFile(Paths.dat('worship/dialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('worship/dialogue1'));
 			case 'zavodila':
-				dialogue = CoolUtil.coolTextFile(Paths.dat('zavodila/dialogue1'));
-				dialogue = CoolUtil.coolTextFile(Paths.dat('zavodila/dialogue2'));*/
+				dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/dialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/dialogue2'));*/
 			case 'casanova':
-				dialogue = CoolUtil.coolTextFile(Paths.dat('casanova/dialogue1'));
-				dialogue = CoolUtil.coolTextFile(Paths.dat('casanova/dialogue2'));
-				dialogue = CoolUtil.coolTextFile(Paths.dat('casanova/dialogue3'));
-				dialogue = CoolUtil.coolTextFile(Paths.dat('casanova/dialogue4'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/dialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/dialogue2'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/dialogue3'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/dialogue4'));
 		}
 
 		switch(SONG.stage)
