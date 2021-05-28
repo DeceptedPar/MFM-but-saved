@@ -338,15 +338,18 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 			case 'tutorial remix':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial remix/dialogue'));
-			/*case 'parish':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('parish/dialogue1'));
-				dialogue = CoolUtil.coolTextFile(Paths.txt('parish/dialogue2'));
+			case 'parish':
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('parish/dialogue1'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('parish/dialogue2'));
 				dialogue = CoolUtil.coolTextFile(Paths.txt('parish/dialogue3'));
 			case 'worship':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('worship/dialogue1'));
 			case 'zavodila':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/dialogue1'));
-				dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/dialogue2'));*/
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/dialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/dialogue2'));
+			//case 'gospel':
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/dialogue1'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/dialogue2'));
 			case 'casanova':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/dialogue1'));
 				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/dialogue2'));
@@ -1236,8 +1239,20 @@ class PlayState extends MusicBeatState
 				case 'thorns':
 					schoolIntro(doof);
 				case 'tutorial remix':
-					startCountdown();
+					schoolIntro(doof);
+					startSong();
 					startedCountdown = false;
+					startCountdown();
+				case 'parish':
+					schoolIntro(doof);
+				case 'worship':
+					schoolIntro(doof);
+				case 'zavodila':
+					schoolIntro(doof);
+				//case 'gospel':
+				//	schoolIntro(doof);
+				case 'casanova':
+					schoolIntro(doof);
 				default:
 					startCountdown();
 			}
@@ -1247,8 +1262,9 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				case 'tutorial remix':
-					startCountdown();
+					startSong();
 					startedCountdown = false;
+					startCountdown();
 				default:
 					startCountdown();
 			}
@@ -1266,10 +1282,14 @@ class PlayState extends MusicBeatState
 		black.scrollFactor.set();
 		camHUD.visible = false;
 
-		if (SONG.song.toLowerCase() == 'casanova')
+		if (SONG.song.toLowerCase() == 'parish' || SONG.song.toLowerCase() == 'worship' || SONG.song.toLowerCase() == 'zavodila')
 		{
-			add(black);
 			remove(black);
+
+			if(SONG.song.toLowerCase() == 'casanova')
+			{
+				add(black);
+			}
 		}
 
 		new FlxTimer().start(0.3, function(tmr:FlxTimer)
@@ -1285,10 +1305,10 @@ class PlayState extends MusicBeatState
 			{
 
 				if (dialogueBox != null)
-					{
-						inCutscene = true;
-						add(dialogueBox);
-					}
+				{
+					inCutscene = true;
+					add(dialogueBox);
+				}
 				remove(black);
 			}
 		});
@@ -3849,7 +3869,7 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 50 && curStep < 64)
+		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 48 && curStep < 64)
 		{
 			startedCountdown = true;
 		}
@@ -3883,8 +3903,8 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.01, true);
-			FlxG.camera.shake(0.01, true);
+			camHUD.shake(0.0075, 0.2);
+			FlxG.camera.shake(0.0075, 0.2);
 			boyfriend.playAnim('idle', false);
 			boyfriend.playAnim('scared', true);
 			gf.playAnim('dance', false);
@@ -3896,15 +3916,53 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim('hey', true);
 		}
 
-		if (curBeat % 16 == 15 && curSong == 'Parish' && curBeat >= 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat != 176 && curBeat <= 177)
+		if (boyfriend.animation.curAnim.name.startsWith('sing') || boyfriend.animation.curAnim.name == 'idle')
+		{
+			switch(curSong)
 			{
-				boyfriend.playAnim('hey', true);
+				case 'Parish':
+				{
+					if(curBeat > 48 && curBeat < 176)
+					{
+						if(curBeat != 64 && curBeat != 96 && curBeat != 128 && curBeat != 160 && curBeat < 176)
+						{
+							if(curBeat % 16 == 15)
+							{
+								if(!triggeredAlready)
+								{
+									boyfriend.playAnim('hey');
+									triggeredAlready = true;
+								}
+							}else triggeredAlready = false;
+						}
+					}
+				}
 			}
+		}
 
-		if (curBeat % 16 == 15 && curSong == 'Parish' && dad.curCharacter == 'sarvente' && curBeat >= 32 && curBeat != 64 && curBeat != 96 && curBeat != 128 && curBeat != 160 && curBeat <= 161)
+		if (dad.animation.curAnim.name.startsWith('sing') || dad.animation.curAnim.name == 'idle' && dad.curCharacter == 'sarvente')
+		{
+			switch(curSong)
 			{
-				dad.playAnim('hey', true);
+				case 'Parish':
+				{
+					if(curBeat > 32 && curBeat < 160)
+					{
+						if(curBeat != 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat < 160)
+						{
+							if(curBeat % 16 == 15)
+							{
+								if(!triggeredAlready)
+								{
+									dad.playAnim('hey');
+									triggeredAlready = true;
+								}
+							}else triggeredAlready = false;
+						}
+					}
+				}
 			}
+		}
 
 		if (curBeat % 16 == 15 && SONG.song == 'Tutorial' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
 			{
