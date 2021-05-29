@@ -1241,8 +1241,8 @@ class PlayState extends MusicBeatState
 				case 'tutorial remix':
 					schoolIntro(doof);
 					startSong();
-					startedCountdown = false;
 					startCountdown();
+					inCutscene = false;
 				case 'parish':
 					schoolIntro(doof);
 				case 'worship':
@@ -1263,8 +1263,8 @@ class PlayState extends MusicBeatState
 			{
 				case 'tutorial remix':
 					startSong();
-					startedCountdown = false;
 					startCountdown();
+					inCutscene = false;
 				default:
 					startCountdown();
 			}
@@ -2388,11 +2388,9 @@ class PlayState extends MusicBeatState
 		/* if (FlxG.keys.justPressed.NINE)
 			FlxG.switchState(new Charting()); */
 
+		#if debug
 		if (FlxG.keys.justPressed.EIGHT)
 		{
-			#if windows
-			DiscordClient.changePresence("Animation Debug", null, null, true);
-			#end
 			FlxG.switchState(new AnimationDebug(SONG.player2));
 			#if windows
 			if (luaModchart != null)
@@ -2402,6 +2400,8 @@ class PlayState extends MusicBeatState
 			}
 			#end
 		}
+		
+		#end
 
 		if (startingSong)
 		{
