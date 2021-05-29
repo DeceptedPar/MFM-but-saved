@@ -31,7 +31,10 @@ class StoryMenuState extends MusicBeatState
 		['Satin Panties', 'High', 'Milf'],
 		['Cocoa', 'Eggnog', 'Winter Horrorland'],
 		['Senpai', 'Roses', 'Thorns'],
-		['Parish', 'Worship', 'Zavodila', 'Gospel', 'Casanova']
+		['Parish', 'Worship', 'Zavodila', 'Gospel', 'Casanova']/*,
+        ['Too Clergy', 'Church Lords', 'Sarv-odila', 'Ruvved Up'],
+        ['Ruv Jug', 'Panic-Stricken', 'Sarv Behind the Slaughter', 'Ruvodila'],
+        ['Ruv-el', 'Jointly', 'Trance']*/
 	];
 	var curDifficulty:Int = 1;
 
@@ -46,7 +49,9 @@ class StoryMenuState extends MusicBeatState
 		['parents-christmas', 'bf', 'gf'],
 		['senpai', 'bf', 'gf'],
 		['masses', 'bf', 'gf']/*,
-		['', 'bf', 'gf']*/
+		['', 'bf', 'gf'],
+        ['', 'bf', 'gf'],
+        ['', 'bf', 'gf']*/
 	];
 
 	var weekNames:Array<String> = [
@@ -58,7 +63,9 @@ class StoryMenuState extends MusicBeatState
 		"RED SNOW",
 		"Hating Simulator ft. Moawling",
 		"Mid-Fight Masses ft. Selever"/*,
-		"Mid-Fight Masses Extras"*/
+		"Mid-Fight Masses Extras 1",
+        "Mid-Fight Masses Extras 2",
+        "Mid-Fight Masses Extras 3"*/
 	];
 
 	var txtWeekTitle:FlxText;
@@ -339,7 +346,7 @@ class StoryMenuState extends MusicBeatState
 				sprDifficulty.offset.x = 20;
 			case 3:
 				sprDifficulty.animation.play('alt');
-				sprDifficulty.offset.x = 5;
+				sprDifficulty.offset.x = 0;
 		}
 
 		sprDifficulty.alpha = 0;

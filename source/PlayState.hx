@@ -683,7 +683,7 @@ class PlayState extends MusicBeatState
 			}
 			case 'church1':
 				{
-						defaultCamZoom = 0.88;
+						defaultCamZoom = 0.9;
 						curStage = 'church1';
 						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/floor'));
 						stageFront.updateHitbox();
@@ -705,7 +705,7 @@ class PlayState extends MusicBeatState
 				}
 			case 'church1-dark':
 				{
-						defaultCamZoom = 0.88;
+						defaultCamZoom = 0.9;
 						curStage = 'church1-dark';
 						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/floor-dark'));
 						stageFront.updateHitbox();
@@ -727,7 +727,7 @@ class PlayState extends MusicBeatState
 				}
 			case 'church2':
 				{
-						defaultCamZoom = 0.88;
+						defaultCamZoom = 0.9;
 						curStage = 'church2';
 						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/pillarbroke'));
 						stageCurtains.updateHitbox();
@@ -756,7 +756,7 @@ class PlayState extends MusicBeatState
 				}
 			case 'church3':
 				{
-						defaultCamZoom = 0.88;
+						defaultCamZoom = 0.9;
 						curStage = 'church3';
 						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/floor'));
 						stageFront.updateHitbox();
@@ -797,7 +797,7 @@ class PlayState extends MusicBeatState
 				}
 			case 'churchSelever':
 				{
-						defaultCamZoom = 0.88;
+						defaultCamZoom = 0.9;
 						curStage = 'churchSelever';
 						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/churchSelever/floor'));
 						stageFront.updateHitbox();
@@ -962,19 +962,19 @@ class PlayState extends MusicBeatState
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'sarvente':
 				dad.x = 630;
-				dad.y = 504;
+				dad.y = 554;
 			case 'sarvente-dark':
 				dad.x = 630;
-				dad.y = 504;
+				dad.y = 554;
 			case 'ruv':
 				dad.x = 630;
-				dad.y = 504;
+				dad.y = 554;
 			case 'luci-sarv':
 				dad.x = 630.35;
-				dad.y = 293.30;
+				dad.y = 323.30;
 			case 'selever':
 				dad.x = 630;
-				dad.y = 504;
+				dad.y = 554;
 		}
 
 
@@ -1020,23 +1020,23 @@ class PlayState extends MusicBeatState
 				gf.y += 300;
 
 			case 'church1':
-				boyfriend.setPosition(1379, 921);
+				boyfriend.setPosition(1379, 881);
 				gf.setPosition(895, 453);
 
 			case 'church1-dark':
-				boyfriend.setPosition(1379, 921);
+				boyfriend.setPosition(1379, 881);
 				gf.setPosition(895, 453);
 
 			case 'church2':
-				boyfriend.setPosition(1379, 921);
+				boyfriend.setPosition(1379, 881);
 				gf.setPosition(895, 453);
 
 			case 'church3':
-				boyfriend.setPosition(1379, 921);
+				boyfriend.setPosition(1379, 881);
 				gf.setPosition(895, 453);
 
 			case 'churchSelever':
-				boyfriend.setPosition(1379, 921);
+				boyfriend.setPosition(1379, 881);
 				gf.setPosition(895, 453);
 		}
 

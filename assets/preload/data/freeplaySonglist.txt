@@ -23,3 +23,14 @@ Worship:sarvente:7
 Zavodila:ruv:7
 Gospel:luci-sarv:7
 Casanova:selever:7
+Too Clergy:sarvente:8
+Church Lords:sarvente:8
+Sarv-odila:sarvente:8
+Ruvved Up:ruv:8
+Ruv Jug:ruv:9
+Panic-Stricken:ruv:9
+Sarv Behind The Slaughter:sarvente:9
+Ruvodila:ruv:9
+Ruv-el:ruv:10
+Jointly:ruv:10
+Trance:luci-sarv:10
