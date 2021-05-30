@@ -339,22 +339,22 @@ class PlayState extends MusicBeatState
 			case 'tutorial remix':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial remix/dialogue'));
 			case 'parish':
-				//dialogue = CoolUtil.coolTextFile(Paths.txt('parish/dialogue1'));
-				//dialogue = CoolUtil.coolTextFile(Paths.txt('parish/dialogue2'));
-				dialogue = CoolUtil.coolTextFile(Paths.txt('parish/dialogue3'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue1'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue2'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue3'));
 			case 'worship':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('worship/dialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('worship/WorshipDialogue1'));
 			case 'zavodila':
-				//dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/dialogue1'));
-				dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/dialogue2'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/ZavodilaDialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/ZavodilaDialogue2'));
 			//case 'gospel':
-				//dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/dialogue1'));
-				//dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/dialogue2'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/GospelDialogue1'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/GospelDialogue2'));
 			case 'casanova':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/dialogue1'));
-				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/dialogue2'));
-				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/dialogue3'));
-				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/dialogue4'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue2'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue3'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue4'));
 		}
 
 		switch(SONG.stage)
@@ -729,13 +729,6 @@ class PlayState extends MusicBeatState
 				{
 						defaultCamZoom = 0.9;
 						curStage = 'church2';
-						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/pillarbroke'));
-						stageCurtains.updateHitbox();
-						stageCurtains.antialiasing = true;
-						stageCurtains.active = false;
-
-						add(stageCurtains);
-
 						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/floor'));
 						stageFront.updateHitbox();
 						stageFront.antialiasing = true;
@@ -748,6 +741,13 @@ class PlayState extends MusicBeatState
 						add(bg);
 
 						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/pillars'));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
+
+						add(stageCurtains);
+
+						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/pillarbroke'));
 						stageCurtains.updateHitbox();
 						stageCurtains.antialiasing = true;
 						stageCurtains.active = false;
@@ -834,15 +834,6 @@ class PlayState extends MusicBeatState
 						stageFront.scrollFactor.set(0.9, 0.9);
 						stageFront.active = false;
 						add(stageFront);
-
-						var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
-						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-						stageCurtains.updateHitbox();
-						stageCurtains.antialiasing = true;
-						stageCurtains.scrollFactor.set(1.3, 1.3);
-						stageCurtains.active = false;
-	
-						add(stageCurtains);
 				}
 			case 'stage':
 				{
@@ -1239,10 +1230,10 @@ class PlayState extends MusicBeatState
 				case 'thorns':
 					schoolIntro(doof);
 				case 'tutorial remix':
-					schoolIntro(doof);
 					startSong();
-					startCountdown();
-					inCutscene = false;
+					generateStaticArrows(0);
+					generateStaticArrows(1);
+					camHUD.visible = true;
 				case 'parish':
 					schoolIntro(doof);
 				case 'worship':
@@ -1263,8 +1254,9 @@ class PlayState extends MusicBeatState
 			{
 				case 'tutorial remix':
 					startSong();
-					startCountdown();
-					inCutscene = false;
+					generateStaticArrows(0);
+					generateStaticArrows(1);
+					camHUD.visible = true;
 				default:
 					startCountdown();
 			}
@@ -3871,7 +3863,7 @@ class PlayState extends MusicBeatState
 
 		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 48 && curStep < 64)
 		{
-			startedCountdown = true;
+			startCountdown();
 		}
 
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
@@ -3903,8 +3895,8 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.0075, 0.2);
-			FlxG.camera.shake(0.0075, 0.2);
+			camHUD.shake(0.0075, 0.5);
+			FlxG.camera.shake(0.0075, 0.5);
 			boyfriend.playAnim('idle', false);
 			boyfriend.playAnim('scared', true);
 			gf.playAnim('dance', false);

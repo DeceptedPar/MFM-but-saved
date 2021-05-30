@@ -92,40 +92,14 @@ class DialogueBox extends FlxSpriteGroup
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('speech_bubble_talking', 'shared');
 				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByIndices('normal', 'speech bubble normal', [11], "", 24);
-
-			case 'parish':
-				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('speech_bubble_talking', 'shared');
-				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByIndices('normal', 'speech bubble normal', [11], "", 24);
-
-			case 'worship':
-				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('speech_bubble_talking', 'shared');
-				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByIndices('normal', 'speech bubble normal', [11], "", 24);
-
-			case 'zavodila':
-				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('speech_bubble_talking', 'shared');
-				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByIndices('normal', 'speech bubble normal', [11], "", 24);
-				box.animation.addByIndices('loudopen', 'speech bubble loud open', [11], "", 24);
-
-			case 'casanova':
-				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('speech_bubble_talking', 'shared');
-				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByIndices('normal', 'speech bubble normal', [11], "", 24);
-				box.animation.addByIndices('loudopen', 'speech bubble loud open', [11], "", 24);
+				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
 		}
 
 		this.dialogueList = dialogueList;
 		
 		if (!hasDialog)
 			return;
-		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
+		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns	')
 		{
 			portraitLeft = new FlxSprite(-20, 40);
 			portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
@@ -135,50 +109,7 @@ class DialogueBox extends FlxSpriteGroup
 			portraitLeft.scrollFactor.set();
 			add(portraitLeft);
 			portraitLeft.visible = false;
-		}
-
-		else if(PlayState.SONG.song.toLowerCase() == 'tutorial remix')
-		{
-			portraitLeft = new FlxSprite(-1500, 40);
-			portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits', 'shared');
-			
-			switch(PlayState.SONG.song.toLowerCase())
-			{
-				case 'tutorial remix':
-					portraitLeft.animation.addByPrefix('gfsmile', 'gfPortSmile', 24, false);
-					portraitLeft.animation.addByPrefix('cheer', 'gfPortCheer', 24, false);
-				case 'parish':
-					portraitLeft.animation.addByPrefix('sarvhappy', 'SarvHappy', 24, false);
-					portraitLeft.animation.addByPrefix('pout', 'SarvPout', 24, false);
-					portraitLeft.animation.addByPrefix('sarvsmile', 'SarvSmile', 24, false);
-				case 'worship':
-					portraitLeft.animation.addByPrefix('upset', 'DarkSarvUpset', 24, true);
-					portraitLeft.animation.addByPrefix('angery', 'DarkSarvAngery', 24, true);
-				case 'zavodila':
-					portraitLeft.animation.addByPrefix('ruvnormal', 'RuvNormal', 24, true);
-					portraitLeft.animation.addByPrefix('talk', 'RuvTalk', 24, true);
-					portraitLeft.animation.addByPrefix('ugh', 'RuvUgh', 24, true);
-				case 'gospel':
-					portraitLeft.animation.addByPrefix('devil', 'SarvDevil', 24, true);
-				case 'casanova':
-					portraitLeft.animation.addByPrefix('selhappy', 'SelHappy', 24, true);
-					portraitLeft.animation.addByPrefix('selsmile', 'SelSmile', 24, true);
-					portraitLeft.animation.addByPrefix('huh', 'SelHuh', 24, true);
-					portraitLeft.animation.addByPrefix('xd', 'SelXD', 24, true);
-					portraitLeft.animation.addByPrefix('ha', 'SelHa!', 24, true);
-					portraitLeft.animation.addByPrefix('rasnormal', 'RasNormal', 24, true);
-					portraitLeft.animation.addByPrefix('sigh', 'RasSigh', 24, true);
-			}
-
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.175));
-			portraitLeft.updateHitbox();
-			portraitLeft.scrollFactor.set();
-			add(portraitLeft);
-			portraitLeft.visible = false;
-		}
-
-		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
-		{
+	
 			portraitRight = new FlxSprite(0, 40);
 			portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
@@ -187,33 +118,10 @@ class DialogueBox extends FlxSpriteGroup
 			portraitRight.scrollFactor.set();
 			add(portraitRight);
 			portraitRight.visible = false;
-
-			portraitRight = new FlxSprite(-1500, 40);
-			portraitRight.frames = Paths.getSparrowAtlas('sacredmass/portraits', 'shared');
-
-			switch(PlayState.SONG.song.toLowerCase())
-			{
-				case 'parish':
-					portraitRight.animation.addByPrefix('bfsmile', 'bfPortSmile', 24, false);
-					portraitRight.animation.addByPrefix('gfsmile', 'gfPortSmile', 24, false);
-				case 'worship':
-					portraitRight.animation.addByPrefix('bfbeep', 'bfPortBeepRight', 24, false);
-				case 'zavodila':
-					portraitRight.animation.addByPrefix('ruvnormal', 'RuvNormal', 24, true);
-					portraitRight.animation.addByPrefix('talk', 'RuvTalk', 24, true);
-					portraitRight.animation.addByPrefix('bfbeep', 'bfPortBeepRight', 24, false);
-					portraitRight.animation.addByPrefix('bfmiss', 'bfPortDownMiss', 24, false);
-				case 'gospel':
-					portraitRight.animation.addByPrefix('gfsmile', 'gfPortSmile', 24, false);
-					portraitRight.animation.addByPrefix('bfsmile', 'bfPortSmile', 24, false);
-				case 'casanova':
-					portraitRight.animation.addByPrefix('bfsmile', 'bfPortSmile', 24, false);
-					portraitRight.animation.addByPrefix('gfsmile', 'gfPortSmile', 24, false);
-			}
-		}
+		}else if (PlayState.SONG.song.toLowerCase() == 'tutorial remix')
 		
 		box.animation.play('normalOpen');
-		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
+		if(PlayState.curStage != 'church0' || 'church1' || 'church1-dark' || 'church2' || 'church3' || 'churchSelever') box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
 		box.updateHitbox();
 		add(box);
 
@@ -236,6 +144,17 @@ class DialogueBox extends FlxSpriteGroup
 
 		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
 		swagDialogue.font = 'Pixel Arial 11 Bold';
+		swagDialogue.color = 0xFF3F2021;
+		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
+		add(swagDialogue);
+
+		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 16);
+		dropText.font = 'Komika Display - Shadow';
+		dropText.color = 0xFFD89494;
+		add(dropText);
+
+		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 16);
+		swagDialogue.font = 'Komika Display';
 		swagDialogue.color = 0xFF3F2021;
 		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
 		add(swagDialogue);
@@ -347,6 +266,195 @@ class DialogueBox extends FlxSpriteGroup
 				{
 					portraitRight.visible = true;
 					portraitRight.animation.play('enter');
+				}
+			case 'bf':
+				portraitLeft.visible = false;
+				portraitMiddle.visible = false;
+				if (!portraitRight.visible)
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/BF');
+				{
+					portraitRight.visible = true;
+					portraitRight.animation.play('enter');
+				}
+			case 'bfbeep':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/BFBeep');
+				if (!portraitLeft.visible)
+				{
+					portraitRight.visible = true;
+					portraitRight.animation.play('enter');
+				}
+			case 'bfuhh':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/BFUhh');
+				if (!portraitLeft.visible)
+				{
+					portraitRight.visible = true;
+					portraitRight.animation.play('enter');
+				}
+			case 'gftalk':
+				portraitLeft.visible = false;
+				portraitRight.visible = false;
+				portraitMiddle.frames = Paths.getSparrowAtlas('sacredmass/portraits/GFTalk');
+				if (!portraitMiddle.visible)
+				{
+					portraitMiddle.visible = true;
+					portraitMiddle.animation.play('enter');
+				}
+			case 'gfcheer':
+				portraitLeft.visible = false;
+				portraitRight.visible = false;
+				portraitMiddle.frames = Paths.getSparrowAtlas('sacredmass/portraits/GFCheer');
+				if (!portraitMiddle.visible)
+				{
+					portraitMiddle.visible = true;
+					portraitMiddle.animation.play('enter');
+				}
+			case 'sarvhappy':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SarvHappy');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'sarvpout':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SarvPout');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'sarvsmile':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SarvSmile');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'darksarvmad':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/DarkSarvMad');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'darksarvunamused':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/DarkSarvUnamused');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'ruv':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/Ruv');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'ruvdisgusted':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/RuvDisgusted');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'ruvtalk':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/RuvTalk');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'lucisarv':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/LuciSarv');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'selevsmile':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SelevSmile');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'selgrin':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SelGrin');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'seltalk':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SelTalk');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'seluh':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SelUh');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'selxd':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SelXD');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'ras':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/Ras');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
+				}
+			case 'rassigh':
+				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/RasSigh');
+				if (!portraitLeft.visible)
+				{
+					portraitLeft.visible = true;
+					portraitLeft.animation.play('enter');
 				}
 		}
 	}
