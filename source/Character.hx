@@ -579,7 +579,7 @@ class Character extends FlxSprite
 				addOffset('singUP', -50, 51);
 				addOffset('singRIGHT', 15, 59);
 				addOffset('singLEFT', 60, 39);
-				addOffset('singDOWN', 50, -14);
+				addOffset('singDOWN', 50, 4);
 				addOffset('hey', -10, 56);
 
 				playAnim('idle');
@@ -597,14 +597,14 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN-alt', 'DarkSarvDown', 24, false);
 
 				addOffset('idle', 30, 14);
-				addOffset('singUP', -5, 82);
+				addOffset('singUP', -5, 32);
 				addOffset('singRIGHT', 40, 26);
 				addOffset('singLEFT', 100, 5);
-				addOffset('singDOWN', 65, -43);
-				addOffset('singUP-alt', -5, 81);
+				addOffset('singDOWN', 65, 3);
+				addOffset('singUP-alt', -5, 31);
 				addOffset('singRIGHT-alt', 0, 23);
 				addOffset('singLEFT-alt', 50, -5);
-				addOffset('singDOWN-alt', 72, -57);
+				addOffset('singDOWN-alt', 72, -7);
 
 				playAnim('idle');
 

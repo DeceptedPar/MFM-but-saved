@@ -148,7 +148,7 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else
 		{
-			portraitLeft = new FlxSprite(200, FlxG.height - 525);
+			portraitLeft = new FlxSprite(100, FlxG.height - 530);
 			portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SarvSmile');
 			portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
 			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.8));
@@ -157,7 +157,7 @@ class DialogueBox extends FlxSpriteGroup
 			add(portraitLeft);
 			portraitLeft.visible = false;
 	
-			portraitRight = new FlxSprite(800, FlxG.height - 489);
+			portraitRight = new FlxSprite(900, FlxG.height - 490);
 			portraitRight.frames = Paths.getSparrowAtlas('sacredmass/portraits/BF');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
 			portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.8));
@@ -166,7 +166,7 @@ class DialogueBox extends FlxSpriteGroup
 			add(portraitRight);
 			portraitRight.visible = false;
 
-			portraitMiddle = new FlxSprite(500, FlxG.height - 507);
+			portraitMiddle = new FlxSprite(450, FlxG.height - 510);
 			portraitMiddle.frames = Paths.getSparrowAtlas('sacredmass/portraits/GFTalk');
 			portraitMiddle.animation.addByPrefix('enter', 'Girlfriend portrait enter', 24, false);
 			portraitMiddle.setGraphicSize(Std.int(portraitRight.width * 0.8));
@@ -183,7 +183,7 @@ class DialogueBox extends FlxSpriteGroup
 		else
 		{
 			box.y = FlxG.height - 285;
-			box.x = 20;
+			box.x -= 20;
 		}
 		box.updateHitbox();
 		add(box);
@@ -201,14 +201,16 @@ class DialogueBox extends FlxSpriteGroup
 			// box.flipX = true;
 		}
 
-		dropText = new FlxText(185, 500, Std.int(FlxG.width * 1), "", 48);
-		dropText.font = 'Komika Display';
-		dropText.color = 0x00000000;
+		dropText = new FlxText(185, 500, Std.int(FlxG.width * 1), "", 16);
+		dropText.font = 'Komika Display - Shadow';
+		dropText.color = FlxColor.RED;
+		dropText.antialiasing = true;
 		add(dropText);
 
-		swagDialogue = new FlxTypeText(182, 497, Std.int(FlxG.width * 1), "", 48);
-		swagDialogue.font = 'Komika Display Bold';
-		swagDialogue.color = 0xFFFFFFFF;
+		swagDialogue = new FlxTypeText(182, 497, Std.int(FlxG.width * 1), "", 16);
+		swagDialogue.font = 'Komika Display';
+		swagDialogue.color = FlxColor.BLACK;
+		swagDialogue.antialiasing = true;
 		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
 		add(swagDialogue);
 

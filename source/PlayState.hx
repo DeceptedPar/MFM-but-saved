@@ -1230,6 +1230,7 @@ class PlayState extends MusicBeatState
 				case 'thorns':
 					schoolIntro(doof);
 				case 'tutorial remix':
+					schoolIntro(doof);
 					generateStaticArrows(0);
 					generateStaticArrows(1);
 					camHUD.visible = true;
@@ -3859,13 +3860,13 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (curSong.toLowerCase() == 'tutorial remix' && curBeat >= 8 && curBeat < 16 && camZooming && FlxG.camera.zoom < 1.35)
+		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 32 && curStep < 48 && camZooming && FlxG.camera.zoom < 1.35)
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
 		}
 
-		if (curSong.toLowerCase() == 'tutorial remix' && curBeat == 16)
+		if (curSong.toLowerCase() == 'tutorial remix' && curStep == 48)
 		{
 			startCountdown();
 		}
@@ -3897,7 +3898,12 @@ class PlayState extends MusicBeatState
 			dad.dance();
 		}
 
-		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
+		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing')) && FlxG.random.bool(50))
+		{
+			camHUD.shake(0.0075, 0.5);
+			FlxG.camera.shake(0.0075, 0.5);
+		}
+		else
 		{
 			camHUD.shake(0.0075, 0.5);
 			FlxG.camera.shake(0.0075, 0.5);
@@ -3933,26 +3939,10 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (dad.animation.curAnim.name.startsWith('sing') || dad.animation.curAnim.name == 'idle' && dad.curCharacter == 'sarvente')
-		{
-			switch(curSong)
+		if (curBeat % 16 == 15 && SONG.song == 'Parish' && dad.curCharacter == 'sarvente' && curBeat > 32 && curBeat != 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat < 160)
 			{
-				case 'Parish':
-				{
-					if(curBeat > 32 && curBeat != 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat < 160)
-					{
-						if(curBeat % 16 == 15)
-						{
-							if(!triggeredAlready)
-							{
-								dad.playAnim('hey');
-								triggeredAlready = true;
-							}
-						}else triggeredAlready = false;
-					}
-				}
+				dad.playAnim('hey', true);
 			}
-		}
 
 		if (curBeat % 16 == 15 && SONG.song == 'Tutorial' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
 			{
