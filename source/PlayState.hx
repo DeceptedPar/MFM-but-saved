@@ -3939,7 +3939,7 @@ class PlayState extends MusicBeatState
 			{
 				case 'Parish':
 				{
-					if(curBeat > 32 && curBeat != 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat < 160))
+					if(curBeat > 32 && curBeat != 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat < 160)
 					{
 						if(curBeat % 16 == 15)
 						{
