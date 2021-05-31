@@ -203,8 +203,10 @@ class DialogueBox extends FlxSpriteGroup
 
 		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
 		if (pixel)
+		{
 			dropText.font = 'Pixel Arial 11 Bold';
 			dropText.color = 0xFFD89494;
+		}
 		else
 		{
 			dropText.font = 'Komika Display';
@@ -215,8 +217,10 @@ class DialogueBox extends FlxSpriteGroup
 
 		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
 		if (pixel)
+		{
 			swagDialogue.font = 'Pixel Arial 11 Bold';
 			swagDialogue.color = 0xFF3F2021;
+		}
 		else
 		{
 			swagDialogue.font = 'Komika Display - Shadow';
