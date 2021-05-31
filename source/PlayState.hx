@@ -2951,13 +2951,13 @@ class PlayState extends MusicBeatState
 				{
 					var difficulty:String = "";
 
-					if (difficultyPlaylist[0].contains('0'))
+					if (storyDifficulty == 0)
 						difficulty = '-easy';
 
-					if (difficultyPlaylist[0].contains('1'))
+					if (storyDifficulty == 2)
 						difficulty = '-hard';
 
-					if (difficultyPlaylist[0].contains('3'))
+					if (storyDifficulty == 3)
 						difficulty = '-alt';
 
 					trace('LOADING NEXT SONG');
