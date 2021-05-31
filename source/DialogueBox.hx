@@ -148,28 +148,28 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else
 		{
-			portraitLeft = new FlxSprite(0, 160);
-			portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/');
-			portraitLeft.animation.addByPrefix('enter', '', 24, false);
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+			portraitLeft = new FlxSprite(200, FlxG.height - 525);
+			portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SarvSmile');
+			portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.8));
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
 			add(portraitLeft);
 			portraitLeft.visible = false;
 	
-			portraitRight = new FlxSprite(700, 145);
+			portraitRight = new FlxSprite(800, FlxG.height - 489);
 			portraitRight.frames = Paths.getSparrowAtlas('sacredmass/portraits/BF');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
-			portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+			portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.8));
 			portraitRight.updateHitbox();
 			portraitRight.scrollFactor.set();
 			add(portraitRight);
 			portraitRight.visible = false;
 
-			portraitMiddle = new FlxSprite(350, 90);
+			portraitMiddle = new FlxSprite(500, FlxG.height - 507);
 			portraitMiddle.frames = Paths.getSparrowAtlas('sacredmass/portraits/GFTalk');
 			portraitMiddle.animation.addByPrefix('enter', 'Girlfriend portrait enter', 24, false);
-			portraitMiddle.setGraphicSize(Std.int(portraitRight.width * 1));
+			portraitMiddle.setGraphicSize(Std.int(portraitRight.width * 0.8));
 			portraitMiddle.updateHitbox();
 			portraitMiddle.scrollFactor.set();
 			add(portraitMiddle);
@@ -183,7 +183,7 @@ class DialogueBox extends FlxSpriteGroup
 		else
 		{
 			box.y = FlxG.height - 285;
-				box.x = 20;
+			box.x = 20;
 		}
 		box.updateHitbox();
 		add(box);
@@ -201,32 +201,16 @@ class DialogueBox extends FlxSpriteGroup
 			// box.flipX = true;
 		}
 
-		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
-		if (pixel)
-		{
-			dropText.font = 'Pixel Arial 11 Bold';
-			dropText.color = 0xFFD89494;
-		}
-		else
-		{
-			dropText.font = 'Komika Display';
-			dropText.color = FlxColor.RED;
-			dropText.antialiasing = true;
-		}
+		dropText = new FlxText(185, 500, Std.int(FlxG.width * 1), "", 48);
+		dropText.font = 'Komika Display';
+		dropText.color = 0x00000000;
 		add(dropText);
 
-		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
-		if (pixel)
-		{
-			swagDialogue.font = 'Pixel Arial 11 Bold';
-			swagDialogue.color = 0xFF3F2021;
-		}
-		else
-		{
-			swagDialogue.font = 'Komika Display - Shadow';
-			swagDialogue.color = FlxColor.BLACK;
-			swagDialogue.antialiasing = true;
-		}
+		swagDialogue = new FlxTypeText(182, 497, Std.int(FlxG.width * 1), "", 48);
+		swagDialogue.font = 'Komika Display Bold';
+		swagDialogue.color = 0xFFFFFFFF;
+		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
+		add(swagDialogue);
 
 		dialogue = new Alphabet(0, 80, "", false, true);
 		// dialogue.x = 90;

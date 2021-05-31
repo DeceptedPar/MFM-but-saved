@@ -72,7 +72,7 @@ class PlayState extends MusicBeatState
 	public static var isStoryMode:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
-	public static var storyDifficulty:Int = 3;
+	public static var storyDifficulty:Int = 1;
 	public static var weekSong:Int = 0;
 	public static var shits:Int = 0;
 	public static var bads:Int = 0;
@@ -337,13 +337,13 @@ class PlayState extends MusicBeatState
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 			case 'tutorial remix':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial remix/dialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial remix/Tutorial RemixDialogue'));
 			case 'parish':
 				//dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue1'));
 				//dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue2'));
 				dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue3'));
 			case 'worship':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('worship/WorshipDialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('worship/WorshipDialogue'));
 			case 'zavodila':
 				//dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/ZavodilaDialogue1'));
 				dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/ZavodilaDialogue2'));
@@ -351,10 +351,10 @@ class PlayState extends MusicBeatState
 				//dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/GospelDialogue1'));
 				//dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/GospelDialogue2'));
 			case 'casanova':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue1'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue1'));
 				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue2'));
-				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue3'));
-				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue4'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue3'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue4'));
 		}
 
 		switch(SONG.stage)
@@ -1230,10 +1230,12 @@ class PlayState extends MusicBeatState
 				case 'thorns':
 					schoolIntro(doof);
 				case 'tutorial remix':
-					startSong();
 					generateStaticArrows(0);
 					generateStaticArrows(1);
 					camHUD.visible = true;
+					startSong();
+					dad.dance();
+					boyfriend.playAnim('idle');
 				case 'parish':
 					schoolIntro(doof);
 				case 'worship':
@@ -1253,10 +1255,12 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				case 'tutorial remix':
-					startSong();
 					generateStaticArrows(0);
 					generateStaticArrows(1);
 					camHUD.visible = true;
+					startSong();
+					dad.dance();
+					boyfriend.playAnim('idle');
 				default:
 					startCountdown();
 			}
@@ -2947,13 +2951,13 @@ class PlayState extends MusicBeatState
 				{
 					var difficulty:String = "";
 
-					if (storyDifficulty == 0)
+					if (difficultyPlaylist[0].contains('0'))
 						difficulty = '-easy';
 
-					if (storyDifficulty == 2)
+					if (difficultyPlaylist[0].contains('1'))
 						difficulty = '-hard';
 
-					if (storyDifficulty == 3)
+					if (difficultyPlaylist[0].contains('3'))
 						difficulty = '-alt';
 
 					trace('LOADING NEXT SONG');
@@ -3855,13 +3859,13 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 32 && curStep < 48 && camZooming && FlxG.camera.zoom < 1.35)
+		if (curSong.toLowerCase() == 'tutorial remix' && curBeat >= 8 && curBeat < 16 && camZooming && FlxG.camera.zoom < 1.35)
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
 		}
 
-		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 48 && curStep < 64)
+		if (curSong.toLowerCase() == 'tutorial remix' && curBeat == 16)
 		{
 			startCountdown();
 		}
@@ -3914,19 +3918,16 @@ class PlayState extends MusicBeatState
 			{
 				case 'Parish':
 				{
-					if(curBeat > 48 && curBeat < 176)
+					if(curBeat > 48 && curBeat != 64 && curBeat != 96 && curBeat != 128 && curBeat != 160 && curBeat < 176)
 					{
-						if(curBeat != 64 && curBeat != 96 && curBeat != 128 && curBeat != 160 && curBeat < 176)
+						if(curBeat % 16 == 15)
 						{
-							if(curBeat % 16 == 15)
+							if(!triggeredAlready)
 							{
-								if(!triggeredAlready)
-								{
-									boyfriend.playAnim('hey');
-									triggeredAlready = true;
-								}
-							}else triggeredAlready = false;
-						}
+								boyfriend.playAnim('hey');
+								triggeredAlready = true;
+							}
+						}else triggeredAlready = false;
 					}
 				}
 			}
@@ -3938,19 +3939,16 @@ class PlayState extends MusicBeatState
 			{
 				case 'Parish':
 				{
-					if(curBeat > 32 && curBeat < 160)
+					if(curBeat > 32 && curBeat != 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat < 160))
 					{
-						if(curBeat != 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat < 160)
+						if(curBeat % 16 == 15)
 						{
-							if(curBeat % 16 == 15)
+							if(!triggeredAlready)
 							{
-								if(!triggeredAlready)
-								{
-									dad.playAnim('hey');
-									triggeredAlready = true;
-								}
-							}else triggeredAlready = false;
-						}
+								dad.playAnim('hey');
+								triggeredAlready = true;
+							}
+						}else triggeredAlready = false;
 					}
 				}
 			}

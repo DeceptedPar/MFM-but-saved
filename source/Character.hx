@@ -576,7 +576,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('hey', 'SarventeHey', 24, false);
 
 				addOffset('idle', 0, 50);
-				addOffset('singUP', -50, 111);
+				addOffset('singUP', -50, 51);
 				addOffset('singRIGHT', 15, 59);
 				addOffset('singLEFT', 60, 39);
 				addOffset('singDOWN', 50, -14);
