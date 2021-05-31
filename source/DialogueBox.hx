@@ -49,7 +49,7 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 		}
 
-		var pixel:Bool = PlayState.SONG.song.toLowerCase() == 'senpai' && PlayState.SONG.song.toLowerCase() == 'roses' && PlayState.SONG.song.toLowerCase() == 'thorns'
+		var pixel:Bool = PlayState.SONG.song.toLowerCase() == 'senpai' && PlayState.SONG.song.toLowerCase() == 'roses' && PlayState.SONG.song.toLowerCase() == 'thorns';
 
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
 		bgFade.scrollFactor.set();
