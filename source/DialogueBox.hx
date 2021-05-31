@@ -30,6 +30,7 @@ class DialogueBox extends FlxSpriteGroup
 
 	var portraitLeft:FlxSprite;
 	var portraitRight:FlxSprite;
+	var portraitMiddle:FlxSprite;
 
 	var handSelect:FlxSprite;
 	var bgFade:FlxSprite;
@@ -48,17 +49,42 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 		}
 
+		var pixel:Bool = PlayState.SONG.song.toLowerCase() == 'senpai' && PlayState.SONG.song.toLowerCase() == 'roses' && PlayState.SONG.song.toLowerCase() == 'thorns'
+
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
 		bgFade.scrollFactor.set();
 		bgFade.alpha = 0;
 		add(bgFade);
 
-		new FlxTimer().start(0.83, function(tmr:FlxTimer)
+		
+		if (gaming)
 		{
-			bgFade.alpha += (1 / 5) * 0.7;
-			if (bgFade.alpha > 0.7)
-				bgFade.alpha = 0.7;
-		}, 5);
+			bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
+			bgFade.scrollFactor.set();
+			bgFade.alpha = 0;
+			add(bgFade);
+
+			new FlxTimer().start(0.83, function(tmr:FlxTimer)
+				{
+					bgFade.alpha += (1 / 5) * 0.7;
+					if (bgFade.alpha > 0.7)
+						bgFade.alpha = 0.7;
+				}, 5);
+		}
+		else
+			{
+				bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), FlxColor.GRAY);
+				bgFade.scrollFactor.set();
+				bgFade.alpha = 0;
+				add(bgFade);
+
+				new FlxTimer().start(0.83, function(tmr:FlxTimer)
+					{
+						bgFade.alpha += (1 / 5) * 0.7;
+						if (bgFade.alpha > 0.7)
+							bgFade.alpha = 0.7;
+					}, 5);
+			}
 
 		box = new FlxSprite(-20, 45);
 		
@@ -88,7 +114,7 @@ class DialogueBox extends FlxSpriteGroup
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
 
-			case 'tutorial remix':
+			case 'tutorial remix' | 'parish' | 'worship' | 'zavodila' | 'gospel' | 'casanova':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('speech_bubble_talking', 'shared');
 				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
@@ -109,7 +135,7 @@ class DialogueBox extends FlxSpriteGroup
 			portraitLeft.scrollFactor.set();
 			add(portraitLeft);
 			portraitLeft.visible = false;
-	
+
 			portraitRight = new FlxSprite(0, 40);
 			portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
@@ -118,14 +144,52 @@ class DialogueBox extends FlxSpriteGroup
 			portraitRight.scrollFactor.set();
 			add(portraitRight);
 			portraitRight.visible = false;
-		}else if (PlayState.SONG.song.toLowerCase() == 'tutorial remix')
+
+		}
+		else
+		{
+			portraitLeft = new FlxSprite(0, 160);
+			portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/');
+			portraitLeft.animation.addByPrefix('enter', '', 24, false);
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+			portraitLeft.updateHitbox();
+			portraitLeft.scrollFactor.set();
+			add(portraitLeft);
+			portraitLeft.visible = false;
+	
+			portraitRight = new FlxSprite(700, 145);
+			portraitRight.frames = Paths.getSparrowAtlas('sacredmass/portraits/BF');
+			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
+			portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+			portraitRight.updateHitbox();
+			portraitRight.scrollFactor.set();
+			add(portraitRight);
+			portraitRight.visible = false;
+
+			portraitMiddle = new FlxSprite(350, 90);
+			portraitMiddle.frames = Paths.getSparrowAtlas('sacredmass/portraits/GFTalk');
+			portraitMiddle.animation.addByPrefix('enter', 'Girlfriend portrait enter', 24, false);
+			portraitMiddle.setGraphicSize(Std.int(portraitRight.width * 1));
+			portraitMiddle.updateHitbox();
+			portraitMiddle.scrollFactor.set();
+			add(portraitMiddle);
+			portraitMiddle.visible = false;
+
+		}
 		
 		box.animation.play('normalOpen');
-		if(PlayState.curStage != 'church0' || 'church1' || 'church1-dark' || 'church2' || 'church3' || 'churchSelever') box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
+		if (pixel)
+			box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
+		else
+		{
+			box.y = FlxG.height - 285;
+				box.x = 20;
+		}
 		box.updateHitbox();
 		add(box);
 
-		box.screenCenter(X);
+		if (pixel)
+			box.screenCenter(X);
 		portraitLeft.screenCenter(X);
 
 		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
@@ -138,26 +202,27 @@ class DialogueBox extends FlxSpriteGroup
 		}
 
 		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
-		dropText.font = 'Pixel Arial 11 Bold';
-		dropText.color = 0xFFD89494;
+		if (pixel)
+			dropText.font = 'Pixel Arial 11 Bold';
+			dropText.color = 0xFFD89494;
+		else
+		{
+			dropText.font = 'Komika Display';
+			dropText.color = FlxColor.RED;
+			dropText.antialiasing = true;
+		}
 		add(dropText);
 
 		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
-		swagDialogue.font = 'Pixel Arial 11 Bold';
-		swagDialogue.color = 0xFF3F2021;
-		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
-		add(swagDialogue);
-
-		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 16);
-		dropText.font = 'Komika Display - Shadow';
-		dropText.color = 0xFFD89494;
-		add(dropText);
-
-		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 16);
-		swagDialogue.font = 'Komika Display';
-		swagDialogue.color = 0xFF3F2021;
-		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
-		add(swagDialogue);
+		if (pixel)
+			swagDialogue.font = 'Pixel Arial 11 Bold';
+			swagDialogue.color = 0xFF3F2021;
+		else
+		{
+			swagDialogue.font = 'Komika Display - Shadow';
+			swagDialogue.color = FlxColor.BLACK;
+			swagDialogue.antialiasing = true;
+		}
 
 		dialogue = new Alphabet(0, 80, "", false, true);
 		// dialogue.x = 90;
@@ -255,17 +320,12 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			case 'dad':
 				portraitRight.visible = false;
+				portraitMiddle.visible = false;
+				portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SarvHappy');
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
 					portraitLeft.animation.play('enter');
-				}
-			case 'bf':
-				portraitLeft.visible = false;
-				if (!portraitRight.visible)
-				{
-					portraitRight.visible = true;
-					portraitRight.animation.play('enter');
 				}
 			case 'bf':
 				portraitLeft.visible = false;
