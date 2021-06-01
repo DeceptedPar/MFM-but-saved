@@ -3898,10 +3898,10 @@ class PlayState extends MusicBeatState
 			dad.dance();
 		}
 
-		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing')) && FlxG.random.bool(50))
+		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing') && FlxG.random.bool(50))
 		{
-			camHUD.shake(0.0075, 0.5);
-			FlxG.camera.shake(0.0075, 0.5);
+			camHUD.shake(0.01, 0.2);
+			FlxG.camera.shake(0.01, 0.2);
 		}
 		else
 		{
