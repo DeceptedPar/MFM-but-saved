@@ -3860,13 +3860,7 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (curSong.toLowerCase() == 'tutorial remix' && curStep >= 32 && curStep < 48 && camZooming && FlxG.camera.zoom < 1.35)
-		{
-			FlxG.camera.zoom += 0.015;
-			camHUD.zoom += 0.03;
-		}
-
-		if (curSong.toLowerCase() == 'tutorial remix' && curStep == 48)
+		if (curSong.toLowerCase() == 'tutorial remix' && curStep == 44)
 		{
 			startCountdown();
 		}
@@ -3898,12 +3892,7 @@ class PlayState extends MusicBeatState
 			dad.dance();
 		}
 
-		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing') && FlxG.random.bool(50))
-		{
-			camHUD.shake(0.01, 0.2);
-			FlxG.camera.shake(0.01, 0.2);
-		}
-		else
+		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
 			camHUD.shake(0.0075, 0.5);
 			FlxG.camera.shake(0.0075, 0.5);
