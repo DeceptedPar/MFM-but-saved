@@ -118,7 +118,8 @@ class DialogueBox extends FlxSpriteGroup
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('speech_bubble_talking', 'shared');
 				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
+				box.animation.addByIndices('normal', 'speech bubble normal', [11], "", 24);
+				box.antialiasing = true;
 		}
 
 		this.dialogueList = dialogueList;
@@ -148,28 +149,28 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else
 		{
-			portraitLeft = new FlxSprite(400, FlxG.height - 700);
+			portraitLeft = new FlxSprite(0, 160);
 			portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SarvSmile');
 			portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.8));
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1));
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
 			add(portraitLeft);
 			portraitLeft.visible = false;
 	
-			portraitRight = new FlxSprite(1000, FlxG.height - 700);
+			portraitRight = new FlxSprite(700, 145);
 			portraitRight.frames = Paths.getSparrowAtlas('sacredmass/portraits/BF');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
-			portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.8));
+			portraitRight.setGraphicSize(Std.int(portraitRight.width * 1));
 			portraitRight.updateHitbox();
 			portraitRight.scrollFactor.set();
 			add(portraitRight);
 			portraitRight.visible = false;
 
-			portraitMiddle = new FlxSprite(700, FlxG.height - 700);
+			portraitMiddle = new FlxSprite(350, 90);
 			portraitMiddle.frames = Paths.getSparrowAtlas('sacredmass/portraits/GFTalk');
 			portraitMiddle.animation.addByPrefix('enter', 'Girlfriend portrait enter', 24, false);
-			portraitMiddle.setGraphicSize(Std.int(portraitRight.width * 0.8));
+			portraitMiddle.setGraphicSize(Std.int(portraitRight.width * 1));
 			portraitMiddle.updateHitbox();
 			portraitMiddle.scrollFactor.set();
 			add(portraitMiddle);
@@ -182,7 +183,7 @@ class DialogueBox extends FlxSpriteGroup
 			box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
 		else
 		{
-			box.y = FlxG.height - 310;
+			box.y = FlxG.height - 285;
 			box.x = 20;
 		}
 		box.updateHitbox();
@@ -201,14 +202,14 @@ class DialogueBox extends FlxSpriteGroup
 			// box.flipX = true;
 		}
 
-		dropText = new FlxText(182, 497, Std.int(FlxG.width * 1), "", 28);
-		dropText.font = 'Komika Display - Shadow';
+		dropText = new FlxText(185, 500, Std.int(FlxG.width * 1), "", 28);
+		dropText.font = 'Komika Display';
 		dropText.color = FlxColor.RED;
 		dropText.antialiasing = true;
 		add(dropText);
 
-		swagDialogue = new FlxTypeText(182, 497, Std.int(FlxG.width * 1), "", 28);
-		swagDialogue.font = 'Komika Display';
+		swagDialogue = new FlxTypeText(182, 497, Std.int(FlxG.width * 1), "", 30);
+		swagDialogue.font = 'Komika Display Bold';
 		swagDialogue.color = FlxColor.BLACK;
 		swagDialogue.antialiasing = true;
 		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
