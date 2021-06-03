@@ -1231,12 +1231,6 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'tutorial remix':
 					schoolIntro(doof);
-					generateStaticArrows(0);
-					generateStaticArrows(1);
-					camHUD.visible = true;
-					startSong();
-					dad.dance();
-					boyfriend.playAnim('idle');
 				case 'parish':
 					schoolIntro(doof);
 				case 'worship':
@@ -3863,6 +3857,16 @@ class PlayState extends MusicBeatState
 		if (curSong.toLowerCase() == 'tutorial remix' && curStep == 44)
 		{
 			startCountdown();
+		}
+
+		if (curSong.toLowerCase() == 'tutorial remix')
+		{
+			generateStaticArrows(0);
+			generateStaticArrows(1);
+			camHUD.visible = true;
+			startSong();
+			dad.dance();
+			boyfriend.playAnim('idle');
 		}
 
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)

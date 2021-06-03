@@ -149,28 +149,28 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else
 		{
-			portraitLeft = new FlxSprite(0, 160);
+			portraitLeft = new FlxSprite(52, 238);
 			portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SarvSmile');
 			portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1));
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.9));
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
 			add(portraitLeft);
 			portraitLeft.visible = false;
 	
-			portraitRight = new FlxSprite(700, 145);
+			portraitRight = new FlxSprite(847, 283);
 			portraitRight.frames = Paths.getSparrowAtlas('sacredmass/portraits/BF');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
-			portraitRight.setGraphicSize(Std.int(portraitRight.width * 1));
+			portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.9));
 			portraitRight.updateHitbox();
 			portraitRight.scrollFactor.set();
 			add(portraitRight);
 			portraitRight.visible = false;
 
-			portraitMiddle = new FlxSprite(350, 90);
+			portraitMiddle = new FlxSprite(428, 219);
 			portraitMiddle.frames = Paths.getSparrowAtlas('sacredmass/portraits/GFTalk');
 			portraitMiddle.animation.addByPrefix('enter', 'Girlfriend portrait enter', 24, false);
-			portraitMiddle.setGraphicSize(Std.int(portraitRight.width * 1));
+			portraitMiddle.setGraphicSize(Std.int(portraitRight.width * 0.9));
 			portraitMiddle.updateHitbox();
 			portraitMiddle.scrollFactor.set();
 			add(portraitMiddle);
@@ -183,8 +183,7 @@ class DialogueBox extends FlxSpriteGroup
 			box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
 		else
 		{
-			box.y = FlxG.height - 285;
-			box.x = 20;
+			box.y = (FlxG.height - box.height) + 80;
 		}
 		box.updateHitbox();
 		add(box);
