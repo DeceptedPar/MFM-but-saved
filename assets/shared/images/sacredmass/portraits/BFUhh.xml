@@ -2,5 +2,5 @@
 <TextureAtlas imagePath="BFUhh.png">
 	<!-- Created with Adobe Animate version 20.0.0.17400 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="Boyfriend portrait enter instance 10000" x="0" y="0" width="340" height="262"/>
+	<SubTexture name="Boyfriend portrait enter instance 10000" x="0" y="0" width="410" height="410"/>
 </TextureAtlas>
