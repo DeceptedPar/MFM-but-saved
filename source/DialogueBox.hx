@@ -184,7 +184,7 @@ class DialogueBox extends FlxSpriteGroup
 		else
 		{
 			box.y = (FlxG.height - box.height) + 80;
-            box.x += 40
+            box.x += 40;
 		}
 		box.updateHitbox();
 		add(box);
