@@ -1249,13 +1249,6 @@ class PlayState extends MusicBeatState
 		{
 			switch (curSong.toLowerCase())
 			{
-				case 'tutorial remix':
-					generateStaticArrows(0);
-					generateStaticArrows(1);
-					camHUD.visible = true;
-					startSong();
-					dad.dance();
-					boyfriend.playAnim('idle');
 				default:
 					startCountdown();
 			}
@@ -3861,12 +3854,12 @@ class PlayState extends MusicBeatState
 
 		if (curSong.toLowerCase() == 'tutorial remix')
 		{
+			dad.dance();
+			boyfriend.playAnim('idle');
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			camHUD.visible = true;
 			startSong();
-			dad.dance();
-			boyfriend.playAnim('idle');
 		}
 
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
