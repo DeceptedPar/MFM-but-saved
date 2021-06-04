@@ -1230,7 +1230,7 @@ class PlayState extends MusicBeatState
 				case 'thorns':
 					schoolIntro(doof);
 				case 'tutorial remix':
-					schoolIntro(doof);
+					tutorialIntro(doof);
 				case 'parish':
 					schoolIntro(doof);
 				case 'worship':
@@ -1300,6 +1300,10 @@ class PlayState extends MusicBeatState
 
 	function tutorialIntro(?dialogueBox:DialogueBox):Void
 	{
+		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+		black.scrollFactor.set();
+		camHUD.visible = false;
+
 		new FlxTimer().start(0.3, function(tmr:FlxTimer)
 		{
 			black.alpha -= 0.15;
