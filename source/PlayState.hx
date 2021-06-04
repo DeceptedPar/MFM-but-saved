@@ -1298,6 +1298,41 @@ class PlayState extends MusicBeatState
 		});
 	}
 
+	function tutorialIntro(?dialogueBox:DialogueBox):Void
+	{
+		new FlxTimer().start(0.3, function(tmr:FlxTimer)
+		{
+			black.alpha -= 0.15;
+
+			if (black.alpha > 0)
+			{
+				tmr.reset(0.3);
+			}
+			else
+			{
+				if (dialogueBox != null)
+				{
+					inCutscene = true;
+
+					if (SONG.song.toLowerCase() == 'tutorial remix')
+					
+					{
+						add(dialogueBox);
+					}
+				}
+				else
+					dad.dance();
+					boyfriend.playAnim('idle');
+					generateStaticArrows(0);
+					generateStaticArrows(1);
+					camHUD.visible = true;
+					startSong();
+
+				remove(black);
+			}
+		});
+	}
+
 	function schoolIntro(?dialogueBox:DialogueBox):Void
 	{
 		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
@@ -3850,16 +3885,6 @@ class PlayState extends MusicBeatState
 		if (curSong.toLowerCase() == 'tutorial remix' && curStep == 44)
 		{
 			startCountdown();
-		}
-
-		if (curSong.toLowerCase() == 'tutorial remix')
-		{
-			dad.dance();
-			boyfriend.playAnim('idle');
-			generateStaticArrows(0);
-			generateStaticArrows(1);
-			camHUD.visible = true;
-			startSong();
 		}
 
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)

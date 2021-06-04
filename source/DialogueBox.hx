@@ -149,7 +149,7 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else
 		{
-			portraitLeft = new FlxSprite(-250, 700);
+			portraitLeft = new FlxSprite(-20, 250);
 			portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SarvSmile');
 			portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
 			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.9));
@@ -158,7 +158,7 @@ class DialogueBox extends FlxSpriteGroup
 			add(portraitLeft);
 			portraitLeft.visible = false;
 	
-			portraitRight = new FlxSprite(250, 700);
+			portraitRight = new FlxSprite(20, 250);
 			portraitRight.frames = Paths.getSparrowAtlas('sacredmass/portraits/BF');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
 			portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.9));
@@ -167,7 +167,7 @@ class DialogueBox extends FlxSpriteGroup
 			add(portraitRight);
 			portraitRight.visible = false;
 
-			portraitMiddle = new FlxSprite(0, 700);
+			portraitMiddle = new FlxSprite(0, 250);
 			portraitMiddle.frames = Paths.getSparrowAtlas('sacredmass/portraits/GFTalk');
 			portraitMiddle.animation.addByPrefix('enter', 'Girlfriend portrait enter', 24, false);
 			portraitMiddle.setGraphicSize(Std.int(portraitRight.width * 0.9));
