@@ -36,8 +36,8 @@ build_script:
   - haxelib run lime build linux
 
 after_build:
-  - tar -cvf Sarvente Mod.tar -C /home/appveyor/projects/kadeengine-sarvente/export/release/linux/bin .
+  - tar -cvf Sarv-KE.tar -C /home/appveyor/projects/kadeengine-sarvente/export/release/linux/bin .
 
 artifacts:
-- path: Sarvente Mod.tar
+- path: Sarv-KE.tar
   name: Sarvente Mod (Linux)

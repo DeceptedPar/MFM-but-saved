@@ -36,8 +36,8 @@ build_script:
   - haxelib run lime build mac
 
 after_build:
-  - gtar -cvf Sarvente Mod.tar -C /Users/appveyor/projects/kadeengine-sarvente/export/release/macos/bin .
+  - gtar -cvf Sarv-KE.tar -C /Users/appveyor/projects/kadeengine-sarvente/export/release/macos/bin .
 
 artifacts:
-- path: Sarvente Mod.tar
+- path: Sarv-KE.tar
   name: Sarvente Mod (MacOS)
