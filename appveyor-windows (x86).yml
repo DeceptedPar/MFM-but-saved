@@ -5,6 +5,8 @@ environment:
   global:
     HAXELIB_ROOT: C:\projects\haxelib
 
+platform: x86
+
 install:
   # http://help.appveyor.com/discussions/problems/5616-not-able-to-build-due-to-problem-in-chocolateyinstallps1
   - ps: Set-Service wuauserv -StartupType Manual
