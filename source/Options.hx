@@ -8,7 +8,7 @@ import flixel.FlxG;
 import openfl.display.FPS;
 import openfl.Lib;
 
-class OptionCatagory
+class OptionCategory
 {
 	private var _options:Array<Option> = new Array<Option>();
 	public final function getOptions():Array<Option>
@@ -27,7 +27,7 @@ class OptionCatagory
 		_options.remove(opt);
 	}
 
-	private var _name:String = "New Catagory";
+	private var _name:String = "New Category";
 	public final function getName() {
 		return _name;
 	}
@@ -63,6 +63,7 @@ class Option
 		return description;
 	}
 
+	public function getValue():String { return throw "stub!"; };
 	
 	// Returns whether the label is to be updated.
 	public function press():Bool { return throw "stub!"; }
@@ -85,21 +86,37 @@ class DFJKOption extends Option
 
 	public override function press():Bool
 	{
-		FlxG.save.data.dfjk = !FlxG.save.data.dfjk;
-		
-		if (FlxG.save.data.dfjk)
-			controls.setKeyboardScheme(KeyboardScheme.Solo, true);
-		else
-			controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
+		OptionsMenu.instance.openSubState(new KeyBindMenu());
+		return false;
+	}
 
+	private override function updateDisplay():String
+	{
+		return "Key Bindings";
+	}
+}
+
+class CpuStrums extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.cpuStrums = !FlxG.save.data.cpuStrums;
+		
 		display = updateDisplay();
 		return true;
 	}
 
 	private override function updateDisplay():String
 	{
-		return  FlxG.save.data.dfjk ? "DFJK" : "WASD";
+		return  FlxG.save.data.cpuStrums ? "Light CPU Strums" : "CPU Strums stay static";
 	}
+
 }
 
 class DownscrollOption extends Option
@@ -204,6 +221,26 @@ class DistractionsAndEffectsOption extends Option
 	}
 }
 
+class ResetButtonOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		FlxG.save.data.resetButton = !FlxG.save.data.resetButton;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Reset Button " + (!FlxG.save.data.resetButton ? "off" : "on");
+	}
+}
+
 class FlashingLightsOption extends Option
 {
 	public function new(desc:String)
@@ -254,14 +291,16 @@ class Judgement extends Option
 		FlxG.save.data.frames = Conductor.safeFrames;
 
 		Conductor.recalculateTimings();
+		return true;
+	}
 
-		OptionsMenu.versionShit.text = "Current Safe Frames: " + Conductor.safeFrames + " - Description - " + description + 
+	override function getValue():String {
+		return "Safe Frames: " + Conductor.safeFrames +
 		" - SIK: " + HelperFunctions.truncateFloat(45 * Conductor.timeScale, 0) +
 		"ms GD: " + HelperFunctions.truncateFloat(90 * Conductor.timeScale, 0) +
 		"ms BD: " + HelperFunctions.truncateFloat(135 * Conductor.timeScale, 0) + 
 		"ms SHT: " + HelperFunctions.truncateFloat(155 * Conductor.timeScale, 0) +
 		"ms TOTAL: " + HelperFunctions.truncateFloat(Conductor.safeZoneOffset,0) + "ms";
-		return true;
 	}
 
 	override function right():Bool {
@@ -273,13 +312,6 @@ class Judgement extends Option
 		FlxG.save.data.frames = Conductor.safeFrames;
 
 		Conductor.recalculateTimings();
-
-		OptionsMenu.versionShit.text = "Current Safe Frames: " + Conductor.safeFrames + " - Description - " + description + 
-		" - SIK: " + HelperFunctions.truncateFloat(44 * Conductor.timeScale, 0) +
-		"ms GD: " + HelperFunctions.truncateFloat(45 * Conductor.timeScale, 0) +
-		"ms BD: " + HelperFunctions.truncateFloat(90 * Conductor.timeScale, 0) + 
-		"ms SHT: " + HelperFunctions.truncateFloat(135 * Conductor.timeScale, 0) +
-		"ms TOTAL: " + HelperFunctions.truncateFloat(Conductor.safeZoneOffset,0) + "ms";
 		return true;
 	}
 }
@@ -330,14 +362,12 @@ class FPSCapOption extends Option
 	override function right():Bool {
 		if (FlxG.save.data.fpsCap >= 290)
 		{
-			FlxG.save.data.fpsCap = 800; // set it really high lol, I mean. if you hit that cap, it really doesn't do much lol.
+			FlxG.save.data.fpsCap = 290;
 			(cast (Lib.current.getChildAt(0), Main)).setFPSCap(290);
 		}
 		else
 			FlxG.save.data.fpsCap = FlxG.save.data.fpsCap + 10;
 		(cast (Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
-
-		OptionsMenu.versionShit.text = "Current FPS Cap: " + (FlxG.save.data.fpsCap > 290 ? "Unlimited (In Gameplay)" : FlxG.save.data.fpsCap) + " - Description - " + description;
 
 		return true;
 	}
@@ -350,12 +380,13 @@ class FPSCapOption extends Option
 		else
 			FlxG.save.data.fpsCap = FlxG.save.data.fpsCap - 10;
 		(cast (Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
-
-		OptionsMenu.versionShit.text = "Current FPS Cap: " + FlxG.save.data.fpsCap + 
-		(FlxG.save.data.fpsCap == Application.current.window.displayMode.refreshRate ? "Hz (Refresh Rate)" : "") 
-		+ " - Description - " + description;
-
 		return true;
+	}
+
+	override function getValue():String
+	{
+		return "Current FPS Cap: " + FlxG.save.data.fpsCap + 
+		(FlxG.save.data.fpsCap == Application.current.window.displayMode.refreshRate ? "Hz (Refresh Rate)" : "");
 	}
 }
 
@@ -385,11 +416,13 @@ class ScrollSpeedOption extends Option
 		if (FlxG.save.data.scrollSpeed < 1)
 			FlxG.save.data.scrollSpeed = 1;
 
-		if (FlxG.save.data.scrollSpeed > 10)
-			FlxG.save.data.scrollSpeed = 10;
-
-		OptionsMenu.versionShit.text = "Current Scroll Speed: " + HelperFunctions.truncateFloat(FlxG.save.data.scrollSpeed,1) + " - Description - " + description;
+		if (FlxG.save.data.scrollSpeed > 4)
+			FlxG.save.data.scrollSpeed = 4;
 		return true;
+	}
+
+	override function getValue():String {
+		return "Current Scroll Speed: " + HelperFunctions.truncateFloat(FlxG.save.data.scrollSpeed,1);
 	}
 
 	override function left():Bool {
@@ -398,11 +431,9 @@ class ScrollSpeedOption extends Option
 		if (FlxG.save.data.scrollSpeed < 1)
 			FlxG.save.data.scrollSpeed = 1;
 
-		if (FlxG.save.data.scrollSpeed > 10)
-			FlxG.save.data.scrollSpeed = 10;
+		if (FlxG.save.data.scrollSpeed > 4)
+			FlxG.save.data.scrollSpeed = 4;
 
-
-		OptionsMenu.versionShit.text = "Current Scroll Speed: " + HelperFunctions.truncateFloat(FlxG.save.data.scrollSpeed,1) + " - Description - " + description;
 		return true;
 	}
 }

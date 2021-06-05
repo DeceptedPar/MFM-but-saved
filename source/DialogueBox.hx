@@ -149,28 +149,25 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else
 		{
-			portraitLeft = new FlxSprite(0, 160);
+			portraitLeft = new FlxSprite(330, 510);
 			portraitLeft.frames = Paths.getSparrowAtlas('sacredmass/portraits/SarvSmile');
 			portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1));
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
 			add(portraitLeft);
 			portraitLeft.visible = false;
 	
-			portraitRight = new FlxSprite(700, 145);
+			portraitRight = new FlxSprite(1730, 510);
 			portraitRight.frames = Paths.getSparrowAtlas('sacredmass/portraits/BF');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
-			portraitRight.setGraphicSize(Std.int(portraitRight.width * 1));
 			portraitRight.updateHitbox();
 			portraitRight.scrollFactor.set();
 			add(portraitRight);
 			portraitRight.visible = false;
 
-			portraitMiddle = new FlxSprite(350, 90);
+			portraitMiddle = new FlxSprite(1030, 510);
 			portraitMiddle.frames = Paths.getSparrowAtlas('sacredmass/portraits/GFTalk');
 			portraitMiddle.animation.addByPrefix('enter', 'Girlfriend portrait enter', 24, false);
-			portraitMiddle.setGraphicSize(Std.int(portraitRight.width * 1));
 			portraitMiddle.updateHitbox();
 			portraitMiddle.scrollFactor.set();
 			add(portraitMiddle);
@@ -202,13 +199,13 @@ class DialogueBox extends FlxSpriteGroup
 			// box.flipX = true;
 		}
 
-		dropText = new FlxText(132, 447, Std.int(FlxG.width * 1), "", 28);
+		dropText = new FlxText(102, 472, Std.int(FlxG.width * 1), "", 28);
 		dropText.font = 'Komika Display';
 		dropText.color = FlxColor.RED;
 		dropText.antialiasing = true;
 		add(dropText);
 
-		swagDialogue = new FlxTypeText(129, 450, Std.int(FlxG.width * 1), "", 28);
+		swagDialogue = new FlxTypeText(99, 470, Std.int(FlxG.width * 1), "", 28);
 		swagDialogue.font = 'Komika Display Bold';
 		swagDialogue.color = FlxColor.BLACK;
 		swagDialogue.antialiasing = true;

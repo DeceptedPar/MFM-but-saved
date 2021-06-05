@@ -76,7 +76,7 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
+			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false, true);
 			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpSongs.add(songText);
@@ -149,7 +149,7 @@ class FreeplayState extends MusicBeatState
 	public function addWeek(songs:Array<String>, weekNum:Int, ?songCharacters:Array<String>)
 	{
 		if (songCharacters == null)
-			songCharacters = ['bf'];
+			songCharacters = ['dad'];
 
 		var num:Int = 0;
 		for (song in songs)
@@ -216,30 +216,30 @@ class FreeplayState extends MusicBeatState
 	}
 
 	function changeDiff(change:Int = 0)
-    {
-        curDifficulty += change;
+	{
+		curDifficulty += change;
 
-        if (curDifficulty < 0)
-            curDifficulty = 3;
-        if (curDifficulty > 3)
-            curDifficulty = 0;
+		if (curDifficulty < 0)
+			curDifficulty = 3;
+		if (curDifficulty > 3)
+			curDifficulty = 0;
 
-        #if !switch
-        intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
-        #end
+		#if !switch
+		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
+		#end
 
-        switch (curDifficulty)
-        {
-            case 0:
-                diffText.text = "EASY";
-            case 1:
-                diffText.text = 'NORMAL';
-            case 2:
-                diffText.text = "HARD";
-            case 3:
-                diffText.text = "ALT";
-        }
-    }
+		switch (curDifficulty)
+		{
+			case 0:
+				diffText.text = "EASY";
+			case 1:
+				diffText.text = 'NORMAL';
+			case 2:
+				diffText.text = "HARD";
+			case 3:
+				diffText.text = "ALT";
+		}
+	}
 
 	function changeSelection(change:Int = 0)
 	{
