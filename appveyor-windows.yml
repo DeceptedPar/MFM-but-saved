@@ -42,5 +42,5 @@ build_script:
 
 artifacts:
   - path: export/release/windows/bin
-    name: Sarvente Mod (Windows x64)
+    name: Sarvente Mod (Windows)
     type: zip
