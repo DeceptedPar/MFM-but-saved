@@ -4046,6 +4046,68 @@ class PlayState extends MusicBeatState
                 dad.playAnim('cheer', true);
             }
 
+		if (curSong == 'too clergy')
+		{
+			switch (curStep)
+			{
+				case 192 && < 320:
+					remove(dad);
+					dad = new Character(100, 100, 'ruv');
+					add(dad);
+
+				case 320 && < 352:
+					remove(boyfriend);
+					boyfriend = new Boyfriend(100, 100, 'sarvente');
+					add(boyfriend);
+
+				case 352 && < 384:
+					remove(boyfriend);
+					boyfriend = new Boyfriend(100, 100, 'boyfriend');
+					add(boyfriend);
+
+				case 384 && < 416:
+					remove(boyfriend);
+					boyfriend = new Boyfriend(100, 100, 'sarvente');
+					add(boyfriend);
+
+				case 416 && < 448:
+					remove(boyfriend);
+					boyfriend = new Boyfriend(100, 100, 'boyfriend');
+					add(boyfriend);
+
+				case 507 && < 704:
+					remove(dad);
+					dad = new Character(100, 100, 'sarvente');
+					add(dad);
+
+				case 704 && < 832:
+					remove(dad);
+					dad = new Character(100, 100, 'ruv');
+					add(dad);
+
+				case 832 && < 864:
+					remove(boyfriend);
+					boyfriend = new Boyfriend(100, 100, 'sarvente');
+					add(boyfriend);
+
+				case 864 && < 896:
+					remove(boyfriend);
+					boyfriend = new Boyfriend(100, 100, 'boyfriend');
+					add(boyfriend);
+
+				case 896 && < 928:
+					remove(boyfriend);
+					boyfriend = new Boyfriend(100, 100, 'sarvente');
+					add(boyfriend);
+
+				case 928:
+					remove(boyfriend);
+					boyfriend = new Boyfriend(100, 100, 'boyfriend');
+					add(boyfriend);
+
+			}
+		}
+
 		switch (curStage)
 		{
 			case 'school':
