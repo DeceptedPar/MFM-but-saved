@@ -31,10 +31,7 @@ class StoryMenuState extends MusicBeatState
 		['Satin Panties', 'High', 'Milf'],
 		['Cocoa', 'Eggnog', 'Winter Horrorland'],
 		['Senpai', 'Roses', 'Thorns'],
-		['Parish', 'Worship', 'Zavodila', 'Gospel', 'Casanova']/*,
-        ['Too Clergy', 'Church Lords', 'Sarv-odila', 'Ruvved Up'],
-        ['Ruv Jug', 'Panic-Stricken', 'Sarv Behind the Slaughter', 'Ruvodila'],
-        ['Ruv-el', 'Jointly', 'Trance']*/
+		['Parish', 'Worship', 'Zavodila', 'Gospel', 'Casanova']
 	];
 	var curDifficulty:Int = 1;
 
@@ -48,10 +45,7 @@ class StoryMenuState extends MusicBeatState
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf', 'gf'],
 		['senpai', 'bf', 'gf'],
-		['masses', 'bf', 'gf']/*,
-		['', 'bf', 'gf'],
-        ['', 'bf', 'gf'],
-        ['', 'bf', 'gf']*/
+		['masses', 'bf', 'gf']
 	];
 
 	var weekNames:Array<String> = [
@@ -62,10 +56,7 @@ class StoryMenuState extends MusicBeatState
 		"MOMMY MUST MURDER",
 		"RED SNOW",
 		"Hating Simulator ft. Moawling",
-		"Mid-Fight Masses ft. Selever"/*,
-		"Mid-Fight Masses Extras 1",
-        "Mid-Fight Masses Extras 2",
-        "Mid-Fight Masses Extras 3"*/
+		"Mid-Fight Masses ft. Selever"
 	];
 
 	var txtWeekTitle:FlxText;

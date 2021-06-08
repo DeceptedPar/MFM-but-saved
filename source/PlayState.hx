@@ -3993,15 +3993,23 @@ class PlayState extends MusicBeatState
 			dad.dance();
 		}
 
-        if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
-        {
-            camHUD.shake(0.0075, 0.5);
-            FlxG.camera.shake(0.0075, 0.5);
-            boyfriend.playAnim('idle', false);
-            boyfriend.playAnim('scared', true);
-            gf.playAnim('dance', false);
-            gf.playAnim('scared', true);
-        }
+		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
+		{
+			camHUD.shake(0.0075, 0.5);
+			FlxG.camera.shake(0.0075, 0.5);
+			boyfriend.playAnim('idle', false);
+			boyfriend.playAnim('scared', true);
+			gf.playAnim('dance', false);
+			gf.playAnim('scared', true);
+		}
+
+		if (boyfriend.curCharacter == 'ruv' && boyfriend.animation.curAnim.name.startsWith('sing'))
+		{
+			camHUD.shake(0.0075, 0.5);
+			FlxG.camera.shake(0.0075, 0.5);
+			gf.playAnim('dance', false);
+			gf.playAnim('scared', true);
+		}
 
 		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
 		{
@@ -4052,57 +4060,57 @@ class PlayState extends MusicBeatState
 			{
 				case 192:
 					remove(dad);
-					dad = new Character(630, 554, 'ruv');
+					dad = new Character(630, 554, 'ruv', false);
 					add(dad);
 
 				case 320:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 554, 'sarvente');
+					boyfriend = new Boyfriend(1379, 554, 'sarvente', true);
 					add(boyfriend);
 
 				case 352:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 881, 'boyfriend');
+					boyfriend = new Boyfriend(1379, 881, 'boyfriend', true);
 					add(boyfriend);
 
 				case 384:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 554, 'sarvente');
+					boyfriend = new Boyfriend(1379, 554, 'sarvente', true);
 					add(boyfriend);
 
 				case 416:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 881, 'boyfriend');
+					boyfriend = new Boyfriend(1379, 881, 'boyfriend', true);
 					add(boyfriend);
 
 				case 576:
 					remove(dad);
-					dad = new Character(630, 554, 'sarvente');
+					dad = new Character(630, 554, 'sarvente', false);
 					add(dad);
 
 				case 704:
 					remove(dad);
-					dad = new Character(630, 554, 'ruv');
+					dad = new Character(630, 554, 'ruv', false);
 					add(dad);
 
 				case 832:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 554, 'sarvente');
+					boyfriend = new Boyfriend(1379, 554, 'sarvente', true);
 					add(boyfriend);
 
 				case 864:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 881, 'boyfriend');
+					boyfriend = new Boyfriend(1379, 881, 'boyfriend', true);
 					add(boyfriend);
 
 				case 896:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 554, 'sarvente');
+					boyfriend = new Boyfriend(1379, 554, 'sarvente', true);
 					add(boyfriend);
 
 				case 928:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 881, 'boyfriend');
+					boyfriend = new Boyfriend(1379, 881, 'boyfriend', true);
 					add(boyfriend);
 
 			}
