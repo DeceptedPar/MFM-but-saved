@@ -4054,7 +4054,7 @@ class PlayState extends MusicBeatState
                 dad.playAnim('cheer', true);
             }
 
-		if (curSong == 'too clergy')
+		if (SONG.song == 'Too Clergy' && dad.curCharacter == 'sarvente' && boyfriend.curCharacter == 'bf')
 		{
 			switch (curStep)
 			{

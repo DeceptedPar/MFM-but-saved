@@ -568,6 +568,12 @@ class Character extends FlxSprite
 
 			case 'sarvente':
 				frames = Paths.getSparrowAtlas('sacredmass/sarvente_sheet');
+				animation.addByPrefix('idle', 'SarventeIdle', 24, false);
+				animation.addByPrefix('singUP', 'SarventeUp', 24, false);
+				animation.addByPrefix('singRIGHT', 'SarventeRight', 24, false);
+				animation.addByPrefix('singLEFT', 'SarventeLeft', 24, false);
+				animation.addByPrefix('singDOWN', 'SarventeDown', 24, false);
+				animation.addByPrefix('hey', 'SarventeHey', 24, false);
 				if (isPlayer)
 				{
 					animation.addByPrefix('idle', 'SarventeIdle', 24, false);
@@ -601,6 +607,15 @@ class Character extends FlxSprite
 
 			case 'sarvente-dark':
 				frames = Paths.getSparrowAtlas('sacredmass/sarvente_dark');
+				animation.addByPrefix('idle', 'SarvDarkIdle', 24, false);
+				animation.addByPrefix('singUP', 'SarvDarkUp', 24, false);
+				animation.addByPrefix('singRIGHT', 'SarvDarkRight', 24, false);
+				animation.addByPrefix('singLEFT', 'SarvDarkLeft', 24, false);
+				animation.addByPrefix('singDOWN', 'SarvDarkDown', 24, false);
+				animation.addByPrefix('singUP-alt', 'DarkSarvUp', 24, false);
+				animation.addByPrefix('singRIGHT-alt', 'DarkSarvRight', 24, false);
+				animation.addByPrefix('singLEFT-alt', 'DarkSarvLeft', 24, false);
+				animation.addByPrefix('singDOWN-alt', 'DarkSarvDown', 24, false);
 				if (isPlayer)
 				{
 					animation.addByPrefix('idle', 'SarvDarkIdle', 24, false);
@@ -642,6 +657,11 @@ class Character extends FlxSprite
 
 			case 'ruv':
 				frames = Paths.getSparrowAtlas('sacredmass/ruv_sheet');
+				animation.addByPrefix('idle', 'RuvIdle', 24, false);
+				animation.addByPrefix('singUP', 'RuvUp', 24, false);
+				animation.addByPrefix('singRIGHT', 'RuvRight', 24, false);
+				animation.addByPrefix('singLEFT', 'RuvLeft', 24, false);
+				animation.addByPrefix('singDOWN', 'RuvDown', 24, false);
 				if (isPlayer)
 				{
 					animation.addByPrefix('idle', 'RuvIdle', 24, false);
@@ -671,6 +691,11 @@ class Character extends FlxSprite
 
 			case 'luci-sarv':
 				frames = Paths.getSparrowAtlas('sacredmass/luci_sarv');
+				animation.addByPrefix('idle', 'LuciferSarvIdle', 24, false);
+				animation.addByPrefix('singUP', 'LuciferSarvUp', 24, false);
+				animation.addByPrefix('singRIGHT', 'LuciferSarvRight', 24, false);
+				animation.addByPrefix('singLEFT', 'LuciferSarvLeft', 24, false);
+				animation.addByPrefix('singDOWN', 'LuciferSarvDown', 24, false);
 				if (isPlayer)
 				{
 					animation.addByPrefix('idle', 'LuciferSarvIdle', 24, false);
