@@ -4048,59 +4048,59 @@ class PlayState extends MusicBeatState
 
 		if (curSong == 'too clergy')
 		{
-			switch (curStep)
+			switch (curBeat)
 			{
-				case 192 && < 320:
+				case 48:
 					remove(dad);
 					dad = new Character(100, 100, 'ruv');
 					add(dad);
 
-				case 320 && < 352:
+				case 80:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(100, 100, 'sarvente');
 					add(boyfriend);
 
-				case 352 && < 384:
+				case 88:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(100, 100, 'boyfriend');
 					add(boyfriend);
 
-				case 384 && < 416:
+				case 96:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(100, 100, 'sarvente');
 					add(boyfriend);
 
-				case 416 && < 448:
+				case 104:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(100, 100, 'boyfriend');
 					add(boyfriend);
 
-				case 507 && < 704:
+				case 144:
 					remove(dad);
 					dad = new Character(100, 100, 'sarvente');
 					add(dad);
 
-				case 704 && < 832:
+				case 176:
 					remove(dad);
 					dad = new Character(100, 100, 'ruv');
 					add(dad);
 
-				case 832 && < 864:
+				case 208:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(100, 100, 'sarvente');
 					add(boyfriend);
 
-				case 864 && < 896:
+				case 216:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(100, 100, 'boyfriend');
 					add(boyfriend);
 
-				case 896 && < 928:
+				case 224:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(100, 100, 'sarvente');
 					add(boyfriend);
 
-				case 928:
+				case 232:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(100, 100, 'boyfriend');
 					add(boyfriend);
