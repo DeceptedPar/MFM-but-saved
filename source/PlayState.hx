@@ -4052,57 +4052,57 @@ class PlayState extends MusicBeatState
 			{
 				case 48:
 					remove(dad);
-					dad = new Character(100, 100, 'ruv');
+					dad = new Character('ruv');
 					add(dad);
 
 				case 80:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(100, 100, 'sarvente');
+					boyfriend = new Boyfriend('sarvente');
 					add(boyfriend);
 
 				case 88:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(100, 100, 'boyfriend');
+					boyfriend = new Boyfriend('boyfriend');
 					add(boyfriend);
 
 				case 96:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(100, 100, 'sarvente');
+					boyfriend = new Boyfriend('sarvente');
 					add(boyfriend);
 
 				case 104:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(100, 100, 'boyfriend');
+					boyfriend = new Boyfriend('boyfriend');
 					add(boyfriend);
 
 				case 144:
 					remove(dad);
-					dad = new Character(100, 100, 'sarvente');
+					dad = new Character('sarvente');
 					add(dad);
 
 				case 176:
 					remove(dad);
-					dad = new Character(100, 100, 'ruv');
+					dad = new Character('ruv');
 					add(dad);
 
 				case 208:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(100, 100, 'sarvente');
+					boyfriend = new Boyfriend('sarvente');
 					add(boyfriend);
 
 				case 216:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(100, 100, 'boyfriend');
+					boyfriend = new Boyfriend('boyfriend');
 					add(boyfriend);
 
 				case 224:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(100, 100, 'sarvente');
+					boyfriend = new Boyfriend('sarvente');
 					add(boyfriend);
 
 				case 232:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(100, 100, 'boyfriend');
+					boyfriend = new Boyfriend('boyfriend');
 					add(boyfriend);
 
 			}
