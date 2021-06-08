@@ -4065,22 +4065,22 @@ class PlayState extends MusicBeatState
 
 				case 320:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 554, 'sarvente', true);
+					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
 
 				case 352:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 881, 'boyfriend', true);
+					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
 
 				case 384:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 554, 'sarvente', true);
+					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
 
 				case 416:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 881, 'boyfriend', true);
+					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
 
 				case 576:
@@ -4095,22 +4095,22 @@ class PlayState extends MusicBeatState
 
 				case 832:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 554, 'sarvente', true);
+					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
 
 				case 864:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 881, 'boyfriend', true);
+					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
 
 				case 896:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 554, 'sarvente', true);
+					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
 
 				case 928:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 881, 'boyfriend', true);
+					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
 
 			}
