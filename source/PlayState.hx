@@ -4048,61 +4048,61 @@ class PlayState extends MusicBeatState
 
 		if (curSong == 'too clergy')
 		{
-			switch (curBeat)
+			switch (curStep)
 			{
-				case 48:
+				case 192:
 					remove(dad);
-					dad = new Character('ruv');
+					dad = new Character(630, 554, 'ruv');
 					add(dad);
 
-				case 80:
+				case 320:
 					remove(boyfriend);
-					boyfriend = new Boyfriend('sarvente');
+					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
 
-				case 88:
+				case 352:
 					remove(boyfriend);
-					boyfriend = new Boyfriend('boyfriend');
+					boyfriend = new Boyfriend(1379, 881, 'boyfriend');
 					add(boyfriend);
 
-				case 96:
+				case 384:
 					remove(boyfriend);
-					boyfriend = new Boyfriend('sarvente');
+					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
 
-				case 104:
+				case 416:
 					remove(boyfriend);
-					boyfriend = new Boyfriend('boyfriend');
+					boyfriend = new Boyfriend(1379, 881, 'boyfriend');
 					add(boyfriend);
 
-				case 144:
+				case 576:
 					remove(dad);
-					dad = new Character('sarvente');
+					dad = new Character(630, 554, 'sarvente');
 					add(dad);
 
-				case 176:
+				case 704:
 					remove(dad);
-					dad = new Character('ruv');
+					dad = new Character(630, 554, 'ruv');
 					add(dad);
 
-				case 208:
+				case 832:
 					remove(boyfriend);
-					boyfriend = new Boyfriend('sarvente');
+					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
 
-				case 216:
+				case 864:
 					remove(boyfriend);
-					boyfriend = new Boyfriend('boyfriend');
+					boyfriend = new Boyfriend(1379, 881, 'boyfriend');
 					add(boyfriend);
 
-				case 224:
+				case 896:
 					remove(boyfriend);
-					boyfriend = new Boyfriend('sarvente');
+					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
 
-				case 232:
+				case 928:
 					remove(boyfriend);
-					boyfriend = new Boyfriend('boyfriend');
+					boyfriend = new Boyfriend(1379, 881, 'boyfriend');
 					add(boyfriend);
 
 			}

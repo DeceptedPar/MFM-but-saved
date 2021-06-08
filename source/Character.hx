@@ -584,6 +584,8 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 
+				flipX = true;
+
 			case 'sarvente-dark':
 				frames = Paths.getSparrowAtlas('sacredmass/sarvente_dark');
 				animation.addByPrefix('idle', 'SarvDarkIdle', 24, false);
@@ -608,6 +610,8 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 
+				flipX = true;
+
 			case 'ruv':
 				frames = Paths.getSparrowAtlas('sacredmass/ruv_sheet');
 				animation.addByPrefix('idle', 'RuvIdle', 24, false);
@@ -621,6 +625,10 @@ class Character extends FlxSprite
 				addOffset('singRIGHT', 15, 54);
 				addOffset('singLEFT', 80, -15);
 				addOffset('singDOWN', 55, 55);
+
+				playAnim('idle');
+
+				flipX = true;
 
 			case 'luci-sarv':
 				frames = Paths.getSparrowAtlas('sacredmass/luci_sarv');
@@ -637,6 +645,8 @@ class Character extends FlxSprite
 				addOffset('singDOWN', 0, 47);
 
 				playAnim('idle');
+
+				flipX = true;
 
 			case 'selever':
 				frames = Paths.getSparrowAtlas('sacredmass/selever_sheet');
