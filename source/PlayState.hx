@@ -4058,57 +4058,57 @@ class PlayState extends MusicBeatState
 		{
 			switch (curBeat)
 			{
-				case 49:
+				case 48:
 					remove(dad);
 					dad = new Character(630, 554, 'ruv', false);
 					add(dad);
 
-				case 81:
+				case 80:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
 					add(boyfriend);
 
-				case 89:
+				case 88:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
 
-				case 97:
+				case 96:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
 					add(boyfriend);
 
-				case 105:
+				case 104:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
 
-				case 145:
+				case 144:
 					remove(dad);
 					dad = new Character(630, 554, 'sarvente', true);
 					add(dad);
 
-				case 177:
+				case 176:
 					remove(dad);
 					dad = new Character(630, 554, 'ruv', false);
 					add(dad);
 
-				case 209:
+				case 208:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
 					add(boyfriend);
 
-				case 217:
+				case 216:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
 
-				case 225:
+				case 224:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
 					add(boyfriend);
 
-				case 233:
+				case 232:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
