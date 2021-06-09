@@ -4054,61 +4054,61 @@ class PlayState extends MusicBeatState
                 dad.playAnim('cheer', true);
             }
 
-		if (SONG.song == 'Too Clergy' && dad.curCharacter == 'sarvente' && boyfriend.curCharacter == 'bf')
+		if (curSong == 'Too Clergy' && dad.curCharacter == 'sarvente' && boyfriend.curCharacter == 'bf')
 		{
-			switch (curStep)
+			switch (curBeat)
 			{
-				case 192:
+				case 49:
 					remove(dad);
 					dad = new Character(630, 554, 'ruv', false);
 					add(dad);
 
-				case 320:
+				case 81:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 554, 'sarvente');
+					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
 					add(boyfriend);
 
-				case 352:
-					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 881, 'bf');
-					add(boyfriend);
-
-				case 384:
-					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 554, 'sarvente');
-					add(boyfriend);
-
-				case 416:
+				case 89:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
 
-				case 576:
+				case 97:
+					remove(boyfriend);
+					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
+					add(boyfriend);
+
+				case 105:
+					remove(boyfriend);
+					boyfriend = new Boyfriend(1379, 881, 'bf');
+					add(boyfriend);
+
+				case 145:
 					remove(dad);
-					dad = new Character(630, 554, 'sarvente', false);
+					dad = new Character(630, 554, 'sarvente', true);
 					add(dad);
 
-				case 704:
+				case 177:
 					remove(dad);
 					dad = new Character(630, 554, 'ruv', false);
 					add(dad);
 
-				case 832:
+				case 209:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 554, 'sarvente');
+					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
 					add(boyfriend);
 
-				case 864:
+				case 217:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
 
-				case 896:
+				case 225:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 554, 'sarvente');
+					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
 					add(boyfriend);
 
-				case 928:
+				case 233:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);

@@ -574,25 +574,6 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'SarventeLeft', 24, false);
 				animation.addByPrefix('singDOWN', 'SarventeDown', 24, false);
 				animation.addByPrefix('hey', 'SarventeHey', 24, false);
-				if (isPlayer)
-				{
-					animation.addByPrefix('idle', 'SarventeIdle', 24, false);
-					animation.addByPrefix('singUP', 'SarventeUp', 24, false);
-					animation.addByPrefix('singRIGHT', 'SarventeRight', 24, false);
-					animation.addByPrefix('singLEFT', 'SarventeLeft', 24, false);
-					animation.addByPrefix('singDOWN', 'SarventeDown', 24, false);
-					animation.addByPrefix('hey', 'SarventeHey', 24, false);
-				}
-				else
-				{
-					animation.addByPrefix('idle', 'SarventeIdle', 24, false);
-					animation.addByPrefix('singUP', 'SarventeUp', 24, false);
-					animation.addByPrefix('singRIGHT', 'SarventeRight', 24, false);
-					animation.addByPrefix('singLEFT', 'SarventeLeft', 24, false);
-					animation.addByPrefix('singDOWN', 'SarventeDown', 24, false);
-					animation.addByPrefix('hey', 'SarventeHey', 24, false);
-				}
-				
 
 				addOffset('idle', 0, 50);
 				addOffset('singUP', -50, 51);
@@ -602,8 +583,6 @@ class Character extends FlxSprite
 				addOffset('hey', -10, 56);
 
 				playAnim('idle');
-
-				flipX = true;
 
 			case 'sarvente-dark':
 				frames = Paths.getSparrowAtlas('sacredmass/sarvente_dark');
@@ -616,30 +595,6 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT-alt', 'DarkSarvRight', 24, false);
 				animation.addByPrefix('singLEFT-alt', 'DarkSarvLeft', 24, false);
 				animation.addByPrefix('singDOWN-alt', 'DarkSarvDown', 24, false);
-				if (isPlayer)
-				{
-					animation.addByPrefix('idle', 'SarvDarkIdle', 24, false);
-					animation.addByPrefix('singUP', 'SarvDarkUp', 24, false);
-					animation.addByPrefix('singRIGHT', 'SarvDarkRight', 24, false);
-					animation.addByPrefix('singLEFT', 'SarvDarkLeft', 24, false);
-					animation.addByPrefix('singDOWN', 'SarvDarkDown', 24, false);
-					animation.addByPrefix('singUP-alt', 'DarkSarvUp', 24, false);
-					animation.addByPrefix('singRIGHT-alt', 'DarkSarvRight', 24, false);
-					animation.addByPrefix('singLEFT-alt', 'DarkSarvLeft', 24, false);
-					animation.addByPrefix('singDOWN-alt', 'DarkSarvDown', 24, false);
-				}
-				else
-				{
-					animation.addByPrefix('idle', 'SarvDarkIdle', 24, false);
-					animation.addByPrefix('singUP', 'SarvDarkUp', 24, false);
-					animation.addByPrefix('singRIGHT', 'SarvDarkRight', 24, false);
-					animation.addByPrefix('singLEFT', 'SarvDarkLeft', 24, false);
-					animation.addByPrefix('singDOWN', 'SarvDarkDown', 24, false);
-					animation.addByPrefix('singUP-alt', 'DarkSarvUp', 24, false);
-					animation.addByPrefix('singRIGHT-alt', 'DarkSarvRight', 24, false);
-					animation.addByPrefix('singLEFT-alt', 'DarkSarvLeft', 24, false);
-					animation.addByPrefix('singDOWN-alt', 'DarkSarvDown', 24, false);
-				}
 
 				addOffset('idle', 30, 14);
 				addOffset('singUP', -5, 32);
@@ -653,8 +608,6 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 
-				flipX = true;
-
 			case 'ruv':
 				frames = Paths.getSparrowAtlas('sacredmass/ruv_sheet');
 				animation.addByPrefix('idle', 'RuvIdle', 24, false);
@@ -662,22 +615,6 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'RuvRight', 24, false);
 				animation.addByPrefix('singLEFT', 'RuvLeft', 24, false);
 				animation.addByPrefix('singDOWN', 'RuvDown', 24, false);
-				if (isPlayer)
-				{
-					animation.addByPrefix('idle', 'RuvIdle', 24, false);
-					animation.addByPrefix('singUP', 'RuvUp', 24, false);
-					animation.addByPrefix('singRIGHT', 'RuvRight', 24, false);
-					animation.addByPrefix('singLEFT', 'RuvLeft', 24, false);
-					animation.addByPrefix('singDOWN', 'RuvDown', 24, false);
-				}
-				else
-				{
-					animation.addByPrefix('idle', 'RuvIdle', 24, false);
-					animation.addByPrefix('singUP', 'RuvUp', 24, false);
-					animation.addByPrefix('singRIGHT', 'RuvRight', 24, false);
-					animation.addByPrefix('singLEFT', 'RuvLeft', 24, false);
-					animation.addByPrefix('singDOWN', 'RuvDown', 24, false);
-				}
 
 				addOffset('idle', 0, 48);
 				addOffset('singUP', 40, 50);
@@ -687,8 +624,6 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 
-				flipX = true;
-
 			case 'luci-sarv':
 				frames = Paths.getSparrowAtlas('sacredmass/luci_sarv');
 				animation.addByPrefix('idle', 'LuciferSarvIdle', 24, false);
@@ -696,22 +631,6 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'LuciferSarvRight', 24, false);
 				animation.addByPrefix('singLEFT', 'LuciferSarvLeft', 24, false);
 				animation.addByPrefix('singDOWN', 'LuciferSarvDown', 24, false);
-				if (isPlayer)
-				{
-					animation.addByPrefix('idle', 'LuciferSarvIdle', 24, false);
-					animation.addByPrefix('singUP', 'LuciferSarvUp', 24, false);
-					animation.addByPrefix('singRIGHT', 'LuciferSarvRight', 24, false);
-					animation.addByPrefix('singLEFT', 'LuciferSarvLeft', 24, false);
-					animation.addByPrefix('singDOWN', 'LuciferSarvDown', 24, false);
-				}
-				else
-				{
-					animation.addByPrefix('idle', 'LuciferSarvIdle', 24, false);
-					animation.addByPrefix('singUP', 'LuciferSarvUp', 24, false);
-					animation.addByPrefix('singRIGHT', 'LuciferSarvRight', 24, false);
-					animation.addByPrefix('singLEFT', 'LuciferSarvLeft', 24, false);
-					animation.addByPrefix('singDOWN', 'LuciferSarvDown', 24, false);
-				}
 
 				addOffset('idle', 0, 47);
 				addOffset('singUP', -10, 47);
@@ -720,8 +639,6 @@ class Character extends FlxSprite
 				addOffset('singDOWN', 0, 47);
 
 				playAnim('idle');
-
-				flipX = true;
 
 			case 'selever':
 				frames = Paths.getSparrowAtlas('sacredmass/selever_sheet');
