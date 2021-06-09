@@ -4054,7 +4054,7 @@ class PlayState extends MusicBeatState
                 dad.playAnim('cheer', true);
             }
 
-		if (curSong == 'Too Clergy' && dad.curCharacter == 'sarvente' && boyfriend.curCharacter == 'bf')
+		if (curSong == 'Too Clergy' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4062,52 +4062,118 @@ class PlayState extends MusicBeatState
 					remove(dad);
 					dad = new Character(630, 554, 'ruv', false);
 					add(dad);
+			}
+		}
+
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'bf')
+		{
+			switch (curBeat)
+			{
 
 				case 80:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
 					add(boyfriend);
+			}
+		}
+
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'sarvente')
+		{
+			switch (curBeat)
+			{
 
 				case 88:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
+			}
+		}
+
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'bf')
+		{
+			switch (curBeat)
+			{
 
 				case 96:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
 					add(boyfriend);
+			}
+		}
+
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'sarvente')
+		{
+			switch (curBeat)
+			{
 
 				case 104:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
+			}
+		}
+
+		if (curSong == 'Too Clergy' && dad.curCharacter == 'ruv')
+		{
+			switch (curBeat)
+			{
 
 				case 144:
 					remove(dad);
 					dad = new Character(630, 554, 'sarvente', true);
 					add(dad);
+			}
+		}
+
+		if (curSong == 'Too Clergy' && dad.curCharacter == 'sarvente')
+		{
+			switch (curBeat)
+			{
 
 				case 176:
 					remove(dad);
 					dad = new Character(630, 554, 'ruv', false);
 					add(dad);
+			}
+		}
 
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'bf')
+		{
+			switch (curBeat)
+			{
 				case 208:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
 					add(boyfriend);
-
+			}
+		}
+		
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'sarvente')
+		{
+			switch (curBeat)
+			{
 				case 216:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
+			}
+		}
 
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'bf')
+		{
+			switch (curBeat)
+			{
 				case 224:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
 					add(boyfriend);
+			}
+		}
 
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'sarvente')
+		{
+			switch (curBeat)
+			{
 				case 232:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
