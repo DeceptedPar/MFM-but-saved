@@ -4064,6 +4064,7 @@ class PlayState extends MusicBeatState
 					remove(dad);
 					dad = new Character(630, 554, 'ruv', false);
 					add(dad);
+					HealthIcon.animation.add('ruv', [32, 33], 0, false, isPlayer);
 			}
 		}
 
@@ -4076,6 +4077,7 @@ class PlayState extends MusicBeatState
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
+					HealthIcon.animation.add('sarvente', [30, 31], 0, false, isPlayer);
 			}
 		}
 
@@ -4088,6 +4090,7 @@ class PlayState extends MusicBeatState
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
+					HealthIcon.animation.add('bf', [0, 1], 0, false, isPlayer);
 			}
 		}
 
@@ -4100,6 +4103,7 @@ class PlayState extends MusicBeatState
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
+					HealthIcon.animation.add('sarvente', [30, 31], 0, false, isPlayer);
 			}
 		}
 
@@ -4112,6 +4116,7 @@ class PlayState extends MusicBeatState
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
+					HealthIcon.animation.add('bf', [0, 1], 0, false, isPlayer);
 			}
 		}
 
@@ -4124,7 +4129,8 @@ class PlayState extends MusicBeatState
 					remove(dad);
 					dad = new Character(630, 554, 'sarvente', true);
 					add(dad);
-					flipX = true;
+					Character.flipX = true;
+					HealthIcon.animation.add('sarvente', [30, 31], 0, false, isPlayer);
 			}
 		}
 
@@ -4137,6 +4143,7 @@ class PlayState extends MusicBeatState
 					remove(dad);
 					dad = new Character(630, 554, 'ruv', false);
 					add(dad);
+					HealthIcon.animation.add('ruv', [32, 33], 0, false, isPlayer);
 			}
 		}
 
@@ -4148,6 +4155,7 @@ class PlayState extends MusicBeatState
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
+					HealthIcon.animation.add('sarvente', [30, 31], 0, false, isPlayer);
 			}
 		}
 		
@@ -4159,6 +4167,7 @@ class PlayState extends MusicBeatState
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
+					HealthIcon.animation.add('bf', [0, 1], 0, false, isPlayer);
 			}
 		}
 
@@ -4170,6 +4179,7 @@ class PlayState extends MusicBeatState
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
+					HealthIcon.animation.add('sarvente', [30, 31], 0, false, isPlayer);
 			}
 		}
 
@@ -4181,6 +4191,7 @@ class PlayState extends MusicBeatState
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
+					HealthIcon.animation.add('bf', [0, 1], 0, false, isPlayer);
 
 			}
 		}
