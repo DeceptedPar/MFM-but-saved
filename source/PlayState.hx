@@ -791,6 +791,8 @@ class PlayState extends MusicBeatState
                         var stageCurtains = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ1'));
                         stageCurtains.antialiasing = true;
 
+                        FlxTween.angle(stageCurtains, stageCurtains.angle, 360, 10, {ease: FlxEase.sineIn});
+
                         add(stageCurtains);
 
                         var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ2'));
@@ -3995,8 +3997,8 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.0075, 0.5);
-			FlxG.camera.shake(0.0075, 0.5);
+			camHUD.shake(0.0085, 0.6);
+			FlxG.camera.shake(0.0085, 0.6);
 			boyfriend.playAnim('idle', false);
 			boyfriend.playAnim('scared', true);
 			gf.playAnim('dance', false);
@@ -4005,8 +4007,8 @@ class PlayState extends MusicBeatState
 
 		if (boyfriend.curCharacter == 'ruv' && boyfriend.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.0075, 0.5);
-			FlxG.camera.shake(0.0075, 0.5);
+			camHUD.shake(0.0085, 0.6);
+			FlxG.camera.shake(0.0085, 0.6);
 			gf.playAnim('dance', false);
 			gf.playAnim('scared', true);
 		}
@@ -4072,7 +4074,7 @@ class PlayState extends MusicBeatState
 
 				case 80:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
+					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
 			}
 		}
@@ -4096,7 +4098,7 @@ class PlayState extends MusicBeatState
 
 				case 96:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
+					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
 			}
 		}
@@ -4122,6 +4124,7 @@ class PlayState extends MusicBeatState
 					remove(dad);
 					dad = new Character(630, 554, 'sarvente', true);
 					add(dad);
+					flipX = true;
 			}
 		}
 
@@ -4143,7 +4146,7 @@ class PlayState extends MusicBeatState
 			{
 				case 208:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
+					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
 			}
 		}
@@ -4165,7 +4168,7 @@ class PlayState extends MusicBeatState
 			{
 				case 224:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(1379, 505.3, 'sarvente');
+					boyfriend = new Boyfriend(1379, 554, 'sarvente');
 					add(boyfriend);
 			}
 		}

@@ -109,7 +109,7 @@ class FreeplayState extends MusicBeatState
 		add(scoreText);
 
 		changeSelection();
-		changeDiff();
+		changeDifficulty();
 
 		// FlxG.sound.playMusic(Paths.music('title'), 0);
 		// FlxG.sound.music.fadeIn(2, 0, 0.8);
@@ -191,9 +191,9 @@ class FreeplayState extends MusicBeatState
 		}
 
 		if (controls.LEFT_P)
-			changeDiff(-1);
+			changeDifficulty(-1);
 		if (controls.RIGHT_P)
-			changeDiff(1);
+			changeDifficulty(1);
 
 		if (controls.BACK)
 		{
@@ -215,7 +215,7 @@ class FreeplayState extends MusicBeatState
 		}
 	}
 
-	function changeDiff(change:Int = 0)
+	function changeDifficulty(change:Int = 0)
 	{
 		curDifficulty += change;
 
