@@ -791,7 +791,9 @@ class PlayState extends MusicBeatState
                         var stageCurtains = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ1'));
                         stageCurtains.antialiasing = true;
 
-                        FlxTween.angle(stageCurtains, stageCurtains.angle, 360, 10, {ease: FlxEase.sineIn});
+                        //FlxTween.angle(stageCurtains, stageCurtains.angle, 0, 10 * elapsed,{ease: FlxEase.sineIn});
+
+                        FlxTween.angle(stageCurtains, stageCurtains.angle += 15 * elapsed);
 
                         add(stageCurtains);
 
@@ -4122,7 +4124,7 @@ class PlayState extends MusicBeatState
 
 				case 144:
 					remove(dad);
-					dad = new Character(630, 554, 'sarvente', true);
+					dad = new Character(630, 554, 'sarvente', false);
 					add(dad);
 			}
 		}
