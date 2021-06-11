@@ -791,7 +791,7 @@ class PlayState extends MusicBeatState
                         var stageCurtains = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ1'));
                         stageCurtains.antialiasing = true;
 
-                        FlxTween.angle(stageCurtains, stageCurtains.angle += 15 {ease: FlxEase.smootherStepIn});
+                        FlxTween.angle(stageCurtains, stageCurtains.angle += 15, {ease: FlxEase.smootherStepIn});
 
                         add(stageCurtains);
 
