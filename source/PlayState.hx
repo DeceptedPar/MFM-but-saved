@@ -791,9 +791,7 @@ class PlayState extends MusicBeatState
                         var stageCurtains = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ1'));
                         stageCurtains.antialiasing = true;
 
-                        //FlxTween.angle(stageCurtains, stageCurtains.angle, 0, 10 * elapsed,{ease: FlxEase.sineIn});
-
-                        FlxTween.angle(stageCurtains, stageCurtains.angle += 15 * elapsed);
+                        FlxTween.angle(stageCurtains, stageCurtains.angle, 0, 10, {ease: FlxEase.sineIn}, onComplete: function(twn:FlxTween));
 
                         add(stageCurtains);
 
@@ -4065,6 +4063,7 @@ class PlayState extends MusicBeatState
 				case 48:
 					remove(dad);
 					dad = new Character(630, 554, 'ruv', false);
+					dad = new HealthIcon('ruv', false);
 					add(dad);
 			}
 		}
@@ -4077,6 +4076,7 @@ class PlayState extends MusicBeatState
 				case 80:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 554, 'sarvente');
+					boyfrined = new HealthIcon('sarvente', true);
 					add(boyfriend);
 			}
 		}
@@ -4089,6 +4089,7 @@ class PlayState extends MusicBeatState
 				case 88:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
+					boyfrined = new HealthIcon('bf', true);
 					add(boyfriend);
 			}
 		}
@@ -4101,6 +4102,7 @@ class PlayState extends MusicBeatState
 				case 96:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 554, 'sarvente');
+					boyfrined = new HealthIcon('sarvente', true);
 					add(boyfriend);
 			}
 		}
@@ -4113,6 +4115,7 @@ class PlayState extends MusicBeatState
 				case 104:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
+					boyfrined = new HealthIcon('bf', true);
 					add(boyfriend);
 			}
 		}
@@ -4125,6 +4128,7 @@ class PlayState extends MusicBeatState
 				case 144:
 					remove(dad);
 					dad = new Character(630, 554, 'sarvente', false);
+					dad = new HealthIcon('sarvente', false);
 					add(dad);
 			}
 		}
@@ -4137,6 +4141,7 @@ class PlayState extends MusicBeatState
 				case 176:
 					remove(dad);
 					dad = new Character(630, 554, 'ruv', false);
+					dad = new HealthIcon('ruv', false);
 					add(dad);
 			}
 		}
@@ -4148,6 +4153,7 @@ class PlayState extends MusicBeatState
 				case 208:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 554, 'sarvente');
+					boyfrined = new HealthIcon('sarvente', true);
 					add(boyfriend);
 			}
 		}
@@ -4159,6 +4165,7 @@ class PlayState extends MusicBeatState
 				case 216:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
+					boyfrined = new HealthIcon('bf', true);
 					add(boyfriend);
 			}
 		}
@@ -4170,6 +4177,7 @@ class PlayState extends MusicBeatState
 				case 224:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 554, 'sarvente');
+					boyfrined = new HealthIcon('sarvente', true);
 					add(boyfriend);
 			}
 		}
@@ -4181,6 +4189,7 @@ class PlayState extends MusicBeatState
 				case 232:
 					remove(boyfriend);
 					boyfriend = new Boyfriend(1379, 881, 'bf');
+					boyfrined = new HealthIcon('bf', true);
 					add(boyfriend);
 
 			}
