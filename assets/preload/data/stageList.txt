@@ -10,5 +10,6 @@ church1
 church1-dark
 church2
 church3
+church3ruv
 churchSelever
 church0

@@ -236,45 +236,52 @@ class PlayState extends MusicBeatState
 		repPresses = 0;
 		repReleases = 0;
 
+		// pre lowercasing the song name (create)
+		var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
+			switch (songLowercase) {
+				case 'dad-battle': songLowercase = 'dadbattle';
+				case 'philly-nice': songLowercase = 'philly';
+			}
+		
 		#if windows
-		executeModchart = FileSystem.exists(Paths.lua(PlayState.SONG.song.toLowerCase()  + "/modchart"));
+		executeModchart = FileSystem.exists(Paths.lua(songLowercase  + "/modchart"));
 		#end
 		#if !cpp
 		executeModchart = false; // FORCE disable for non cpp targets
 		#end
 
-		trace('Mod chart: ' + executeModchart + " - " + Paths.lua(PlayState.SONG.song.toLowerCase() + "/modchart"));
+		trace('Mod chart: ' + executeModchart + " - " + Paths.lua(songLowercase + "/modchart"));
 
 		#if windows
 		// Making difficulty text for Discord Rich Presence.
 		switch (storyDifficulty)
-        {
-            case 0:
-                storyDifficultyText = "Easy";
-            case 1:
-                storyDifficultyText = "Normal";
-            case 2:
-                storyDifficultyText = "Hard";
-            case 3:
-                storyDifficultyText = "Alt";
-        }
+		{
+			case 0:
+				storyDifficultyText = "Easy";
+			case 1:
+				storyDifficultyText = "Normal";
+			case 2:
+				storyDifficultyText = "Hard";
+			case 3:
+				storyDifficultyText = "Alt";
+		}
 
 		iconRPC = SONG.player2;
 
 		// To avoid having duplicate images in Discord assets
 		switch (iconRPC)
-        {
-            case 'senpai-angry':
-                iconRPC = 'senpai';
-            case 'monster-christmas':
-                iconRPC = 'monster';
-            case 'mom-car':
-                iconRPC = 'mom';
-            case 'sarvente-dark':
-                iconRPC = 'sarvente';
-            case 'bf-dark':
-                iconRPC = 'bf';
-        }
+		{
+			case 'senpai-angry':
+				iconRPC = 'senpai';
+			case 'monster-christmas':
+				iconRPC = 'monster';
+			case 'mom-car':
+				iconRPC = 'mom';
+			case 'sarvente-dark':
+				iconRPC = 'sarvente';
+			case 'bf-dark':
+				iconRPC = 'bf';
+		}
 
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
 		if (isStoryMode)
@@ -290,7 +297,7 @@ class PlayState extends MusicBeatState
 		detailsPausedText = "Paused - " + detailsText;
 
 		// Updating Discord Rich Presence.
-		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "\nAcc: " + HelperFunctions.truncateFloat(accuracy, 2) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC);
+		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "\nAcc: " + HelperFunctions.truncateFloat(accuracy, 3) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC);
 		#end
 
 
@@ -316,7 +323,7 @@ class PlayState extends MusicBeatState
 		trace('INFORMATION ABOUT WHAT U PLAYIN WIT:\nFRAMES: ' + Conductor.safeFrames + '\nZONE: ' + Conductor.safeZoneOffset + '\nTS: ' + Conductor.timeScale + '\nBotPlay : ' + FlxG.save.data.botplay);
 	
 		//dialogue shit
-		switch (SONG.song.toLowerCase())
+		switch (songLowercase)
 		{
 			case 'tutorial':
 				dialogue = ["Hey you're pretty cute.", 'Use the arrow keys to keep up \nwith me singing.'];
@@ -329,7 +336,7 @@ class PlayState extends MusicBeatState
 				];
 			case 'fresh':
 				dialogue = ["Not too bad shabby boy.", ""];
-			case 'dad battle':
+			case 'dadbattle':
 				dialogue = [
 					"gah you think you're hot stuff?",
 					"If you can beat me here...",
@@ -341,25 +348,25 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
-            case 'tutorial remix':
-                //dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial remix/Tutorial RemixDialogue'));
-            case 'parish':
-                //dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue1'));
-                //dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue2'));
-                dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue3'));
-            case 'worship':
-                dialogue = CoolUtil.coolTextFile(Paths.txt('worship/WorshipDialogue'));
-            case 'zavodila':
-                //dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/ZavodilaDialogue1'));
-                dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/ZavodilaDialogue2'));
-            //case 'gospel':
-                //dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/GospelDialogue1'));
-                //dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/GospelDialogue2'));
-            case 'casanova':
-                //dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue1'));
-                dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue2'));
-                //dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue3'));
-                //dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue4'));
+			case 'tutorial-remix':
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial-remix/Tutorial-RemixDialogue'));
+			case 'parish':
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue1'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue2'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue3'));
+			case 'worship':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('worship/WorshipDialogue'));
+			case 'zavodila':
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/ZavodilaDialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('zavodila/ZavodilaDialogue2'));
+			//case 'gospel':
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/GospelDialogue1'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('gospel/GospelDialogue2'));
+			case 'casanova':
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue1'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue2'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue3'));
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('casanova/CasanovaDialogue4'));
 		}
 
 		switch(SONG.stage)
@@ -617,7 +624,7 @@ class PlayState extends MusicBeatState
 					bgGirls = new BackgroundGirls(-100, 190);
 					bgGirls.scrollFactor.set(0.9, 0.9);
 
-					if (SONG.song.toLowerCase() == 'roses')
+					if (songLowercase == 'roses')
 						{
 							if(FlxG.save.data.distractions){
 								bgGirls.getScared();
@@ -686,162 +693,205 @@ class PlayState extends MusicBeatState
 								add(waveSpriteFG);
 						*/
 			}
-            case 'church1':
-                {
-                        defaultCamZoom = 0.9;
-                        curStage = 'church1';
-                        var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/floor'));
-                        stageFront.updateHitbox();
-                        stageFront.antialiasing = true;
-                        stageFront.active = false;
-                        add(stageFront);
+			case 'church1':
+				{
+						defaultCamZoom = 0.9;
+						curStage = 'church1';
+						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/floor'));
+						stageFront.updateHitbox();
+						stageFront.antialiasing = true;
+						stageFront.active = false;
+						add(stageFront);
 
-                        var bg:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/bg'));
-                        bg.antialiasing = true;
-                        bg.active = false;
-                        add(bg);
+						var bg:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/bg'));
+						bg.antialiasing = true;
+						bg.active = false;
+						add(bg);
 
-                        var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/pillars'));
-                        stageCurtains.updateHitbox();
-                        stageCurtains.antialiasing = true;
-                        stageCurtains.active = false;
+						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/pillars'));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
 
-                        add(stageCurtains);
-                }
-            case 'church1-dark':
-                {
-                        defaultCamZoom = 0.9;
-                        curStage = 'church1-dark';
-                        var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/floor-dark'));
-                        stageFront.updateHitbox();
-                        stageFront.antialiasing = true;
-                        stageFront.active = false;
-                        add(stageFront);
+						add(stageCurtains);
+				}
+			case 'church1-dark':
+				{
+						defaultCamZoom = 0.9;
+						curStage = 'church1-dark';
+						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/floor-dark'));
+						stageFront.updateHitbox();
+						stageFront.antialiasing = true;
+						stageFront.active = false;
+						add(stageFront);
 
-                        var bg:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/bg-dark'));
-                        bg.antialiasing = true;
-                        bg.active = false;
-                        add(bg);
+						var bg:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/bg-dark'));
+						bg.antialiasing = true;
+						bg.active = false;
+						add(bg);
 
-                        var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/pillars-dark'));
-                        stageCurtains.updateHitbox();
-                        stageCurtains.antialiasing = true;
-                        stageCurtains.active = false;
+						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church1/pillars-dark'));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
 
-                        add(stageCurtains);
-                }
-            case 'church2':
-                {
-                        defaultCamZoom = 0.9;
-                        curStage = 'church2';
-                        var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/floor'));
-                        stageFront.updateHitbox();
-                        stageFront.antialiasing = true;
-                        stageFront.active = false;
-                        add(stageFront);
+						add(stageCurtains);
+				}
+			case 'church2':
+				{
+						defaultCamZoom = 0.9;
+						curStage = 'church2';
+						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/floor'));
+						stageFront.updateHitbox();
+						stageFront.antialiasing = true;
+						stageFront.active = false;
+						add(stageFront);
 
-                        var bg:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/bg'));
-                        bg.antialiasing = true;
-                        bg.active = false;
-                        add(bg);
+						var bg:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/bg'));
+						bg.antialiasing = true;
+						bg.active = false;
+						add(bg);
 
-                        var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/pillars'));
-                        stageCurtains.updateHitbox();
-                        stageCurtains.antialiasing = true;
-                        stageCurtains.active = false;
+						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/pillars'));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
 
-                        add(stageCurtains);
+						add(stageCurtains);
 
-                        var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/pillarbroke'));
-                        stageCurtains.updateHitbox();
-                        stageCurtains.antialiasing = true;
-                        stageCurtains.active = false;
+						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church2/pillarbroke'));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
 
-                        add(stageCurtains);
-                }
-            case 'church3':
-                {
-                        defaultCamZoom = 0.9;
-                        curStage = 'church3';
-                        var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/floor'));
-                        stageFront.updateHitbox();
-                        stageFront.antialiasing = true;
-                        stageFront.active = false;
-                        add(stageFront);
+						add(stageCurtains);
+				}
+			case 'church3':
+				{
+						defaultCamZoom = 0.9;
+						curStage = 'church3';
+						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/floor'));
+						stageFront.updateHitbox();
+						stageFront.antialiasing = true;
+						stageFront.active = false;
+						add(stageFront);
 
-                        var bg:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/bg'));
-                        bg.antialiasing = true;
-                        bg.active = false;
-                        add(bg);
+						var bg:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/bg'));
+						bg.antialiasing = true;
+						bg.active = false;
+						add(bg);
 
-                        var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/pillars'));
-                        stageCurtains.updateHitbox();
-                        stageCurtains.antialiasing = true;
-                        stageCurtains.active = false;
+						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/pillars'));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
 
-                        add(stageCurtains);
+						add(stageCurtains);
 
-                        var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ0'));
-                        stageCurtains.updateHitbox();
-                        stageCurtains.antialiasing = true;
-                        stageCurtains.active = false;
+						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ0'));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
 
-                        add(stageCurtains);
+						add(stageCurtains);
 
-                        var stageCurtains = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ1'));
-                        stageCurtains.antialiasing = true;
+						var stageCurtains = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ1'));
+						stageCurtains.antialiasing = true;
 
-                        FlxTween.angle(stageCurtains, stageCurtains.angle, 0, 8, {ease: FlxEase.smootherStepIn});
+						FlxTween.angle(stageCurtains, stageCurtains.angle, 0, 8, {ease: FlxEase.smootherStepIn});
 
-                        add(stageCurtains);
+						add(stageCurtains);
 
-                        var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ2'));
-                        stageCurtains.updateHitbox();
-                        stageCurtains.antialiasing = true;
-                        stageCurtains.active = false;
+						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ2'));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
 
-                        add(stageCurtains);
-                }
-            case 'churchSelever':
-                {
-                        defaultCamZoom = 0.9;
-                        curStage = 'churchSelever';
-                        var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/churchSelever/floor'));
-                        stageFront.updateHitbox();
-                        stageFront.antialiasing = true;
-                        stageFront.active = false;
-                        add(stageFront);
+						add(stageCurtains);
+				}
+			case 'church3ruv':
+				{
+						defaultCamZoom = 0.9;
+						curStage = 'church3ruv';
+						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3ruv/floor'));
+						stageFront.updateHitbox();
+						stageFront.antialiasing = true;
+						stageFront.active = false;
+						add(stageFront);
 
-                        var bg:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/churchSelever/bg'));
-                        bg.antialiasing = true;
-                        bg.active = false;
-                        add(bg);
+						var bg:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3ruv/bg'));
+						bg.antialiasing = true;
+						bg.active = false;
+						add(bg);
 
-                        var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/churchSelever/pillars'));
-                        stageCurtains.updateHitbox();
-                        stageCurtains.antialiasing = true;
-                        stageCurtains.active = false;
+						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3ruv/pillars'));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
 
-                        add(stageCurtains);
-                }
-            case 'church0':
-                {
-                        defaultCamZoom = 0.9;
-                        curStage = 'church0';
-                        var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('sacredmass/church0/stageback'));
-                        bg.antialiasing = true;
-                        bg.scrollFactor.set(0.9, 0.9);
-                        bg.active = false;
-                        add(bg);
+						add(stageCurtains);
 
-                        var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('sacredmass/church0/stagefront'));
-                        stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-                        stageFront.updateHitbox();
-                        stageFront.antialiasing = true;
-                        stageFront.scrollFactor.set(0.9, 0.9);
-                        stageFront.active = false;
-                        add(stageFront);
-                }
+						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3ruv/circ0'));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
+
+						add(stageCurtains);
+
+						var stageCurtains = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3ruv/circ1'));
+						stageCurtains.antialiasing = true;
+
+						FlxTween.angle(stageCurtains, stageCurtains.angle, 0, 8, {ease: FlxEase.smootherStepIn});
+
+						add(stageCurtains);
+
+						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3ruv/circ2'));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
+
+						add(stageCurtains);
+				}
+			case 'churchSelever':
+				{
+						defaultCamZoom = 0.9;
+						curStage = 'churchSelever';
+						var stageFront:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/churchSelever/floor'));
+						stageFront.updateHitbox();
+						stageFront.antialiasing = true;
+						stageFront.active = false;
+						add(stageFront);
+
+						var bg:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/churchSelever/bg'));
+						bg.antialiasing = true;
+						bg.active = false;
+						add(bg);
+
+						var stageCurtains:FlxSprite = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/churchSelever/pillars'));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.active = false;
+
+						add(stageCurtains);
+				}
+			case 'church0':
+				{
+						defaultCamZoom = 0.9;
+						curStage = 'church0';
+						var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('sacredmass/church0/stageback'));
+						bg.antialiasing = true;
+						bg.scrollFactor.set(0.9, 0.9);
+						bg.active = false;
+						add(bg);
+
+						var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('sacredmass/church0/stagefront'));
+						stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+						stageFront.updateHitbox();
+						stageFront.antialiasing = true;
+						stageFront.scrollFactor.set(0.9, 0.9);
+						stageFront.active = false;
+						add(stageFront);
+				}
 			case 'stage':
 				{
 						defaultCamZoom = 0.9;
@@ -907,8 +957,10 @@ class PlayState extends MusicBeatState
 				gfVersion = 'gf-christmas';
 			case 'gf-pixel':
 				gfVersion = 'gf-pixel';
-            case 'gf-dark':
-                gfVersion = 'gf-dark';
+			case 'gf-dark':
+				gfVersion = 'gf-dark';
+			case 'un-gf':
+				gfVersion = 'un-gf';
 			default:
 				gfVersion = 'gf';
 		}
@@ -956,21 +1008,21 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-            case 'sarvente':
-                dad.x = 630;
-                dad.y = 554;
-            case 'sarvente-dark':
-                dad.x = 630;
-                dad.y = 554;
-            case 'ruv':
-                dad.x = 630;
-                dad.y = 554;
-            case 'luci-sarv':
-                dad.x = 630.35;
-                dad.y = 323.30;
-            case 'selever':
-                dad.x = 630;
-                dad.y = 554;
+			case 'sarvente':
+				dad.x = 630;
+				dad.y = 554;
+			case 'sarvente-dark':
+				dad.x = 630;
+				dad.y = 554;
+			case 'ruv':
+				dad.x = 630;
+				dad.y = 554;
+			case 'luci-sarv':
+				dad.x = 630.35;
+				dad.y = 323.30;
+			case 'selever':
+				dad.x = 630;
+				dad.y = 554;
 		}
 
 
@@ -1015,25 +1067,29 @@ class PlayState extends MusicBeatState
 				gf.x += 180;
 				gf.y += 300;
 
-            case 'church1':
-                boyfriend.setPosition(1379, 881);
-                gf.setPosition(895, 453);
+			case 'church1':
+				boyfriend.setPosition(1379, 881);
+				gf.setPosition(895, 453);
 
-            case 'church1-dark':
-                boyfriend.setPosition(1379, 881);
-                gf.setPosition(895, 453);
+			case 'church1-dark':
+				boyfriend.setPosition(1379, 881);
+				gf.setPosition(895, 453);
 
-            case 'church2':
-                boyfriend.setPosition(1379, 881);
-                gf.setPosition(895, 453);
+			case 'church2':
+				boyfriend.setPosition(1379, 881);
+				gf.setPosition(895, 453);
 
-            case 'church3':
-                boyfriend.setPosition(1379, 881);
-                gf.setPosition(895, 453);
+			case 'church3':
+				boyfriend.setPosition(1379, 881);
+				gf.setPosition(895, 453);
 
-            case 'churchSelever':
-                boyfriend.setPosition(1379, 881);
-                gf.setPosition(895, 453);
+			case 'church3ruv':
+				boyfriend.setPosition(1379, 881);
+				gf.setPosition(895, 453);
+
+			case 'churchSelever':
+				boyfriend.setPosition(1379, 881);
+				gf.setPosition(895, 453);
 		}
 
 		add(gf);
@@ -1077,7 +1133,14 @@ class PlayState extends MusicBeatState
 
 		// startCountdown();
 
+		if (SONG.song == null)
+			trace('song is null???');
+		else
+			trace('song looks gucci');
+
 		generateSong(SONG.song);
+
+		trace('generated');
 
 		// add(strumLine);
 
@@ -1205,9 +1268,11 @@ class PlayState extends MusicBeatState
 		// cameras = [FlxG.cameras.list[1]];
 		startingSong = true;
 		
+		trace('starting');
+
 		if (isStoryMode)
 		{
-			switch (curSong.toLowerCase())
+			switch (StringTools.replace(curSong," ", "-").toLowerCase())
 			{
 				case "winter-horrorland":
 					var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
@@ -1244,18 +1309,18 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'thorns':
 					schoolIntro(doof);
-                //case 'tutorial remix':
-                //  schoolIntro(doof);
-                case 'parish':
-                    schoolIntro(doof);
-                case 'worship':
-                    schoolIntro(doof);
-                case 'zavodila':
-                    schoolIntro(doof);
-                //case 'gospel':
-                //  schoolIntro(doof);
-                case 'casanova':
-                    schoolIntro(doof);
+				//case 'tutorial-remix':
+				//	schoolIntro(doof);
+				case 'parish':
+					schoolIntro(doof);
+				case 'worship':
+					schoolIntro(doof);
+				case 'zavodila':
+					schoolIntro(doof);
+				//case 'gospel':
+				//	schoolIntro(doof);
+				case 'casanova':
+					schoolIntro(doof);
 				default:
 					startCountdown();
 			}
@@ -1263,18 +1328,18 @@ class PlayState extends MusicBeatState
 		else
 		{
 			switch (curSong.toLowerCase())
-            {
-                case 'tutorial remix':
-                    dad.dance();
-                    boyfriend.playAnim('idle');
-                    generateStaticArrows(0);
-                    generateStaticArrows(1);
-                    camHUD.visible = true;
-                    startSong();
+			{
+				case 'tutorial-remix':
+					dad.dance();
+					boyfriend.playAnim('idle');
+					generateStaticArrows(0);
+					generateStaticArrows(1);
+					camHUD.visible = true;
+					startSong();
 
-                default:
-                    startCountdown();
-            }
+				default:
+					startCountdown();
+			}
 		}
 
 		if (!loadRep)
@@ -1283,43 +1348,43 @@ class PlayState extends MusicBeatState
 		super.create();
 	}
 
-    function casanovaIntro(?dialogueBox:DialogueBox):Void
-    {
-        var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
-        black.scrollFactor.set();
-        camHUD.visible = false;
+	function casanovaIntro(?dialogueBox:DialogueBox):Void
+	{
+		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+		black.scrollFactor.set();
+		camHUD.visible = false;
 
-        if (SONG.song.toLowerCase() == 'parish' || SONG.song.toLowerCase() == 'worship' || SONG.song.toLowerCase() == 'zavodila')
-        {
-            remove(black);
+		if (SONG.song.toLowerCase() == 'parish' || SONG.song.toLowerCase() == 'worship' || SONG.song.toLowerCase() == 'zavodila')
+		{
+			remove(black);
+			
+			if(SONG.song.toLowerCase() == 'casanova')
+			{
+				add(black);
+			}
+		}
 
-            if(SONG.song.toLowerCase() == 'casanova')
-            {
-                add(black);
-            }
-        }
+		new FlxTimer().start(0.3, function(tmr:FlxTimer)
+		{
 
-        new FlxTimer().start(0.3, function(tmr:FlxTimer)
-        {
+			black.alpha -= 0.15;
 
-            black.alpha -= 0.15;
+			if (black.alpha > 0)
+			{
+				tmr.reset(0.3);
+			}
+			else
+			{
 
-            if (black.alpha > 0)
-            {
-                tmr.reset(0.3);
-            }
-            else
-            {
-
-                if (dialogueBox != null)
-                {
-                    inCutscene = true;
-                    add(dialogueBox);
-                }
-                remove(black);
-            }
-        });
-    }
+				if (dialogueBox != null)
+				{
+					inCutscene = true;
+					add(dialogueBox);
+				}
+				remove(black);
+			}
+		});
+	}
 
 	function schoolIntro(?dialogueBox:DialogueBox):Void
 	{
@@ -1338,11 +1403,17 @@ class PlayState extends MusicBeatState
 		senpaiEvil.updateHitbox();
 		senpaiEvil.screenCenter();
 
-		if (SONG.song.toLowerCase() == 'roses' || SONG.song.toLowerCase() == 'thorns')
+		// pre lowercasing the song name (schoolIntro)
+		var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
+			switch (songLowercase) {
+				case 'dad-battle': songLowercase = 'dadbattle';
+				case 'philly-nice': songLowercase = 'philly';
+			}
+		if (songLowercase == 'roses' || songLowercase == 'thorns')
 		{
 			remove(black);
 
-			if (SONG.song.toLowerCase() == 'thorns')
+			if (songLowercase == 'thorns')
 			{
 				add(red);
 			}
@@ -1362,7 +1433,7 @@ class PlayState extends MusicBeatState
 				{
 					inCutscene = true;
 
-					if (SONG.song.toLowerCase() == 'thorns')
+					if (songLowercase == 'thorns')
 					{
 						add(senpaiEvil);
 						senpaiEvil.alpha = 0;
@@ -1528,15 +1599,15 @@ class PlayState extends MusicBeatState
 					});
 					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
 
-                    if (SONG.song.toLowerCase() == 'casanova' && dad.curCharacter == 'selever')
-                    {
-                        dad.playAnim('hey', true);
-                    }
+					if (SONG.song.toLowerCase() == 'casanova' && dad.curCharacter == 'selever')
+					{
+						dad.playAnim('hey', true);
+					}
 
-                    if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
-                    {
-                        dad.playAnim('cheer', true);
-                    }
+					if (SONG.song.toLowerCase() == 'tutorial remix' && dad.curCharacter == 'gf')
+					{
+						dad.playAnim('cheer', true);
+					}
 
 				case 4:
 			}
@@ -1606,7 +1677,7 @@ class PlayState extends MusicBeatState
 		// Song check real quick
 		switch(curSong)
 		{
-			case 'Bopeebo' | 'Philly' | 'Blammed' | 'Cocoa' | 'Eggnog': allowedToHeadbang = true;
+			case 'Bopeebo' | 'Philly Nice' | 'Blammed' | 'Cocoa' | 'Eggnog': allowedToHeadbang = true;
 			default: allowedToHeadbang = false;
 		}
 		
@@ -1632,6 +1703,8 @@ class PlayState extends MusicBeatState
 		else
 			vocals = new FlxSound();
 
+		trace('loaded vocals');
+
 		FlxG.sound.list.add(vocals);
 
 		notes = new FlxTypedGroup<Note>();
@@ -1644,9 +1717,16 @@ class PlayState extends MusicBeatState
 
 		var playerCounter:Int = 0;
 
+		// pre lowercasing the song name (generateSong)
+		var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
+			switch (songLowercase) {
+				case 'dad-battle': songLowercase = 'dadbattle';
+				case 'philly-nice': songLowercase = 'philly';
+			}
 		// Per song offset check
 		#if windows
-			var songPath = 'assets/data/' + PlayState.SONG.song.toLowerCase() + '/';
+			var songPath = 'assets/data/' + songLowercase + '/';
+			
 			for(file in sys.FileSystem.readDirectory(songPath))
 			{
 				var path = haxe.io.Path.join([songPath, file]);
@@ -1784,285 +1864,320 @@ class PlayState extends MusicBeatState
 							babyArrow.animation.add('confirm', [15, 19], 24, false);
 					}
 
-                case 'xmas':
+				case 'xmas':
 
-                    babyArrow.frames = Paths.getSparrowAtlas('christmas/xmas_ui/notes_xmas', 'week5');
-                    babyArrow.animation.addByPrefix('green', 'arrowUP');
-                    babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-                    babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-                    babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+					babyArrow.frames = Paths.getSparrowAtlas('christmas/xmas_ui/notes_xmas', 'week5');
+					babyArrow.animation.addByPrefix('green', 'arrowUP');
+					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
-                    babyArrow.antialiasing = true;
-                    babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+					babyArrow.antialiasing = true;
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
-                    switch (Math.abs(i))
-                    {
-                        case 0:
-                            babyArrow.x += Note.swagWidth * 0;
-                            babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-                            babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-                        case 1:
-                            babyArrow.x += Note.swagWidth * 1;
-                            babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-                            babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-                        case 2:
-                            babyArrow.x += Note.swagWidth * 2;
-                            babyArrow.animation.addByPrefix('static', 'arrowUP');
-                            babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-                        case 3:
-                            babyArrow.x += Note.swagWidth * 3;
-                            babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-                            babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-                    }
+					switch (Math.abs(i))
+					{
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+						case 2:
+							babyArrow.x += Note.swagWidth * 2;
+							babyArrow.animation.addByPrefix('static', 'arrowUP');
+							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+						case 3:
+							babyArrow.x += Note.swagWidth * 3;
+							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+					}
 
-                case 'sarvente':
+				case 'sarvente':
 
-                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Sarvente');
-                    babyArrow.animation.addByPrefix('green', 'arrowUP');
-                    babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-                    babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-                    babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Sarvente');
+					babyArrow.animation.addByPrefix('green', 'arrowUP');
+					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
-                    babyArrow.antialiasing = true;
-                    babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+					babyArrow.antialiasing = true;
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
-                    switch (Math.abs(i))
-                    {
-                        case 0:
-                            babyArrow.x += Note.swagWidth * 0;
-                            babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-                            babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-                        case 1:
-                            babyArrow.x += Note.swagWidth * 1;
-                            babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-                            babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-                        case 2:
-                            babyArrow.x += Note.swagWidth * 2;
-                            babyArrow.animation.addByPrefix('static', 'arrowUP');
-                            babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-                        case 3:
-                            babyArrow.x += Note.swagWidth * 3;
-                            babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-                            babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-                    }
+					switch (Math.abs(i))
+					{
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+						case 2:
+							babyArrow.x += Note.swagWidth * 2;
+							babyArrow.animation.addByPrefix('static', 'arrowUP');
+							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+						case 3:
+							babyArrow.x += Note.swagWidth * 3;
+							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+					}
 
-                case 'dark-sarv':
+				case 'dark-sarv':
 
-                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Dark-Sarv');
-                    babyArrow.animation.addByPrefix('green', 'arrowUP');
-                    babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-                    babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-                    babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Dark-Sarv');
+					babyArrow.animation.addByPrefix('green', 'arrowUP');
+					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
-                    babyArrow.antialiasing = true;
-                    babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+					babyArrow.antialiasing = true;
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
-                    switch (Math.abs(i))
-                    {
-                        case 0:
-                            babyArrow.x += Note.swagWidth * 0;
-                            babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-                            babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-                        case 1:
-                            babyArrow.x += Note.swagWidth * 1;
-                            babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-                            babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-                        case 2:
-                            babyArrow.x += Note.swagWidth * 2;
-                            babyArrow.animation.addByPrefix('static', 'arrowUP');
-                            babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-                        case 3:
-                            babyArrow.x += Note.swagWidth * 3;
-                            babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-                            babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-                    }
+					switch (Math.abs(i))
+					{
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+						case 2:
+							babyArrow.x += Note.swagWidth * 2;
+							babyArrow.animation.addByPrefix('static', 'arrowUP');
+							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+						case 3:
+							babyArrow.x += Note.swagWidth * 3;
+							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+					}
 
-                case 'ruv':
+				case 'ruv-alt':
 
-                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Ruv');
-                    babyArrow.animation.addByPrefix('green', 'arrowUP');
-                    babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-                    babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-                    babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Ruv-Alt');
+					babyArrow.animation.addByPrefix('green', 'arrowUP');
+					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
-                    babyArrow.antialiasing = true;
-                    babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+					babyArrow.antialiasing = true;
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
-                    switch (Math.abs(i))
-                    {
-                        case 0:
-                            babyArrow.x += Note.swagWidth * 0;
-                            babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-                            babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-                        case 1:
-                            babyArrow.x += Note.swagWidth * 1;
-                            babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-                            babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-                        case 2:
-                            babyArrow.x += Note.swagWidth * 2;
-                            babyArrow.animation.addByPrefix('static', 'arrowUP');
-                            babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-                        case 3:
-                            babyArrow.x += Note.swagWidth * 3;
-                            babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-                            babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-                    }
+					switch (Math.abs(i))
+					{
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+						case 2:
+							babyArrow.x += Note.swagWidth * 2;
+							babyArrow.animation.addByPrefix('static', 'arrowUP');
+							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+						case 3:
+							babyArrow.x += Note.swagWidth * 3;
+							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+					}
 
-                case 'luci-sarv-alt':
+				case 'ruv':
 
-                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv-Alt');
-                    babyArrow.animation.addByPrefix('green', 'arrowUP');
-                    babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-                    babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-                    babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Ruv');
+					babyArrow.animation.addByPrefix('green', 'arrowUP');
+					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
-                    babyArrow.antialiasing = true;
-                    babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+					babyArrow.antialiasing = true;
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
-                    switch (Math.abs(i))
-                    {
-                        case 0:
-                            babyArrow.x += Note.swagWidth * 0;
-                            babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-                            babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-                        case 1:
-                            babyArrow.x += Note.swagWidth * 1;
-                            babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-                            babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-                        case 2:
-                            babyArrow.x += Note.swagWidth * 2;
-                            babyArrow.animation.addByPrefix('static', 'arrowUP');
-                            babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-                        case 3:
-                            babyArrow.x += Note.swagWidth * 3;
-                            babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-                            babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-                    }
+					switch (Math.abs(i))
+					{
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+						case 2:
+							babyArrow.x += Note.swagWidth * 2;
+							babyArrow.animation.addByPrefix('static', 'arrowUP');
+							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+						case 3:
+							babyArrow.x += Note.swagWidth * 3;
+							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+					}
 
-                case 'luci-sarv':
+				case 'luci-sarv-alt':
 
-                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv');
-                    babyArrow.animation.addByPrefix('green', 'arrowUP');
-                    babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-                    babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-                    babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv-Alt');
+					babyArrow.animation.addByPrefix('green', 'arrowUP');
+					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
-                    babyArrow.antialiasing = true;
-                    babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+					babyArrow.antialiasing = true;
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
-                    switch (Math.abs(i))
-                    {
-                        case 0:
-                            babyArrow.x += Note.swagWidth * 0;
-                            babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-                            babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-                        case 1:
-                            babyArrow.x += Note.swagWidth * 1;
-                            babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-                            babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-                        case 2:
-                            babyArrow.x += Note.swagWidth * 2;
-                            babyArrow.animation.addByPrefix('static', 'arrowUP');
-                            babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-                        case 3:
-                            babyArrow.x += Note.swagWidth * 3;
-                            babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-                            babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-                    }
+					switch (Math.abs(i))
+					{
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+						case 2:
+							babyArrow.x += Note.swagWidth * 2;
+							babyArrow.animation.addByPrefix('static', 'arrowUP');
+							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+						case 3:
+							babyArrow.x += Note.swagWidth * 3;
+							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+					}
 
-                case 'selever':
+				case 'luci-sarv':
 
-                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Selever');
-                    babyArrow.animation.addByPrefix('green', 'arrowUP');
-                    babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-                    babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-                    babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv');
+					babyArrow.animation.addByPrefix('green', 'arrowUP');
+					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
-                    babyArrow.antialiasing = true;
-                    babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+					babyArrow.antialiasing = true;
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
-                    switch (Math.abs(i))
-                    {
-                        case 0:
-                            babyArrow.x += Note.swagWidth * 0;
-                            babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-                            babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-                        case 1:
-                            babyArrow.x += Note.swagWidth * 1;
-                            babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-                            babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-                        case 2:
-                            babyArrow.x += Note.swagWidth * 2;
-                            babyArrow.animation.addByPrefix('static', 'arrowUP');
-                            babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-                        case 3:
-                            babyArrow.x += Note.swagWidth * 3;
-                            babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-                            babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-                    }
+					switch (Math.abs(i))
+					{
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+						case 2:
+							babyArrow.x += Note.swagWidth * 2;
+							babyArrow.animation.addByPrefix('static', 'arrowUP');
+							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+						case 3:
+							babyArrow.x += Note.swagWidth * 3;
+							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+					}
 
-                case 'gf':
+				case 'selever':
 
-                    babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_GF');
-                    babyArrow.animation.addByPrefix('green', 'arrowUP');
-                    babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-                    babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-                    babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Selever');
+					babyArrow.animation.addByPrefix('green', 'arrowUP');
+					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
-                    babyArrow.antialiasing = true;
-                    babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+					babyArrow.antialiasing = true;
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
-                    switch (Math.abs(i))
-                    {
-                        case 0:
-                            babyArrow.x += Note.swagWidth * 0;
-                            babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-                            babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-                        case 1:
-                            babyArrow.x += Note.swagWidth * 1;
-                            babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-                            babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-                        case 2:
-                            babyArrow.x += Note.swagWidth * 2;
-                            babyArrow.animation.addByPrefix('static', 'arrowUP');
-                            babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-                        case 3:
-                            babyArrow.x += Note.swagWidth * 3;
-                            babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-                            babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-                            babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-                    }
+					switch (Math.abs(i))
+					{
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+						case 2:
+							babyArrow.x += Note.swagWidth * 2;
+							babyArrow.animation.addByPrefix('static', 'arrowUP');
+							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+						case 3:
+							babyArrow.x += Note.swagWidth * 3;
+							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+					}
+
+				case 'gf':
+
+					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_GF');
+					babyArrow.animation.addByPrefix('green', 'arrowUP');
+					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+
+					babyArrow.antialiasing = true;
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+
+					switch (Math.abs(i))
+					{
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+						case 2:
+							babyArrow.x += Note.swagWidth * 2;
+							babyArrow.animation.addByPrefix('static', 'arrowUP');
+							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+						case 3:
+							babyArrow.x += Note.swagWidth * 3;
+							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+					}
 				
 				case 'normal':
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
@@ -2182,7 +2297,7 @@ class PlayState extends MusicBeatState
 			}
 
 			#if windows
-			DiscordClient.changePresence("PAUSED on " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "Acc: " + HelperFunctions.truncateFloat(accuracy, 2) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC);
+			DiscordClient.changePresence("PAUSED on " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "Acc: " + HelperFunctions.truncateFloat(accuracy, 3) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC);
 			#end
 			if (!startTimer.finished)
 				startTimer.active = false;
@@ -2207,7 +2322,7 @@ class PlayState extends MusicBeatState
 			#if windows
 			if (startTimer.finished)
 			{
-				DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "\nAcc: " + HelperFunctions.truncateFloat(accuracy, 2) + "% | Score: " + songScore + " | Misses: " + misses, iconRPC, true, songLength - Conductor.songPosition);
+				DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "\nAcc: " + HelperFunctions.truncateFloat(accuracy, 3) + "% | Score: " + songScore + " | Misses: " + misses, iconRPC, true, songLength - Conductor.songPosition);
 			}
 			else
 			{
@@ -2230,7 +2345,7 @@ class PlayState extends MusicBeatState
 		vocals.play();
 
 		#if windows
-		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "\nAcc: " + HelperFunctions.truncateFloat(accuracy, 2) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC);
+		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "\nAcc: " + HelperFunctions.truncateFloat(accuracy, 3) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC);
 		#end
 	}
 
@@ -2345,6 +2460,9 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		scoreTxt.text = Ratings.CalculateRanking(songScore,songScoreDef,nps,maxNPS,accuracy);
+		if (!FlxG.save.data.accuracyDisplay)
+			scoreTxt.text = "Score: " + songScore;
+
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
@@ -2492,7 +2610,7 @@ class PlayState extends MusicBeatState
 					// Per song treatment since some songs will only have the 'Hey' at certain times
 					switch(curSong)
 					{
-						case 'Philly':
+						case 'Philly Nice':
 						{
 							// General duration of the song
 							if(curBeat < 250)
@@ -2706,7 +2824,7 @@ class PlayState extends MusicBeatState
 
 			#if windows
 			// Game Over doesn't get his own variable because it's only used here
-			DiscordClient.changePresence("GAME OVER -- " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy),"\nAcc: " + HelperFunctions.truncateFloat(accuracy, 2) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC);
+			DiscordClient.changePresence("GAME OVER -- " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy),"\nAcc: " + HelperFunctions.truncateFloat(accuracy, 3) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC);
 			#end
 
 			// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
@@ -2728,7 +2846,7 @@ class PlayState extends MusicBeatState
 		
 					#if windows
 					// Game Over doesn't get his own variable because it's only used here
-					DiscordClient.changePresence("GAME OVER -- " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy),"\nAcc: " + HelperFunctions.truncateFloat(accuracy, 2) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC);
+					DiscordClient.changePresence("GAME OVER -- " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy),"\nAcc: " + HelperFunctions.truncateFloat(accuracy, 3) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC);
 					#end
 		
 					// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
@@ -2995,8 +3113,16 @@ class PlayState extends MusicBeatState
 		vocals.volume = 0;
 		if (SONG.validScore)
 		{
+			// adjusting the highscore song name to be compatible
+			// would read original scores if we didn't change packages
+			var songHighscore = StringTools.replace(PlayState.SONG.song, " ", "-");
+			switch (songHighscore) {
+				case 'Dad-Battle': songHighscore = 'Dadbattle';
+				case 'Philly-Nice': songHighscore = 'Philly';
+			}
+
 			#if !switch
-			Highscore.saveScore(SONG.song, Math.round(songScore), storyDifficulty);
+			Highscore.saveScore(songHighscore, Math.round(songScore), storyDifficulty);
 			#end
 		}
 
@@ -3054,13 +3180,25 @@ class PlayState extends MusicBeatState
 					if (storyDifficulty == 2)
 						difficulty = '-hard';
 
-                    if (storyDifficulty == 3)
-                        difficulty = '-alt';
+					if (storyDifficulty == 3)
+						difficulty = '-alt';
 
 					trace('LOADING NEXT SONG');
-					trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
+					// pre lowercasing the next story song name
+					var nextSongLowercase = StringTools.replace(PlayState.storyPlaylist[0], " ", "-").toLowerCase();
+						switch (nextSongLowercase) {
+							case 'dad-battle': nextSongLowercase = 'dadbattle';
+							case 'philly-nice': nextSongLowercase = 'philly';
+						}
+					trace(nextSongLowercase + difficulty);
 
-					if (SONG.song.toLowerCase() == 'eggnog')
+					// pre lowercasing the song name (endSong)
+					var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
+					switch (songLowercase) {
+						case 'dad-battle': songLowercase = 'dadbattle';
+						case 'philly-nice': songLowercase = 'philly';
+					}
+					if (songLowercase == 'eggnog')
 					{
 						var blackShit:FlxSprite = new FlxSprite(-FlxG.width * FlxG.camera.zoom,
 							-FlxG.height * FlxG.camera.zoom).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
@@ -3075,7 +3213,7 @@ class PlayState extends MusicBeatState
 					FlxTransitionableState.skipNextTransOut = true;
 					prevCamFollow = camFollow;
 
-					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
+					PlayState.SONG = Song.loadFromJson(nextSongLowercase + difficulty, PlayState.storyPlaylist[0]);
 					FlxG.sound.music.stop();
 
 					LoadingState.loadAndSwitchState(new PlayState());
@@ -3289,8 +3427,14 @@ class PlayState extends MusicBeatState
 	
 			var comboSplit:Array<String> = (combo + "").split('');
 
-			if (comboSplit.length == 2)
-				seperatedScore.push(0); // make sure theres a 0 in front or it looks weird lol!
+			// make sure we have 3 digits to display (looks weird otherwise lol)
+			if (comboSplit.length == 1)
+			{
+				seperatedScore.push(0);
+				seperatedScore.push(0);
+			}
+			else if (comboSplit.length == 2)
+				seperatedScore.push(0);
 
 			for(i in 0...comboSplit.length)
 			{
@@ -3322,8 +3466,7 @@ class PlayState extends MusicBeatState
 				numScore.velocity.y -= FlxG.random.int(140, 160);
 				numScore.velocity.x = FlxG.random.float(-5, 5);
 	
-				if (combo >= 10 || combo == 0)
-					add(numScore);
+				add(numScore);
 	
 				FlxTween.tween(numScore, {alpha: 0}, 0.2, {
 					onComplete: function(tween:FlxTween)
@@ -3432,36 +3575,43 @@ class PlayState extends MusicBeatState
 					var possibleNotes:Array<Note> = []; // notes that can be hit
 					var directionList:Array<Int> = []; // directions that can be hit
 					var dumbNotes:Array<Note> = []; // notes to kill later
-		 
+					var directionsAccounted:Array<Bool> = [false,false,false,false]; // we don't want to do judgments for more than one presses
+					
 					notes.forEachAlive(function(daNote:Note)
 					{
 						if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit)
 						{
-							if (directionList.contains(daNote.noteData))
+							if (!directionsAccounted[daNote.noteData])
 							{
-								for (coolNote in possibleNotes)
+								if (directionList.contains(daNote.noteData))
 								{
-									if (coolNote.noteData == daNote.noteData && Math.abs(daNote.strumTime - coolNote.strumTime) < 10)
-									{ // if it's the same note twice at < 10ms distance, just delete it
-										// EXCEPT u cant delete it in this loop cuz it fucks with the collection lol
-										dumbNotes.push(daNote);
-										break;
-									}
-									else if (coolNote.noteData == daNote.noteData && daNote.strumTime < coolNote.strumTime)
-									{ // if daNote is earlier than existing note (coolNote), replace
-										possibleNotes.remove(coolNote);
-										possibleNotes.push(daNote);
-										break;
+									directionsAccounted[daNote.noteData] = true;
+									for (coolNote in possibleNotes)
+									{
+										if (coolNote.noteData == daNote.noteData && Math.abs(daNote.strumTime - coolNote.strumTime) < 10)
+										{ // if it's the same note twice at < 10ms distance, just delete it
+											// EXCEPT u cant delete it in this loop cuz it fucks with the collection lol
+											dumbNotes.push(daNote);
+											break;
+										}
+										else if (coolNote.noteData == daNote.noteData && daNote.strumTime < coolNote.strumTime)
+										{ // if daNote is earlier than existing note (coolNote), replace
+											possibleNotes.remove(coolNote);
+											possibleNotes.push(daNote);
+											break;
+										}
 									}
 								}
-							}
-							else
-							{
-								possibleNotes.push(daNote);
-								directionList.push(daNote.noteData);
+								else
+								{
+									possibleNotes.push(daNote);
+									directionList.push(daNote.noteData);
+								}
 							}
 						}
 					});
+
+					trace('\nCURRENT LINE:\n' + directionsAccounted);
 		 
 					for (note in dumbNotes)
 					{
@@ -3826,9 +3976,9 @@ class PlayState extends MusicBeatState
 	function trainStart():Void
 	{
 		if(FlxG.save.data.distractions){
-		trainMoving = true;
-		if (!trainSound.playing)
-			trainSound.play(true);
+			trainMoving = true;
+			if (!trainSound.playing)
+				trainSound.play(true);
 		}
 	}
 
@@ -3889,6 +4039,8 @@ class PlayState extends MusicBeatState
 		gf.playAnim('scared', true);
 	}
 
+	var danced:Bool = false;
+
 	override function stepHit()
 	{
 		super.stepHit();
@@ -3905,10 +4057,6 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
-		if (dad.curCharacter == 'spooky' && curStep % 4 == 2)
-		{
-			// dad.dance();
-		}
 
 
 		// yes this updates every step.
@@ -3919,7 +4067,7 @@ class PlayState extends MusicBeatState
 		songLength = FlxG.sound.music.length;
 
 		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "Acc: " + HelperFunctions.truncateFloat(accuracy, 2) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC,true,  songLength - Conductor.songPosition);
+		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "Acc: " + HelperFunctions.truncateFloat(accuracy, 3) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC,true,  songLength - Conductor.songPosition);
 		#end
 
 	}
@@ -3975,10 +4123,10 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-        if (curSong.toLowerCase() == 'tutorial remix' && curStep == 44)
-        {
-            startCountdown();
-        }
+		if (curSong.toLowerCase() == 'tutorial-remix' && curStep == 44)
+		{
+			startCountdown();
+		}
 
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
 		{
@@ -4001,11 +4149,6 @@ class PlayState extends MusicBeatState
 		{
 			boyfriend.playAnim('idle');
 		}
-		
-		if (!dad.animation.curAnim.name.startsWith("sing"))
-		{
-			dad.dance();
-		}
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
@@ -4024,37 +4167,33 @@ class PlayState extends MusicBeatState
 			gf.playAnim('dance', false);
 			gf.playAnim('scared', true);
 		}
+		
 
-		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
+		if (boyfriend.animation.curAnim.name.startsWith('sing') || boyfriend.animation.curAnim.name == 'idle')
 		{
-			boyfriend.playAnim('hey', true);
+			switch(curSong)
+			{
+				case 'Parish':
+				{
+					if(curBeat > 48 && curBeat != 64 && curBeat != 96 && curBeat != 128 && curBeat != 160 && curBeat < 176)
+					{
+						if(curBeat % 16 == 15)
+						{
+							if(!triggeredAlready)
+							{
+								boyfriend.playAnim('hey');
+								triggeredAlready = true;
+							}
+						}else triggeredAlready = false;
+					}
+				}
+			}
 		}
 
-        if (boyfriend.animation.curAnim.name.startsWith('sing') || boyfriend.animation.curAnim.name == 'idle')
-        {
-            switch(curSong)
-            {
-                case 'Parish':
-                {
-                    if(curBeat > 48 && curBeat != 64 && curBeat != 96 && curBeat != 128 && curBeat != 160 && curBeat < 176)
-                    {
-                        if(curBeat % 16 == 15)
-                        {
-                            if(!triggeredAlready)
-                            {
-                                boyfriend.playAnim('hey');
-                                triggeredAlready = true;
-                            }
-                        }else triggeredAlready = false;
-                    }
-                }
-            }
-        }
-
-        if (curBeat % 16 == 15 && SONG.song == 'Parish' && dad.curCharacter == 'sarvente' && curBeat > 32 && curBeat != 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat < 160)
-            {
-                dad.playAnim('hey', true);
-            }
+		if (curBeat % 16 == 15 && SONG.song == 'Parish' && dad.curCharacter == 'sarvente' && curBeat > 32 && curBeat != 48 && curBeat != 80 && curBeat != 112 && curBeat != 144 && curBeat < 160)
+			{
+				dad.playAnim('hey', true);
+			}
 
 		if (curBeat % 16 == 15 && SONG.song == 'Tutorial' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
 			{
@@ -4062,11 +4201,11 @@ class PlayState extends MusicBeatState
 				dad.playAnim('cheer', true);
 			}
 
-        if (curBeat % 16 == 15 && SONG.song == 'Tutorial Remix' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
-            {
-                boyfriend.playAnim('hey', true);
-                dad.playAnim('cheer', true);
-            }
+		if (curBeat % 16 == 15 && SONG.song == 'Tutorial Remix' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
+			{
+				boyfriend.playAnim('hey', true);
+				dad.playAnim('cheer', true);
+			}
 
 		if (curSong == 'Too Clergy' && dad.curCharacter == 'sarvente')
 		{

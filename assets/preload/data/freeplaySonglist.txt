@@ -24,3 +24,15 @@ Zavodila:ruv:7
 Gospel:luci-sarv:7
 Casanova:selever:7
 Too Clergy:sarvente:8
+Panic Stricken:ruv:8
+Church Lords:sarvente:9
+Ruvved Up:ruv:9
+Ruv Jug:ruv:9
+It's Been So Long:sarvente:9
+Sarvodila:sarvente:10
+Ruvodila:ruv:10
+Ruvel:ruv:10
+Jointly:ruv:11
+Trance:sarvente:11
+Zavodila Remix:ruv:12
+Gospel Remix:luci-sarv:12
