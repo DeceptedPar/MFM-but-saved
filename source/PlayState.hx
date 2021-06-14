@@ -4277,7 +4277,7 @@ class PlayState extends MusicBeatState
 				dad.playAnim('cheer', true);
 			}
 
-		if (curStep == 446 && curSong 'Its Been So Long' && dad.curCharacter == 'sarvente')
+		if (curStep == 446 && curSong == 'Its Been So Long' && dad.curCharacter == 'sarvente')
 		{
 			boyfriend.playAnim('hey' true);
 			gf.playAnim('cheer', true);
