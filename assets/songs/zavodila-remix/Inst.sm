@@ -1,0 +1,54 @@
+#TITLE:unknown;
+#SUBTITLE:;
+#ARTIST:;
+#TITLETRANSLIT:;
+#SUBTITLETRANSLIT:;
+#ARTISTTRANSLIT:;
+#GENRE:;
+#CREDIT:;
+#MUSIC:Inst.ogg;
+#BANNER:;
+#BACKGROUND:;
+#CDTITLE:;
+#SAMPLESTART:0.000;
+#SAMPLELENGTH:0.000;
+#SELECTABLE:YES;
+#OFFSET:0.000;
+#BPMS:0.000=131.852
+,348.021=130.852
+,363.708=132.000
+,400.000=138.000
+,404.000=152.000
+,412.000=160.000
+,416.000=165.000
+,420.000=170.000
+,424.000=175.000
+,428.000=180.000
+;
+#STOPS:;
+#BGCHANGES:;
+#FGCHANGES:;
+//--------------- dance-double -  ----------------
+#NOTES:
+     dance-double:
+     :
+     Hard:
+     1:
+     0,0,0,0,0:
+00000000
+00000000
+00000000
+00000000
+;
+//--------------- dance-double -  ----------------
+#NOTES:
+     dance-double:
+     :
+     Edit:
+     1:
+     0,0,0,0,0:
+00000000
+00000000
+00000000
+00000000
+;

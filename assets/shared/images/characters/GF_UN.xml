@@ -2,4 +2,5 @@
 <TextureAtlas imagePath="GF_UN.png">
 	<!-- Created with Adobe Animate version 20.0.0.17400 -->
 	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="GFIdle" x="0" y="0" width="0" height="0"/>
 </TextureAtlas>

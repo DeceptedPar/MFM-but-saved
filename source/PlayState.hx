@@ -4160,14 +4160,29 @@ class PlayState extends MusicBeatState
 			gf.playAnim('scared', true);
 		}
 
-		if (boyfriend.curCharacter == 'ruv' && boyfriend.animation.curAnim.name.startsWith('sing'))
+		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing') && boyfriend.curCharacter == 'bf' && boyfriend.animation.curAnim.name.startsWith("sing"))
 		{
 			camHUD.shake(0.0085, 0.6);
 			FlxG.camera.shake(0.0085, 0.6);
 			gf.playAnim('dance', false);
 			gf.playAnim('scared', true);
 		}
-		
+
+		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing') && boyfriend.curCharacter == 'sarvente' && boyfriend.animation.curAnim.name.startsWith('sing'))
+		{
+			camHUD.shake(0.0085, 0.6);
+			FlxG.camera.shake(0.0085, 0.6);
+		}
+
+		/*if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing') && curSong == 'zavodila-remix' && curStep >= )
+		{
+			camHUD.shake(0.03, 0.95);
+			FlxG.camera.shake(0.03, 0.95);
+			boyfriend.playAnim('idle', false);
+			boyfriend.playAnim('shocked', true);
+			gf.playAnim('dance', false);
+			gf.playAnim('scared', true);
+		}*/
 
 		if (boyfriend.animation.curAnim.name.startsWith('sing') || boyfriend.animation.curAnim.name == 'idle')
 		{
@@ -4201,13 +4216,13 @@ class PlayState extends MusicBeatState
 				dad.playAnim('cheer', true);
 			}
 
-		if (curBeat % 16 == 15 && SONG.song == 'Tutorial Remix' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
+		if (curBeat % 16 == 15 && SONG.song == 'Tutorial-Remix' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
 			{
 				boyfriend.playAnim('hey', true);
 				dad.playAnim('cheer', true);
 			}
 
-		if (curSong == 'Too Clergy' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Too-Clergy' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4218,7 +4233,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'bf')
+		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'bf')
 		{
 			switch (curBeat)
 			{
@@ -4230,7 +4245,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'sarvente')
+		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4242,7 +4257,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'bf')
+		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'bf')
 		{
 			switch (curBeat)
 			{
@@ -4254,7 +4269,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'sarvente')
+		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4266,7 +4281,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too Clergy' && dad.curCharacter == 'ruv')
+		if (curSong == 'Too-Clergy' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4278,7 +4293,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too Clergy' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Too-Clergy' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4290,7 +4305,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'bf')
+		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'bf')
 		{
 			switch (curBeat)
 			{
@@ -4301,7 +4316,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 		
-		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'sarvente')
+		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4312,7 +4327,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'bf')
+		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'bf')
 		{
 			switch (curBeat)
 			{
@@ -4323,7 +4338,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'sarvente')
+		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
