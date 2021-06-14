@@ -1068,7 +1068,7 @@ class PlayState extends MusicBeatState
 				gf.y += 300;
 
 			case 'church1':
-			if (boyfriend.curCharacter == 'bf'):
+			if (boyfriend.curCharacter == 'bf')
 			{
 				boyfriend.setPosition(1379, 881);
 			}
@@ -1079,7 +1079,7 @@ class PlayState extends MusicBeatState
 				gf.setPosition(895, 453);
 
 			case 'church1-dark':
-			if (boyfriend.curCharacter == 'bf'):
+			if (boyfriend.curCharacter == 'bf')
 			{
 				boyfriend.setPosition(1379, 881);
 			}
@@ -1091,7 +1091,7 @@ class PlayState extends MusicBeatState
 				gf.setPosition(895, 453);
 
 			case 'church2':
-			if (boyfriend.curCharacter == 'bf'):
+			if (boyfriend.curCharacter == 'bf')
 			{
 				boyfriend.setPosition(1379, 881);
 			}
@@ -1103,7 +1103,7 @@ class PlayState extends MusicBeatState
 				gf.setPosition(895, 453);
 
 			case 'church3':
-			if (boyfriend.curCharacter == 'bf'):
+			if (boyfriend.curCharacter == 'bf')
 			{
 				boyfriend.setPosition(1379, 881);
 			}
@@ -1115,7 +1115,7 @@ class PlayState extends MusicBeatState
 				gf.setPosition(895, 453);
 
 			case 'church3ruv':
-			if (boyfriend.curCharacter == 'bf'):
+			if (boyfriend.curCharacter == 'bf')
 			{
 				boyfriend.setPosition(1379, 881);
 			}
@@ -1127,7 +1127,7 @@ class PlayState extends MusicBeatState
 				gf.setPosition(895, 453);
 
 			case 'churchSelever':
-			if (boyfriend.curCharacter == 'bf'):
+			if (boyfriend.curCharacter == 'bf')
 			{
 				boyfriend.setPosition(1379, 881);
 			}
