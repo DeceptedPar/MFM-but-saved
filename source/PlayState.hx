@@ -798,7 +798,7 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ1'));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, stageCurtains.angle, 0, 8, {ease: FlxEase.smootherStepIn});
+						FlxTween.angle(stageCurtains, stageCurtains.angle, 360, 10, center, {ease: FlxEase.sineIn});
 
 						add(stageCurtains);
 
@@ -4279,7 +4279,7 @@ class PlayState extends MusicBeatState
 
 		if (curStep == 446 && curSong == 'Its Been So Long' && dad.curCharacter == 'sarvente')
 		{
-			boyfriend.playAnim('hey' true);
+			boyfriend.playAnim('hey', true);
 			gf.playAnim('cheer', true);
 			dad.playAnim('hey', true);
 		}
