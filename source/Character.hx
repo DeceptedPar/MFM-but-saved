@@ -592,6 +592,24 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 
+			case 'sarvente-alt':
+				frames = Paths.getSparrowAtlas('sacredmass/sarvente_sheet');
+				animation.addByPrefix('idle', 'SarventeIdle', 24, false);
+				animation.addByPrefix('singUP', 'SarventeUp', 24, false);
+				animation.addByPrefix('singDOWN', 'SarventeDown', 24, false);
+				animation.addByPrefix('singRIGHT', 'SarventeRight', 24, false);
+				animation.addByPrefix('singLEFT', 'SarventeLeft', 24, false);
+				animation.addByPrefix('hey', 'SarventeHey', 24, false);
+
+				addOffset('idle', 0, 50);
+				addOffset('singUP', -50, 51);
+				addOffset('singRIGHT', 15, 59);
+				addOffset('singLEFT', 60, 39);
+				addOffset('singDOWN', 50, 4);
+				addOffset('hey', -10, 56);
+
+				playAnim('idle');
+
 			case 'sarvente-dark':
 				frames = Paths.getSparrowAtlas('sacredmass/sarvente_dark');
 				animation.addByPrefix('idle', 'SarvDarkIdle', 24, false);
@@ -617,6 +635,22 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'ruv':
+				frames = Paths.getSparrowAtlas('sacredmass/ruv_sheet');
+				animation.addByPrefix('idle', 'RuvIdle', 24, false);
+				animation.addByPrefix('singUP', 'RuvUp', 24, false);
+				animation.addByPrefix('singDOWN', 'RuvDown', 24, false);
+				animation.addByPrefix('singRIGHT', 'RuvRight', 24, false);
+				animation.addByPrefix('singLEFT', 'RuvLeft', 24, false);
+
+				addOffset('idle', 0, 48);
+				addOffset('singUP', 40, 50);
+				addOffset('singRIGHT', 15, 54);
+				addOffset('singLEFT', 80, -15);
+				addOffset('singDOWN', 55, 55);
+
+				playAnim('idle');
+
+			case 'ruv-alt':
 				frames = Paths.getSparrowAtlas('sacredmass/ruv_sheet');
 				animation.addByPrefix('idle', 'RuvIdle', 24, false);
 				animation.addByPrefix('singUP', 'RuvUp', 24, false);

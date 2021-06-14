@@ -16,8 +16,10 @@ senpai
 senpai-angry
 spirit
 sarvente
+sarvente-alt
 bf-dark
 sarvente-dark
 ruv
+ruv-alt
 luci-sarv
 selever

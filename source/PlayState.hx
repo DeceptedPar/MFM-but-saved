@@ -1068,27 +1068,74 @@ class PlayState extends MusicBeatState
 				gf.y += 300;
 
 			case 'church1':
+			if (boyfriend.curCharacter == 'bf'):
+			{
 				boyfriend.setPosition(1379, 881);
+			}
+			else if (boyfriend.curCharacter == 'sarvente' || 'sarvente-dark' || 'ruv' || 'selever')
+			{
+				boyfriend.setPosition(1379, 554);
+			}
 				gf.setPosition(895, 453);
 
 			case 'church1-dark':
+			if (boyfriend.curCharacter == 'bf'):
+			{
 				boyfriend.setPosition(1379, 881);
+			}
+			else if (boyfriend.curCharacter == 'sarvente' || 'sarvente-dark' || 'ruv' || 'selever')
+			{
+				boyfriend.setPosition(1379, 554);
+			}
+				gf.setPosition(895, 453);
 				gf.setPosition(895, 453);
 
 			case 'church2':
+			if (boyfriend.curCharacter == 'bf'):
+			{
 				boyfriend.setPosition(1379, 881);
+			}
+			else if (boyfriend.curCharacter == 'sarvente' || 'sarvente-dark' || 'ruv' || 'selever')
+			{
+				boyfriend.setPosition(1379, 554);
+			}
+				gf.setPosition(895, 453);
 				gf.setPosition(895, 453);
 
 			case 'church3':
+			if (boyfriend.curCharacter == 'bf'):
+			{
 				boyfriend.setPosition(1379, 881);
+			}
+			else if (boyfriend.curCharacter == 'sarvente' || 'sarvente-dark' || 'ruv' || 'selever')
+			{
+				boyfriend.setPosition(1379, 554);
+			}
+				gf.setPosition(895, 453);
 				gf.setPosition(895, 453);
 
 			case 'church3ruv':
+			if (boyfriend.curCharacter == 'bf'):
+			{
 				boyfriend.setPosition(1379, 881);
+			}
+			else if (boyfriend.curCharacter == 'sarvente' || 'sarvente-dark' || 'ruv' || 'selever')
+			{
+				boyfriend.setPosition(1379, 554);
+			}
+				gf.setPosition(895, 453);
 				gf.setPosition(895, 453);
 
 			case 'churchSelever':
+			if (boyfriend.curCharacter == 'bf'):
+			{
 				boyfriend.setPosition(1379, 881);
+			}
+			else if (boyfriend.curCharacter == 'sarvente' || 'sarvente-dark' || 'ruv' || 'selever')
+			{
+				boyfriend.setPosition(1379, 554);
+			}
+				gf.setPosition(895, 453);
 				gf.setPosition(895, 453);
 		}
 
@@ -4119,11 +4166,11 @@ class PlayState extends MusicBeatState
 		// HARDCODING FOR MILF ZOOMS!
 		if (curSong.toLowerCase() == 'milf' && curBeat >= 168 && curBeat < 200 && camZooming && FlxG.camera.zoom < 1.35)
 		{
-			FlxG.camera.zoom += 0.015;
-			camHUD.zoom += 0.03;
+			FlxG.camera.zoom += 0.03;
+			camHUD.zoom += 0.06;
 		}
 
-		if (curSong.toLowerCase() == 'tutorial-remix' && curStep == 44)
+		if (curSong.toLowerCase() == 'tutorial remix' && curStep == 44)
 		{
 			startCountdown();
 		}
@@ -4156,6 +4203,14 @@ class PlayState extends MusicBeatState
 			FlxG.camera.shake(0.0085, 0.6);
 			boyfriend.playAnim('idle', false);
 			boyfriend.playAnim('scared', true);
+			gf.playAnim('dance', false);
+			gf.playAnim('scared', true);
+		}
+
+		if (boyfriend.curCharacter == 'ruv' && boyfriend.animation.curAnim.name.startsWith('sing'))
+		{
+			camHUD.shake(0.0085, 0.6);
+			FlxG.camera.shake(0.0085, 0.6);
 			gf.playAnim('dance', false);
 			gf.playAnim('scared', true);
 		}
@@ -4216,13 +4271,20 @@ class PlayState extends MusicBeatState
 				dad.playAnim('cheer', true);
 			}
 
-		if (curBeat % 16 == 15 && SONG.song == 'Tutorial-Remix' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
+		if (curBeat % 16 == 15 && SONG.song == 'Tutorial Remix' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
 			{
 				boyfriend.playAnim('hey', true);
 				dad.playAnim('cheer', true);
 			}
 
-		if (curSong == 'Too-Clergy' && dad.curCharacter == 'sarvente')
+		if (curStep == 446 && curSong 'Its Been So Long' && dad.curCharacter == 'sarvente')
+		{
+			boyfriend.playAnim('hey' true);
+			gf.playAnim('cheer', true);
+			dad.playAnim('hey', true);
+		}
+
+		if (curSong == 'Too Clergy' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4233,7 +4295,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'bf')
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'bf')
 		{
 			switch (curBeat)
 			{
@@ -4245,7 +4307,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'sarvente')
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4257,7 +4319,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'bf')
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'bf')
 		{
 			switch (curBeat)
 			{
@@ -4269,7 +4331,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'sarvente')
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4281,7 +4343,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too-Clergy' && dad.curCharacter == 'ruv')
+		if (curSong == 'Too Clergy' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4293,7 +4355,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too-Clergy' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Too Clergy' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4305,7 +4367,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'bf')
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'bf')
 		{
 			switch (curBeat)
 			{
@@ -4316,7 +4378,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 		
-		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'sarvente')
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4327,7 +4389,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'bf')
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'bf')
 		{
 			switch (curBeat)
 			{
@@ -4338,7 +4400,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Too-Clergy' && boyfriend.curCharacter == 'sarvente')
+		if (curSong == 'Too Clergy' && boyfriend.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{

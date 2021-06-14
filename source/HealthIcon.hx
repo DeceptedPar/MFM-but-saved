@@ -43,6 +43,8 @@ class HealthIcon extends FlxSprite
 		animation.add('ruv', [32, 33], 0, false, isPlayer);
 		animation.add('luci-sarv', [34, 35], 0, false, isPlayer);
 		animation.add('selever', [36, 37], 0, false, isPlayer);
+		animation.add('sarvente-alt', [40, 41], 0, false, isPlayer);
+		animation.add('ruv-alt', [42, 43], 0, false, isPlayer);
 		animation.play(char);
 
 		switch(char)
