@@ -1071,13 +1071,20 @@ class PlayState extends MusicBeatState
 			if (boyfriend.curCharacter == 'bf')
 			{
 				boyfriend.setPosition(1379, 881);
+				gf.setPosition(895, 453);
 			}
 
-			if (boyfriend.curCharacter == 'sarvente' && 'sarvente-dark' | 'ruv' | 'selever')
+			if (boyfriend.curCharacter == 'sarvente')
 			{
 				boyfriend.setPosition(1379, 554);
-			}
 				gf.setPosition(895, 453);
+			}
+
+			if (boyfriend.curCharacter == 'ruv')
+			{
+				boyfriend.setPosition(1379, 554);
+				gf.setPosition(895, 453);
+			}
 
 			case 'church1-dark':
 			if (boyfriend.curCharacter == 'bf')
