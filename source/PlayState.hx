@@ -1011,10 +1011,16 @@ class PlayState extends MusicBeatState
 			case 'sarvente':
 				dad.x = 630;
 				dad.y = 554;
+			case 'sarvente-alt':
+				dad.x = 630;
+				dad.y = 554;
 			case 'sarvente-dark':
 				dad.x = 630;
 				dad.y = 554;
 			case 'ruv':
+				dad.x = 630;
+				dad.y = 554;
+			case 'ruv-alt':
 				dad.x = 630;
 				dad.y = 554;
 			case 'luci-sarv':
@@ -4248,6 +4254,12 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim('scared', true);
 			gf.playAnim('dance', false);
 			gf.playAnim('scared', true);
+		}
+
+		if (dad.curCharacter == 'ruv-alt' && dad.animation.curAnim.name.startsWith('sing'))
+		{
+			camHUD.shake(0.0085, 0.6);
+			FlxG.camera.shake(0.0085, 0.6);
 		}
 
 		if (boyfriend.curCharacter == 'ruv' && boyfriend.animation.curAnim.name.startsWith('sing'))
