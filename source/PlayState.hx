@@ -798,7 +798,7 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(286, -160).loadGraphic(Paths.image('sacredmass/church3/circ1'));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, stageCurtains.angle, 360, 10, center, {ease: FlxEase.sineIn});
+						FlxTween.angle(stageCurtains, stageCurtains.angle, 360, 10, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
 
 						add(stageCurtains);
 
@@ -1072,7 +1072,8 @@ class PlayState extends MusicBeatState
 			{
 				boyfriend.setPosition(1379, 881);
 			}
-			else if (boyfriend.curCharacter == 'sarvente' || 'sarvente-dark' || 'ruv' || 'selever')
+
+			if (boyfriend.curCharacter == 'sarvente' && 'sarvente-dark' | 'ruv' | 'selever')
 			{
 				boyfriend.setPosition(1379, 554);
 			}
@@ -1082,61 +1083,96 @@ class PlayState extends MusicBeatState
 			if (boyfriend.curCharacter == 'bf')
 			{
 				boyfriend.setPosition(1379, 881);
+				gf.setPosition(895, 453);
 			}
-			else if (boyfriend.curCharacter == 'sarvente' || 'sarvente-dark' || 'ruv' || 'selever')
+
+			if (boyfriend.curCharacter == 'sarvente')
 			{
 				boyfriend.setPosition(1379, 554);
+				gf.setPosition(895, 453);
 			}
+
+			if (boyfriend.curCharacter == 'ruv')
+			{
+				boyfriend.setPosition(1379, 554);
 				gf.setPosition(895, 453);
-				gf.setPosition(895, 453);
+			}
 
 			case 'church2':
 			if (boyfriend.curCharacter == 'bf')
 			{
 				boyfriend.setPosition(1379, 881);
+				gf.setPosition(895, 453);
 			}
-			else if (boyfriend.curCharacter == 'sarvente' || 'sarvente-dark' || 'ruv' || 'selever')
+
+			if (boyfriend.curCharacter == 'sarvente')
 			{
 				boyfriend.setPosition(1379, 554);
+				gf.setPosition(895, 453);
 			}
+
+			if (boyfriend.curCharacter == 'ruv')
+			{
+				boyfriend.setPosition(1379, 554);
 				gf.setPosition(895, 453);
-				gf.setPosition(895, 453);
+			}
 
 			case 'church3':
 			if (boyfriend.curCharacter == 'bf')
 			{
 				boyfriend.setPosition(1379, 881);
+				gf.setPosition(895, 453);
 			}
-			else if (boyfriend.curCharacter == 'sarvente' || 'sarvente-dark' || 'ruv' || 'selever')
+
+			if (boyfriend.curCharacter == 'sarvente')
 			{
 				boyfriend.setPosition(1379, 554);
+				gf.setPosition(895, 453);
 			}
+
+			if (boyfriend.curCharacter == 'ruv')
+			{
+				boyfriend.setPosition(1379, 554);
 				gf.setPosition(895, 453);
-				gf.setPosition(895, 453);
+			}
 
 			case 'church3ruv':
 			if (boyfriend.curCharacter == 'bf')
 			{
 				boyfriend.setPosition(1379, 881);
+				gf.setPosition(895, 453);
 			}
-			else if (boyfriend.curCharacter == 'sarvente' || 'sarvente-dark' || 'ruv' || 'selever')
+
+			if (boyfriend.curCharacter == 'sarvente')
 			{
 				boyfriend.setPosition(1379, 554);
+				gf.setPosition(895, 453);
 			}
+
+			if (boyfriend.curCharacter == 'ruv')
+			{
+				boyfriend.setPosition(1379, 554);
 				gf.setPosition(895, 453);
-				gf.setPosition(895, 453);
+			}
 
 			case 'churchSelever':
 			if (boyfriend.curCharacter == 'bf')
 			{
 				boyfriend.setPosition(1379, 881);
+				gf.setPosition(895, 453);
 			}
-			else if (boyfriend.curCharacter == 'sarvente' || 'sarvente-dark' || 'ruv' || 'selever')
+
+			if (boyfriend.curCharacter == 'sarvente')
 			{
 				boyfriend.setPosition(1379, 554);
+				gf.setPosition(895, 453);
 			}
+
+			if (boyfriend.curCharacter == 'ruv')
+			{
+				boyfriend.setPosition(1379, 554);
 				gf.setPosition(895, 453);
-				gf.setPosition(895, 453);
+			}
 		}
 
 		add(gf);
