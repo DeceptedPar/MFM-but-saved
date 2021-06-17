@@ -348,8 +348,8 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
-			case 'tutorial-remix':
-				//dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial-remix/Tutorial-RemixDialogue'));
+			case 'tutorial remix':
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial-remix/Tutorial RemixDialogue'));
 			case 'parish':
 				//dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue1'));
 				//dialogue = CoolUtil.coolTextFile(Paths.txt('parish/ParishDialogue2'));
@@ -838,14 +838,14 @@ class PlayState extends MusicBeatState
 
 						add(stageCurtains);
 
-						var stageCurtains = new FlxSprite(935, 171).loadGraphic(Paths.image('sacredmass/church3/circ1'));
+						var stageCurtains = new FlxSprite(935, 171).loadGraphic(Paths.image('sacredmass/church3ruv/circ1'));
 						stageCurtains.antialiasing = true;
 
 						FlxTween.angle(stageCurtains, stageCurtains.angle, 360, 10, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
 
 						add(stageCurtains);
 
-						var stageCurtains:FlxSprite = new FlxSprite(900, 132).loadGraphic(Paths.image('sacredmass/church3/circ2'));
+						var stageCurtains:FlxSprite = new FlxSprite(900, 132).loadGraphic(Paths.image('sacredmass/church3ruv/circ2'));
 						stageCurtains.updateHitbox();
 						stageCurtains.antialiasing = true;
 						stageCurtains.active = false;
@@ -1425,7 +1425,7 @@ class PlayState extends MusicBeatState
 		{
 			switch (curSong.toLowerCase())
 			{
-				case 'tutorial-remix':
+				case 'tutorial remix':
 					dad.dance();
 					boyfriend.playAnim('idle');
 					generateStaticArrows(0);
@@ -4215,13 +4215,25 @@ class PlayState extends MusicBeatState
 		// HARDCODING FOR MILF ZOOMS!
 		if (curSong.toLowerCase() == 'milf' && curBeat >= 168 && curBeat < 200 && camZooming && FlxG.camera.zoom < 1.35)
 		{
-			FlxG.camera.zoom += 0.03;
-			camHUD.zoom += 0.06;
+			FlxG.camera.zoom += 0.27;
+			camHUD.zoom += 0.0216;
 		}
 
 		if (curSong.toLowerCase() == 'tutorial remix' && curStep == 44)
 		{
 			startCountdown();
+		}
+
+		if (curSong.toLowerCase() == 'ruvodila' && curBeat >= 1 && curBeat < 224 && curBeat != 32 && curBeat != 159 && camZooming && FlxG.camera.zoom < 1.35)
+		{
+			FlxG.camera.zoom += 0.27;
+			camHUD.zoom += 0.0216;
+		}
+
+		if (curSong.toLowerCase() == 'ruvodila' && curBeat >= 232 && curBeat < 288 camZooming && FlxG.camera.zoom < 1.35)
+		{
+			FlxG.camera.zoom += 0.27;
+			camHUD.zoom += 0.0216;
 		}
 
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
@@ -4464,6 +4476,281 @@ class PlayState extends MusicBeatState
 					boyfriend = new Boyfriend(1379, 881, 'bf');
 					add(boyfriend);
 
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 416:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 480:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 554:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 608:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 672:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 992:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 1056:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 1120:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 1184:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 1312:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 1440:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 1504:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 1568:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 1632:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 348:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 412:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 476:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 540:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 575:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 706:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 924:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 988:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 1052:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 1116:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					add(dad);
 			}
 		}
 
