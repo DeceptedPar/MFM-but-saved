@@ -4230,7 +4230,7 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.0216;
 		}
 
-		if (curSong.toLowerCase() == 'ruvodila' && curBeat >= 232 && curBeat < 288 camZooming && FlxG.camera.zoom < 1.35)
+		if (curSong.toLowerCase() == 'ruvodila' && curBeat >= 232 && curBeat < 288 && camZooming && FlxG.camera.zoom < 1.35)
 		{
 			FlxG.camera.zoom += 0.27;
 			camHUD.zoom += 0.0216;
