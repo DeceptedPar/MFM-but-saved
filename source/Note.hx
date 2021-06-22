@@ -37,7 +37,7 @@ class Note extends FlxSprite
 
 	public var rating:String = "shit";
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inCharter:Bool = false)
 	{
 		super();
 
@@ -50,7 +50,10 @@ class Note extends FlxSprite
 		x += 50;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
 		y -= 2000;
-		this.strumTime = strumTime;
+		if (inCharter)
+			this.strumTime = strumTime;
+		else 
+			this.strumTime = Math.round(strumTime);
 
 		if (this.strumTime < 0 )
 			this.strumTime = 0;
@@ -58,6 +61,13 @@ class Note extends FlxSprite
 		this.noteData = noteData;
 
 		var daStage:String = PlayState.curStage;
+
+		//defaults if no noteStyle was found in chart
+		var noteTypeCheck:String = 'normal';
+
+		if (PlayState.SONG.noteStyle == null) {
+			switch(PlayState.storyWeek) {case 6: noteTypeCheck = 'pixel';}
+		} else {noteTypeCheck = PlayState.SONG.noteStyle;}
 
 		switch (PlayState.SONG.noteStyle)
 		{

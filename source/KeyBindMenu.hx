@@ -51,8 +51,8 @@ class KeyBindMenu extends FlxSubState
 
     var state:String = "select";
 
-	override function create()
-	{	
+    override function create()
+    {   
 
         for (i in 0...keys.length)
         {
@@ -60,25 +60,25 @@ class KeyBindMenu extends FlxSubState
             if (k == null)
                 keys[i] = defaultKeys[i];
         }
-	
-		//FlxG.sound.playMusic('assets/music/configurator' + TitleState.soundExt);
+    
+        //FlxG.sound.playMusic('assets/music/configurator' + TitleState.soundExt);
 
-		persistentUpdate = persistentDraw = true;
+        persistentUpdate = persistentDraw = true;
 
         keyTextDisplay = new FlxText(-10, 0, 1280, "", 72);
-		keyTextDisplay.scrollFactor.set(0, 0);
-		keyTextDisplay.setFormat("VCR OSD Mono", 42, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		keyTextDisplay.borderSize = 2;
-		keyTextDisplay.borderQuality = 3;
+        keyTextDisplay.scrollFactor.set(0, 0);
+        keyTextDisplay.setFormat("VCR OSD Mono", 42, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        keyTextDisplay.borderSize = 2;
+        keyTextDisplay.borderQuality = 3;
 
         blackBox = new FlxSprite(0,0).makeGraphic(FlxG.width,FlxG.height,FlxColor.BLACK);
         add(blackBox);
 
         infoText = new FlxText(-10, 580, 1280, "(Escape to save, backspace to leave without saving)", 72);
-		infoText.scrollFactor.set(0, 0);
-		infoText.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		infoText.borderSize = 2;
-		infoText.borderQuality = 3;
+        infoText.scrollFactor.set(0, 0);
+        infoText.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        infoText.borderSize = 2;
+        infoText.borderQuality = 3;
         infoText.alpha = 0;
         infoText.screenCenter(FlxAxes.X);
         add(infoText);
@@ -95,26 +95,26 @@ class KeyBindMenu extends FlxSubState
 
         textUpdate();
 
-		super.create();
-	}
+        super.create();
+    }
 
-	override function update(elapsed:Float)
-	{
+    override function update(elapsed:Float)
+    {
 
         switch(state){
 
             case "select":
                 if (FlxG.keys.justPressed.UP)
-				{
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-					changeItem(-1);
-				}
+                {
+                    FlxG.sound.play(Paths.sound('scrollMenu'));
+                    changeItem(-1);
+                }
 
-				if (FlxG.keys.justPressed.DOWN)
-				{
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-					changeItem(1);
-				}
+                if (FlxG.keys.justPressed.DOWN)
+                {
+                    FlxG.sound.play(Paths.sound('scrollMenu'));
+                    changeItem(1);
+                }
 
                 if (FlxG.keys.justPressed.ENTER){
                     FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -123,7 +123,7 @@ class KeyBindMenu extends FlxSubState
                 else if(FlxG.keys.justPressed.ESCAPE){
                     quit();
                 }
-				else if (FlxG.keys.justPressed.BACKSPACE){
+                else if (FlxG.keys.justPressed.BACKSPACE){
                     reset();
                 }
 
@@ -160,11 +160,11 @@ class KeyBindMenu extends FlxSubState
         }
 
         if(FlxG.keys.justPressed.ANY)
-			textUpdate();
+            textUpdate();
 
-		super.update(elapsed);
-		
-	}
+        super.update(elapsed);
+        
+    }
 
     function textUpdate(){
 
@@ -217,26 +217,13 @@ class KeyBindMenu extends FlxSubState
     }
 
 
-	function addKey(r:String){
+    function addKey(r:String){
 
         var shouldReturn:Bool = true;
 
         var notAllowed:Array<String> = [];
 
-        for(x in keys){
-            if(x != tempKey){notAllowed.push(x);}
-        }
-
         for(x in blacklist){notAllowed.push(x);}
-
-        if(curSelected != 4){
-
-            for(x in keyText){
-                if(x != keyText[curSelected]){notAllowed.push(x);}
-            }
-            
-        }
-        else {for(x in keyText){notAllowed.push(x);}}
 
         trace(notAllowed);
 
@@ -245,6 +232,8 @@ class KeyBindMenu extends FlxSubState
                 var oK = keys[x];
                 if(oK == r)
                     keys[x] = null;
+                if (notAllowed.contains(oK))
+                    return;
             }
 
         if(shouldReturn){
@@ -253,13 +242,13 @@ class KeyBindMenu extends FlxSubState
         }
         else{
             keys[curSelected] = tempKey;
-            FlxG.sound.play(Paths.sound('confirmMenu'));
+            FlxG.sound.play(Paths.sound('scrollMenu'));
             keyWarning.alpha = 1;
             warningTween.cancel();
             warningTween = FlxTween.tween(keyWarning, {alpha: 0}, 0.5, {ease: FlxEase.circOut, startDelay: 2});
         }
 
-	}
+    }
 
     function changeItem(_amount:Int = 0)
     {

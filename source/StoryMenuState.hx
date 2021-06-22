@@ -26,9 +26,9 @@ class StoryMenuState extends MusicBeatState
 	var weekData:Array<Dynamic> = [
 		['Tutorial', 'Tutorial Remix'],
 		['Bopeebo', 'Fresh', 'Dad Battle'],
-		['Spookeez', 'South', 'Monster'],
-		['Pico', 'Philly Nice', 'Blammed'],
-		['Satin Panties', 'High', 'Milf'],
+		['Spookeez', 'South', "Monster"],
+		['Pico', 'Philly Nice', "Blammed"],
+		['Satin Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter Horrorland'],
 		['Senpai', 'Roses', 'Thorns'],
 		['Parish', 'Worship', 'Zavodila', 'Gospel', 'Casanova']
@@ -49,7 +49,7 @@ class StoryMenuState extends MusicBeatState
 	];
 
 	var weekNames:Array<String> = [
-		"How to Funk",
+		"",
 		"Daddy Dearest",
 		"Spooky Month",
 		"PICO",
@@ -289,21 +289,23 @@ class StoryMenuState extends MusicBeatState
 			PlayState.isStoryMode = true;
 			selectedWeek = true;
 
-			var diffic = "";
-
-			switch (curDifficulty)
-			{
-				case 0:
-					diffic = '-easy';
-				case 2:
-					diffic = '-hard';
-				case 3:
-					diffic = '-alt';
-			}
 
 			PlayState.storyDifficulty = curDifficulty;
 
-			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
+			// adjusting the song name to be compatible
+			var songFormat = StringTools.replace(PlayState.storyPlaylist[0], " ", "-");
+			switch (songFormat) {
+				case 'Dad-Battle': songFormat = 'Dadbattle';
+				case 'Philly-Nice': songFormat = 'Philly';
+			}
+
+			var poop:String = Highscore.formatSong(songFormat, curDifficulty);
+			PlayState.sicks = 0;
+			PlayState.bads = 0;
+			PlayState.shits = 0;
+			PlayState.goods = 0;
+			PlayState.campaignMisses = 0;
+			PlayState.SONG = Song.loadFromJson(poop, PlayState.storyPlaylist[0]);
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
 			new FlxTimer().start(1, function(tmr:FlxTimer)

@@ -21,7 +21,7 @@ class KeyBinds
         FlxG.save.data.killBind = "R";
         PlayerSettings.player1.controls.loadKeyBinds();
 
-	}
+    }
 
     public static function keyCheck():Void
     {

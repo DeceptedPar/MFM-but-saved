@@ -161,7 +161,7 @@ class Character extends FlxSprite
 
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('characters/DADDY_DEAREST');
+				tex = Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'Dad idle dance', 24);
 				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
@@ -262,7 +262,7 @@ class Character extends FlxSprite
 				addOffset("singUP", -20, 50);
 				addOffset("singRIGHT", -51);
 				addOffset("singLEFT", -30);
-				addOffset("singDOWN", -30, -40);
+				addOffset("singDOWN", -40, -94);
 				playAnim('idle');
 			case 'pico':
 				tex = Paths.getSparrowAtlas('characters/Pico_FNF_assetss');
@@ -304,8 +304,11 @@ class Character extends FlxSprite
 				flipX = true;
 
 			case 'bf':
-				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND');
+				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared');
 				frames = tex;
+
+				trace(tex.frames.length);
+
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
@@ -322,7 +325,6 @@ class Character extends FlxSprite
 				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
 
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
-				animation.addByPrefix('shocked', 'BF hit', 24);
 
 				addOffset('idle', -5);
 				addOffset("singUP", -29, 27);
@@ -338,7 +340,6 @@ class Character extends FlxSprite
 				addOffset('deathLoop', 37, 5);
 				addOffset('deathConfirm', 37, 69);
 				addOffset('scared', -4);
-				addOffset('shocked', -4);
 
 				playAnim('idle');
 
@@ -699,7 +700,6 @@ class Character extends FlxSprite
 				addOffset('hey', 0, 47);
 
 				playAnim('idle');
-
 		}
 
 		dance();
@@ -742,6 +742,7 @@ class Character extends FlxSprite
 				dadVar = 6.1;
 			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
 			{
+				trace('dance');
 				dance();
 				holdTimer = 0;
 			}
@@ -779,17 +780,6 @@ class Character extends FlxSprite
 							playAnim('danceLeft');
 					}
 
-				case 'gf-dark':
-					if (!animation.curAnim.name.startsWith('hair'))
-					{
-						danced = !danced;
-
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-
 				case 'gf-christmas':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
@@ -812,6 +802,17 @@ class Character extends FlxSprite
 							playAnim('danceLeft');
 					}
 				case 'gf-pixel':
+					if (!animation.curAnim.name.startsWith('hair'))
+					{
+						danced = !danced;
+
+						if (danced)
+							playAnim('danceRight');
+						else
+							playAnim('danceLeft');
+					}
+
+				case 'gf-dark':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
