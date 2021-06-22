@@ -4258,7 +4258,7 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim('idle');
 		}
 
-		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing') && mustHitSection)
+		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing') && section.mustHitSection)
 		{
 			camHUD.shake(0.0100, 0.01);
 			FlxG.camera.shake(0.0100, 0.01);
@@ -4268,7 +4268,7 @@ class PlayState extends MusicBeatState
 			gf.playAnim('scared', true);
 		}
 
-		if (dad.curCharacter == 'ruv-alt' && dad.animation.curAnim.name.startsWith('sing') && mustHitSection)
+		if (dad.curCharacter == 'ruv-alt' && dad.animation.curAnim.name.startsWith('sing') && section.mustHitSection)
 		{
 			camHUD.shake(0.0100, 0.01);
 			FlxG.camera.shake(0.0100, 0.01);
@@ -4330,7 +4330,7 @@ class PlayState extends MusicBeatState
 				dad.playAnim('cheer', true);
 			}
 
-		if (curSong.toLowerCase == 'its-been-so-long' && curStep == 446 && dad.curCharacter == 'sarvente')
+		if (curSong.toLowerCase() == 'its-been-so-long' && curStep == 446 && dad.curCharacter == 'sarvente')
 		{
 			boyfriend.playAnim('hey', true);
 			gf.playAnim('cheer', true);
