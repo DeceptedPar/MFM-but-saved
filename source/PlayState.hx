@@ -4258,20 +4258,20 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim('idle');
 		}
 
-		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing') && section.mustHitSection)
+		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.0100, 0.01);
-			FlxG.camera.shake(0.0100, 0.01);
+			camHUD.shake(0.0100, 0.01, true);
+			FlxG.camera.shake(0.0100, 0.01, true);
 			boyfriend.playAnim('idle', false);
 			boyfriend.playAnim('scared', true);
 			gf.playAnim('dance', false);
 			gf.playAnim('scared', true);
 		}
 
-		if (dad.curCharacter == 'ruv-alt' && dad.animation.curAnim.name.startsWith('sing') && section.mustHitSection)
+		if (dad.curCharacter == 'ruv-alt' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.0100, 0.01);
-			FlxG.camera.shake(0.0100, 0.01);
+			camHUD.shake(0.0100, 0.01, true);
+			FlxG.camera.shake(0.0100, 0.01, true);
 		}
 
 		if (boyfriend.curCharacter == 'ruv' && boyfriend.animation.curAnim.name.startsWith('sing'))
