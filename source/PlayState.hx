@@ -4519,8 +4519,8 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.085, 0.04, true);
-			FlxG.camera.shake(0.085, 0.04, true);
+			camHUD.shake(0.0085, 0.1, true);
+			FlxG.camera.shake(0.0085, 0.1, true);
 			boyfriend.playAnim('idle', false);
 			boyfriend.playAnim('scared', true);
 			gf.playAnim('dance', false);
@@ -4529,14 +4529,14 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv-alt' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.085, 0.04, true);
-			FlxG.camera.shake(0.085, 0.04, true);
+			camHUD.shake(0.0085, 0.1, true);
+			FlxG.camera.shake(0.0085, 0.1, true);
 		}
 
 		if (boyfriend.curCharacter == 'ruv' && boyfriend.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.085, 0.04, true);
-			FlxG.camera.shake(0.085, 0.04, true);
+			camHUD.shake(0.0085, 0.1, true);
+			FlxG.camera.shake(0.0085, 0.1, true);
 			gf.playAnim('dance', false);
 			gf.playAnim('scared', true);
 		}
@@ -4728,7 +4728,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4740,7 +4740,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4752,7 +4752,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4764,7 +4764,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4776,7 +4776,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4788,7 +4788,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4800,7 +4800,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4812,7 +4812,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4824,7 +4824,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4836,7 +4836,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4848,7 +4848,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4860,7 +4860,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4872,7 +4872,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4884,7 +4884,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
