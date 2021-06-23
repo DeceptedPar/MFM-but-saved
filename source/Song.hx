@@ -53,6 +53,16 @@ class Song
 		switch (folderLowercase) {
 			case 'dad-battle': folderLowercase = 'dadbattle';
 			case 'philly-nice': folderLowercase = 'philly';
+			case 'satin-panties': folderLowercase = 'satin panties';
+			case 'church-lords': folderLowercase = 'church lords';
+			case 'gospel-remix': folderLowercase = 'gospel remix';
+			case 'it\'s-been-so-long': folderLowercase = 'it\'s been so long';
+			case 'panic-stricken': folderLowercase = 'panic stricken';
+			case 'ruv-jug': folderLowercase = 'ruv jug';
+			case 'ruvved-up': folderLowercase = 'ruvved up';
+			case 'too-clergy': folderLowercase = 'too clergy';
+			case 'tutorial-remix': folderLowercase = 'tutorial remix';
+			case 'zavodila-remix': folderLowercase = 'zavodila remix';
 		}
 		
 		trace('loading ' + folderLowercase + '/' + jsonInput.toLowerCase());

@@ -158,9 +158,29 @@ class LoadReplayState extends MusicBeatState
 					switch (songFormat) {
 						case 'Dad-Battle': songFormat = 'Dadbattle';
 						case 'Philly-Nice': songFormat = 'Philly';
+						case 'Satin-Panties': songFormat = 'Satin Panties';
+						case 'Church-Lords': songFormat = 'Church Lords';
+						case 'Gospel-Remix': songFormat = 'Gospel Remix';
+						case 'It\'s-Been-So-Long': songFormat = 'It\'s Been So Long';
+						case 'Panic-Stricken': songFormat = 'Panic Stricken';
+						case 'Ruv-Jug': songFormat = 'Ruv Jug';
+						case 'Ruvved-Up': songFormat = 'Ruvved Up';
+						case 'Too-Clergy': songFormat = 'Too Clergy';
+						case 'Tutorial-Remix': songFormat = 'Tutorial Remix';
+						case 'Zavodila-Remix': songFormat = 'Zavodila Remix';
 						// Replay v1.0 support
 						case 'dad-battle': songFormat = 'Dadbattle';
 						case 'philly-nice': songFormat = 'Philly';
+						case 'Satin-Panties': songFormat = 'Satin Panties';
+						case 'church-lords': songFormat = 'Church Lords';
+						case 'gospel-remix': songFormat = 'Gospel Remix';
+						case 'it\'s-been-so-long': songFormat = 'It\'s Been So Long';
+						case 'panic-stricken': songFormat = 'Panic Stricken';
+						case 'ruv-jug': songFormat = 'Ruv Jug';
+						case 'ruvved-up': songFormat = 'Ruvved Up';
+						case 'too-clergy': songFormat = 'Too Clergy';
+						case 'tutorial-remix': songFormat = 'Tutorial Remix';
+						case 'zavodila-remix': songFormat = 'Zavodila Remix';
 					}
 
 					var poop:String = Highscore.formatSong(songFormat, PlayState.rep.replay.songDiff);

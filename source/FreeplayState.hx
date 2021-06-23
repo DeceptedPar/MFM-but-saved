@@ -214,6 +214,16 @@ class FreeplayState extends MusicBeatState
 			switch (songFormat) {
 				case 'Dad-Battle': songFormat = 'Dadbattle';
 				case 'Philly-Nice': songFormat = 'Philly';
+				case 'Satin-Panties': songFormat = 'Satin Panties';
+				case 'Church-Lords': songFormat = 'Church Lords';
+				case 'Gospel-Remix': songFormat = 'Gospel Remix';
+				case 'It\'s-Been-So-Long': songFormat = 'It\'s Been So Long';
+				case 'Panic-Stricken': songFormat = 'Panic Stricken';
+				case 'Ruv-Jug': songFormat = 'Ruv Jug';
+				case 'Ruvved-Up': songFormat = 'Ruvved Up';
+				case 'Too-Clergy': songFormat = 'Too Clergy';
+				case 'Tutorial-Remix': songFormat = 'Tutorial Remix';
+				case 'Zavodila-Remix': songFormat = 'Zavodila Remix';
 			}
 			
 			trace(songs[curSelected].songName);
@@ -245,6 +255,16 @@ class FreeplayState extends MusicBeatState
 		switch (songHighscore) {
 			case 'Dad-Battle': songHighscore = 'Dadbattle';
 			case 'Philly-Nice': songHighscore = 'Philly';
+			case 'Satin-Panties': songHighscore = 'Satin Panties';
+			case 'Church-Lords': songHighscore = 'Church Lords';
+			case 'Gospel-Remix': songHighscore = 'Gospel Remix';
+			case 'It\'s-Been-So-Long': songHighscore = 'It\'s Been So Long';
+			case 'Panic-Stricken': songHighscore = 'Panic Stricken';
+			case 'Ruv-Jug': songHighscore = 'Ruv Jug';
+			case 'Ruvved-Up': songHighscore = 'Ruvved Up';
+			case 'Too-Clergy': songHighscore = 'Too Clergy';
+			case 'Tutorial-Remix': songHighscore = 'Tutorial Remix';
+			case 'Zavodila-Remix': songHighscore = 'Zavodila Remix';
 		}
 		
 		#if !switch
@@ -279,6 +299,16 @@ class FreeplayState extends MusicBeatState
 		switch (songHighscore) {
 			case 'Dad-Battle': songHighscore = 'Dadbattle';
 			case 'Philly-Nice': songHighscore = 'Philly';
+			case 'Satin-Panties': songHighscore = 'Satin Panties';
+			case 'Church-Lords': songHighscore = 'Church Lords';
+			case 'Gospel-Remix': songHighscore = 'Gospel Remix';
+			case 'It\'s-Been-So-Long': songHighscore = 'It\'s Been So Long';
+			case 'Panic-Stricken': songHighscore = 'Panic Stricken';
+			case 'Ruv-Jug': songHighscore = 'Ruv Jug';
+			case 'Ruvved-Up': songHighscore = 'Ruvved Up';
+			case 'Too-Clergy': songHighscore = 'Too Clergy';
+			case 'Tutorial-Remix': songHighscore = 'Tutorial Remix';
+			case 'Zavodila-Remix': songHighscore = 'Zavodila Remix';
 		}
 
 		#if !switch

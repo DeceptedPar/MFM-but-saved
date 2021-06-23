@@ -101,6 +101,16 @@ class Paths
 			switch (songLowercase) {
 				case 'dad-battle': songLowercase = 'dadbattle';
 				case 'philly-nice': songLowercase = 'philly';
+				case 'satin-panties': songLowercase = 'satin panties';
+				case 'church-lords': songLowercase = 'church lords';
+				case 'gospel-remix': songLowercase = 'gospel remix';
+				case 'it\'s-been-so-long': songLowercase = 'it\'s been so long';
+				case 'panic-stricken': songLowercase = 'panic stricken';
+				case 'ruv-jug': songLowercase = 'ruv jug';
+				case 'ruvved-up': songLowercase = 'ruvved up';
+				case 'too-clergy': songLowercase = 'too clergy';
+				case 'tutorial-remix': songLowercase = 'tutorial remix';
+				case 'zavodila-remix': songLowercase = 'zavodila remix';
 			}
 		return 'songs:assets/songs/${songLowercase}/Voices.$SOUND_EXT';
 	}
@@ -111,6 +121,16 @@ class Paths
 			switch (songLowercase) {
 				case 'dad-battle': songLowercase = 'dadbattle';
 				case 'philly-nice': songLowercase = 'philly';
+				case 'satin-panties': songLowercase = 'satin panties';
+				case 'church-lords': songLowercase = 'church lords';
+				case 'gospel-remix': songLowercase = 'gospel remix';
+				case 'it\'s-been-so-long': songLowercase = 'it\'s been so long';
+				case 'panic-stricken': songLowercase = 'panic stricken';
+				case 'ruv-jug': songLowercase = 'ruv jug';
+				case 'ruvved-up': songLowercase = 'ruvved up';
+				case 'too-clergy': songLowercase = 'too clergy';
+				case 'tutorial-remix': songLowercase = 'tutorial remix';
+				case 'zavodila-remix': songLowercase = 'zavodila remix';
 			}
 		return 'songs:assets/songs/${songLowercase}/Inst.$SOUND_EXT';
 	}

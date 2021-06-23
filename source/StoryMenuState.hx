@@ -297,6 +297,16 @@ class StoryMenuState extends MusicBeatState
 			switch (songFormat) {
 				case 'Dad-Battle': songFormat = 'Dadbattle';
 				case 'Philly-Nice': songFormat = 'Philly';
+				case 'Satin-Panties': songFormat = 'Satin Panties';
+				case 'Church-Lords': songFormat = 'Church Lords';
+				case 'Gospel-Remix': songFormat = 'Gospel Remix';
+				case 'It\'s-Been-So-Long': songFormat = 'It\'s Been So Long';
+				case 'Panic-Stricken': songFormat = 'Panic Stricken';
+				case 'Ruv-Jug': songFormat = 'Ruv Jug';
+				case 'Ruvved-Up': songFormat = 'Ruvved Up';
+				case 'Too-Clergy': songFormat = 'Too Clergy';
+				case 'Tutorial-Remix': songFormat = 'Tutorial Remix';
+				case 'Zavodila-Remix': songFormat = 'Zavodila Remix';
 			}
 
 			var poop:String = Highscore.formatSong(songFormat, curDifficulty);

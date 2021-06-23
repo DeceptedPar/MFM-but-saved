@@ -261,6 +261,16 @@ class PlayState extends MusicBeatState
 		switch (songLowercase) {
 			case 'dad-battle': songLowercase = 'dadbattle';
 			case 'philly-nice': songLowercase = 'philly';
+			case 'satin-panties': songLowercase = 'satin panties';
+			case 'church-lords': songLowercase = 'church lords';
+			case 'gospel-remix': songLowercase = 'gospel remix';
+			case 'it\'s-been-so-long': songLowercase = 'it\'s been so long';
+			case 'panic-stricken': songLowercase = 'panic stricken';
+			case 'ruv-jug': songLowercase = 'ruv jug';
+			case 'ruvved-up': songLowercase = 'ruvved up';
+			case 'too-clergy': songLowercase = 'too clergy';
+			case 'tutorial-remix': songLowercase = 'tutorial remix';
+			case 'zavodila-remix': songLowercase = 'zavodila remix';
 		}
 		
 		removedVideo = false;
@@ -825,7 +835,7 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(935, 171).loadGraphic(Paths.image('sacredmass/church3/circ1'));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, stageCurtains.angle, 7200, 60, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
+						FlxTween.angle(stageCurtains, stageCurtains.angle, 36000, 6000, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
 
 						add(stageCurtains);
 
@@ -868,7 +878,7 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(935, 171).loadGraphic(Paths.image('sacredmass/church3ruv/circ1'));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, stageCurtains.angle, 7200, 60, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
+						FlxTween.angle(stageCurtains, stageCurtains.angle, 36000, 6000, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
 
 						add(stageCurtains);
 
@@ -1638,6 +1648,16 @@ class PlayState extends MusicBeatState
 		switch (songLowercase) {
 			case 'dad-battle': songLowercase = 'dadbattle';
 			case 'philly-nice': songLowercase = 'philly';
+			case 'satin-panties': songLowercase = 'satin panties';
+			case 'church-lords': songLowercase = 'church lords';
+			case 'gospel-remix': songLowercase = 'gospel remix';
+			case 'it\'s-been-so-long': songLowercase = 'it\'s been so long';
+			case 'panic-stricken': songLowercase = 'panic stricken';
+			case 'ruv-jug': songLowercase = 'ruv jug';
+			case 'ruvved-up': songLowercase = 'ruvved up';
+			case 'too-clergy': songLowercase = 'too clergy';
+			case 'tutorial-remix': songLowercase = 'tutorial remix';
+			case 'zavodila-remix': songLowercase = 'zavodila remix';
 		}
 		if (executeModchart)
 		{
@@ -1872,6 +1892,16 @@ class PlayState extends MusicBeatState
 				switch (songLowercase) {
 					case 'dad-battle': songLowercase = 'dadbattle';
 					case 'philly-nice': songLowercase = 'philly';
+					case 'satin-panties': songLowercase = 'satin panties';
+					case 'church-lords': songLowercase = 'church lords';
+					case 'gospel-remix': songLowercase = 'gospel remix';
+					case 'it\'s-been-so-long': songLowercase = 'it\'s been so long';
+					case 'panic-stricken': songLowercase = 'panic stricken';
+					case 'ruv-jug': songLowercase = 'ruv jug';
+					case 'ruvved-up': songLowercase = 'ruvved up';
+					case 'too-clergy': songLowercase = 'too clergy';
+					case 'tutorial-remix': songLowercase = 'tutorial remix';
+					case 'zavodila-remix': songLowercase = 'zavodila remix';
 				}
 
 			var songPath = 'assets/data/' + songLowercase + '/';
@@ -2656,6 +2686,11 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.SEVEN)
 		{
+			if (difficulty = 'Alt')
+				{
+					DiscordClient.changePresence("Chart Editor", null, null, false);
+					!FlxG.switchState(new ChartingState());
+				}
 			if (useVideo)
 				{
 					GlobalVideo.get().stop();
@@ -2728,6 +2763,7 @@ class PlayState extends MusicBeatState
 			#end
 		}
 
+		#if debug
 		if (FlxG.keys.justPressed.ZERO)
 		{
 			FlxG.switchState(new AnimationDebug(SONG.player1));
@@ -2740,6 +2776,7 @@ class PlayState extends MusicBeatState
 			#end
 		}
 
+		#if debug
 		if (FlxG.keys.justPressed.NINE)
 		{
 			FlxG.switchState(new AnimationDebug(gf.curCharacter));
@@ -3340,6 +3377,16 @@ class PlayState extends MusicBeatState
 			switch (songHighscore) {
 				case 'Dad-Battle': songHighscore = 'Dadbattle';
 				case 'Philly-Nice': songHighscore = 'Philly';
+				case 'Satin-Panties': songHighscore = 'Satin Panties';
+				case 'Church-Lords': songHighscore = 'Church Lords';
+				case 'Gospel-Remix': songHighscore = 'Gospel Remix';
+				case 'It\'s-Been-So-Long': songHighscore = 'It\'s Been So Long';
+				case 'Panic-Stricken': songHighscore = 'Panic Stricken';
+				case 'Ruv-Jug': songHighscore = 'Ruv Jug';
+				case 'Ruvved-Up': songHighscore = 'Ruvved Up';
+				case 'Too-Clergy': songHighscore = 'Too Clergy';
+				case 'Tutorial-Remix': songHighscore = 'Tutorial Remix';
+				case 'Zavodila-Remix': songHighscore = 'Zavodila Remix';
 			}
 
 			#if !switch
@@ -3408,6 +3455,16 @@ class PlayState extends MusicBeatState
 					switch (songFormat) {
 						case 'Dad-Battle': songFormat = 'Dadbattle';
 						case 'Philly-Nice': songFormat = 'Philly';
+						case 'Satin-Panties': songFormat = 'Satin Panties';
+						case 'Church-Lords': songFormat = 'Church Lords';
+						case 'Gospel-Remix': songFormat = 'Gospel Remix';
+						case 'It\'s-Been-So-Long': songFormat = 'It\'s Been So Long';
+						case 'Panic-Stricken': songFormat = 'Panic Stricken';
+						case 'Ruv-Jug': songFormat = 'Ruv Jug';
+						case 'Ruvved-Up': songFormat = 'Ruvved Up';
+						case 'Too-Clergy': songFormat = 'Too Clergy';
+						case 'Tutorial-Remix': songFormat = 'Tutorial Remix';
+						case 'Zavodila-Remix': songFormat = 'Zavodila Remix';
 					}
 
 					var poop:String = Highscore.formatSong(songFormat, storyDifficulty);
@@ -4519,8 +4576,8 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.0085, 0.1, true);
-			FlxG.camera.shake(0.0085, 0.1, true);
+			camHUD.shake(0.0090, 0.015);
+			FlxG.camera.shake(0.0090, 0.015);
 			boyfriend.playAnim('idle', false);
 			boyfriend.playAnim('scared', true);
 			gf.playAnim('dance', false);
@@ -4529,22 +4586,22 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv-alt' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.0085, 0.1, true);
-			FlxG.camera.shake(0.0085, 0.1, true);
+			camHUD.shake(0.0090, 0.015);
+			FlxG.camera.shake(0.0090, 0.015);
 		}
 
 		if (boyfriend.curCharacter == 'ruv' && boyfriend.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.0085, 0.1, true);
-			FlxG.camera.shake(0.0085, 0.1, true);
+			camHUD.shake(0.0090, 0.015);
+			FlxG.camera.shake(0.0090, 0.015);
 			gf.playAnim('dance', false);
 			gf.playAnim('scared', true);
 		}
 
 		/*if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing') && curSong == 'zavodila-remix' && curBeat >= )
 		{
-			camHUD.shake(0.10, 0.04, true);
-			FlxG.camera.shake(0.10, 0.04, true);
+			camHUD.shake(0.15, 0.015);
+			FlxG.camera.shake(0.15, 0.015);
 			boyfriend.playAnim('idle', false);
 			boyfriend.playAnim('shocked', true);
 			gf.playAnim('dance', false);
@@ -4583,7 +4640,7 @@ class PlayState extends MusicBeatState
 				dad.playAnim('cheer', true);
 			}
 
-		if (curBeat % 16 == 15 && SONG.song == 'Tutorial Remix' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
+		if (curBeat % 16 == 15 && SONG.song == 'Tutorial-Remix' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
 			{
 				boyfriend.playAnim('hey', true);
 				dad.playAnim('cheer', true);
