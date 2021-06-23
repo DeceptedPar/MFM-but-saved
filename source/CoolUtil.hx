@@ -6,9 +6,9 @@ using StringTools;
 
 class CoolUtil
 {
-	public static var difficultyArray:Array<String> = [
+	public static var difficultyArray:Array<String>
 	{
-		switch (curSong.toLowerCase())
+		switch (PlayState.curSong.toLowerCase()
 		{
 			case 'tutorial':
 				difficulty = 'Hard';
@@ -307,8 +307,8 @@ class CoolUtil
 			case 'gospel remix':
 				difficulty = 'Hard';
 				difficulty = 'Alt';
-		}
-	}];
+		});
+	}
 
 	public static function difficultyFromInt(difficulty:Int):String
 	{

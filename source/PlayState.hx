@@ -2686,11 +2686,6 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.SEVEN)
 		{
-			if (difficulty = 'Alt')
-				{
-					DiscordClient.changePresence("Chart Editor", null, null, false);
-					!FlxG.switchState(new ChartingState());
-				}
 			if (useVideo)
 				{
 					GlobalVideo.get().stop();

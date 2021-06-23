@@ -171,7 +171,7 @@ class LoadReplayState extends MusicBeatState
 						// Replay v1.0 support
 						case 'dad-battle': songFormat = 'Dadbattle';
 						case 'philly-nice': songFormat = 'Philly';
-						case 'Satin-Panties': songFormat = 'Satin Panties';
+						case 'satin-panties': songFormat = 'Satin Panties';
 						case 'church-lords': songFormat = 'Church Lords';
 						case 'gospel-remix': songFormat = 'Gospel Remix';
 						case 'it\'s-been-so-long': songFormat = 'It\'s Been So Long';
