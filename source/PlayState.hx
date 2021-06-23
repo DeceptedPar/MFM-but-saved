@@ -2763,7 +2763,6 @@ class PlayState extends MusicBeatState
 			#end
 		}
 
-		#if debug
 		if (FlxG.keys.justPressed.ZERO)
 		{
 			FlxG.switchState(new AnimationDebug(SONG.player1));
@@ -2776,7 +2775,6 @@ class PlayState extends MusicBeatState
 			#end
 		}
 
-		#if debug
 		if (FlxG.keys.justPressed.NINE)
 		{
 			FlxG.switchState(new AnimationDebug(gf.curCharacter));
