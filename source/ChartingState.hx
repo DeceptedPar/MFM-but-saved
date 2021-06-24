@@ -1026,8 +1026,10 @@ class ChartingState extends MusicBeatState
 			+ Std.string(FlxMath.roundDecimal(FlxG.sound.music.length / 1000, 2))
 			+ "\nSection: "
 			+ curSection 
-			+ "\nCurStep: " 
-			+ curStep;
+			+ "\nCurent Step: " 
+			+ curStep
+			+ "\nCurent Beat: "
+			+ curBeat;
 		super.update(elapsed);
 	}
 

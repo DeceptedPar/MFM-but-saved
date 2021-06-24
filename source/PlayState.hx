@@ -265,7 +265,7 @@ class PlayState extends MusicBeatState
 			case 'church-lords': songLowercase = 'church lords';
 			case 'gospel-remix': songLowercase = 'gospel remix';
 			case 'it\'s-been-so-long': songLowercase = 'it\'s been so long';
-			case 'panic-stricken': songLowercase = 'panic stricken';
+			case 'panic-stricken': songLowercase = 'Panic-Stricken';
 			case 'ruv-jug': songLowercase = 'ruv jug';
 			case 'ruvved-up': songLowercase = 'ruvved up';
 			case 'too-clergy': songLowercase = 'too clergy';
@@ -331,7 +331,7 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
 
-		FlxCamera.defaultCameras = [camGame];
+		FlxG.cameras.setDefaultDrawTarget = [camGame];
 
 		persistentUpdate = true;
 		persistentDraw = true;
@@ -835,7 +835,7 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(935, 171).loadGraphic(Paths.image('sacredmass/church3/circ1'));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, stageCurtains.angle, 36000, 6000, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
+						FlxTween.angle(stageCurtains, stageCurtains.angle, 7200, 360, {FlxTweenType.LOOPING, ease: FlxEase.sineIn});
 
 						add(stageCurtains);
 
@@ -878,7 +878,7 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(935, 171).loadGraphic(Paths.image('sacredmass/church3ruv/circ1'));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, stageCurtains.angle, 36000, 6000, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
+						FlxTween.angle(stageCurtains, stageCurtains.angle, 7200, 360, {FlxTweenType.LOOPING, ease: FlxEase.sineIn});
 
 						add(stageCurtains);
 
@@ -1652,7 +1652,7 @@ class PlayState extends MusicBeatState
 			case 'church-lords': songLowercase = 'church lords';
 			case 'gospel-remix': songLowercase = 'gospel remix';
 			case 'it\'s-been-so-long': songLowercase = 'it\'s been so long';
-			case 'panic-stricken': songLowercase = 'panic stricken';
+			case 'panic-stricken': songLowercase = 'Panic-Stricken';
 			case 'ruv-jug': songLowercase = 'ruv jug';
 			case 'ruvved-up': songLowercase = 'ruvved up';
 			case 'too-clergy': songLowercase = 'too clergy';
@@ -1896,7 +1896,7 @@ class PlayState extends MusicBeatState
 					case 'church-lords': songLowercase = 'church lords';
 					case 'gospel-remix': songLowercase = 'gospel remix';
 					case 'it\'s-been-so-long': songLowercase = 'it\'s been so long';
-					case 'panic-stricken': songLowercase = 'panic stricken';
+					case 'panic-stricken': songLowercase = 'Panic-Stricken';
 					case 'ruv-jug': songLowercase = 'ruv jug';
 					case 'ruvved-up': songLowercase = 'ruvved up';
 					case 'too-clergy': songLowercase = 'too clergy';
@@ -3374,7 +3374,7 @@ class PlayState extends MusicBeatState
 				case 'Church-Lords': songHighscore = 'Church Lords';
 				case 'Gospel-Remix': songHighscore = 'Gospel Remix';
 				case 'It\'s-Been-So-Long': songHighscore = 'It\'s Been So Long';
-				case 'Panic-Stricken': songHighscore = 'Panic Stricken';
+				case 'Panic-Stricken': songHighscore = 'Panic-Stricken';
 				case 'Ruv-Jug': songHighscore = 'Ruv Jug';
 				case 'Ruvved-Up': songHighscore = 'Ruvved Up';
 				case 'Too-Clergy': songHighscore = 'Too Clergy';
@@ -3452,7 +3452,7 @@ class PlayState extends MusicBeatState
 						case 'Church-Lords': songFormat = 'Church Lords';
 						case 'Gospel-Remix': songFormat = 'Gospel Remix';
 						case 'It\'s-Been-So-Long': songFormat = 'It\'s Been So Long';
-						case 'Panic-Stricken': songFormat = 'Panic Stricken';
+						case 'Panic-Stricken': songFormat = 'Panic-Stricken';
 						case 'Ruv-Jug': songFormat = 'Ruv Jug';
 						case 'Ruvved-Up': songFormat = 'Ruvved Up';
 						case 'Too-Clergy': songFormat = 'Too Clergy';
@@ -4532,7 +4532,7 @@ class PlayState extends MusicBeatState
 			startCountdown();
 		}
 
-		if (curSong.toLowerCase() == 'its been so long' && curStep == 446 && dad.curCharacter == 'sarvente')
+		if (SONG.song == 'It\'s Been So Long' && curStep == 446 && dad.curCharacter == 'sarvente')
 		{
 			boyfriend.playAnim('hey', true);
 			gf.playAnim('cheer', true);
@@ -4569,8 +4569,8 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.0090, 0.015);
-			FlxG.camera.shake(0.0090, 0.015);
+			camHUD.shake(0.085, 0.6);
+			FlxG.camera.shake(0.085, 0.6);
 			boyfriend.playAnim('idle', false);
 			boyfriend.playAnim('scared', true);
 			gf.playAnim('dance', false);
@@ -4579,27 +4579,17 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv-alt' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.0090, 0.015);
-			FlxG.camera.shake(0.0090, 0.015);
+			camHUD.shake(0.085, 0.6);
+			FlxG.camera.shake(0.085, 0.6);
 		}
 
 		if (boyfriend.curCharacter == 'ruv' && boyfriend.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.0090, 0.015);
-			FlxG.camera.shake(0.0090, 0.015);
+			camHUD.shake(0.085, 0.6);
+			FlxG.camera.shake(0.085, 0.6);
 			gf.playAnim('dance', false);
 			gf.playAnim('scared', true);
 		}
-
-		/*if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing') && curSong == 'zavodila-remix' && curBeat >= )
-		{
-			camHUD.shake(0.15, 0.015);
-			FlxG.camera.shake(0.15, 0.015);
-			boyfriend.playAnim('idle', false);
-			boyfriend.playAnim('shocked', true);
-			gf.playAnim('dance', false);
-			gf.playAnim('scared', true);
-		}*/
 
 		if (boyfriend.animation.curAnim.name.startsWith('sing') || boyfriend.animation.curAnim.name == 'idle')
 		{
@@ -4638,6 +4628,16 @@ class PlayState extends MusicBeatState
 				boyfriend.playAnim('hey', true);
 				dad.playAnim('cheer', true);
 			}
+
+		if (SONG.song == 'Zavodila Remix' && stepHit() >= 1713 dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
+		{
+			camHUD.shake(0.1, 0.6);
+			FlxG.camera.shake(0.1, 0.6);
+			boyfriend.playAnim('idle', false);
+			boyfriend.playAnim('shocked', true);
+			gf.playAnim('dance', false);
+			gf.playAnim('scared', true);
+		}
 
 		if (curSong == 'Too Clergy' && dad.curCharacter == 'sarvente')
 		{
@@ -4778,7 +4778,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4790,7 +4790,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4802,7 +4802,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4814,7 +4814,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4826,7 +4826,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4838,7 +4838,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4850,7 +4850,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4862,7 +4862,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4874,7 +4874,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4886,7 +4886,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4898,7 +4898,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4910,7 +4910,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4922,7 +4922,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4934,7 +4934,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4946,7 +4946,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		/*if (curSong == 'Church Lords' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
 		{
 			switch (curStep)
 			{
@@ -4958,7 +4958,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Church Lords' && dad.curCharacter == 'ruv')
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'ruv')
 		{
 			switch (curStep)
 			{
@@ -4970,7 +4970,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Church Lords' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
 		{
 			switch (curStep)
 			{
@@ -4982,7 +4982,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Church Lords' && dad.curCharacter == 'ruv')
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'ruv')
 		{
 			switch (curStep)
 			{
@@ -4994,7 +4994,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Church Lords' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
 		{
 			switch (curStep)
 			{
@@ -5006,7 +5006,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Church Lords' && boyfriend.curCharacter == 'bf')
+		if (curSong == 'Church-Lords' && boyfriend.curCharacter == 'bf')
 		{
 			switch (curStep)
 			{
@@ -5018,7 +5018,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Church Lords' && boyfriend.curCharacter == 'sarvente')
+		if (curSong == 'Church-Lords' && boyfriend.curCharacter == 'sarvente')
 		{
 			switch (curStep)
 			{
@@ -5030,7 +5030,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Church Lords' && dad.curCharacter == 'ruv')
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'ruv')
 		{
 			switch (curStep)
 			{
@@ -5042,7 +5042,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Church Lords' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
 		{
 			switch (curStep)
 			{
@@ -5054,7 +5054,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Church Lords' && dad.curCharacter == 'ruv')
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'ruv')
 		{
 			switch (curStep)
 			{
@@ -5066,7 +5066,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Church Lords' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
 		{
 			switch (curStep)
 			{
@@ -5076,7 +5076,7 @@ class PlayState extends MusicBeatState
 					iconP2.animation.play('sarvente');
 					add(dad);
 			}
-		}*/
+		}
 
 		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
 		{
