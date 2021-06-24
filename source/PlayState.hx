@@ -835,7 +835,7 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(935, 171).loadGraphic(Paths.image('sacredmass/church3/circ1'));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, stageCurtains.angle, 7200, 360, {FlxTweenType.LOOPING, ease: FlxEase.sineIn});
+						FlxTween.angle(stageCurtains, stageCurtains.angle, 7200, 360, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
 
 						add(stageCurtains);
 
@@ -878,7 +878,7 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(935, 171).loadGraphic(Paths.image('sacredmass/church3ruv/circ1'));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, stageCurtains.angle, 7200, 360, {FlxTweenType.LOOPING, ease: FlxEase.sineIn});
+						FlxTween.angle(stageCurtains, stageCurtains.angle, 7200, 360, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
 
 						add(stageCurtains);
 
