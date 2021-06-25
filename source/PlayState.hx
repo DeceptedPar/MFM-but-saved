@@ -331,7 +331,7 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
 
-		FlxG.cameras.setDefaultDrawTarget = [camGame];
+		FlxCamera.defaultCameras = [camGame];
 
 		persistentUpdate = true;
 		persistentDraw = true;
@@ -5012,7 +5012,7 @@ class PlayState extends MusicBeatState
 			{
 				case 316:
 					remove(boyfriend);
-					boyfriend = new Boyfriend(630, 554, 'sarvente', false);
+					boyfriend = new Boyfriend(630, 554, 'sarvente');
 					iconP1.animation.play('sarvente');
 					add(boyfriend);
 			}
@@ -5024,7 +5024,7 @@ class PlayState extends MusicBeatState
 			{
 				case 316:
 					remove(dad);
-					boyfriend = new Boyfriend(630, 554, 'bf', false);
+					boyfriend = new Boyfriend(630, 554, 'bf');
 					iconP1.animation.play('bf');
 					add(boyfriend);
 			}
