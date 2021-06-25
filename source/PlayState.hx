@@ -4629,7 +4629,7 @@ class PlayState extends MusicBeatState
 				dad.playAnim('cheer', true);
 			}
 
-		if (SONG.song == 'Zavodila Remix' && curStep() >= 1713 dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing')))
+		if (SONG.song == 'Zavodila Remix' && curStep >= 1713 && dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
 			camHUD.shake(0.1, 0.6);
 			FlxG.camera.shake(0.1, 0.6);
