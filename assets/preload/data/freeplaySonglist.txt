@@ -18,22 +18,25 @@ Winter Horrorland:monster-christmas:5
 Senpai:senpai:6
 Roses:senpai:6
 Thorns:spirit:6
-Parish:sarvente:7
-Worship:sarvente:7
-Zavodila:ruv:7
-Gospel:luci-sarv:7
-Casanova:selever:7
-Too Clergy:sarvente:8
-Panic Stricken:ruv:8
-Church Lords:sarvente:9
-Ruvved Up:ruv:9
-Ruv Jug:ruv:9
-It's Been So Long:sarvente:9
-Sarv-odila:sarvente:10
-Ruvodila:ruv:10
-Ruv-el:ruv:10
-Jointly:ruv:11
-Trance:sarvente:11
-Glazomer:ruv:11
-Zavodila Remix:ruv:12
-Gospel Remix:luci-sarv:12
+Ugh:tankman:7
+Guns:tankman:7
+Stress:tankman:7
+Parish:sarvente:8
+Worship:sarvente:8
+Zavodila:ruv:8
+Gospel:luci-sarv:8
+Casanova:selever:8
+Too Clergy:sarvente:9
+Panic Stricken:ruv:9
+Church Lords:sarvente:10
+Ruvved Up:ruv:10
+Ruv Jug:ruv:10
+It's Been So Long:sarvente:10
+Sarv-odila:sarvente:11
+Ruvodila:ruv:11
+Ruv-el:ruv:11
+Jointly:ruv:12
+Trance:sarvente:12
+Glazomer:ruv:12
+Zavodila Remix:ruv:13
+Gospel Remix:luci-sarv:13

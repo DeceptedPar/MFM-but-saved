@@ -177,9 +177,17 @@ class PlayState extends MusicBeatState
 	var bottomBoppers:FlxSprite;
 	var santa:FlxSprite;
 
+	var tank0:FlxSprite;
+	var tank1:FlxSprite;
+	var tank2:FlxSprite;
+	var tank3:FlxSprite;
+	var tank4:FlxSprite;
+	var tank5:FlxSprite;
+
 	var fc:Bool = true;
 
 	var bgGirls:BackgroundGirls;
+	var tankWatchtower:TankWatchtower;
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 
 	var talking:Bool = true;
@@ -265,7 +273,7 @@ class PlayState extends MusicBeatState
 			case 'church-lords': songLowercase = 'church lords';
 			case 'gospel-remix': songLowercase = 'gospel remix';
 			case 'it\'s-been-so-long': songLowercase = 'it\'s been so long';
-			case 'panic-stricken': songLowercase = 'Panic-Stricken';
+			case 'panic-stricken': songLowercase = 'panic stricken';
 			case 'ruv-jug': songLowercase = 'ruv jug';
 			case 'ruvved-up': songLowercase = 'ruvved up';
 			case 'too-clergy': songLowercase = 'too clergy';
@@ -730,6 +738,113 @@ class PlayState extends MusicBeatState
 								add(waveSpriteFG);
 						*/
 			}
+			case 'tank':
+			{
+					defaultCamZoom = 0.9;
+					curStage = "tank";
+
+					var tankSky:FlxSprite = new FlxSprite(-400, -400).loadGraphic(Paths.image('tank/tankSky', 'week7'));
+					tankSky.antialiasing = true;
+					tankSky.scrollFactor.set(0, 0);
+					add(tankSky);
+
+					var tankClouds:FlxSprite = new FlxSprite(-700, -100).loadGraphic(Paths.image('tank/tankClouds', 'week7'));
+					tankClouds.antialiasing = true;
+					tankClouds.scrollFactor.set(0.1, 0.1);
+					add(tankClouds);
+
+					var tankMountains:FlxSprite = new FlxSprite(-300, -20).loadGraphic(Paths.image('tank/tankMountains', 'week7'));
+					tankMountains.antialiasing = true;
+					tankMountains.setGraphicSize(Std.int(tankMountains.width * 1.1));
+					tankMountains.scrollFactor.set(0.2, 0.2);
+					tankMountains.updateHitbox();
+					add(tankMountains);
+
+					var tankBuildings:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankBuildings', 'week7'));
+					tankBuildings.antialiasing = true;
+					tankBuildings.setGraphicSize(Std.int(tankBuildings.width * 1.1));
+					tankBuildings.scrollFactor.set(0.3, 0.3);
+					tankBuildings.updateHitbox();
+					add(tankBuildings);
+
+					var tankRuins:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankRuins', 'week7'));
+					tankRuins.antialiasing = true;
+					tankRuins.setGraphicSize(Std.int(tankRuins.width * 1.1));
+					tankRuins.scrollFactor.set(0.35, 0.35);
+					tankRuins.updateHitbox();
+					add(tankRuins);
+
+					var smokeLeft:FlxSprite = new FlxSprite(-200, -100).loadGraphic(Paths.image('tank/smokeLeft', 'week7'));
+					smokeLeft.frames = Paths.getSparrowAtlas('tank/smokeLeft');
+					smokeLeft.animation.addByPrefix('idle', 'SmokeBlurLeft', 24, true);
+					smokeLeft.animation.play('idle');
+					smokeLeft.scrollFactor.set (0.4, 0.4);
+					smokeLeft.antialiasing = true;
+					add(smokeLeft);
+
+					var smokeRight:FlxSprite = new FlxSprite(1100, -100).loadGraphic(Paths.image('tank/smokeRight', 'week7'));
+					smokeRight.frames = Paths.getSparrowAtlas('tank/smokeRight');
+					smokeRight.animation.addByPrefix('idle', 'SmokeRight', 24, true);
+					smokeRight.animation.play('idle');
+					smokeRight.scrollFactor.set (0.4, 0.4);
+					smokeRight.antialiasing = true;
+					add(smokeRight);
+
+					tankWatchtower = new TankWatchtower(100, 50);
+					tankWatchtower.scrollFactor.set(0.5, 0.5);
+					tankWatchtower.antialiasing = true;
+					add(tankWatchtower);
+
+					var tankRolling:FlxSprite = new FlxSprite(300, 300).loadGraphic(Paths.image('tank/tankRolling', 'week7'));
+					tankRolling.frames = Paths.getSparrowAtlas('tank/tankRolling');
+					tankRolling.animation.addByPrefix('idle', 'BG tank w lighting', 24, false);
+					tankRolling.antialiasing = true;
+					tankRolling.scrollFactor.set(0.5, 0.5);
+					add(tankRolling);
+
+					var tankGround:FlxSprite = new FlxSprite(-420, -150).loadGraphic(Paths.image('tank/tankGround', 'week7'));
+					tankGround.setGraphicSize(Std.int(tankGround.width * 1.15));
+					tankGround.updateHitbox();
+					tankGround.antialiasing = true;
+					add(tankGround);
+
+					tank0 = new FlxSprite(-500, 650);
+					tank0.frames = Paths.getSparrowAtlas('tank/tank0', 'week7');
+					tank0.animation.addByPrefix('idle', 'fg tankhead far right', 24, false);
+					tank0.scrollFactor.set(1.7, 1.5);
+					tank0.antialiasing = true;
+
+					tank1 = new FlxSprite(-300, 750);
+					tank1.frames = Paths.getSparrowAtlas('tank/tank1', 'week7');
+					tank1.animation.addByPrefix('idle', 'fg', 24, false);
+					tank1.scrollFactor.set(2, 0.2);
+					tank1.antialiasing = true;
+
+					tank2 = new FlxSprite(450, 940);
+					tank2.frames = Paths.getSparrowAtlas('tank/tank2', 'week7');
+					tank2.animation.addByPrefix('idle', 'foreground', 24, false);
+					tank2.scrollFactor.set(1.5, 1.5);
+					tank2.antialiasing = true;
+
+					tank4 = new FlxSprite(1300, 900);
+					tank4.frames = Paths.getSparrowAtlas('tank/tank4', 'week7');
+					tank4.animation.addByPrefix('idle', 'fg', 24, false);
+					tank4.scrollFactor.set(1.5, 1.5);
+					tank4.antialiasing = true;
+
+					tank5 = new FlxSprite(1620, 700);
+					tank5.frames = Paths.getSparrowAtlas('tank/tank5', 'week7');
+					tank5.animation.addByPrefix('idle', 'fg', 24, false);
+					tank5.scrollFactor.set(1.5, 1.5);
+					tank5.antialiasing = true;
+
+					tank3 = new FlxSprite(1300, 1200);
+					tank3.frames = Paths.getSparrowAtlas('tank/tank3', 'week7');
+					tank3.animation.addByPrefix('idle', 'fg', 24, false);
+					tank3.scrollFactor.set(1.5, 1.5);
+					tank3.antialiasing = true;
+
+			}
 			case 'church1':
 				{
 						defaultCamZoom = 0.9;
@@ -1010,6 +1125,8 @@ class PlayState extends MusicBeatState
 				curGf = 'gf-dark';
 			case 'un-gf':
 				curGf = 'un-gf';
+			case 'gf-tankman':
+				curGf = 'gf-tankman';
 			default:
 				curGf = 'gf';
 		}
@@ -1057,6 +1174,8 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case "tankman":
+				dad.y += 180;
 			case 'sarvente':
 				dad.x = 630;
 				dad.y = 554;
@@ -1121,6 +1240,13 @@ class PlayState extends MusicBeatState
 				boyfriend.y += 220;
 				gf.x += 180;
 				gf.y += 300;
+
+			case 'tank':
+				boyfriend.x += 40;
+				gf.x += 10;
+				gf.y -= 30;
+				dad.x -= 80;
+				dad.y += 60;
 
 			case 'church1':
 			if (boyfriend.curCharacter == 'bf')
@@ -1652,7 +1778,7 @@ class PlayState extends MusicBeatState
 			case 'church-lords': songLowercase = 'church lords';
 			case 'gospel-remix': songLowercase = 'gospel remix';
 			case 'it\'s-been-so-long': songLowercase = 'it\'s been so long';
-			case 'panic-stricken': songLowercase = 'Panic-Stricken';
+			case 'panic-stricken': songLowercase = 'panic stricken';
 			case 'ruv-jug': songLowercase = 'ruv jug';
 			case 'ruvved-up': songLowercase = 'ruvved up';
 			case 'too-clergy': songLowercase = 'too clergy';
@@ -1896,7 +2022,7 @@ class PlayState extends MusicBeatState
 					case 'church-lords': songLowercase = 'church lords';
 					case 'gospel-remix': songLowercase = 'gospel remix';
 					case 'it\'s-been-so-long': songLowercase = 'it\'s been so long';
-					case 'panic-stricken': songLowercase = 'Panic-Stricken';
+					case 'panic-stricken': songLowercase = 'panic stricken';
 					case 'ruv-jug': songLowercase = 'ruv jug';
 					case 'ruvved-up': songLowercase = 'ruvved up';
 					case 'too-clergy': songLowercase = 'too clergy';
@@ -3374,7 +3500,7 @@ class PlayState extends MusicBeatState
 				case 'Church-Lords': songHighscore = 'Church Lords';
 				case 'Gospel-Remix': songHighscore = 'Gospel Remix';
 				case 'It\'s-Been-So-Long': songHighscore = 'It\'s Been So Long';
-				case 'Panic-Stricken': songHighscore = 'Panic-Stricken';
+				case 'Panic-Stricken': songHighscore = 'Panic Stricken';
 				case 'Ruv-Jug': songHighscore = 'Ruv Jug';
 				case 'Ruvved-Up': songHighscore = 'Ruvved Up';
 				case 'Too-Clergy': songHighscore = 'Too Clergy';
@@ -3452,7 +3578,7 @@ class PlayState extends MusicBeatState
 						case 'Church-Lords': songFormat = 'Church Lords';
 						case 'Gospel-Remix': songFormat = 'Gospel Remix';
 						case 'It\'s-Been-So-Long': songFormat = 'It\'s Been So Long';
-						case 'Panic-Stricken': songFormat = 'Panic-Stricken';
+						case 'Panic-Stricken': songFormat = 'Panic Stricken';
 						case 'Ruv-Jug': songFormat = 'Ruv Jug';
 						case 'Ruvved-Up': songFormat = 'Ruvved Up';
 						case 'Too-Clergy': songFormat = 'Too Clergy';
@@ -4569,8 +4695,8 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.085, 0.6);
-			FlxG.camera.shake(0.085, 0.6);
+			camHUD.shake(0.0085, 0.4);
+			FlxG.camera.shake(0.0085, 0.4);
 			boyfriend.playAnim('idle', false);
 			boyfriend.playAnim('scared', true);
 			gf.playAnim('dance', false);
@@ -4579,14 +4705,14 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'ruv-alt' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.085, 0.6);
-			FlxG.camera.shake(0.085, 0.6);
+			camHUD.shake(0.0085, 0.4);
+			FlxG.camera.shake(0.0085, 0.4);
 		}
 
 		if (boyfriend.curCharacter == 'ruv' && boyfriend.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.085, 0.6);
-			FlxG.camera.shake(0.085, 0.6);
+			camHUD.shake(0.0085, 0.4);
+			FlxG.camera.shake(0.0085, 0.4);
 			gf.playAnim('dance', false);
 			gf.playAnim('scared', true);
 		}
@@ -4631,8 +4757,8 @@ class PlayState extends MusicBeatState
 
 		if (SONG.song == 'Zavodila Remix' && curStep >= 1713 && dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
-			camHUD.shake(0.1, 0.6);
-			FlxG.camera.shake(0.1, 0.6);
+			camHUD.shake(0.1, 0.4);
+			FlxG.camera.shake(0.1, 0.4);
 			boyfriend.playAnim('idle', false);
 			boyfriend.playAnim('shocked', true);
 			gf.playAnim('dance', false);
@@ -4778,7 +4904,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4790,7 +4916,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4802,7 +4928,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4814,7 +4940,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4826,7 +4952,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4838,7 +4964,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4850,7 +4976,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4862,7 +4988,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4874,7 +5000,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4886,7 +5012,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4898,7 +5024,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4910,7 +5036,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
@@ -4922,7 +5048,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'ruv')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'ruv')
 		{
 			switch (curBeat)
 			{
@@ -4934,7 +5060,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Panic-Stricken' && dad.curCharacter == 'sarvente')
+		if (curSong == 'Panic Stricken' && dad.curCharacter == 'sarvente')
 		{
 			switch (curBeat)
 			{
