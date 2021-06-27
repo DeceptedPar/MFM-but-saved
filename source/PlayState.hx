@@ -410,6 +410,7 @@ class PlayState extends MusicBeatState
 				case 4: stageCheck = 'limo';
 				case 5: if (songLowercase == 'winter-horrorland') {stageCheck = 'mallEvil';} else {stageCheck = 'mall';}
 				case 6: if (songLowercase == 'thorns') {stageCheck = 'schoolEvil';} else {stageCheck = 'school';}
+				case 7: stageCheck = 'tank';
 				//i should check if its stage (but this is when none is found in chart anyway)
 			}
 		} else {stageCheck = SONG.stage;}
@@ -1109,6 +1110,7 @@ class PlayState extends MusicBeatState
 				case 4: gfCheck = 'gf-car';
 				case 5: gfCheck = 'gf-christmas';
 				case 6: gfCheck = 'gf-pixel';
+				case 7: if (songLowercase == 'stress') {gfCheck = 'pico-speaker';} else {gfCheck = 'gf-tankmen';}
 			}
 		} else {gfCheck = SONG.gfVersion;}
 
@@ -1125,8 +1127,10 @@ class PlayState extends MusicBeatState
 				curGf = 'gf-dark';
 			case 'un-gf':
 				curGf = 'un-gf';
-			case 'gf-tankman':
-				curGf = 'gf-tankman';
+			case 'gf-tankmen':
+				curGf = 'gf-tankmen';
+			case 'pico-speaker':
+				curGf = 'pico-speaker'
 			default:
 				curGf = 'gf';
 		}
@@ -1174,7 +1178,7 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-			case "tankman":
+			case 'tankman':
 				dad.y += 180;
 			case 'sarvente':
 				dad.x = 630;

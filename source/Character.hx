@@ -576,6 +576,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'tankman':
+				frames = Paths.getSparrowAtlas('characters/tankman');
 				animation.addByPrefix('idle', 'Tankman Idle Dance', 24, false);
 				animation.addByPrefix('singUP', 'Tankman UP note', 24, false);
 				if (isPlayer) {
@@ -771,11 +772,6 @@ class Character extends FlxSprite
 				trace('dance');
 				dance();
 				holdTimer = 0;
-			}
-
-			if (animation.curAnim.name != "singDOWN-alt")
-			{
-				playAnim('idle');
 			}
 		}
 

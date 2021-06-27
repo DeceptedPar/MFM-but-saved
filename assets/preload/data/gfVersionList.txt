@@ -5,3 +5,4 @@ gf-pixel
 gf-dark
 no-gf
 gf-tankmen
+pico-speaker
