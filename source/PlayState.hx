@@ -5338,6 +5338,17 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
+			case 'tank':
+				if(FlxG.save.data.distractions){
+					tankWatchtower.dance();
+					tank0.animation.play('idle', true);
+					tank1.animation.play('idle', true);
+					tank2.animation.play('idle', true);
+					tank4.animation.play('idle', true);
+					tank5.animation.play('idle', true);
+					tank3.animation.play('idle', true);
+				}
+
 			case 'school':
 				if(FlxG.save.data.distractions){
 					bgGirls.dance();
@@ -5376,18 +5387,6 @@ class PlayState extends MusicBeatState
 	
 						phillyCityLights.members[curLight].visible = true;
 						// phillyCityLights.members[curLight].alpha = 1;
-				}
-
-			case 'tank':
-				if(FlxG.save.data.distractions){
-					tankWatchtower.dance();
-					tank0.animation.play('idle', true);
-					tank1.animation.play('idle', true);
-					tank2.animation.play('idle', true);
-					tank4.animation.play('idle', true);
-					tank5.animation.play('idle', true);
-					tank3.animation.play('idle', true);
-
 				}
 
 				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
