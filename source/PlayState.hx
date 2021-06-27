@@ -5377,6 +5377,15 @@ class PlayState extends MusicBeatState
 						phillyCityLights.members[curLight].visible = true;
 						// phillyCityLights.members[curLight].alpha = 1;
 				}
+				
+			case 'tank':
+				tankWatchtower.dance();
+				tank0.animation.play('idle', true);
+				tank1.animation.play('idle', true);
+				tank2.animation.play('idle', true);
+				tank4.animation.play('idle', true);
+				tank5.animation.play('idle', true);
+				tank3.animation.play('idle', true);
 
 				}
 
