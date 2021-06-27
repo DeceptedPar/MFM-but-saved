@@ -1130,7 +1130,7 @@ class PlayState extends MusicBeatState
 			case 'gf-tankmen':
 				curGf = 'gf-tankmen';
 			case 'pico-speaker':
-				curGf = 'pico-speaker'
+				curGf = 'pico-speaker';
 			default:
 				curGf = 'gf';
 		}
