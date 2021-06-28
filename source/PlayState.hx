@@ -811,7 +811,7 @@ class PlayState extends MusicBeatState
 						add(smokeRight);
 
 						tankWatchtower = new TankWatchtower(100, 30);
-						tankWatchtower.frames = Paths.getSparrowAtlas('tank/tankWatchtower' 'week7');
+						tankWatchtower.frames = Paths.getSparrowAtlas('tank/tankWatchtower', 'week7');
 						tankWatchtower.animation.addByPrefix('idle', 'watchtower gradient color instance 1', 24, false);
 						tankWatchtower.scrollFactor.set(0.5, 0.5);
 						tankWatchtower.antialiasing = true;
