@@ -795,7 +795,6 @@ class PlayState extends MusicBeatState
 						add(tankRuins);
 
 						var smokeLeft:FlxSprite = new FlxSprite(-200, -100).loadGraphic(Paths.image('tank/smokeLeft', 'week7'));
-						smokeLeft.frames = Paths.getSparrowAtlas('tank/smokeLeft');
 						smokeLeft.animation.addByPrefix('idle', 'SmokeBlurLeft', 24, true);
 						smokeLeft.animation.play('idle');
 						smokeLeft.scrollFactor.set (0.4, 0.4);
@@ -803,22 +802,19 @@ class PlayState extends MusicBeatState
 						add(smokeLeft);
 
 						var smokeRight:FlxSprite = new FlxSprite(1100, -100).loadGraphic(Paths.image('tank/smokeRight', 'week7'));
-						smokeRight.frames = Paths.getSparrowAtlas('tank/smokeRight');
 						smokeRight.animation.addByPrefix('idle', 'SmokeRight', 24, true);
 						smokeRight.animation.play('idle');
 						smokeRight.scrollFactor.set (0.4, 0.4);
 						smokeRight.antialiasing = true;
 						add(smokeRight);
 
-						tankWatchtower = new TankWatchtower(100, 30);
-						tankWatchtower.frames = Paths.getSparrowAtlas('tank/tankWatchtower', 'week7');
+						var tankWatchtower:FlxSprite = new TankWatchtower(100, 30).loadGraphic(Paths.image('tank/tankWatchtower', 'week7'));
 						tankWatchtower.animation.addByPrefix('idle', 'watchtower gradient color instance 1', 24, false);
 						tankWatchtower.scrollFactor.set(0.5, 0.5);
 						tankWatchtower.antialiasing = true;
 						add(tankWatchtower);
 
 						var tankRolling:FlxSprite = new FlxSprite(300, 300).loadGraphic(Paths.image('tank/tankRolling', 'week7'));
-						tankRolling.frames = Paths.getSparrowAtlas('tank/tankRolling');
 						tankRolling.animation.addByPrefix('idle', 'BG tank w lighting', 24, true);
 						tankRolling.antialiasing = true;
 						tankRolling.scrollFactor.set(0.5, 0.5);
