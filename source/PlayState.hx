@@ -808,7 +808,7 @@ class PlayState extends MusicBeatState
 						smokeRight.antialiasing = true;
 						add(smokeRight);
 
-						var tankWatchtower:FlxSprite = new TankWatchtower(100, 30).loadGraphic(Paths.image('tank/tankWatchtower', 'week7'));
+						var tankWatchtower:FlxSprite = new FlxSprite(100, 30).loadGraphic(Paths.image('tank/tankWatchtower', 'week7'));
 						tankWatchtower.animation.addByPrefix('idle', 'watchtower gradient color instance 1', 24, false);
 						tankWatchtower.scrollFactor.set(0.5, 0.5);
 						tankWatchtower.antialiasing = true;
@@ -977,7 +977,7 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(935, 171).loadGraphic(Paths.image('sacredmass/church3/circ1'));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, stageCurtains.angle, 7200, 360, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
+						FlxTween.angle(stageCurtains, stageCurtains.angle, 7200, 300, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
 
 						add(stageCurtains);
 
@@ -1020,7 +1020,7 @@ class PlayState extends MusicBeatState
 						var stageCurtains = new FlxSprite(935, 171).loadGraphic(Paths.image('sacredmass/church3ruv/circ1'));
 						stageCurtains.antialiasing = true;
 
-						FlxTween.angle(stageCurtains, stageCurtains.angle, 7200, 360, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
+						FlxTween.angle(stageCurtains, stageCurtains.angle, 7200, 300, {type: FlxTween.LOOPING, ease: FlxEase.sineIn});
 
 						add(stageCurtains);
 
