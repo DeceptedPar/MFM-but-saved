@@ -31,6 +31,7 @@ install:
   - haxelib git extension-webm https://github.com/KadeDev/extension-webm
   - haxelib run lime rebuild extension-webm macos
   - haxelib install linc_luajit
+  - haxelib install actuate
   - haxelib list
   - cd /Users/appveyor/projects/kadeengine-sarvente
 

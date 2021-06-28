@@ -48,15 +48,15 @@ class ResultsScreen extends FlxSubState
     public var ranking:String;
     public var accuracy:String;
 
-	override function create()
-	{	
+    override function create()
+    {   
         background = new FlxSprite(0,0).makeGraphic(FlxG.width,FlxG.height,FlxColor.BLACK);
         background.scrollFactor.set();
         add(background);
 
         music = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
-		music.volume = 0;
-		music.play(false, FlxG.random.int(0, Std.int(music.length / 2)));
+        music.volume = 0;
+        music.play(false, FlxG.random.int(0, Std.int(music.length / 2)));
 
         background.alpha = 0;
 
@@ -82,7 +82,7 @@ class ResultsScreen extends FlxSubState
         comboText.scrollFactor.set();
         add(comboText);
 
-        contText = new FlxText(FlxG.width - 475,FlxG.height + 50,0,'Press ENTER to continue.');
+        contText = new FlxText(FlxG.width - 475,FlxG.height + 50,0,'Press ${KeyBinds.gamepad ? 'A' : 'ENTER'} to continue.');
         contText.size = 28;
         contText.setBorderStyle(FlxTextBorderStyle.OUTLINE,FlxColor.BLACK,4,1);
         contText.color = FlxColor.WHITE;
@@ -159,25 +159,36 @@ class ResultsScreen extends FlxSubState
 
         cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
-		super.create();
-	}
+        super.create();
+    }
 
 
     var frames = 0;
 
-	override function update(elapsed:Float)
-	{
+    override function update(elapsed:Float)
+    {
         if (music.volume < 0.5)
-			music.volume += 0.01 * elapsed;
+            music.volume += 0.01 * elapsed;
 
         // keybinds
 
-        if (FlxG.keys.justPressed.ENTER)
+        if (PlayerSettings.player1.controls.ACCEPT)
         {
             music.fadeOut(0.3);
             
             PlayState.loadRep = false;
             PlayState.rep = null;
+
+            var songHighscore = StringTools.replace(PlayState.SONG.song, " ", "-");
+            switch (songHighscore) {
+                case 'Dad-Battle': songHighscore = 'Dadbattle';
+                case 'Philly-Nice': songHighscore = 'Philly';
+            }
+
+            #if !switch
+            Highscore.saveScore(songHighscore, Math.round(PlayState.instance.songScore), PlayState.storyDifficulty);
+            Highscore.saveCombo(songHighscore, Ratings.GenerateLetterRank(PlayState.instance.accuracy),PlayState.storyDifficulty);
+            #end
 
             if (PlayState.isStoryMode)
             {
@@ -186,12 +197,6 @@ class ResultsScreen extends FlxSubState
             }
             else
                 FlxG.switchState(new FreeplayState());
-        }
-
-        if (FlxG.keys.justPressed.EIGHT)
-        {
-            graph.showInput = !graph.showInput;
-            graph.update();
         }
 
         if (FlxG.keys.justPressed.F1)
@@ -205,10 +210,51 @@ class ResultsScreen extends FlxSubState
             switch (songFormat) {
                 case 'Dad-Battle': songFormat = 'Dadbattle';
                 case 'Philly-Nice': songFormat = 'Philly';
-                    // Replay v1.0 support
+                case 'Satin-Panties': songFormat = 'Satin Panties';
+                case 'Church-Lords': songFormat = 'Church Lords';
+                case 'Gospel-Remix': songFormat = 'Gospel Remix';
+                case 'It\'s-Been-So-Long': songFormat = 'It\'s Been So Long';
+                case 'Panic-Stricken': songFormat = 'Panic Stricken';
+                case 'Ruv-Jug': songFormat = 'Ruv Jug';
+                case 'Ruvved-Up': songFormat = 'Ruvved Up';
+                case 'Too-Clergy': songFormat = 'Too Clergy';
+                case 'Tutorial-Remix': songFormat = 'Tutorial Remix';
+                case 'Zavodila-Remix': songFormat = 'Zavodila Remix';
+
                 case 'dad-battle': songFormat = 'Dadbattle';
                 case 'philly-nice': songFormat = 'Philly';
+                case 'satin-panties': songFormat = 'Satin Panties';
+                case 'church-lords': songFormat = 'Church Lords';
+                case 'gospel-remix': songFormat = 'Gospel Remix';
+                case 'it\'s-been-so-long': songFormat = 'It\'s Been So Long';
+                case 'panic-stricken': songFormat = 'Panic Stricken';
+                case 'ruv-jug': songFormat = 'Ruv Jug';
+                case 'ruvved-up': songFormat = 'Ruvved Up';
+                case 'too-clergy': songFormat = 'Too Clergy';
+                case 'tutorial-remix': songFormat = 'Tutorial Remix';
+                case 'zavodila-remix': songFormat = 'Zavodila Remix';
             }
+
+            var songHighscore = StringTools.replace(PlayState.SONG.song, " ", "-");
+            switch (songHighscore) {
+                case 'Dad-Battle': songHighscore = 'Dadbattle';
+                case 'Philly-Nice': songHighscore = 'Philly';
+                case 'Satin-Panties': songHighscore = 'Satin Panties';
+                case 'Church-Lords': songHighscore = 'Church Lords';
+                case 'Gospel-Remix': songHighscore = 'Gospel Remix';
+                case 'It\'s-Been-So-Long': songHighscore = 'It\'s Been So Long';
+                case 'Panic-Stricken': songHighscore = 'Panic Stricken';
+                case 'Ruv-Jug': songHighscore = 'Ruv Jug';
+                case 'Ruvved-Up': songHighscore = 'Ruvved Up';
+                case 'Too-Clergy': songHighscore = 'Too Clergy';
+                case 'Tutorial-Remix': songHighscore = 'Tutorial Remix';
+                case 'Zavodila-Remix': songHighscore = 'Zavodila Remix';
+            }
+
+            #if !switch
+            Highscore.saveScore(songHighscore, Math.round(PlayState.instance.songScore), PlayState.storyDifficulty);
+            Highscore.saveCombo(songHighscore, Ratings.GenerateLetterRank(PlayState.instance.accuracy),PlayState.storyDifficulty);
+            #end
 
             var poop:String = Highscore.formatSong(songFormat, PlayState.rep.replay.songDiff);
 
@@ -227,13 +273,54 @@ class ResultsScreen extends FlxSubState
 
             PlayState.loadRep = false;
 
+            var songHighscore = StringTools.replace(PlayState.SONG.song, " ", "-");
+            switch (songHighscore) {
+                case 'Dad-Battle': songHighscore = 'Dadbattle';
+                case 'Philly-Nice': songHighscore = 'Philly';
+                case 'Satin-Panties': songHighscore = 'Satin Panties';
+                case 'Church-Lords': songHighscore = 'Church Lords';
+                case 'Gospel-Remix': songHighscore = 'Gospel Remix';
+                case 'It\'s-Been-So-Long': songHighscore = 'It\'s Been So Long';
+                case 'Panic-Stricken': songHighscore = 'Panic Stricken';
+                case 'Ruv-Jug': songHighscore = 'Ruv Jug';
+                case 'Ruvved-Up': songHighscore = 'Ruvved Up';
+                case 'Too-Clergy': songHighscore = 'Too Clergy';
+                case 'Tutorial-Remix': songHighscore = 'Tutorial Remix';
+                case 'Zavodila-Remix': songHighscore = 'Zavodila Remix';
+            }
+
+            #if !switch
+            Highscore.saveScore(songHighscore, Math.round(PlayState.instance.songScore), PlayState.storyDifficulty);
+            Highscore.saveCombo(songHighscore, Ratings.GenerateLetterRank(PlayState.instance.accuracy),PlayState.storyDifficulty);
+            #end
+
             var songFormat = StringTools.replace(PlayState.SONG.song, " ", "-");
             switch (songFormat) {
                 case 'Dad-Battle': songFormat = 'Dadbattle';
                 case 'Philly-Nice': songFormat = 'Philly';
+                case 'Satin-Panties': songFormat = 'Satin Panties';
+                case 'Church-Lords': songFormat = 'Church Lords';
+                case 'Gospel-Remix': songFormat = 'Gospel Remix';
+                case 'It\'s-Been-So-Long': songFormat = 'It\'s Been So Long';
+                case 'Panic-Stricken': songFormat = 'Panic Stricken';
+                case 'Ruv-Jug': songFormat = 'Ruv Jug';
+                case 'Ruvved-Up': songFormat = 'Ruvved Up';
+                case 'Too-Clergy': songFormat = 'Too Clergy';
+                case 'Tutorial-Remix': songFormat = 'Tutorial Remix';
+                case 'Zavodila-Remix': songFormat = 'Zavodila Remix';
+
                 case 'dad-battle': songFormat = 'Dadbattle';
                 case 'philly-nice': songFormat = 'Philly';
-            }
+                case 'satin-panties': songFormat = 'Satin Panties';
+                case 'church-lords': songFormat = 'Church Lords';
+                case 'gospel-remix': songFormat = 'Gospel Remix';
+                case 'it\'s-been-so-long': songFormat = 'It\'s Been So Long';
+                case 'panic-stricken': songFormat = 'Panic Stricken';
+                case 'ruv-jug': songFormat = 'Ruv Jug';
+                case 'ruvved-up': songFormat = 'Ruvved Up';
+                case 'too-clergy': songFormat = 'Too Clergy';
+                case 'tutorial-remix': songFormat = 'Tutorial Remix';
+                case 'zavodila-remix': songFormat = 'Zavodila Remix';            }
 
             var poop:String = Highscore.formatSong(songFormat, PlayState.storyDifficulty);
 
@@ -246,7 +333,7 @@ class ResultsScreen extends FlxSubState
             LoadingState.loadAndSwitchState(new PlayState());
         }
 
-		super.update(elapsed);
-		
-	}
+        super.update(elapsed);
+        
+    }
 }

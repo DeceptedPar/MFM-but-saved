@@ -18,6 +18,7 @@ install:
   - haxelib setup "%HAXELIB_ROOT%"
   # Install project dependencies
   - haxelib install lime 7.9.0
+  - RefreshEnv
   - haxelib install openfl
   - haxelib install flixel
   - haxelib run lime setup flixel
@@ -35,6 +36,7 @@ install:
   - haxelib git extension-webm https://github.com/KadeDev/extension-webm
   - haxelib run lime rebuild extension-webm windows
   - haxelib install linc_luajit
+  - haxelib install actuate
   - haxelib list
 
 # No tests idk lol
@@ -44,5 +46,5 @@ build_script:
 
 artifacts:
   - path: export/release/windows/bin
-    name: Sarvente Mod Plus (Windows)
+    name: Sarvente Mod Plus for Windows
     type: zip

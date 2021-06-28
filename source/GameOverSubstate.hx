@@ -18,11 +18,19 @@ class GameOverSubstate extends MusicBeatSubstate
 	{
 		var daStage = PlayState.curStage;
 		var daBf:String = '';
-		switch (PlayState.SONG.player1)
+		switch (daStage)
 		{
-			case 'bf-pixel':
+			case 'school':
 				stageSuffix = '-pixel';
 				daBf = 'bf-pixel-dead';
+
+			case 'schoolEvil':
+				stageSuffix = '-pixel';
+				daBf = 'bf-pixel-dead';
+
+			case 'tankStage2':
+				daBf = 'bf-holding-gf-dead';
+
 			default:
 				daBf = 'bf';
 		}
@@ -76,6 +84,11 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
 		{
 			FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
+			if(PlayState.curStage == "tank")
+			{
+				var numSound:Int = FlxG.random.int(1, 25);
+				FlxG.sound.play(Paths.soundOGG('sounds/jeffGameover/jeffGameover-' + numSound, 'week7'), 1, false, null, true);				
+			}
 		}
 
 		if (FlxG.sound.music.playing)

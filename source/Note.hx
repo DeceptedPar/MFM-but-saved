@@ -69,7 +69,7 @@ class Note extends FlxSprite
 			switch(PlayState.storyWeek) {case 6: noteTypeCheck = 'pixel';}
 		} else {noteTypeCheck = PlayState.SONG.noteStyle;}
 
-		switch (PlayState.SONG.noteStyle)
+		switch (noteTypeCheck)
 		{
 			case 'pixel':
 				loadGraphic(Paths.image('weeb/pixelUI/arrows-pixels','week6'), true, 17, 17);
@@ -100,20 +100,20 @@ class Note extends FlxSprite
 			case 'xmas':
 				frames = Paths.getSparrowAtlas('christmas/xmas_ui/notes_xmas', 'week5');
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('greenScroll', 'green instance 1');
+				animation.addByPrefix('redScroll', 'red instance 1');
+				animation.addByPrefix('blueScroll', 'blue instance 1');
+				animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+				animation.addByPrefix('greenholdend', 'green hold end instance 1');
+				animation.addByPrefix('redholdend', 'red hold end instance 1');
+				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+				animation.addByPrefix('greenhold', 'green hold piece instance 1');
+				animation.addByPrefix('redhold', 'red hold piece instance 1');
+				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
@@ -122,20 +122,20 @@ class Note extends FlxSprite
 			case 'sarvente':
 				frames = Paths.getSparrowAtlas('NOTE_Assets_Sarvente');
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('greenScroll', 'green instance 1');
+				animation.addByPrefix('redScroll', 'red instance 1');
+				animation.addByPrefix('blueScroll', 'blue instance 1');
+				animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+				animation.addByPrefix('greenholdend', 'green hold end instance 1');
+				animation.addByPrefix('redholdend', 'red hold end instance 1');
+				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+				animation.addByPrefix('greenhold', 'green hold piece instance 1');
+				animation.addByPrefix('redhold', 'red hold piece instance 1');
+				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
@@ -144,20 +144,20 @@ class Note extends FlxSprite
 			case 'dark-sarv':
 				frames = Paths.getSparrowAtlas('NOTE_Assets_Dark-Sarv');
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('greenScroll', 'green instance 1');
+				animation.addByPrefix('redScroll', 'red instance 1');
+				animation.addByPrefix('blueScroll', 'blue instance 1');
+				animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+				animation.addByPrefix('greenholdend', 'green hold end instance 1');
+				animation.addByPrefix('redholdend', 'red hold end instance 1');
+				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+				animation.addByPrefix('greenhold', 'green hold piece instance 1');
+				animation.addByPrefix('redhold', 'red hold piece instance 1');
+				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
@@ -166,64 +166,64 @@ class Note extends FlxSprite
 			case 'ruv':
 				frames = Paths.getSparrowAtlas('NOTE_Assets_Ruv');
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('greenScroll', 'green instance 1');
+				animation.addByPrefix('redScroll', 'red instance 1');
+				animation.addByPrefix('blueScroll', 'blue instance 1');
+				animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+				animation.addByPrefix('greenholdend', 'green hold end instance 1');
+				animation.addByPrefix('redholdend', 'red hold end instance 1');
+				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+				animation.addByPrefix('greenhold', 'green hold piece instance 1');
+				animation.addByPrefix('redhold', 'red hold piece instance 1');
+				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
 				antialiasing = true;
 
-            case 'luci-sarv-alt':
-                frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv-Alt');
+			case 'luci-sarv-alt':
+				frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv-Alt');
 
-                animation.addByPrefix('greenScroll', 'green0');
-                animation.addByPrefix('redScroll', 'red0');
-                animation.addByPrefix('blueScroll', 'blue0');
-                animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('greenScroll', 'green instance 1');
+				animation.addByPrefix('redScroll', 'red instance 1');
+				animation.addByPrefix('blueScroll', 'blue instance 1');
+				animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-                animation.addByPrefix('purpleholdend', 'pruple end hold');
-                animation.addByPrefix('greenholdend', 'green hold end');
-                animation.addByPrefix('redholdend', 'red hold end');
-                animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+				animation.addByPrefix('greenholdend', 'green hold end instance 1');
+				animation.addByPrefix('redholdend', 'red hold end instance 1');
+				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-                animation.addByPrefix('purplehold', 'purple hold piece');
-                animation.addByPrefix('greenhold', 'green hold piece');
-                animation.addByPrefix('redhold', 'red hold piece');
-                animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+				animation.addByPrefix('greenhold', 'green hold piece instance 1');
+				animation.addByPrefix('redhold', 'red hold piece instance 1');
+				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
-                setGraphicSize(Std.int(width * 0.7));
-                updateHitbox();
-                antialiasing = true;
+				setGraphicSize(Std.int(width * 0.7));
+				updateHitbox();
+				antialiasing = true;
 
 			case 'luci-sarv':
 				frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv');
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('greenScroll', 'green instance 1');
+				animation.addByPrefix('redScroll', 'red instance 1');
+				animation.addByPrefix('blueScroll', 'blue instance 1');
+				animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+				animation.addByPrefix('greenholdend', 'green hold end instance 1');
+				animation.addByPrefix('redholdend', 'red hold end instance 1');
+				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+				animation.addByPrefix('greenhold', 'green hold piece instance 1');
+				animation.addByPrefix('redhold', 'red hold piece instance 1');
+				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
@@ -232,20 +232,20 @@ class Note extends FlxSprite
 			case 'selever':
 				frames = Paths.getSparrowAtlas('NOTE_Assets_Selever');
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('greenScroll', 'green instance 1');
+				animation.addByPrefix('redScroll', 'red instance 1');
+				animation.addByPrefix('blueScroll', 'blue instance 1');
+				animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+				animation.addByPrefix('greenholdend', 'green hold end instance 1');
+				animation.addByPrefix('redholdend', 'red hold end instance 1');
+				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+				animation.addByPrefix('greenhold', 'green hold piece instance 1');
+				animation.addByPrefix('redhold', 'red hold piece instance 1');
+				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
@@ -254,20 +254,20 @@ class Note extends FlxSprite
 			case 'gf':
 				frames = Paths.getSparrowAtlas('NOTE_Assets_GF');
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('greenScroll', 'green instance 1');
+				animation.addByPrefix('redScroll', 'red instance 1');
+				animation.addByPrefix('blueScroll', 'blue instance 1');
+				animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+				animation.addByPrefix('greenholdend', 'green hold end instance 1');
+				animation.addByPrefix('redholdend', 'red hold end instance 1');
+				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+				animation.addByPrefix('greenhold', 'green hold piece instance 1');
+				animation.addByPrefix('redhold', 'red hold piece instance 1');
+				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
@@ -276,20 +276,20 @@ class Note extends FlxSprite
 			default:
 				frames = Paths.getSparrowAtlas('NOTE_assets');
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('greenScroll', 'green instance 1');
+				animation.addByPrefix('redScroll', 'red instance 1');
+				animation.addByPrefix('blueScroll', 'blue instance 1');
+				animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
+				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+				animation.addByPrefix('greenholdend', 'green hold end instance 1');
+				animation.addByPrefix('redholdend', 'red hold end instance 1');
+				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
+				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+				animation.addByPrefix('greenhold', 'green hold piece instance 1');
+				animation.addByPrefix('redhold', 'red hold piece instance 1');
+				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();

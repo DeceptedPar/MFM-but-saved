@@ -1,8 +1,15 @@
 package;
 
+import openfl.ui.KeyLocation;
+import openfl.events.Event;
+import haxe.EnumTools;
+import openfl.ui.Keyboard;
+import openfl.events.KeyboardEvent;
 import Replay.Ana;
 import Replay.Analysis;
+#if cpp
 import webm.WebmPlayer;
+#end
 import flixel.input.keyboard.FlxKey;
 import haxe.Exception;
 import openfl.geom.Matrix;
@@ -183,11 +190,16 @@ class PlayState extends MusicBeatState
 	var tank3:FlxSprite;
 	var tank4:FlxSprite;
 	var tank5:FlxSprite;
+	var tankRolling:FlxSprite;
+	var tankX:Int = 400;
+	var tankSpeed:Float = FlxG.random.float(5, 7);
+	var tankAngle:Float = FlxG.random.float(-90, 45);
+	var tankWatchtower:FlxSprite;
+	var tankmanRun:FlxTypedGroup<TankmenBG>;
 
 	var fc:Bool = true;
 
 	var bgGirls:BackgroundGirls;
-	var tankWatchtower:TankWatchtower;
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 
 	var talking:Bool = true;
@@ -262,7 +274,7 @@ class PlayState extends MusicBeatState
 		PlayStateChangeables.safeFrames = FlxG.save.data.frames;
 		PlayStateChangeables.scrollSpeed = FlxG.save.data.scrollSpeed;
 		PlayStateChangeables.botPlay = FlxG.save.data.botplay;
-
+		PlayStateChangeables.Optimize = FlxG.save.data.optimize;
 
 		// pre lowercasing the song name (create)
 		var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
@@ -285,6 +297,8 @@ class PlayState extends MusicBeatState
 
 		#if windows
 		executeModchart = FileSystem.exists(Paths.lua(songLowercase  + "/modchart"));
+		if (executeModchart)
+			PlayStateChangeables.Optimize = false;
 		#end
 		#if !cpp
 		executeModchart = false; // FORCE disable for non cpp targets
@@ -414,6 +428,9 @@ class PlayState extends MusicBeatState
 				//i should check if its stage (but this is when none is found in chart anyway)
 			}
 		} else {stageCheck = SONG.stage;}
+
+		if (!PlayStateChangeables.Optimize)
+		{
 
 		switch(stageCheck)
 		{
@@ -750,13 +767,15 @@ class PlayState extends MusicBeatState
 						add(tankSky);
 
 						var tankClouds:FlxSprite = new FlxSprite(-700, -100).loadGraphic(Paths.image('tank/tankClouds', 'week7'));
-						tankClouds.antialiasing = true;
 						tankClouds.scrollFactor.set(0.1, 0.1);
+						tankClouds.velocity.x = FlxG.random.float(5, 15);
+						tankClouds.antialiasing = true;
+						tankClouds.updateHitbox();
 						add(tankClouds);
 
 						var tankMountains:FlxSprite = new FlxSprite(-300, -20).loadGraphic(Paths.image('tank/tankMountains', 'week7'));
 						tankMountains.antialiasing = true;
-						tankMountains.setGraphicSize(Std.int(tankMountains.width * 1.1));
+						tankMountains.setGraphicSize(Std.int(tankMountains.width * 1.2));
 						tankMountains.scrollFactor.set(0.2, 0.2);
 						tankMountains.updateHitbox();
 						add(tankMountains);
@@ -791,59 +810,70 @@ class PlayState extends MusicBeatState
 						smokeRight.antialiasing = true;
 						add(smokeRight);
 
-						tankWatchtower = new TankWatchtower(100, 50);
+						tankWatchtower = new TankWatchtower(100, 30);
+						tankWatchtower.frames = Paths.getSparrowAtlas('tank/tankWatchtower' 'week7');
+						tankWatchtower.animation.addByPrefix('idle', 'watchtower gradient color instance 1', 24, false);
 						tankWatchtower.scrollFactor.set(0.5, 0.5);
 						tankWatchtower.antialiasing = true;
 						add(tankWatchtower);
 
 						var tankRolling:FlxSprite = new FlxSprite(300, 300).loadGraphic(Paths.image('tank/tankRolling', 'week7'));
 						tankRolling.frames = Paths.getSparrowAtlas('tank/tankRolling');
-						tankRolling.animation.addByPrefix('idle', 'BG tank w lighting', 24, false);
+						tankRolling.animation.addByPrefix('idle', 'BG tank w lighting', 24, true);
 						tankRolling.antialiasing = true;
 						tankRolling.scrollFactor.set(0.5, 0.5);
 						add(tankRolling);
 
 						var tankGround:FlxSprite = new FlxSprite(-420, -150).loadGraphic(Paths.image('tank/tankGround', 'week7'));
+						tankGround.scrollFactor.set(1, 1);
 						tankGround.setGraphicSize(Std.int(tankGround.width * 1.15));
 						tankGround.updateHitbox();
 						tankGround.antialiasing = true;
 						add(tankGround);
+
+						moveTank();
 
 						tank0 = new FlxSprite(-500, 650);
 						tank0.frames = Paths.getSparrowAtlas('tank/tank0', 'week7');
 						tank0.animation.addByPrefix('idle', 'fg tankhead far right', 24, false);
 						tank0.scrollFactor.set(1.7, 1.5);
 						tank0.antialiasing = true;
+						tank0.updateHitbox();
 
 						tank1 = new FlxSprite(-300, 750);
 						tank1.frames = Paths.getSparrowAtlas('tank/tank1', 'week7');
 						tank1.animation.addByPrefix('idle', 'fg', 24, false);
 						tank1.scrollFactor.set(2, 0.2);
 						tank1.antialiasing = true;
+						tank1.updateHitbox();
 
 						tank2 = new FlxSprite(450, 940);
 						tank2.frames = Paths.getSparrowAtlas('tank/tank2', 'week7');
 						tank2.animation.addByPrefix('idle', 'foreground', 24, false);
 						tank2.scrollFactor.set(1.5, 1.5);
 						tank2.antialiasing = true;
+						tank2.updateHitbox();
 
 						tank4 = new FlxSprite(1300, 900);
 						tank4.frames = Paths.getSparrowAtlas('tank/tank4', 'week7');
 						tank4.animation.addByPrefix('idle', 'fg', 24, false);
 						tank4.scrollFactor.set(1.5, 1.5);
 						tank4.antialiasing = true;
+						tank4.updateHitbox();
 
 						tank5 = new FlxSprite(1620, 700);
 						tank5.frames = Paths.getSparrowAtlas('tank/tank5', 'week7');
 						tank5.animation.addByPrefix('idle', 'fg', 24, false);
 						tank5.scrollFactor.set(1.5, 1.5);
 						tank5.antialiasing = true;
+						tank5.updateHitbox();
 
 						tank3 = new FlxSprite(1300, 1200);
 						tank3.frames = Paths.getSparrowAtlas('tank/tank3', 'week7');
 						tank3.animation.addByPrefix('idle', 'fg', 24, false);
 						tank3.scrollFactor.set(1.5, 1.5);
 						tank3.antialiasing = true;
+						tank3.updateHitbox();
 
 				}
 			case 'church1':
@@ -1100,7 +1130,7 @@ class PlayState extends MusicBeatState
 					add(stageCurtains);
 			}
 		}
-
+		}
 		//defaults if no gf was found in chart
 		var gfCheck:String = 'gf';
 		
@@ -1123,8 +1153,6 @@ class PlayState extends MusicBeatState
 				curGf = 'gf-christmas';
 			case 'gf-pixel':
 				curGf = 'gf-pixel';
-			case 'gf-dark':
-				curGf = 'gf-dark';
 			case 'un-gf':
 				curGf = 'un-gf';
 			case 'gf-tankmen':
@@ -1134,7 +1162,7 @@ class PlayState extends MusicBeatState
 			default:
 				curGf = 'gf';
 		}
-
+		
 		gf = new Character(400, 130, curGf);
 		gf.scrollFactor.set(0.95, 0.95);
 
@@ -1245,8 +1273,8 @@ class PlayState extends MusicBeatState
 
 			case 'tank':
 				boyfriend.x += 40;
-				gf.x += 10;
-				gf.y -= 30;
+				gf.x -= 200;
+				gf.y += -55;
 				dad.x -= 80;
 				dad.y += 60;
 
@@ -1365,14 +1393,27 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		add(gf);
+		if (!PlayStateChangeables.Optimize)
+		{
+			add(gf);
 
-		// Shitty layering but whatev it works LOL
-		if (curStage == 'limo')
-			add(limo);
+			// Shitty layering but whatev it works LOL
+			if (curStage == 'limo')
+				add(limo);
 
-		add(dad);
-		add(boyfriend);
+			add(dad);
+			add(boyfriend);
+
+			if (curStage == 'tank')
+				add(tank0);
+				add(tank1);
+				add(tank2);
+				add(tank4);
+				add(tank5);
+				add(tank3);
+		}
+
+
 		if (loadRep)
 		{
 			FlxG.watch.addQuick('rep rpesses',repPresses);
@@ -1481,7 +1522,7 @@ class PlayState extends MusicBeatState
 		add(healthBar);
 
 		// Add Kade Engine watermark
-		kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + CoolUtil.difficultyFromInt(storyDifficulty) + (Main.watermarks ? " - KE " + MainMenuState.kadeEngineVer : ""), 16);
+		kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " - " + CoolUtil.difficultyFromInt(storyDifficulty) + (Main.watermarks ? " | KE " + MainMenuState.kadeEngineVer : ""), 16);
 		kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
 		add(kadeEngineWatermark);
@@ -1592,8 +1633,14 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'thorns':
 					schoolIntro(doof);
-				//case 'tutorial-remix':
-				//	schoolIntro(doof);
+				/*case 'ugh':
+					ughAndGunsIntro();
+				case 'guns':
+					ughAndGunsIntro();
+				case 'stress':
+					stressIntro();
+				case 'tutorial-remix':
+					schoolIntro(doof);*/
 				case 'parish':
 					schoolIntro(doof);
 				case 'worship':
@@ -1647,6 +1694,8 @@ class PlayState extends MusicBeatState
 
 		if (!loadRep)
 			rep = new Replay("na");
+
+		FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN,handleInput);
 
 		super.create();
 	}
@@ -1935,6 +1984,83 @@ class PlayState extends MusicBeatState
 	var songTime:Float = 0;
 
 
+	private function getKey(charCode:Int):String
+	{
+		for (key => value in FlxKey.fromStringMap)
+		{
+			if (charCode == value)
+				return key;
+		}
+		return null;
+	}
+
+	private function handleInput(evt:KeyboardEvent):Void { // this actually handles press inputs
+
+		if (PlayStateChangeables.botPlay || loadRep || paused)
+			return;
+
+		// first convert it from openfl to a flixel key code
+		// then use FlxKey to get the key's name based off of the FlxKey dictionary
+		// this makes it work for special characters
+
+		@:privateAccess
+		var key = FlxKey.toStringMap.get(Keyboard.__convertKeyCode(evt.keyCode));
+	
+		var binds:Array<String> = [FlxG.save.data.leftBind,FlxG.save.data.downBind, FlxG.save.data.upBind, FlxG.save.data.rightBind];
+
+		var data = -1;
+		
+		switch(evt.keyCode) // arrow keys
+		{
+			case 37:
+				data = 0;
+			case 40:
+				data = 1;
+			case 38:
+				data = 2;
+			case 39:
+				data = 3;
+		}
+
+		for (i in 0...binds.length) // binds
+		{
+			if (binds[i].toLowerCase() == key.toLowerCase())
+				data = i;
+		}
+
+		if (evt.keyLocation == KeyLocation.NUM_PAD)
+		{
+			trace(String.fromCharCode(evt.charCode) + " " + key);
+		}
+
+		if (data == -1)
+			return;
+
+		var ana = new Ana(Conductor.songPosition, null, false, "miss", data);
+
+		var dataNotes = [];
+		notes.forEachAlive(function(daNote:Note)
+		{
+			if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit && daNote.noteData == data)
+				dataNotes.push(daNote);
+		}); // Collect notes that can be hit
+
+
+		dataNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime)); // sort by the earliest note
+		
+		if (dataNotes.length != 0)
+		{
+			var coolNote = dataNotes[0];
+
+			goodNoteHit(coolNote);
+			var noteDiff:Float = -(coolNote.strumTime - Conductor.songPosition);
+			ana.hit = true;
+			ana.hitJudge = Ratings.CalculateRating(noteDiff, Math.floor((PlayStateChangeables.safeFrames / 60) * 1000));
+			ana.nearestNote = [coolNote.strumTime,coolNote.noteData,coolNote.sustainLength];
+		}
+		
+	}
+
 	var songStarted = false;
 
 	function startSong():Void
@@ -2097,6 +2223,10 @@ class PlayState extends MusicBeatState
 					oldNote = null;
 
 				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
+
+				if (!gottaHitNote && PlayStateChangeables.Optimize)
+					continue;
+
 				swagNote.sustainLength = songNotes[2];
 				swagNote.scrollFactor.set(0, 0);
 
@@ -2157,6 +2287,9 @@ class PlayState extends MusicBeatState
 			//defaults if no noteStyle was found in chart
 			var noteTypeCheck:String = 'normal';
 		
+			if (PlayStateChangeables.Optimize && player == 0)
+				continue;
+
 			if (SONG.noteStyle == null) {
 				switch(storyWeek) {case 6: noteTypeCheck = 'pixel';}
 			} else {noteTypeCheck = SONG.noteStyle;}
@@ -2176,16 +2309,6 @@ class PlayState extends MusicBeatState
 
 					switch (Math.abs(i))
 					{
-						case 0:
-							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.add('static', [0]);
-							babyArrow.animation.add('pressed', [4, 8], 12, false);
-							babyArrow.animation.add('confirm', [12, 16], 24, false);
-						case 1:
-							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.add('static', [1]);
-							babyArrow.animation.add('pressed', [5, 9], 12, false);
-							babyArrow.animation.add('confirm', [13, 17], 24, false);
 						case 2:
 							babyArrow.x += Note.swagWidth * 2;
 							babyArrow.animation.add('static', [2]);
@@ -2196,295 +2319,338 @@ class PlayState extends MusicBeatState
 							babyArrow.animation.add('static', [3]);
 							babyArrow.animation.add('pressed', [7, 11], 12, false);
 							babyArrow.animation.add('confirm', [15, 19], 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.add('static', [1]);
+							babyArrow.animation.add('pressed', [5, 9], 12, false);
+							babyArrow.animation.add('confirm', [13, 17], 24, false);
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.add('static', [0]);
+							babyArrow.animation.add('pressed', [4, 8], 12, false);
+							babyArrow.animation.add('confirm', [12, 16], 24, false);
 					}
 
 				case 'xmas':
 
 					babyArrow.frames = Paths.getSparrowAtlas('christmas/xmas_ui/notes_xmas', 'week5');
-					babyArrow.animation.addByPrefix('green', 'arrowUP');
-					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
-
+					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
+					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
+					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
+					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
+	
 					babyArrow.antialiasing = true;
 					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-
+	
 					switch (Math.abs(i))
 					{
 						case 0:
 							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
+							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
 						case 1:
 							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
+							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
 						case 2:
 							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrowUP');
-							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
+							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
 						case 3:
 							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-					}
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
+							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
+						}
 
 				case 'sarvente':
 
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Sarvente');
-					babyArrow.animation.addByPrefix('green', 'arrowUP');
-					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
-
+					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
+					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
+					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
+					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
+	
 					babyArrow.antialiasing = true;
 					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-
+	
 					switch (Math.abs(i))
 					{
 						case 0:
 							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
+							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
 						case 1:
 							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
+							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
 						case 2:
 							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrowUP');
-							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
+							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
 						case 3:
 							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-					}
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
+							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
+						}
 
 				case 'dark-sarv':
 
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Dark-Sarv');
-					babyArrow.animation.addByPrefix('green', 'arrowUP');
-					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
-
+					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
+					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
+					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
+					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
+	
 					babyArrow.antialiasing = true;
 					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-
+	
 					switch (Math.abs(i))
 					{
 						case 0:
 							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
+							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
 						case 1:
 							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
+							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
 						case 2:
 							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrowUP');
-							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
+							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
 						case 3:
 							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-					}
-
-				case 'ruv-alt':
-
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Ruv-Alt');
-					babyArrow.animation.addByPrefix('green', 'arrowUP');
-					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
-
-					babyArrow.antialiasing = true;
-					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-
-					switch (Math.abs(i))
-					{
-						case 0:
-							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-						case 1:
-							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-						case 2:
-							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrowUP');
-							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-						case 3:
-							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-					}
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
+							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
+						}
 
 				case 'ruv':
 
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Ruv');
-					babyArrow.animation.addByPrefix('green', 'arrowUP');
-					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
-
+					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
+					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
+					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
+					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
+	
 					babyArrow.antialiasing = true;
 					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-
+	
 					switch (Math.abs(i))
 					{
 						case 0:
 							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
+							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
 						case 1:
 							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
+							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
 						case 2:
 							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrowUP');
-							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
+							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
 						case 3:
 							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-					}
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
+							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
+						}
 
 				case 'luci-sarv-alt':
 
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv-Alt');
-					babyArrow.animation.addByPrefix('green', 'arrowUP');
-					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
-
+					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
+					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
+					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
+					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
+	
 					babyArrow.antialiasing = true;
 					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-
+	
 					switch (Math.abs(i))
 					{
 						case 0:
 							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
+							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
 						case 1:
 							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
+							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
 						case 2:
 							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrowUP');
-							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
+							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
 						case 3:
 							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-					}
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
+							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
+						}
 
 				case 'luci-sarv':
 
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv');
-					babyArrow.animation.addByPrefix('green', 'arrowUP');
-					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
-
+					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
+					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
+					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
+					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
+	
 					babyArrow.antialiasing = true;
 					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-
+	
 					switch (Math.abs(i))
 					{
 						case 0:
 							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
+							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
 						case 1:
 							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
+							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
 						case 2:
 							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrowUP');
-							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
+							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
 						case 3:
 							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-					}
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
+							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
+						}
 
 				case 'selever':
 
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Selever');
-					babyArrow.animation.addByPrefix('green', 'arrowUP');
-					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
-
+					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
+					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
+					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
+					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
+	
 					babyArrow.antialiasing = true;
 					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-
+	
 					switch (Math.abs(i))
 					{
 						case 0:
 							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
+							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
 						case 1:
 							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
+							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
 						case 2:
 							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrowUP');
-							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
+							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
 						case 3:
 							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-					}
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
+							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
+						}
 
 				case 'gf':
 
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_GF');
-					babyArrow.animation.addByPrefix('green', 'arrowUP');
-					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
+					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
+					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
+					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
+	
+					babyArrow.antialiasing = true;
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+	
+					switch (Math.abs(i))
+					{
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
+							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
+							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
+						case 2:
+							babyArrow.x += Note.swagWidth * 2;
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
+							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
+						case 3:
+							babyArrow.x += Note.swagWidth * 3;
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
+							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
+						}
+				
+				case 'normal':
+					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
+					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
+					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
+					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
+					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
+	
+					babyArrow.antialiasing = true;
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+	
+					switch (Math.abs(i))
+					{
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
+							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
+							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
+						case 2:
+							babyArrow.x += Note.swagWidth * 2;
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
+							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
+						case 3:
+							babyArrow.x += Note.swagWidth * 3;
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
+							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
+						}
+
+				default:
+					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
+					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
+					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
+					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
+					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
 
 					babyArrow.antialiasing = true;
 					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
@@ -2493,93 +2659,25 @@ class PlayState extends MusicBeatState
 					{
 						case 0:
 							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-							babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
+							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
 						case 1:
 							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-							babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
+							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
 						case 2:
 							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrowUP');
-							babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
+							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
 						case 3:
 							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-							babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
+							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
 					}
-
-					case 'normal':
-						babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
-						babyArrow.animation.addByPrefix('green', 'arrowUP');
-						babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-						babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-						babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
-		
-						babyArrow.antialiasing = true;
-						babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-		
-						switch (Math.abs(i))
-						{
-							case 0:
-								babyArrow.x += Note.swagWidth * 0;
-								babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-								babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-								babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-							case 1:
-								babyArrow.x += Note.swagWidth * 1;
-								babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-								babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-								babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-							case 2:
-								babyArrow.x += Note.swagWidth * 2;
-								babyArrow.animation.addByPrefix('static', 'arrowUP');
-								babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-								babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-							case 3:
-								babyArrow.x += Note.swagWidth * 3;
-								babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-								babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-								babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-							}
-	
-					default:
-						babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
-						babyArrow.animation.addByPrefix('green', 'arrowUP');
-						babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-						babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-						babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
-	
-						babyArrow.antialiasing = true;
-						babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-	
-						switch (Math.abs(i))
-						{
-							case 0:
-								babyArrow.x += Note.swagWidth * 0;
-								babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-								babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-								babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-							case 1:
-								babyArrow.x += Note.swagWidth * 1;
-								babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-								babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-								babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-							case 2:
-								babyArrow.x += Note.swagWidth * 2;
-								babyArrow.animation.addByPrefix('static', 'arrowUP');
-								babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-								babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-							case 3:
-								babyArrow.x += Note.swagWidth * 3;
-								babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-								babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-								babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-						}
 			}
 
 			babyArrow.updateHitbox();
@@ -2605,6 +2703,9 @@ class PlayState extends MusicBeatState
 			babyArrow.animation.play('static');
 			babyArrow.x += 50;
 			babyArrow.x += ((FlxG.width / 2) * player);
+			
+			if (PlayStateChangeables.Optimize)
+				babyArrow.x -= 275;
 			
 			cpuStrums.forEach(function(spr:FlxSprite)
 			{					
@@ -2795,7 +2896,7 @@ class PlayState extends MusicBeatState
 		switch (curStage)
 		{
 			case 'philly':
-				if (trainMoving)
+				if (trainMoving && !PlayStateChangeables.Optimize)
 				{
 					trainFrameTiming += elapsed;
 
@@ -2816,7 +2917,7 @@ class PlayState extends MusicBeatState
 
 		scoreTxt.x = (originalX - (lengthInPx / 2)) + 335;
 
-		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
+		if (controls.PAUSE && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
 			persistentDraw = true;
@@ -2832,6 +2933,7 @@ class PlayState extends MusicBeatState
 				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		}
 
+
 		if (FlxG.keys.justPressed.SEVEN)
 		{
 			if (useVideo)
@@ -2846,6 +2948,7 @@ class PlayState extends MusicBeatState
 			DiscordClient.changePresence("Chart Editor", null, null, true);
 			#end
 			FlxG.switchState(new ChartingState());
+			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN,handleInput);
 			#if windows
 			if (luaModchart != null)
 			{
@@ -2897,6 +3000,7 @@ class PlayState extends MusicBeatState
 				}
 
 			FlxG.switchState(new AnimationDebug(SONG.player2));
+			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN,handleInput);
 			#if windows
 			if (luaModchart != null)
 			{
@@ -2909,6 +3013,7 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.ZERO)
 		{
 			FlxG.switchState(new AnimationDebug(SONG.player1));
+			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN,handleInput);
 			#if windows
 			if (luaModchart != null)
 			{
@@ -2921,6 +3026,7 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.NINE)
 		{
 			FlxG.switchState(new AnimationDebug(gf.curCharacter));
+			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN,handleInput);
 			#if windows
 			if (luaModchart != null)
 			{
@@ -3201,7 +3307,7 @@ class PlayState extends MusicBeatState
 		}
  		if (FlxG.save.data.resetButton)
 		{
-			if(FlxG.keys.justPressed.R)
+			if(FlxG.keys.justPressed.R && inCutscene == false)
 				{
 					boyfriend.stunned = true;
 
@@ -3474,6 +3580,7 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
+		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN,handleInput);
 		if (useVideo)
 			{
 				GlobalVideo.get().stop();
@@ -3695,7 +3802,7 @@ class PlayState extends MusicBeatState
 					ss = false;
 					shits++;
 					if (FlxG.save.data.accuracyMod == 0)
-						totalNotesHit += 0.25;
+						totalNotesHit -= 1;
 				case 'bad':
 					daRating = 'bad';
 					score = 0;
@@ -3956,6 +4063,8 @@ class PlayState extends MusicBeatState
 		var rightHold:Bool = false;
 		var leftHold:Bool = false;	
 
+		// THIS FUNCTION JUST FUCKS WIT HELD NOTES AND BOTPLAY/REPLAY (also gamepad shit)
+
 		private function keyShit():Void // I've invested in emma stocks
 			{
 				// control arrays, order L D R U
@@ -4006,80 +4115,98 @@ class PlayState extends MusicBeatState
 					});
 				}
 		 
-				// PRESSES, check for note hits
-				if (pressArray.contains(true) && /*!boyfriend.stunned && */ generatedMusic)
+				if (KeyBinds.gamepad && !FlxG.keys.justPressed.ANY)
 				{
-					boyfriend.holdTimer = 0;
-		 
-					var possibleNotes:Array<Note> = []; // notes that can be hit
-					var directionList:Array<Int> = []; // directions that can be hit
-					var dumbNotes:Array<Note> = []; // notes to kill later
-					var directionsAccounted:Array<Bool> = [false,false,false,false]; // we don't want to do judgments for more than one presses
-					
-					notes.forEachAlive(function(daNote:Note)
+					// PRESSES, check for note hits
+					if (pressArray.contains(true) && generatedMusic)
 					{
-						if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit)
-						{
-							if (!directionsAccounted[daNote.noteData])
+						boyfriend.holdTimer = 0;
+			
+						var possibleNotes:Array<Note> = []; // notes that can be hit
+						var directionList:Array<Int> = []; // directions that can be hit
+						var dumbNotes:Array<Note> = []; // notes to kill later
+						var directionsAccounted:Array<Bool> = [false,false,false,false]; // we don't want to do judgments for more than one presses
+						
+						notes.forEachAlive(function(daNote:Note)
 							{
-								directionsAccounted[daNote.noteData] = true;
-								possibleNotes.push(daNote);
-								directionList.push(daNote.noteData);
-							}
-						}
-					});
-
-					for (note in dumbNotes)
-					{
-						FlxG.log.add("killing dumb ass note at " + note.strumTime);
-						note.kill();
-						notes.remove(note, true);
-						note.destroy();
-					}
-		 
-					possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
-
-					if (perfectMode)
-						goodNoteHit(possibleNotes[0]);
-					else if (possibleNotes.length > 0)
-					{
-						if (!FlxG.save.data.ghost)
-						{
-							for (shit in 0...pressArray.length)
-								{ // if a direction is hit that shouldn't be
-									if (pressArray[shit] && !directionList.contains(shit))
-										noteMiss(shit, null);
+								if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit && !directionsAccounted[daNote.noteData])
+								{
+									if (directionList.contains(daNote.noteData))
+										{
+											directionsAccounted[daNote.noteData] = true;
+											for (coolNote in possibleNotes)
+											{
+												if (coolNote.noteData == daNote.noteData && Math.abs(daNote.strumTime - coolNote.strumTime) < 10)
+												{ // if it's the same note twice at < 10ms distance, just delete it
+													// EXCEPT u cant delete it in this loop cuz it fucks with the collection lol
+													dumbNotes.push(daNote);
+													break;
+												}
+												else if (coolNote.noteData == daNote.noteData && daNote.strumTime < coolNote.strumTime)
+												{ // if daNote is earlier than existing note (coolNote), replace
+													possibleNotes.remove(coolNote);
+													possibleNotes.push(daNote);
+													break;
+												}
+											}
+										}
+										else
+										{
+											possibleNotes.push(daNote);
+											directionList.push(daNote.noteData);
+										}
 								}
-						}
-						for (coolNote in possibleNotes)
+						});
+
+						for (note in dumbNotes)
 						{
-							if (pressArray[coolNote.noteData])
+							FlxG.log.add("killing dumb ass note at " + note.strumTime);
+							note.kill();
+							notes.remove(note, true);
+							note.destroy();
+						}
+			
+						possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
+						if (perfectMode)
+							goodNoteHit(possibleNotes[0]);
+						else if (possibleNotes.length > 0)
+						{
+							if (!FlxG.save.data.ghost)
 							{
-								if (mashViolations != 0)
-									mashViolations--;
-								scoreTxt.color = FlxColor.WHITE;
-								var noteDiff:Float = -(coolNote.strumTime - Conductor.songPosition);
-								anas[coolNote.noteData].hit = true;
-								anas[coolNote.noteData].hitJudge = Ratings.CalculateRating(noteDiff, Math.floor((PlayStateChangeables.safeFrames / 60) * 1000));
-								anas[coolNote.noteData].nearestNote = [coolNote.strumTime,coolNote.noteData,coolNote.sustainLength];
-								goodNoteHit(coolNote);
+								for (shit in 0...pressArray.length)
+									{ // if a direction is hit that shouldn't be
+										if (pressArray[shit] && !directionList.contains(shit))
+											noteMiss(shit, null);
+									}
+							}
+							for (coolNote in possibleNotes)
+							{
+								if (pressArray[coolNote.noteData])
+								{
+									if (mashViolations != 0)
+										mashViolations--;
+									scoreTxt.color = FlxColor.WHITE;
+									var noteDiff:Float = -(coolNote.strumTime - Conductor.songPosition);
+									anas[coolNote.noteData].hit = true;
+									anas[coolNote.noteData].hitJudge = Ratings.CalculateRating(noteDiff, Math.floor((PlayStateChangeables.safeFrames / 60) * 1000));
+									anas[coolNote.noteData].nearestNote = [coolNote.strumTime,coolNote.noteData,coolNote.sustainLength];
+									goodNoteHit(coolNote);
+								}
 							}
 						}
+						else if (!FlxG.save.data.ghost)
+							{
+								for (shit in 0...pressArray.length)
+									if (pressArray[shit])
+										noteMiss(shit, null);
+							}
 					}
-					else if (!FlxG.save.data.ghost)
-						{
-							for (shit in 0...pressArray.length)
-								if (pressArray[shit])
-									noteMiss(shit, null);
-						}
 
+					if (!loadRep)
+						for (i in anas)
+							if (i != null)
+								replayAna.anaArray.push(i); // put em all there
 				}
-
-				if (!loadRep)
-					for (i in anas)
-						if (i != null)
-							replayAna.anaArray.push(i); // put em all there
-				
 				notes.forEachAlive(function(daNote:Note)
 				{
 					if(PlayStateChangeables.useDownscroll && daNote.y > strumLine.y ||
@@ -4185,6 +4312,7 @@ class PlayState extends MusicBeatState
 
 			public function backgroundVideo(source:String) // for background videos
 				{
+					#if cpp
 					useVideo = true;
 			
 					FlxG.stage.window.onFocusOut.add(focusOut);
@@ -4235,6 +4363,7 @@ class PlayState extends MusicBeatState
 						webmHandler.pause();
 					else
 						webmHandler.resume();
+					#end
 				}
 
 	function noteMiss(direction:Int = 1, daNote:Note):Void
@@ -4459,7 +4588,6 @@ class PlayState extends MusicBeatState
 						var array = [note.strumTime,note.sustainLength,note.noteData,noteDiff];
 						if (note.isSustainNote)
 							array[1] = -1;
-						trace('pushing ' + array[0]);
 						saveNotes.push(array);
 						saveJudge.push(note.rating);
 					}
@@ -4483,6 +4611,13 @@ class PlayState extends MusicBeatState
 				}
 			}
 		
+	function moveTank(){
+		if(!inCutscene){
+			tankAngle += FlxG.elapsed * tankSpeed;
+			tankRolling.angle = tankAngle - 90 + 15;
+			tankRolling.x = tankX + 1500 * Math.cos(Math.PI / 180 * (1 * tankAngle + 180));
+			tankRolling.y = 1300 + 1100 * Math.sin(Math.PI / 180 * (1 * tankAngle + 180));
+		}
 
 	var fastCarCanDrive:Bool = true;
 
@@ -4593,6 +4728,1158 @@ class PlayState extends MusicBeatState
 			resyncVocals();
 		}
 
+		if (dad.curCharacter == 'tankman' && SONG.song.toLowerCase() == 'stress')
+		{
+			if (curStep == 735)
+			{
+				dad.addOffset("singDOWN", 45, 20);
+				dad.animation.getByName('singDOWN').frames = dad.animation.getByName('prettyGoodAnim').frames;
+				dad.playAnim('prettyGoodAnim', true);
+			}
+
+			if (curStep == 736 || curStep == 737)
+			{
+				
+				dad.playAnim('prettyGoodAnim', true);
+			}
+
+			if (curStep == 767)
+			{
+				dad.addOffset("singDOWN", 98, -90);
+				dad.animation.getByName('singDOWN').frames = dad.animation.getByName('oldSingDOWN').frames;
+			}
+		}
+
+		//picoSpeaker and running tankmen
+
+		if(SONG.song.toLowerCase() == 'stress')
+		{
+			//RIGHT
+
+			if (curStep == 2 || 
+				curStep == 3 || 
+				curStep == 5 || 
+				curStep == 9 || 
+				curStep == 10 || 
+				curStep == 16 || 
+				curStep == 22 || 
+				curStep == 25 || 
+				curStep == 26 || 
+				curStep == 34 || 
+				curStep == 35 || 
+				curStep == 37 || 
+				curStep == 41 || 
+				curStep == 42 || 
+				curStep == 48 || 
+				curStep == 54 || 
+				curStep == 57 || 
+				curStep == 58 || 
+				curStep == 66 || 
+				curStep == 67 || 
+				curStep == 69 || 
+				curStep == 73 || 
+				curStep == 74 || 
+				curStep == 80 || 
+				curStep == 86 || 
+				curStep == 89 || 
+				curStep == 90 || 
+				curStep == 98 || 
+				curStep == 99 || 
+				curStep == 101 || 
+				curStep == 105 ||
+				 curStep == 106 || 
+				 curStep == 112 || 
+				 curStep == 118 || 
+				 curStep == 121 || 
+				 curStep == 122 || 
+				 curStep == 253 || 
+				 curStep == 260 || 
+				 curStep == 268 || 
+				 curStep == 280 || 
+				 curStep == 284 || 
+				 curStep == 292 || 
+				 curStep == 300 || 
+				 curStep == 312 || 
+				 curStep == 316 || 
+				 curStep == 317 || 
+				 curStep == 318 || 
+				 curStep == 320 || 
+				 curStep == 332 || 
+				 curStep == 336 || 
+				 curStep == 344 || 
+				 curStep == 358 || 
+				 curStep == 360 || 
+				 curStep == 362 || 
+				 curStep == 364 || 
+				 curStep == 372 || 
+				 curStep == 376 || 
+				 curStep == 388 || 
+				 curStep == 396 || 
+				 curStep == 404 || 
+				 curStep == 408 || 
+				 curStep == 412 || 
+				 curStep == 420 || 
+				 curStep == 428 || 
+				 curStep == 436 || 
+				 curStep == 440 || 
+				 curStep == 444 || 
+				 curStep == 452 || 
+				 curStep == 456 || 
+				 curStep == 460 || 
+				 curStep == 468 || 
+				 curStep == 472 || 
+				 curStep == 476 || 
+				 curStep == 484 || 
+				 curStep == 488 || 
+				 curStep == 492 || 
+				 curStep == 508 || 
+				 curStep == 509 || 
+				 curStep == 510 || 
+				 curStep == 516 || 
+				 curStep == 520 || 
+				 curStep == 524 || 
+				 curStep == 532 || 
+				 curStep == 540 || 
+				 curStep == 552 || 
+				 curStep == 556 || 
+				 curStep == 564 || 
+				 curStep == 568 || 
+				 curStep == 572 || 
+				 curStep == 580 || 
+				 curStep == 584 || 
+				 curStep == 588 || 
+				 curStep == 596 || 
+				 curStep == 604 || 
+				 curStep == 612 || 
+				 curStep == 616 || 
+				 curStep == 620 || 
+				 curStep == 636 || 
+				 curStep == 637 || 
+				 curStep == 638 || 
+				 curStep == 642 || 
+				 curStep == 643 || 
+				 curStep == 645 || 
+				 curStep == 649 || 
+				 curStep == 650 || 
+				 curStep == 656 || 
+				 curStep == 662 || 
+				 curStep == 665 || 
+				 curStep == 666 || 
+				 curStep == 674 || 
+				 curStep == 675 || 
+				 curStep == 677 || 
+				 curStep == 681 || 
+				 curStep == 682 || 
+				 curStep == 688 || 
+				 curStep == 694 || 
+				 curStep == 697 || 
+				 curStep == 698 || 
+				 curStep == 706 || 
+				 curStep == 707 || 
+				 curStep == 709 || 
+				 curStep == 713 || 
+				 curStep == 714 || 
+				 curStep == 720 || 
+				 curStep == 726 || 
+				 curStep == 729 || 
+				 curStep == 730 || 
+				 curStep == 738 || 
+				 curStep == 739 || 
+				 curStep == 741 || 
+				 curStep == 745 || 
+				 curStep == 746 || 
+				 curStep == 753 || 
+				 curStep == 758 || 
+				 curStep == 761 || 
+				 curStep == 762 || 
+				 curStep == 768 || 
+				 curStep == 788 || 
+				 curStep == 792 || 
+				 curStep == 796 || 
+				 curStep == 800 || 
+				 curStep == 820 || 
+				 curStep == 824 || 
+				 curStep == 828 || 
+				 curStep == 829 || 
+				 curStep == 830 || 
+				 curStep == 832 || 
+				 curStep == 852 || 
+				 curStep == 856 || 
+				 curStep == 860 || 
+				 curStep == 861 || 
+				 curStep == 862 || 
+				 curStep == 864 || 
+				 curStep == 865 || 
+				 curStep == 866 || 
+				 curStep == 884 || 
+				 curStep == 885 || 
+				 curStep == 886 || 
+				 curStep == 887 || 
+				 curStep == 892 || 
+				 curStep == 900 || 
+				 curStep == 912 || 
+				 curStep == 916 || 
+				 curStep == 924 || 
+				 curStep == 926 || 
+				 curStep == 936 || 
+				 curStep == 948 || 
+				 curStep == 958 || 
+				 curStep == 962 || 
+				 curStep == 966 || 
+				 curStep == 970 || 
+				 curStep == 974 || 
+				 curStep == 976 || 
+				 curStep == 980 || 
+				 curStep == 984 || 
+				 curStep == 988 || 
+				 curStep == 990 || 
+				 curStep == 1000 || 
+				 curStep == 1004 || 
+				 curStep == 1006 || 
+				 curStep == 1008 || 
+				 curStep == 1012 || 
+				 curStep == 1019 || 
+				 curStep == 1028 || 
+				 curStep == 1036 || 
+				 curStep == 1044 || 
+				 curStep == 1052|| 
+				 curStep == 1060 || 
+				 curStep == 1068 || 
+				 curStep == 1076 || 
+				 curStep == 1084 || 
+				 curStep == 1092 || 
+				 curStep == 1100 || 
+				 curStep == 1108 || 
+				 curStep == 1116 || 
+				 curStep == 1124 || 
+				 curStep == 1132 || 
+				 curStep == 1148 || 
+				 curStep == 1149 || 
+				 curStep == 1150 || 
+				 curStep == 1156 || 
+				 curStep == 1160 || 
+				 curStep == 1164 || 
+				 curStep == 1172 || 
+				 curStep == 1180 || 
+				 curStep == 1188 || 
+				 curStep == 1192 || 
+				 curStep == 1196 || 
+				 curStep == 1204 || 
+				 curStep == 1208 || 
+				 curStep == 1212 || 
+				 curStep == 1220 || 
+				 curStep == 1224 || 
+				 curStep == 1228 || 
+				 curStep == 1236 || 
+				 curStep == 1244 || 
+				 curStep == 1252 || 
+				 curStep == 1256 || 
+				 curStep == 1260 || 
+				 curStep == 1276 || 
+				 curStep == 1296 || 
+				 curStep == 1300 || 
+				 curStep == 1304 || 
+				 curStep == 1308 || 
+				 curStep == 1320 || 
+				 curStep == 1324 || 
+				 curStep == 1328 || 
+				 curStep == 1332 || 
+				 curStep == 1340 || 
+				 curStep == 1352 || 
+				 curStep == 1358 || 
+				 curStep == 1364 || 
+				 curStep == 1372 || 
+				 curStep == 1374 || 
+				 curStep == 1378 || 
+				 curStep == 1388 || 
+				 curStep == 1392 || 
+				 curStep == 1400 || 
+				 curStep == 1401 || 
+				 curStep == 1405 || 
+				 curStep == 1410 || 
+				 curStep == 1411 || 
+				 curStep == 1413 || 
+				 curStep == 1417 || 
+				 curStep == 1418 || 
+				 curStep == 1424 || 
+				 curStep == 1430 || 
+				 curStep == 1433 || 
+				 curStep == 1434)
+				 
+			{
+				gf.playAnim('shoot' + FlxG.random.int(1, 2), true);
+				
+				var tankmanRunner:TankmenBG = new TankmenBG();
+			}
+
+			//LEFT
+			if (curStep == 0 || 
+				curStep == 7 || 
+				curStep == 12 || 
+				curStep == 14 || 
+				curStep == 15 || 
+				curStep == 18 || 
+				curStep == 19 || 
+				curStep == 24 || 
+				curStep == 28 || 
+				curStep == 32 || 
+				curStep == 39 || 
+				curStep == 44 || 
+				curStep == 46 || 
+				curStep == 47 || 
+				curStep == 50 || 
+				curStep == 51 || 
+				curStep == 56 || 
+				curStep == 60 || 
+				curStep == 61 || 
+				curStep == 62 || 
+				curStep == 64 || 
+				curStep == 71 || 
+				curStep == 76 || 
+				curStep == 78 || 
+				curStep == 79 || 
+				curStep == 82 || 
+				curStep == 83 || 
+				curStep == 88 || 
+				curStep == 92 || 
+				curStep == 96 || 
+				curStep == 103 ||
+				 curStep == 108 || 
+				 curStep == 110 || 
+				 curStep == 111 || 
+				 curStep == 114 || 
+				 curStep == 115 || 
+				 curStep == 120 || 
+				 curStep == 124 || 
+				 curStep == 252 || 
+				 curStep == 254 || 
+				 curStep == 256 || 
+				 curStep == 264 || 
+				 curStep == 272 || 
+				 curStep == 276 || 
+				 curStep == 288 || 
+				 curStep == 296 || 
+				 curStep == 304 || 
+				 curStep == 308 || 
+				 curStep == 324 || 
+				 curStep == 328 || 
+				 curStep == 340 || 
+				 curStep == 348 || 
+				 curStep == 352 || 
+				 curStep == 354 || 
+				 curStep == 356 || 
+				 curStep == 366 || 
+				 curStep == 368 || 
+				 curStep == 378 || 
+				 curStep == 384 || 
+				 curStep == 392 || 
+				 curStep == 394 || 
+				 curStep == 400 || 
+				 curStep == 410 || 
+				 curStep == 416 || 
+				 curStep == 424 || 
+				 curStep == 426 || 
+				 curStep == 432 || 
+				 curStep == 442 || 
+				 curStep == 448 || 
+				 curStep == 458 || 
+				 curStep == 464 || 
+				 curStep == 474 || 
+				 curStep == 480 || 
+				 curStep == 490 || 
+				 curStep == 496 || 
+				 curStep == 500 || 
+				 curStep == 504 || 
+				 curStep == 506 || 
+				 curStep == 512 || 
+				 curStep == 522 || 
+				 curStep == 528 || 
+				 curStep == 536 || 
+				 curStep == 538 || 
+				 curStep == 544 || 
+				 curStep == 554 || 
+				 curStep == 560 || 
+				 curStep == 570 || 
+				 curStep == 576 || 
+				 curStep == 586 || 
+				 curStep == 592 || 
+				 curStep == 600 || 
+				 curStep == 602 || 
+				 curStep == 608 || 
+				 curStep == 618 || 
+				 curStep == 624 || 
+				 curStep == 628 || 
+				 curStep == 632 || 
+				 curStep == 634 || 
+				 curStep == 640 || 
+				 curStep == 647 || 
+				 curStep == 652 || 
+				 curStep == 654 || 
+				 curStep == 655 || 
+				 curStep == 658 || 
+				 curStep == 659 || 
+				 curStep == 664 || 
+				 curStep == 668 || 
+				 curStep == 672 || 
+				 curStep == 679 || 
+				 curStep == 684 || 
+				 curStep == 686 || 
+				 curStep == 687 || 
+				 curStep == 690 || 
+				 curStep == 691 || 
+				 curStep == 696 || 
+				 curStep == 700 || 
+				 curStep == 701 || 
+				 curStep == 702 || 
+				 curStep == 704 || 
+				 curStep == 711 || 
+				 curStep == 716 || 
+				 curStep == 718 || 
+				 curStep == 719 || 
+				 curStep == 722 || 
+				 curStep == 723 || 
+				 curStep == 728 || 
+				 curStep == 732 || 
+				 curStep == 736 || 
+				 curStep == 743 || 
+				 curStep == 748 || 
+				 curStep == 750 || 
+				 curStep == 751 || 
+				 curStep == 754 || 
+				 curStep == 755 || 
+				 curStep == 760 || 
+				 curStep == 764 || 
+				 curStep == 772 || 
+				 curStep == 776 || 
+				 curStep == 780 || 
+				 curStep == 784 || 
+				 curStep == 804 || 
+				 curStep == 808 || 
+				 curStep == 812 || 
+				 curStep == 816 || 
+				 curStep == 836 || 
+				 curStep == 840 || 
+				 curStep == 844 || 
+				 curStep == 848 || 
+				 curStep == 868 || 
+				 curStep == 869 || 
+				 curStep == 870 || 
+				 curStep == 872 || 
+				 curStep == 873 || 
+				 curStep == 874 || 
+				 curStep == 876 || 
+				 curStep == 877 || 
+				 curStep == 878 || 
+				 curStep == 880 || 
+				 curStep == 881 || 
+				 curStep == 882 || 
+				 curStep == 883 || 
+				 curStep == 888 || 
+				 curStep == 889 || 
+				 curStep == 890 || 
+				 curStep == 891 || 
+				 curStep == 896 || 
+				 curStep == 904 || 
+				 curStep == 908 || 
+				 curStep == 920 || 
+				 curStep == 928 || 
+				 curStep == 932 || 
+				 curStep == 940 || 
+				 curStep == 944 || 
+				 curStep == 951 || 
+				 curStep == 952 || 
+				 curStep == 953 || 
+				 curStep == 955 || 
+				 curStep == 960 || 
+				 curStep == 964 || 
+				 curStep == 968 || 
+				 curStep == 972 || 
+				 curStep == 978 || 
+				 curStep == 982 || 
+				 curStep == 986 || 
+				 curStep == 992 || 
+				 curStep == 994 || 
+				 curStep == 996 || 
+				 curStep == 1016 || 
+				 curStep == 1017 || 
+				 curStep == 1021 || 
+				 curStep == 1024 || 
+				 curStep == 1034 || 
+				 curStep == 1040 || 
+				 curStep == 1050 || 
+				 curStep == 1056 || 
+				 curStep == 1066 || 
+				 curStep == 1072 || 
+				 curStep == 1082 || 
+				 curStep == 1088 || 
+				 curStep == 1098 || 
+				 curStep == 1104 || 
+				 curStep == 1114 || 
+				 curStep == 1120 || 
+				 curStep == 1130 || 
+				 curStep == 1136 || 
+				 curStep == 1140 || 
+				 curStep == 1144 || 
+				 curStep == 1146 || 
+				 curStep == 1152 || 
+				 curStep == 1162 || 
+				 curStep == 1168 || 
+				 curStep == 1176 || 
+				 curStep == 1178 || 
+				 curStep == 1184 || 
+				 curStep == 1194 || 
+				 curStep == 1200 || 
+				 curStep == 1210 || 
+				 curStep == 1216 || 
+				 curStep == 1226 || 
+				 curStep == 1232 || 
+				 curStep == 1240 || 
+				 curStep == 1242 || 
+				 curStep == 1248 || 
+				 curStep == 1258 || 
+				 curStep == 1264 || 
+				 curStep == 1268 || 
+				 curStep == 1272 || 
+				 curStep == 1280 || 
+				 curStep == 1284 || 
+				 curStep == 1288 || 
+				 curStep == 1292 || 
+				 curStep == 1312 || 
+				 curStep == 1314 || 
+				 curStep == 1316 || 
+				 curStep == 1336 || 
+				 curStep == 1344 || 
+				 curStep == 1356 || 
+				 curStep == 1360 || 
+				 curStep == 1368 || 
+				 curStep == 1376 || 
+				 curStep == 1380 || 
+				 curStep == 1384 || 
+				 curStep == 1396 || 
+				 curStep == 1404 || 
+				 curStep == 1408 || 
+				 curStep == 1415 || 
+				 curStep == 1420 || 
+				 curStep == 1422 || 
+				 curStep == 1423 || 
+				 curStep == 1426 || 
+				 curStep == 1427 || 
+				 curStep == 1432 || 
+				 curStep == 1436 || 
+				 curStep == 1437 || 
+				 curStep == 1438)
+			{
+				gf.playAnim('shoot' + FlxG.random.int(3, 4), true);
+
+			}
+
+			//Left spawn
+
+			if (curStep == 2 || 
+				
+				curStep == 9 || 
+				
+				curStep == 22 || 
+				
+				curStep == 34 || 
+				
+				curStep == 41 || 
+				
+				curStep == 54 || 
+				
+				curStep == 66 || 
+				 
+				curStep == 73 || 
+				
+				curStep == 86 || 
+				
+				curStep == 98 || 
+				
+				curStep == 105 ||
+				  
+				 curStep == 118 || 
+				 
+				 curStep == 253 || 
+				  
+				 curStep == 280 || 
+				 
+				 curStep == 300 || 
+				 
+				 curStep == 317 || 
+				  
+				 curStep == 332 || 
+				  
+				 curStep == 358 || 
+				  
+				 curStep == 364 || 
+				  
+				 curStep == 388 || 
+				 
+				 curStep == 408 || 
+				  
+				 curStep == 428 || 
+				  
+				 curStep == 444 || 
+				  
+				 curStep == 460 || 
+				 
+				 curStep == 476 || 
+				 
+				 curStep == 492 || 
+				  
+				 curStep == 510 || 
+				 
+				 curStep == 524 || 
+				  
+				 curStep == 552 || 
+				 
+				 curStep == 568 || 
+				  
+				 curStep == 584 || 
+				  
+				 curStep == 604 || 
+				 
+				 curStep == 620 || 
+				 
+				 curStep == 638 || 
+				 
+				 curStep == 645 || 
+				  
+				 curStep == 656 || 
+				 
+				 curStep == 666 || 
+				  
+				 curStep == 677 || 
+				  
+				 curStep == 688 || 
+				 
+				 curStep == 698 || 
+				  
+				 curStep == 709 || 
+				 
+				 curStep == 720 || 
+				  
+				 curStep == 730 || 
+				 
+				 curStep == 741 || 
+				  
+				 curStep == 753 || 
+				 
+				 curStep == 762 || 
+				 
+				 curStep == 792 || 
+				 
+				 curStep == 820 || 
+				  
+				 curStep == 829 || 
+				 
+				 curStep == 852 || 
+				  
+				 curStep == 861 || 
+				 
+				 curStep == 865 || 
+				 
+				 curStep == 885 || 
+				 
+				 curStep == 892 || 
+				  
+				 curStep == 916 || 
+				  
+				 curStep == 936 || 
+				 
+				 curStep == 962 || 
+				 
+				 curStep == 974 || 
+				 
+				 curStep == 984 || 
+				 
+				 curStep == 1000 || 
+				 
+				 curStep == 1008 || 
+				  
+				 curStep == 1028 || 
+				 
+				 curStep == 1052|| 
+				 
+				 curStep == 1076 || 
+				 
+				 curStep == 1100 || 
+				  
+				 curStep == 1124 || 
+				  
+				 curStep == 1149 || 
+				 
+				 curStep == 1160 || 
+				 
+				 curStep == 1180 
+				  
+				 
+				 )
+				 
+			{
+				var tankmanRunner:TankmenBG = new TankmenBG();
+				tankmanRunner.resetShit(FlxG.random.int(630, 730) * -1, 265, true, 1, 1.5);
+
+				tankmanRun.add(tankmanRunner);
+			}
+
+			//Right spawn
+			if (curStep == 0 || 
+				
+				curStep == 14 || 
+				
+				curStep == 19 || 
+				
+				curStep == 32 || 
+				
+				curStep == 46 || 
+				
+				curStep == 51 || 
+				
+				curStep == 61 || 
+				 
+				curStep == 71 || 
+				
+				curStep == 79 || 
+				
+				curStep == 88 || 
+				
+				curStep == 103 ||
+				  
+				 curStep == 111 || 
+				 
+				 curStep == 120 || 
+				 
+				 curStep == 254 || 
+				 
+				 curStep == 272 || 
+				 
+				 curStep == 296 || 
+				  
+				 curStep == 324 || 
+				 
+				 curStep == 348 || 
+				 
+				 curStep == 356 || 
+				 
+				 curStep == 378 || 
+				  
+				 curStep == 394 || 
+				 
+				 curStep == 416 || 
+				  
+				 curStep == 432 || 
+				 
+				 curStep == 458 || 
+				 
+				 curStep == 480 || 
+				 
+				 curStep == 500 || 
+				 
+				 curStep == 512 || 
+				 
+				 curStep == 536 || 
+				 
+				 curStep == 554 || 
+				  
+				 curStep == 576 || 
+				 
+				 curStep == 600 || 
+				 
+				 curStep == 618 || 
+				  
+				 curStep == 632 || 
+				 
+				 curStep == 647 || 
+				 
+				 curStep == 655 || 
+				 
+				 curStep == 664 || 
+				 
+				 curStep == 679 || 
+				 
+				 curStep == 687 || 
+				 
+				 curStep == 696 || 
+				 
+				 curStep == 702 || 
+				 
+				 curStep == 716 || 
+				 
+				 curStep == 722 || 
+				 
+				 curStep == 732 || 
+				 
+				 curStep == 748 || 
+				 
+				 curStep == 754 || 
+				 
+				 curStep == 764 || 
+				 
+				 curStep == 780 || 
+				 
+				 curStep == 808 || 
+				 
+				 curStep == 836 || 
+				 
+				 curStep == 848 || 
+				 
+				 curStep == 870 || 
+				 
+				 curStep == 874 || 
+				 
+				 curStep == 878 || 
+				 
+				 curStep == 882 || 
+				 
+				 curStep == 889 || 
+				 
+				 curStep == 896 || 
+				 
+				 curStep == 920 || 
+				 
+				 curStep == 940 || 
+				 
+				 curStep == 952 || 
+				 
+				 curStep == 960 || 
+				 
+				 curStep == 972 || 
+				 
+				 curStep == 986 || 
+				 
+				 curStep == 996 || 
+				 
+				 curStep == 1021 || 
+				 
+				 curStep == 1040 || 
+				 
+				 curStep == 1066 || 
+				 
+				 curStep == 1088 || 
+				 
+				 curStep == 1114 || 
+				 
+				 curStep == 1136 || 
+				 
+				 curStep == 1146 || 
+				 
+				 curStep == 1168 || 
+				 
+				 curStep == 1184
+				
+				 
+				 )
+			{
+				var tankmanRunner:TankmenBG = new TankmenBG();
+				tankmanRunner.resetShit(FlxG.random.int(1500, 1700) * 1, 285, false, 1, 1.5);
+				tankmanRun.add(tankmanRunner);
+			}
+		}
+
+		if (dad.curCharacter == 'tankman' && SONG.song.toLowerCase() == 'ugh')
+		{
+			
+			if (curStep == 59 || curStep == 443 || curStep == 523 || curStep == 827) // -1
+			{
+				dad.addOffset("singUP", 45, 0);
+				
+				dad.animation.getByName('singUP').frames = dad.animation.getByName('ughAnim').frames;
+			}
+
+			if (curStep == 64 || curStep == 448 || curStep == 528 || curStep == 832) // +4
+			{
+				dad.addOffset("singUP", 24, 56);
+				dad.animation.getByName('singUP').frames = dad.animation.getByName('oldSingUP').frames;
+			}
+		}
+
+		if (curSong.toLowerCase() == 'tutorial remix' && curStep == 44)
+		{
+			startCountdown();
+		}
+
+		if (SONG.song == 'It\'s Been So Long' && curStep == 446 && dad.curCharacter == 'sarvente')
+		{
+			boyfriend.playAnim('hey', true);
+			gf.playAnim('cheer', true);
+			dad.playAnim('hey', true);
+		}
+
+		if (SONG.song == 'Zavodila Remix' && curStep >= 1713 && dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
+		{
+			camHUD.shake(0.1, 0.4);
+			FlxG.camera.shake(0.1, 0.4);
+			boyfriend.playAnim('idle', false);
+			boyfriend.playAnim('shocked', true);
+			gf.playAnim('dance', false);
+			gf.playAnim('scared', true);
+		}
+
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					iconP2.animation.play('ruv');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					iconP2.animation.play('sarvente');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					iconP2.animation.play('ruv');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					iconP2.animation.play('sarvente');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					iconP2.animation.play('ruv');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Church-Lords' && boyfriend.curCharacter == 'bf')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(boyfriend);
+					boyfriend = new Boyfriend(630, 554, 'sarvente');
+					iconP1.animation.play('sarvente');
+					add(boyfriend);
+			}
+		}
+
+		if (curSong == 'Church-Lords' && boyfriend.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(dad);
+					boyfriend = new Boyfriend(630, 554, 'bf');
+					iconP1.animation.play('bf');
+					add(boyfriend);
+			}
+		}
+
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					iconP2.animation.play('sarvente');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					iconP2.animation.play('ruv');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					iconP2.animation.play('sarvente');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					iconP2.animation.play('sarvente');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 316:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					iconP2.animation.play('sarvente');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 348:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					iconP2.animation.play('ruv');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 412:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					iconP2.animation.play('sarvente');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 476:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					iconP2.animation.play('ruv');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 540:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					iconP2.animation.play('sarvente');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 575:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					iconP2.animation.play('ruv');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 706:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					iconP2.animation.play('sarvente');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 924:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					iconP2.animation.play('ruv');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 988:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					iconP2.animation.play('sarvente');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
+		{
+			switch (curStep)
+			{
+				case 1052:
+					remove(dad);
+					dad = new Character(630, 554, 'ruv', false);
+					iconP2.animation.play('ruv');
+					add(dad);
+			}
+		}
+
+		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
+		{
+			switch (curStep)
+			{
+				case 1116:
+					remove(dad);
+					dad = new Character(630, 554, 'sarvente', false);
+					iconP2.animation.play('sarvente');
+					add(dad);
+			}
+		}
+
 		#if windows
 		if (executeModchart && luaModchart != null)
 		{
@@ -4666,25 +5953,25 @@ class PlayState extends MusicBeatState
 				FlxG.camera.zoom += 0.27;
 				camHUD.zoom += 0.15;
 			}
+
+			if (curSong.toLowerCase() == 'stress' && curBeat >= 224 && curBeat < 254 && camZooming && FlxG.camera.zoom < 1.35)
+			{
+				FlxG.camera.zoom += 0.27;
+				camHUD.zoom += 0.15;
+			}
+
+			if (curSong.toLowerCase() == 'stress' && curBeat >= 320 && curBeat < 352 && camZooming && FlxG.camera.zoom < 1.35)
+			{
+				FlxG.camera.zoom += 0.27;
+				camHUD.zoom += 0.15;
+			}
 	
 			if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
 			{
-				FlxG.camera.zoom += 0.015;
-				camHUD.zoom += 0.03;
+				FlxG.camera.zoom += 0.045;
+				camHUD.zoom += 0.09;
 			}
 	
-		}
-
-		if (curSong.toLowerCase() == 'tutorial remix' && curStep == 44)
-		{
-			startCountdown();
-		}
-
-		if (SONG.song == 'It\'s Been So Long' && curStep == 446 && dad.curCharacter == 'sarvente')
-		{
-			boyfriend.playAnim('hey', true);
-			gf.playAnim('cheer', true);
-			dad.playAnim('hey', true);
 		}
 
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
@@ -4703,17 +5990,10 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim('idle');
 		}
 		
-
-		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
+		if (!dad.animation.curAnim.name.startsWith("sing"))
 		{
-			boyfriend.playAnim('hey', true);
+			dad.dance();
 		}
-
-		if (curBeat % 16 == 15 && SONG.song == 'Tutorial' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
-			{
-				boyfriend.playAnim('hey', true);
-				dad.playAnim('cheer', true);
-			}
 
 		if (dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
 		{
@@ -4738,6 +6018,17 @@ class PlayState extends MusicBeatState
 			gf.playAnim('dance', false);
 			gf.playAnim('scared', true);
 		}
+
+		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
+		{
+			boyfriend.playAnim('hey', true);
+		}
+
+		if (curBeat % 16 == 15 && SONG.song == 'Tutorial' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
+			{
+				boyfriend.playAnim('hey', true);
+				dad.playAnim('cheer', true);
+			}
 
 		if (boyfriend.animation.curAnim.name.startsWith('sing') || boyfriend.animation.curAnim.name == 'idle')
 		{
@@ -4776,16 +6067,6 @@ class PlayState extends MusicBeatState
 				boyfriend.playAnim('hey', true);
 				dad.playAnim('cheer', true);
 			}
-
-		if (SONG.song == 'Zavodila Remix' && curStep >= 1713 && dad.curCharacter == 'ruv' && dad.animation.curAnim.name.startsWith('sing'))
-		{
-			camHUD.shake(0.1, 0.4);
-			FlxG.camera.shake(0.1, 0.4);
-			boyfriend.playAnim('idle', false);
-			boyfriend.playAnim('shocked', true);
-			gf.playAnim('dance', false);
-			gf.playAnim('scared', true);
-		}
 
 		if (curSong == 'Too Clergy' && dad.curCharacter == 'sarvente')
 		{
@@ -5094,274 +6375,11 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
-		{
-			switch (curStep)
-			{
-				case 316:
-					remove(dad);
-					dad = new Character(630, 554, 'ruv', false);
-					iconP2.animation.play('ruv');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Church-Lords' && dad.curCharacter == 'ruv')
-		{
-			switch (curStep)
-			{
-				case 316:
-					remove(dad);
-					dad = new Character(630, 554, 'sarvente', false);
-					iconP2.animation.play('sarvente');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
-		{
-			switch (curStep)
-			{
-				case 316:
-					remove(dad);
-					dad = new Character(630, 554, 'ruv', false);
-					iconP2.animation.play('ruv');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Church-Lords' && dad.curCharacter == 'ruv')
-		{
-			switch (curStep)
-			{
-				case 316:
-					remove(dad);
-					dad = new Character(630, 554, 'sarvente', false);
-					iconP2.animation.play('sarvente');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
-		{
-			switch (curStep)
-			{
-				case 316:
-					remove(dad);
-					dad = new Character(630, 554, 'ruv', false);
-					iconP2.animation.play('ruv');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Church-Lords' && boyfriend.curCharacter == 'bf')
-		{
-			switch (curStep)
-			{
-				case 316:
-					remove(boyfriend);
-					boyfriend = new Boyfriend(630, 554, 'sarvente');
-					iconP1.animation.play('sarvente');
-					add(boyfriend);
-			}
-		}
-
-		if (curSong == 'Church-Lords' && boyfriend.curCharacter == 'sarvente')
-		{
-			switch (curStep)
-			{
-				case 316:
-					remove(dad);
-					boyfriend = new Boyfriend(630, 554, 'bf');
-					iconP1.animation.play('bf');
-					add(boyfriend);
-			}
-		}
-
-		if (curSong == 'Church-Lords' && dad.curCharacter == 'ruv')
-		{
-			switch (curStep)
-			{
-				case 316:
-					remove(dad);
-					dad = new Character(630, 554, 'sarvente', false);
-					iconP2.animation.play('sarvente');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
-		{
-			switch (curStep)
-			{
-				case 316:
-					remove(dad);
-					dad = new Character(630, 554, 'ruv', false);
-					iconP2.animation.play('ruv');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Church-Lords' && dad.curCharacter == 'ruv')
-		{
-			switch (curStep)
-			{
-				case 316:
-					remove(dad);
-					dad = new Character(630, 554, 'sarvente', false);
-					iconP2.animation.play('sarvente');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Church-Lords' && dad.curCharacter == 'sarvente')
-		{
-			switch (curStep)
-			{
-				case 316:
-					remove(dad);
-					dad = new Character(630, 554, 'ruv', false);
-					iconP2.animation.play('sarvente');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
-		{
-			switch (curStep)
-			{
-				case 316:
-					remove(dad);
-					dad = new Character(630, 554, 'sarvente', false);
-					iconP2.animation.play('sarvente');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
-		{
-			switch (curStep)
-			{
-				case 348:
-					remove(dad);
-					dad = new Character(630, 554, 'ruv', false);
-					iconP2.animation.play('ruv');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
-		{
-			switch (curStep)
-			{
-				case 412:
-					remove(dad);
-					dad = new Character(630, 554, 'sarvente', false);
-					iconP2.animation.play('sarvente');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
-		{
-			switch (curStep)
-			{
-				case 476:
-					remove(dad);
-					dad = new Character(630, 554, 'ruv', false);
-					iconP2.animation.play('ruv');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
-		{
-			switch (curStep)
-			{
-				case 540:
-					remove(dad);
-					dad = new Character(630, 554, 'sarvente', false);
-					iconP2.animation.play('sarvente');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
-		{
-			switch (curStep)
-			{
-				case 575:
-					remove(dad);
-					dad = new Character(630, 554, 'ruv', false);
-					iconP2.animation.play('ruv');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
-		{
-			switch (curStep)
-			{
-				case 706:
-					remove(dad);
-					dad = new Character(630, 554, 'sarvente', false);
-					iconP2.animation.play('sarvente');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
-		{
-			switch (curStep)
-			{
-				case 924:
-					remove(dad);
-					dad = new Character(630, 554, 'ruv', false);
-					iconP2.animation.play('ruv');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
-		{
-			switch (curStep)
-			{
-				case 988:
-					remove(dad);
-					dad = new Character(630, 554, 'sarvente', false);
-					iconP2.animation.play('sarvente');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Ruvved Up' && dad.curCharacter == 'sarvente')
-		{
-			switch (curStep)
-			{
-				case 1052:
-					remove(dad);
-					dad = new Character(630, 554, 'ruv', false);
-					iconP2.animation.play('ruv');
-					add(dad);
-			}
-		}
-
-		if (curSong == 'Ruvved Up' && dad.curCharacter == 'ruv')
-		{
-			switch (curStep)
-			{
-				case 1116:
-					remove(dad);
-					dad = new Character(630, 554, 'sarvente', false);
-					iconP2.animation.play('sarvente');
-					add(dad);
-			}
-		}
-
 		switch (curStage)
 		{
 			case 'tank':
 				if(FlxG.save.data.distractions){
+					tankWatchtower.animation.play('idle', true);
 					tank0.animation.play('idle', true);
 					tank1.animation.play('idle', true);
 					tank2.animation.play('idle', true);
@@ -5408,6 +6426,8 @@ class PlayState extends MusicBeatState
 	
 						phillyCityLights.members[curLight].visible = true;
 						// phillyCityLights.members[curLight].alpha = 1;
+				}
+
 				}
 
 				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)

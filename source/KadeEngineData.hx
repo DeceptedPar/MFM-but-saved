@@ -1,3 +1,4 @@
+import flixel.input.gamepad.FlxGamepad;
 import openfl.Lib;
 import flixel.FlxG;
 
@@ -89,6 +90,13 @@ class KadeEngineData
 
 		if (FlxG.save.data.inputShow == null)
 			FlxG.save.data.inputShow = false;
+
+		if (FlxG.save.data.optimize == null)
+			FlxG.save.data.optimize = false;
+		
+		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
+		
+		KeyBinds.gamepad = gamepad != null;
 
 		Conductor.recalculateTimings();
 		PlayerSettings.player1.controls.loadKeyBinds();
