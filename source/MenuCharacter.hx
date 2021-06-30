@@ -30,7 +30,7 @@ class MenuCharacter extends FlxSprite
 		'mom' => new CharacterSetting(-30, 140, 0.85),
 		'parents-christmas' => new CharacterSetting(100, 130, 1.8),
 		'senpai' => new CharacterSetting(-40, -45, 1.4),
-		'tankman' => new CharacterSetting(50, 150, 1),
+		'tankman' => new CharacterSetting(-80, -20),
 		'masses' => new CharacterSetting(100, 130, 1.8)
 	];
 

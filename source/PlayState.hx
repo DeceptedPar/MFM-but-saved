@@ -80,6 +80,7 @@ class PlayState extends MusicBeatState
 
 	public static var curStage:String = '';
 	public static var SONG:SwagSong;
+	public static var SONGOFTHEPICOSPEAKER:SwagSong;
 	public static var isStoryMode:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
@@ -424,7 +425,7 @@ class PlayState extends MusicBeatState
 				case 4: stageCheck = 'limo';
 				case 5: if (songLowercase == 'winter-horrorland') {stageCheck = 'mallEvil';} else {stageCheck = 'mall';}
 				case 6: if (songLowercase == 'thorns') {stageCheck = 'schoolEvil';} else {stageCheck = 'school';}
-				case 7: stageCheck = 'tank';
+				case 7: if (songLowercase == 'stress') {stageCheck = 'tank-b';} else {stageCheck = 'tank-a';}
 				//i should check if its stage (but this is when none is found in chart anyway)
 			}
 		} else {stageCheck = SONG.stage;}
@@ -756,121 +757,274 @@ class PlayState extends MusicBeatState
 								add(waveSpriteFG);
 						*/
 			}
-			case 'tank':
+			case 'tank-a':
 				{
 						defaultCamZoom = 0.9;
-						curStage = 'tank';
+						curStage = 'tank-a';
 
-						var tankSky:FlxSprite = new FlxSprite(-400, -400).loadGraphic(Paths.image('tank/tankSky', 'week7'));
-						tankSky.antialiasing = true;
-						tankSky.scrollFactor.set(0, 0);
-						add(tankSky);
+						defaultCamZoom = 0.9;
+						var bg:FlxSprite = new FlxSprite(-400,-400);
+						bg.loadGraphic(Paths.image("tank/tankSky", "week7"));
+						bg.scrollFactor.set(0, 0);
+						bg.antialiasing = true;
+						add(bg);
 
-						var tankClouds:FlxSprite = new FlxSprite(-700, -100).loadGraphic(Paths.image('tank/tankClouds', 'week7'));
-						tankClouds.scrollFactor.set(0.1, 0.1);
-						tankClouds.velocity.x = FlxG.random.float(5, 15);
-						tankClouds.antialiasing = true;
-						tankClouds.updateHitbox();
-						add(tankClouds);
+						var clouds:FlxSprite = new FlxSprite(FlxG.random.int(-700, -100), FlxG.random.int(-20, 20)).loadGraphic(Paths.image('tank/tankClouds', 'week7'));
+						clouds.scrollFactor.set(0.1, 0.1);
+						clouds.velocity.x = FlxG.random.float(5, 15);
+						clouds.antialiasing = true;
+						clouds.updateHitbox();
+						add(clouds);
 
-						var tankMountains:FlxSprite = new FlxSprite(-300, -20).loadGraphic(Paths.image('tank/tankMountains', 'week7'));
-						tankMountains.antialiasing = true;
-						tankMountains.setGraphicSize(Std.int(tankMountains.width * 1.2));
-						tankMountains.scrollFactor.set(0.2, 0.2);
-						tankMountains.updateHitbox();
-						add(tankMountains);
+						var mountains:FlxSprite = new FlxSprite(-300,-20).loadGraphic(Paths.image('tank/tankMountains', 'week7'));
+						mountains.scrollFactor.set(0.2, 0.2);
+						mountains.setGraphicSize(Std.int(1.2 * mountains.width));
+						mountains.updateHitbox();
+						mountains.antialiasing = true;
+						add(mountains);
 
-						var tankBuildings:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankBuildings', 'week7'));
-						tankBuildings.antialiasing = true;
-						tankBuildings.setGraphicSize(Std.int(tankBuildings.width * 1.1));
-						tankBuildings.scrollFactor.set(0.3, 0.3);
-						tankBuildings.updateHitbox();
-						add(tankBuildings);
+						var buildings:FlxSprite = new FlxSprite(-200,0).loadGraphic(Paths.image('tank/tankBuildings', 'week7'));
+						buildings.scrollFactor.set(0.3, 0.3);
+						buildings.setGraphicSize(Std.int(buildings.width * 1.1));
+						buildings.updateHitbox();
+						buildings.antialiasing = true;
+						add(buildings);
 
-						var tankRuins:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankRuins', 'week7'));
-						tankRuins.antialiasing = true;
-						tankRuins.setGraphicSize(Std.int(tankRuins.width * 1.1));
-						tankRuins.scrollFactor.set(0.35, 0.35);
-						tankRuins.updateHitbox();
-						add(tankRuins);
+						var ruins:FlxSprite = new FlxSprite(-200,0).loadGraphic(Paths.image('tank/tankRuins', 'week7'));
+						ruins.scrollFactor.set(0.35, 0.35);
+						ruins.setGraphicSize(Std.int(ruins.width * 1.1));
+						ruins.updateHitbox();
+						ruins.antialiasing = true;
+						add(ruins);
 
-						var smokeLeft:FlxSprite = new FlxSprite(-200, -100).loadGraphic(Paths.image('tank/smokeLeft', 'week7'));
-						smokeLeft.animation.addByPrefix('idle', 'SmokeBlurLeft', 24, true);
-						smokeLeft.animation.play('idle');
-						smokeLeft.scrollFactor.set (0.4, 0.4);
+						var smokeLeft:FlxSprite = new FlxSprite(-200,-100);
+						smokeLeft.frames = Paths.getSparrowAtlas('tank/smokeLeft', 'week7');
+						smokeLeft.animation.addByPrefix('idle', 'SmokeBlurLeft ', 24, true);
+						smokeLeft.scrollFactor.set(0.4, 0.4);
 						smokeLeft.antialiasing = true;
+						smokeLeft.animation.play('idle');
+						
 						add(smokeLeft);
 
-						var smokeRight:FlxSprite = new FlxSprite(1100, -100).loadGraphic(Paths.image('tank/smokeRight', 'week7'));
-						smokeRight.animation.addByPrefix('idle', 'SmokeRight', 24, true);
-						smokeRight.animation.play('idle');
-						smokeRight.scrollFactor.set (0.4, 0.4);
+						var smokeRight:FlxSprite = new FlxSprite(1100,-100);
+						smokeRight.frames = Paths.getSparrowAtlas('tank/smokeRight', 'week7');
+						smokeRight.animation.addByPrefix('idle', 'SmokeRight ', 24, true);
+						smokeRight.scrollFactor.set(0.4, 0.4);
 						smokeRight.antialiasing = true;
+						smokeRight.animation.play('idle');
+						
 						add(smokeRight);
 
-						var tankWatchtower:FlxSprite = new FlxSprite(100, 30).loadGraphic(Paths.image('tank/tankWatchtower', 'week7'));
+						var tankWatchtower:FlxSprite = new FlxSprite(100,30);
+						tankWatchtower.frames = Paths.getSparrowAtlas('tank/tankWatchtower', 'week7');
 						tankWatchtower.animation.addByPrefix('idle', 'watchtower gradient color instance 1', 24, false);
 						tankWatchtower.scrollFactor.set(0.5, 0.5);
 						tankWatchtower.antialiasing = true;
+
 						add(tankWatchtower);
 
-						var tankRolling:FlxSprite = new FlxSprite(300, 300).loadGraphic(Paths.image('tank/tankRolling', 'week7'));
-						tankRolling.animation.addByPrefix('idle', 'BG tank w lighting', 24, true);
-						tankRolling.antialiasing = true;
+						var tankRolling:FlxSprite = new FlxSprite(300,300);
+						tankRolling.frames = Paths.getSparrowAtlas('tank/tankRolling', 'week7');
+						tankRolling.animation.addByPrefix('idle', 'BG tank w lighting ', 24, true);
 						tankRolling.scrollFactor.set(0.5, 0.5);
+						tankRolling.antialiasing = true;
+						tankRolling.animation.play('idle');
+
 						add(tankRolling);
 
-						var tankGround:FlxSprite = new FlxSprite(-420, -150).loadGraphic(Paths.image('tank/tankGround', 'week7'));
-						tankGround.scrollFactor.set(1, 1);
-						tankGround.setGraphicSize(Std.int(tankGround.width * 1.15));
-						tankGround.updateHitbox();
-						tankGround.antialiasing = true;
-						add(tankGround);
+						var ground:FlxSprite = new FlxSprite(-420,-150).loadGraphic(Paths.image('tank/tankGround', 'week7'));
+						ground.scrollFactor.set();
+						ground.antialiasing = true;
+						ground.setGraphicSize(Std.int(ground.width * 1.15));
+						ground.scrollFactor.set(1, 1);
+						
+						ground.updateHitbox();
+						add(ground);
 
 						moveTank();
 
-						tank0 = new FlxSprite(-500, 650);
+						tank0 = new FlxSprite(-500,650);
 						tank0.frames = Paths.getSparrowAtlas('tank/tank0', 'week7');
-						tank0.animation.addByPrefix('idle', 'fg tankhead far right', 24, false);
+						tank0.animation.addByPrefix('idle', 'fg tankhead far right ', 24, false);
 						tank0.scrollFactor.set(1.7, 1.5);
 						tank0.antialiasing = true;
+						
 						tank0.updateHitbox();
 
-						tank1 = new FlxSprite(-300, 750);
+						tank1 = new FlxSprite(-300,750);
 						tank1.frames = Paths.getSparrowAtlas('tank/tank1', 'week7');
-						tank1.animation.addByPrefix('idle', 'fg', 24, false);
-						tank1.scrollFactor.set(2, 0.2);
+						tank1.animation.addByPrefix('idle', 'fg tankhead 5 ', 24, false);
+						tank1.scrollFactor.set(2.0, 0.2);
 						tank1.antialiasing = true;
+						
 						tank1.updateHitbox();
 
-						tank2 = new FlxSprite(450, 940);
+						tank2 = new FlxSprite(450,940);
 						tank2.frames = Paths.getSparrowAtlas('tank/tank2', 'week7');
-						tank2.animation.addByPrefix('idle', 'foreground', 24, false);
+						tank2.animation.addByPrefix('idle', 'foreground man 3 ', 24, false);
 						tank2.scrollFactor.set(1.5, 1.5);
 						tank2.antialiasing = true;
+						
 						tank2.updateHitbox();
 
-						tank4 = new FlxSprite(1300, 900);
+						tank3 = new FlxSprite(1300,1200);
+						tank3.frames = Paths.getSparrowAtlas('tank/tank3', 'week7');
+						tank3.animation.addByPrefix('idle', 'fg tankhead 4 ', 24, false);
+						tank3.scrollFactor.set(3.5, 2.5);
+						tank3.antialiasing = true;
+						
+						tank3.updateHitbox();
+						
+						tank4 = new FlxSprite(1300,900);
 						tank4.frames = Paths.getSparrowAtlas('tank/tank4', 'week7');
-						tank4.animation.addByPrefix('idle', 'fg', 24, false);
+						tank4.animation.addByPrefix('idle', 'fg tankman bobbin 3 ', 24, false);
 						tank4.scrollFactor.set(1.5, 1.5);
 						tank4.antialiasing = true;
+						
 						tank4.updateHitbox();
 
-						tank5 = new FlxSprite(1620, 700);
+						tank5 = new FlxSprite(1620,700);
 						tank5.frames = Paths.getSparrowAtlas('tank/tank5', 'week7');
-						tank5.animation.addByPrefix('idle', 'fg', 24, false);
+						tank5.animation.addByPrefix('idle', 'fg tankhead far right ', 24, false);
 						tank5.scrollFactor.set(1.5, 1.5);
 						tank5.antialiasing = true;
+						
 						tank5.updateHitbox();
 
-						tank3 = new FlxSprite(1300, 1200);
-						tank3.frames = Paths.getSparrowAtlas('tank/tank3', 'week7');
-						tank3.animation.addByPrefix('idle', 'fg', 24, false);
-						tank3.scrollFactor.set(1.5, 1.5);
-						tank3.antialiasing = true;
-						tank3.updateHitbox();
+				}
+			case 'tank-b':
+				{
+						defaultCamZoom = 0.9;
+						curStage = 'tank-b';
 
+						defaultCamZoom = 0.9;
+						var bg:FlxSprite = new FlxSprite(-400,-400);
+						bg.loadGraphic(Paths.image("tank/tankSky", "week7"));
+						bg.scrollFactor.set(0, 0);
+						bg.antialiasing = true;
+						add(bg);
+
+						var clouds:FlxSprite = new FlxSprite(FlxG.random.int(-700, -100), FlxG.random.int(-20, 20)).loadGraphic(Paths.image('tank/tankClouds', 'week7'));
+						clouds.scrollFactor.set(0.1, 0.1);
+						clouds.velocity.x = FlxG.random.float(5, 15);
+						clouds.antialiasing = true;
+						clouds.updateHitbox();
+						add(clouds);
+
+						var mountains:FlxSprite = new FlxSprite(-300,-20).loadGraphic(Paths.image('tank/tankMountains', 'week7'));
+						mountains.scrollFactor.set(0.2, 0.2);
+						mountains.setGraphicSize(Std.int(1.2 * mountains.width));
+						mountains.updateHitbox();
+						mountains.antialiasing = true;
+						add(mountains);
+
+						var buildings:FlxSprite = new FlxSprite(-200,0).loadGraphic(Paths.image('tank/tankBuildings', 'week7'));
+						buildings.scrollFactor.set(0.3, 0.3);
+						buildings.setGraphicSize(Std.int(buildings.width * 1.1));
+						buildings.updateHitbox();
+						buildings.antialiasing = true;
+						add(buildings);
+
+						var ruins:FlxSprite = new FlxSprite(-200,0).loadGraphic(Paths.image('tank/tankRuins', 'week7'));
+						ruins.scrollFactor.set(0.35, 0.35);
+						ruins.setGraphicSize(Std.int(ruins.width * 1.1));
+						ruins.updateHitbox();
+						ruins.antialiasing = true;
+						add(ruins);
+
+						var smokeLeft:FlxSprite = new FlxSprite(-200,-100);
+						smokeLeft.frames = Paths.getSparrowAtlas('tank/smokeLeft', 'week7');
+						smokeLeft.animation.addByPrefix('idle', 'SmokeBlurLeft ', 24, true);
+						smokeLeft.scrollFactor.set(0.4, 0.4);
+						smokeLeft.antialiasing = true;
+						smokeLeft.animation.play('idle');
+						
+						add(smokeLeft);
+
+						var smokeRight:FlxSprite = new FlxSprite(1100,-100);
+						smokeRight.frames = Paths.getSparrowAtlas('tank/smokeRight', 'week7');
+						smokeRight.animation.addByPrefix('idle', 'SmokeRight ', 24, true);
+						smokeRight.scrollFactor.set(0.4, 0.4);
+						smokeRight.antialiasing = true;
+						smokeRight.animation.play('idle');
+						
+						add(smokeRight);
+
+						var tankWatchtower:FlxSprite = new FlxSprite(100,30);
+						tankWatchtower.frames = Paths.getSparrowAtlas('tank/tankWatchtower', 'week7');
+						tankWatchtower.animation.addByPrefix('idle', 'watchtower gradient color instance 1', 24, false);
+						tankWatchtower.scrollFactor.set(0.5, 0.5);
+						tankWatchtower.antialiasing = true;
+
+						add(tankWatchtower);
+
+						var tankRolling:FlxSprite = new FlxSprite(300,300);
+						tankRolling.frames = Paths.getSparrowAtlas('tank/tankRolling', 'week7');
+						tankRolling.animation.addByPrefix('idle', 'BG tank w lighting ', 24, true);
+						tankRolling.scrollFactor.set(0.5, 0.5);
+						tankRolling.antialiasing = true;
+						tankRolling.animation.play('idle');
+
+						add(tankRolling);
+
+						var ground:FlxSprite = new FlxSprite(-420,-150).loadGraphic(Paths.image('tank/tankGround', 'week7'));
+						ground.scrollFactor.set();
+						ground.antialiasing = true;
+						ground.setGraphicSize(Std.int(ground.width * 1.15));
+						ground.scrollFactor.set(1, 1);
+						
+						ground.updateHitbox();
+						add(ground);
+
+						moveTank();
+
+						tank0 = new FlxSprite(-500,650);
+						tank0.frames = Paths.getSparrowAtlas('tank/tank0', 'week7');
+						tank0.animation.addByPrefix('idle', 'fg tankhead far right ', 24, false);
+						tank0.scrollFactor.set(1.7, 1.5);
+						tank0.antialiasing = true;
+						
+						tank0.updateHitbox();
+
+						tank1 = new FlxSprite(-300,750);
+						tank1.frames = Paths.getSparrowAtlas('tank/tank1', 'week7');
+						tank1.animation.addByPrefix('idle', 'fg tankhead 5 ', 24, false);
+						tank1.scrollFactor.set(2.0, 0.2);
+						tank1.antialiasing = true;
+						
+						tank1.updateHitbox();
+
+						tank2 = new FlxSprite(450,940);
+						tank2.frames = Paths.getSparrowAtlas('tank/tank2', 'week7');
+						tank2.animation.addByPrefix('idle', 'foreground man 3 ', 24, false);
+						tank2.scrollFactor.set(1.5, 1.5);
+						tank2.antialiasing = true;
+						
+						tank2.updateHitbox();
+
+						tank3 = new FlxSprite(1300,1200);
+						tank3.frames = Paths.getSparrowAtlas('tank/tank3', 'week7');
+						tank3.animation.addByPrefix('idle', 'fg tankhead 4 ', 24, false);
+						tank3.scrollFactor.set(3.5, 2.5);
+						tank3.antialiasing = true;
+						
+						tank3.updateHitbox();
+						
+						tank4 = new FlxSprite(1300,900);
+						tank4.frames = Paths.getSparrowAtlas('tank/tank4', 'week7');
+						tank4.animation.addByPrefix('idle', 'fg tankman bobbin 3 ', 24, false);
+						tank4.scrollFactor.set(1.5, 1.5);
+						tank4.antialiasing = true;
+						
+						tank4.updateHitbox();
+
+						tank5 = new FlxSprite(1620,700);
+						tank5.frames = Paths.getSparrowAtlas('tank/tank5', 'week7');
+						tank5.animation.addByPrefix('idle', 'fg tankhead far right ', 24, false);
+						tank5.scrollFactor.set(1.5, 1.5);
+						tank5.antialiasing = true;
+						
+						tank5.updateHitbox();
 				}
 			case 'church1':
 				{
@@ -1267,7 +1421,14 @@ class PlayState extends MusicBeatState
 				gf.x += 180;
 				gf.y += 300;
 
-			case 'tank':
+			case 'tank-a':
+				boyfriend.x += 40;
+				gf.x -= 200;
+				gf.y += -55;
+				dad.x -= 80;
+				dad.y += 60;
+
+			case 'tank-b':
 				boyfriend.x += 40;
 				gf.x -= 200;
 				gf.y += -55;
@@ -1400,13 +1561,15 @@ class PlayState extends MusicBeatState
 			add(dad);
 			add(boyfriend);
 
-			if (curStage == 'tank')
+			if (curStage == 'tank-a' || curStage == 'tank-b')
+			{
 				add(tank0);
 				add(tank1);
 				add(tank2);
+				add(tank3);
 				add(tank4);
 				add(tank5);
-				add(tank3);
+			}
 		}
 
 
@@ -2327,146 +2490,6 @@ class PlayState extends MusicBeatState
 							babyArrow.animation.add('confirm', [12, 16], 24, false);
 					}
 
-				case 'xmas':
-
-					babyArrow.frames = Paths.getSparrowAtlas('christmas/xmas_ui/notes_xmas', 'week5');
-					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
-					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
-					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
-					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
-	
-					babyArrow.antialiasing = true;
-					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-	
-					switch (Math.abs(i))
-					{
-						case 0:
-							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
-							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
-						case 1:
-							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
-							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
-						case 2:
-							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
-							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
-						case 3:
-							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
-							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
-						}
-
-				case 'sarvente':
-
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Sarvente');
-					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
-					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
-					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
-					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
-	
-					babyArrow.antialiasing = true;
-					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-	
-					switch (Math.abs(i))
-					{
-						case 0:
-							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
-							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
-						case 1:
-							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
-							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
-						case 2:
-							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
-							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
-						case 3:
-							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
-							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
-						}
-
-				case 'dark-sarv':
-
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Dark-Sarv');
-					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
-					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
-					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
-					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
-	
-					babyArrow.antialiasing = true;
-					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-	
-					switch (Math.abs(i))
-					{
-						case 0:
-							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
-							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
-						case 1:
-							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
-							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
-						case 2:
-							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
-							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
-						case 3:
-							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
-							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
-						}
-
-				case 'ruv':
-
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Ruv');
-					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
-					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
-					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
-					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
-	
-					babyArrow.antialiasing = true;
-					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-	
-					switch (Math.abs(i))
-					{
-						case 0:
-							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
-							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
-						case 1:
-							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
-							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
-						case 2:
-							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
-							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
-						case 3:
-							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
-							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
-						}
-
 				case 'luci-sarv-alt':
 
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv-Alt');
@@ -2505,76 +2528,6 @@ class PlayState extends MusicBeatState
 				case 'luci-sarv':
 
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv');
-					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
-					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
-					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
-					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
-	
-					babyArrow.antialiasing = true;
-					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-	
-					switch (Math.abs(i))
-					{
-						case 0:
-							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
-							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
-						case 1:
-							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
-							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
-						case 2:
-							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
-							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
-						case 3:
-							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
-							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
-						}
-
-				case 'selever':
-
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_Selever');
-					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
-					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
-					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
-					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
-	
-					babyArrow.antialiasing = true;
-					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-	
-					switch (Math.abs(i))
-					{
-						case 0:
-							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
-							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
-						case 1:
-							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
-							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
-						case 2:
-							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
-							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
-						case 3:
-							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
-							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
-							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
-						}
-
-				case 'gf':
-
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_Assets_GF');
 					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
 					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
 					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
@@ -2903,6 +2856,11 @@ class PlayState extends MusicBeatState
 					}
 				}
 				// phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed;
+			case 'tank-a':
+				moveTank();
+
+			case 'tank-b':
+				moveTank();
 		}
 
 		super.update(elapsed);
@@ -4727,28 +4685,6 @@ class PlayState extends MusicBeatState
 			resyncVocals();
 		}
 
-		/*if (dad.curCharacter == 'tankman' && curSong.toLowerCase() == 'stress')
-		{
-			if (curStep == 735)
-			{
-				dad.addOffset("singDOWN", 45, 20);
-				dad.animation.getByName('singDOWN').frames = dad.animation.getByName('PRETTY GOOD tankman instance 1').frames;
-				dad.playAnim('PRETTY GOOD tankman instance 1', true);
-			}
-
-			if (curStep == 736 || curStep == 737)
-			{
-				
-				dad.playAnim('PRETTY GOOD tankman instance 1', true);
-			}
-
-			if (curStep == 767)
-			{
-				dad.addOffset("singDOWN", 98, -90);
-				dad.animation.getByName('singDOWN').frames = dad.animation.getByName('Tankman DOWN note instance 1').frames;
-			}
-		}*/
-
 		if (curSong.toLowerCase() == 'stress')
 		{
 			if (curStep == 2 || curStep == 3 || curStep == 5 || curStep == 9 || curStep == 10 || curStep == 16 || curStep == 22 || curStep == 25 || curStep == 26 || curStep == 34 || curStep == 35 || curStep == 37 || curStep == 41 || curStep == 42 || curStep == 48 || curStep == 54 || curStep == 57 || curStep == 58 || curStep == 66 || curStep == 67 || curStep == 69 || curStep == 73 || curStep == 74 || curStep == 80 || curStep == 86 || curStep == 89 || curStep == 90 || curStep == 98 || curStep == 99 || curStep == 101 || curStep == 105 || curStep == 106 || curStep == 112 || curStep == 118 || curStep == 121 || curStep == 122 || curStep == 253 || curStep == 260 || curStep == 268 || curStep == 280 || curStep == 284 || curStep == 292 || curStep == 300 || curStep == 312 || curStep == 316 || curStep == 317 || curStep == 318 || curStep == 320 || curStep == 332 || curStep == 336 || curStep == 344 || curStep == 358 || curStep == 360 || curStep == 362 || curStep == 364 || curStep == 372 || curStep == 376 || curStep == 388 || curStep == 396 || curStep == 404 || curStep == 408 || curStep == 412 || curStep == 420 || curStep == 428 || curStep == 436 || curStep == 440 || curStep == 444 || curStep == 452 || curStep == 456 || curStep == 460 || curStep == 468 || curStep == 472 || curStep == 476 || curStep == 484 || curStep == 488 || curStep == 492 || curStep == 508 || curStep == 509 || curStep == 510 || curStep == 516 || curStep == 520 || curStep == 524 || curStep == 532 || curStep == 540 || curStep == 552 || curStep == 556 || curStep == 564 || curStep == 568 || curStep == 572 || curStep == 580 || curStep == 584 || curStep == 588 || curStep == 596 || curStep == 604 || curStep == 612 || curStep == 616 || curStep == 620 || curStep == 636 || curStep == 637 || curStep == 638 || curStep == 642 || curStep == 643 || curStep == 645 || curStep == 649 || curStep == 650 || curStep == 656 || curStep == 662 || curStep == 665 || curStep == 666 || curStep == 674 || curStep == 675 || curStep == 677 || curStep == 681 || curStep == 682 || curStep == 688 || curStep == 694 || curStep == 697 || curStep == 698 || curStep == 706 || curStep == 707 || curStep == 709 || curStep == 713 || curStep == 714 || curStep == 720 || curStep == 726 || curStep == 729 || curStep == 730 || curStep == 738 || curStep == 739 || curStep == 741 || curStep == 745 || curStep == 746 || curStep == 753 || curStep == 758 || curStep == 761 || curStep == 762 || curStep == 768 || curStep == 788 || curStep == 792 || curStep == 796 || curStep == 800 || curStep == 820 || curStep == 824 || curStep == 828 || curStep == 829 || curStep == 830 || curStep == 832 || curStep == 852 || curStep == 856 || curStep == 860 || curStep == 861 || curStep == 862 || curStep == 864 || curStep == 865 || curStep == 866 || curStep == 884 || curStep == 885 || curStep == 886 || curStep == 887 || curStep == 892 || curStep == 900 || curStep == 912 || curStep == 916 || curStep == 924 || curStep == 926 || curStep == 936 || curStep == 948 || curStep == 958 || curStep == 962 || curStep == 966 || curStep == 970 || curStep == 974 || curStep == 976 || curStep == 980 || curStep == 984 || curStep == 988 || curStep == 990 || curStep == 1000 || curStep == 1004 || curStep == 1006 || curStep == 1008 || curStep == 1012 || curStep == 1019 || curStep == 1028 || curStep == 1036 || curStep == 1044 || curStep == 1052 || curStep == 1060 || curStep == 1068 || curStep == 1076 || curStep == 1084 || curStep == 1092 || curStep == 1100 || curStep == 1108 || curStep == 1116 || curStep == 1124 || curStep == 1132 || curStep == 1148 || curStep == 1149 || curStep == 1150 || curStep == 1156 || curStep == 1160 || curStep == 1164 || curStep == 1172 || curStep == 1180 || curStep == 1188 || curStep == 1192 || curStep == 1196 || curStep == 1204 || curStep == 1208 || curStep == 1212 || curStep == 1220 || curStep == 1224 || curStep == 1228 || curStep == 1236 || curStep == 1244 || curStep == 1252 || curStep == 1256 || curStep == 1260 || curStep == 1276 || curStep == 1296 || curStep == 1300 || curStep == 1304 || curStep == 1308 || curStep == 1320 || curStep == 1324 || curStep == 1328 || curStep == 1332 || curStep == 1340 || curStep == 1352 || curStep == 1358 || curStep == 1364 || curStep == 1372 || curStep == 1374 || curStep == 1378 || curStep == 1388 || curStep == 1392 || curStep == 1400 || curStep == 1401 || curStep == 1405 || curStep == 1410 || curStep == 1411 || curStep == 1413 || curStep == 1417 || curStep == 1418 || curStep == 1424 || curStep == 1430 || curStep == 1433 || curStep == 1434)
@@ -4780,22 +4716,14 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		/*if (dad.curCharacter == 'tankman' && curSong.toLowerCase() == 'ugh')
+		if (dad.curCharacter == 'tankman' && curSong.toLowerCase() == 'ugh')
 		{
 			
 			if (curStep == 59 || curStep == 443 || curStep == 523 || curStep == 827) // -1
 			{
-				dad.addOffset("singUP", 45, 0);
-				
-				dad.animation.getByName('singUP').frames = dad.animation.getByName('TANKMAN UGH instance 1').frames;
+				dad.playAnim('ugh', true);
 			}
-
-			if (curStep == 64 || curStep == 448 || curStep == 528 || curStep == 832) // +4
-			{
-				dad.addOffset("singUP", 24, 56);
-				dad.animation.getByName('singUP').frames = dad.animation.getByName('Tankman UP note instance 1').frames;
-			}
-		}*/
+		}
 
 		if (curSong.toLowerCase() == 'tutorial remix' && curStep == 44)
 		{
@@ -5580,17 +5508,6 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'tank':
-				if(FlxG.save.data.distractions){
-					tankWatchtower.animation.play('idle', true);
-					tank0.animation.play('idle', true);
-					tank1.animation.play('idle', true);
-					tank2.animation.play('idle', true);
-					tank4.animation.play('idle', true);
-					tank5.animation.play('idle', true);
-					tank3.animation.play('idle', true);
-				}
-
 			case 'school':
 				if(FlxG.save.data.distractions){
 					bgGirls.dance();
@@ -5638,6 +5555,36 @@ class PlayState extends MusicBeatState
 					if(FlxG.save.data.distractions){
 						trainCooldown = FlxG.random.int(-4, 0);
 						trainStart();
+					}
+				}
+
+			case "tank-a":
+				if(FlxG.save.data.distractions)
+				{
+					if(curBeat % 2 == 0)
+					{
+						tankWatchtower.animation.play('idle', true);
+						tank0.animation.play('idle', true);
+						tank1.animation.play('idle', true);
+						tank2.animation.play('idle', true);
+						tank3.animation.play('idle', true);
+						tank4.animation.play('idle', true);
+						tank5.animation.play('idle', true);
+					}
+				}
+
+			case "tank-b":
+				if(FlxG.save.data.distractions)
+				{
+					if(curBeat % 2 == 0)
+					{
+						tankWatchtower.animation.play('idle', true);
+						tank0.animation.play('idle', true);
+						tank1.animation.play('idle', true);
+						tank2.animation.play('idle', true);
+						tank3.animation.play('idle', true);
+						tank4.animation.play('idle', true);
+						tank5.animation.play('idle', true);
 					}
 				}
 		}

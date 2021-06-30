@@ -15,6 +15,9 @@ bf-pixel
 senpai
 senpai-angry
 spirit
+tankman
+bf-holding-gf
+gf-tankmen
 sarvente
 sarvente-alt
 bf-dark
@@ -23,4 +26,3 @@ ruv
 ruv-alt
 luci-sarv
 selever
-tankman

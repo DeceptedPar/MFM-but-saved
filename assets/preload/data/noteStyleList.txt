@@ -1,10 +1,4 @@
 normal
 pixel
-xmas
-sarvente
-dark-sarv
-ruv
 luci-sarv
 luci-sarv-alt
-selever
-gf

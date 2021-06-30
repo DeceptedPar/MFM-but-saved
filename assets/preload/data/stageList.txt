@@ -6,7 +6,8 @@ mall
 mallEvil
 school
 schoolEvil
-tank
+tank-a
+tank-b
 church1
 church1-dark
 church2
