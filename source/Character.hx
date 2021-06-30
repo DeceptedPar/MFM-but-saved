@@ -128,9 +128,9 @@ class Character extends FlxSprite
 				updateHitbox();
 				antialiasing = false;
 
-			case 'picoSpeaker':
+			case 'pico-speaker':
 				
-				tex = Paths.getSparrowAtlas('characters/picoSpeaker',);
+				tex = Paths.getSparrowAtlas('characters/picoSpeaker');
 				frames = tex;
 				
 				animation.addByIndices('idle', 'Pico shoot 1', [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], "", 24, true);
