@@ -30,7 +30,7 @@ class MenuCharacter extends FlxSprite
 		'mom' => new CharacterSetting(-30, 140, 0.85),
 		'parents-christmas' => new CharacterSetting(100, 130, 1.8),
 		'senpai' => new CharacterSetting(-40, -45, 1.4),
-		'tankman' => new CharacterSetting(-80, -20),
+		//'tankman' => new CharacterSetting(-80, -20),
 		'masses' => new CharacterSetting(100, 130, 1.8)
 	];
 
@@ -54,7 +54,7 @@ class MenuCharacter extends FlxSprite
 		animation.addByPrefix('mom', "Mom Idle BLACK LINES", 24);
 		animation.addByPrefix('parents-christmas', "Parent Christmas Idle", 24);
 		animation.addByPrefix('senpai', "SENPAI idle Black Lines", 24);
-		animation.addByPrefix('tankman', "Tankman Menu BLACK", 24);
+		//animation.addByPrefix('tankman', "Tankman Menu BLACK", 24);
 		animation.addByPrefix('masses', "Cross and Sickle", 24);
 
 		setGraphicSize(Std.int(width * scale));

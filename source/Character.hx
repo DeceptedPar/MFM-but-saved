@@ -128,7 +128,7 @@ class Character extends FlxSprite
 				updateHitbox();
 				antialiasing = false;
 
-			case 'pico-speaker':
+			/*case 'pico-speaker':
 				
 				tex = Paths.getSparrowAtlas('characters/picoSpeaker');
 				frames = tex;
@@ -170,7 +170,7 @@ class Character extends FlxSprite
 				addOffset('danceRight', 0, -9);
 				updateHitbox();
 
-				playAnim('danceRight');
+				playAnim('danceRight');*/
 
 			case 'gf-dark':
 				tex = Paths.getSparrowAtlas('sacredmass/GF_DARK');
@@ -532,7 +532,7 @@ class Character extends FlxSprite
 
 				flipX = true;
 
-			case 'bf-holding-gf':
+			/*case 'bf-holding-gf':
 				
 				frames = Paths.getSparrowAtlas('characters/bfAndGF');
 				animation.addByPrefix('idle', 'BF idle dance w gf0', 24, false);
@@ -569,7 +569,7 @@ class Character extends FlxSprite
 				addOffset('firstDeath', 37, 14);
 				addOffset('deathLoop', 37, -3);
 				addOffset('deathConfirm', 37, 28);
-				playAnim('firstDeath');
+				playAnim('firstDeath');*/
 
 			case 'senpai':
 				frames = Paths.getSparrowAtlas('characters/senpai');
@@ -658,7 +658,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 
-			case 'tankman':
+			/*case 'tankman':
 				frames = Paths.getSparrowAtlas('characters/tankman');
 				animation.addByPrefix('idle', 'Tankman Idle Dance', 24, false);
 				animation.addByPrefix('singUP', 'Tankman UP note', 24, false);
@@ -677,7 +677,7 @@ class Character extends FlxSprite
 				addOffset('singDOWN-alt', 0, 15);
 				playAnim('idle');
 
-				flipX = true;
+				flipX = true;*/
 
 			case 'sarvente':
 				frames = Paths.getSparrowAtlas('sacredmass/sarvente_sheet');
@@ -927,7 +927,7 @@ class Character extends FlxSprite
 							playAnim('danceLeft');
 					}
 
-				case 'gf-tankmen':
+				/*case 'gf-tankmen':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
@@ -947,7 +947,7 @@ class Character extends FlxSprite
 							playAnim('idle');
 						else
 							playAnim('idle');
-					}
+					}*/
 
 				case 'spooky':
 					danced = !danced;

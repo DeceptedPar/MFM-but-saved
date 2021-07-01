@@ -32,7 +32,7 @@ class StoryMenuState extends MusicBeatState
 		['Satin Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter Horrorland'],
 		['Senpai', 'Roses', 'Thorns'],
-		['Ugh', 'Guns', 'Stress'],
+		//['Ugh', 'Guns', 'Stress'],
 		['Parish', 'Worship', 'Zavodila', 'Gospel', 'Casanova']
 	];
 	var curDifficulty:Int = 1;
@@ -47,7 +47,7 @@ class StoryMenuState extends MusicBeatState
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf', 'gf'],
 		['senpai', 'bf', 'gf'],
-		['tankman', 'bf', 'gf'],
+		//['tankman', 'bf', 'gf'],
 		['masses', 'bf', 'gf']
 	];
 
@@ -59,7 +59,7 @@ class StoryMenuState extends MusicBeatState
 		"MOMMY MUST MURDER",
 		"RED SNOW",
 		"Hating Simulator ft. Moawling",
-		"Tankman",
+		//"Tankman",
 		"Mid-Fight Masses ft. Selever"
 	];
 

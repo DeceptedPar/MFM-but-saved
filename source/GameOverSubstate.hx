@@ -28,8 +28,8 @@ class GameOverSubstate extends MusicBeatSubstate
 				stageSuffix = '-pixel';
 				daBf = 'bf-pixel-dead';
 
-			case 'tank-b':
-				daBf = 'bf-holding-gf-dead';
+			/*case 'tank-b':
+				daBf = 'bf-holding-gf-dead';*/
 
 			default:
 				daBf = 'bf';
@@ -84,11 +84,11 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
 		{
 			FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
-			if(PlayState.curStage == 'tank-a' || PlayState.curStage == 'tank-b')
+			/*if(PlayState.curStage == 'tank-a' || PlayState.curStage == 'tank-b')
 			{
 				var numSound:Int = FlxG.random.int(1, 25);
 				FlxG.sound.play(Paths.soundOGG('jeffGameover/jeffGameover-' + numSound, 'week7'), 1, false, null, true);				
-			}
+			}*/
 		}
 
 		if (FlxG.sound.music.playing)
