@@ -199,13 +199,13 @@ class DialogueBox extends FlxSpriteGroup
 			// box.flipX = true;
 		}
 
-		dropText = new FlxText(102, 472, Std.int(FlxG.width * 1), "", 28);
+		dropText = new FlxText(102, 502, Std.int(FlxG.width * 1) - 200, "", 28);
 		dropText.font = 'Komika Display';
 		dropText.color = FlxColor.RED;
 		dropText.antialiasing = true;
 		add(dropText);
 
-		swagDialogue = new FlxTypeText(99, 470, Std.int(FlxG.width * 1), "", 28);
+		swagDialogue = new FlxTypeText(99, 500, Std.int(FlxG.width * 1) - 200, "", 28);
 		swagDialogue.font = 'Komika Display Bold';
 		swagDialogue.color = FlxColor.BLACK;
 		swagDialogue.antialiasing = true;

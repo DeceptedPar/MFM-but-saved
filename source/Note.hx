@@ -119,74 +119,74 @@ class Note extends FlxSprite
 				updateHitbox();
 				antialiasing = true;
 
-			case 'sarvente':
-				frames = Paths.getSparrowAtlas('NOTE_Assets_Sarvente');
+			// case 'sarvente':
+			// 	frames = Paths.getSparrowAtlas('NOTE_Assets_Sarvente');
 
-				animation.addByPrefix('greenScroll', 'green instance 1');
-				animation.addByPrefix('redScroll', 'red instance 1');
-				animation.addByPrefix('blueScroll', 'blue instance 1');
-				animation.addByPrefix('purpleScroll', 'purple instance 1');
+			// 	animation.addByPrefix('greenScroll', 'green instance 1');
+			// 	animation.addByPrefix('redScroll', 'red instance 1');
+			// 	animation.addByPrefix('blueScroll', 'blue instance 1');
+			// 	animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
-				animation.addByPrefix('greenholdend', 'green hold end instance 1');
-				animation.addByPrefix('redholdend', 'red hold end instance 1');
-				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
+			// 	animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+			// 	animation.addByPrefix('greenholdend', 'green hold end instance 1');
+			// 	animation.addByPrefix('redholdend', 'red hold end instance 1');
+			// 	animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
-				animation.addByPrefix('greenhold', 'green hold piece instance 1');
-				animation.addByPrefix('redhold', 'red hold piece instance 1');
-				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
+			// 	animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+			// 	animation.addByPrefix('greenhold', 'green hold piece instance 1');
+			// 	animation.addByPrefix('redhold', 'red hold piece instance 1');
+			// 	animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
-				setGraphicSize(Std.int(width * 0.7));
-				updateHitbox();
-				antialiasing = true;
+			// 	setGraphicSize(Std.int(width * 0.7));
+			// 	updateHitbox();
+			// 	antialiasing = true;
 
-			case 'dark-sarv':
-				frames = Paths.getSparrowAtlas('NOTE_Assets_Dark-Sarv');
+			// case 'dark-sarv':
+			// 	frames = Paths.getSparrowAtlas('NOTE_Assets_Dark-Sarv');
 
-				animation.addByPrefix('greenScroll', 'green instance 1');
-				animation.addByPrefix('redScroll', 'red instance 1');
-				animation.addByPrefix('blueScroll', 'blue instance 1');
-				animation.addByPrefix('purpleScroll', 'purple instance 1');
+			// 	animation.addByPrefix('greenScroll', 'green instance 1');
+			// 	animation.addByPrefix('redScroll', 'red instance 1');
+			// 	animation.addByPrefix('blueScroll', 'blue instance 1');
+			// 	animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
-				animation.addByPrefix('greenholdend', 'green hold end instance 1');
-				animation.addByPrefix('redholdend', 'red hold end instance 1');
-				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
+			// 	animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+			// 	animation.addByPrefix('greenholdend', 'green hold end instance 1');
+			// 	animation.addByPrefix('redholdend', 'red hold end instance 1');
+			// 	animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
-				animation.addByPrefix('greenhold', 'green hold piece instance 1');
-				animation.addByPrefix('redhold', 'red hold piece instance 1');
-				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
+			// 	animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+			// 	animation.addByPrefix('greenhold', 'green hold piece instance 1');
+			// 	animation.addByPrefix('redhold', 'red hold piece instance 1');
+			// 	animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
-				setGraphicSize(Std.int(width * 0.7));
-				updateHitbox();
-				antialiasing = true;
+			// 	setGraphicSize(Std.int(width * 0.7));
+			// 	updateHitbox();
+			// 	antialiasing = true;
 
-			case 'ruv':
-				frames = Paths.getSparrowAtlas('NOTE_Assets_Ruv');
+			// case 'ruv':
+			// 	frames = Paths.getSparrowAtlas('NOTE_Assets_Ruv');
 
-				animation.addByPrefix('greenScroll', 'green instance 1');
-				animation.addByPrefix('redScroll', 'red instance 1');
-				animation.addByPrefix('blueScroll', 'blue instance 1');
-				animation.addByPrefix('purpleScroll', 'purple instance 1');
+			// 	animation.addByPrefix('greenScroll', 'green instance 1');
+			// 	animation.addByPrefix('redScroll', 'red instance 1');
+			// 	animation.addByPrefix('blueScroll', 'blue instance 1');
+			// 	animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
-				animation.addByPrefix('greenholdend', 'green hold end instance 1');
-				animation.addByPrefix('redholdend', 'red hold end instance 1');
-				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
+			// 	animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+			// 	animation.addByPrefix('greenholdend', 'green hold end instance 1');
+			// 	animation.addByPrefix('redholdend', 'red hold end instance 1');
+			// 	animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
-				animation.addByPrefix('greenhold', 'green hold piece instance 1');
-				animation.addByPrefix('redhold', 'red hold piece instance 1');
-				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
+			// 	animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+			// 	animation.addByPrefix('greenhold', 'green hold piece instance 1');
+			// 	animation.addByPrefix('redhold', 'red hold piece instance 1');
+			// 	animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
-				setGraphicSize(Std.int(width * 0.7));
-				updateHitbox();
-				antialiasing = true;
+			// 	setGraphicSize(Std.int(width * 0.7));
+			// 	updateHitbox();
+			// 	antialiasing = true;
 
 			case 'luci-sarv-alt':
-				frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv-Alt');
+				frames = Paths.getSparrowAtlas('NOTE_Assets_Luci-Sarv');
 
 				animation.addByPrefix('greenScroll', 'green instance 1');
 				animation.addByPrefix('redScroll', 'red instance 1');
@@ -229,49 +229,49 @@ class Note extends FlxSprite
 				updateHitbox();
 				antialiasing = true;
 
-			case 'selever':
-				frames = Paths.getSparrowAtlas('NOTE_Assets_Selever');
+			// case 'selever':
+			// 	frames = Paths.getSparrowAtlas('NOTE_Assets_Selever');
 
-				animation.addByPrefix('greenScroll', 'green instance 1');
-				animation.addByPrefix('redScroll', 'red instance 1');
-				animation.addByPrefix('blueScroll', 'blue instance 1');
-				animation.addByPrefix('purpleScroll', 'purple instance 1');
+			// 	animation.addByPrefix('greenScroll', 'green instance 1');
+			// 	animation.addByPrefix('redScroll', 'red instance 1');
+			// 	animation.addByPrefix('blueScroll', 'blue instance 1');
+			// 	animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
-				animation.addByPrefix('greenholdend', 'green hold end instance 1');
-				animation.addByPrefix('redholdend', 'red hold end instance 1');
-				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
+			// 	animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+			// 	animation.addByPrefix('greenholdend', 'green hold end instance 1');
+			// 	animation.addByPrefix('redholdend', 'red hold end instance 1');
+			// 	animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
-				animation.addByPrefix('greenhold', 'green hold piece instance 1');
-				animation.addByPrefix('redhold', 'red hold piece instance 1');
-				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
+			// 	animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+			// 	animation.addByPrefix('greenhold', 'green hold piece instance 1');
+			// 	animation.addByPrefix('redhold', 'red hold piece instance 1');
+			// 	animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
-				setGraphicSize(Std.int(width * 0.7));
-				updateHitbox();
-				antialiasing = true;
+			// 	setGraphicSize(Std.int(width * 0.7));
+			// 	updateHitbox();
+			// 	antialiasing = true;
 
-			case 'gf':
-				frames = Paths.getSparrowAtlas('NOTE_Assets_GF');
+			// case 'gf':
+			// 	frames = Paths.getSparrowAtlas('NOTE_Assets_GF');
 
-				animation.addByPrefix('greenScroll', 'green instance 1');
-				animation.addByPrefix('redScroll', 'red instance 1');
-				animation.addByPrefix('blueScroll', 'blue instance 1');
-				animation.addByPrefix('purpleScroll', 'purple instance 1');
+			// 	animation.addByPrefix('greenScroll', 'green instance 1');
+			// 	animation.addByPrefix('redScroll', 'red instance 1');
+			// 	animation.addByPrefix('blueScroll', 'blue instance 1');
+			// 	animation.addByPrefix('purpleScroll', 'purple instance 1');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
-				animation.addByPrefix('greenholdend', 'green hold end instance 1');
-				animation.addByPrefix('redholdend', 'red hold end instance 1');
-				animation.addByPrefix('blueholdend', 'blue hold end instance 1');
+			// 	animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+			// 	animation.addByPrefix('greenholdend', 'green hold end instance 1');
+			// 	animation.addByPrefix('redholdend', 'red hold end instance 1');
+			// 	animation.addByPrefix('blueholdend', 'blue hold end instance 1');
 
-				animation.addByPrefix('purplehold', 'purple hold piece instance 1');
-				animation.addByPrefix('greenhold', 'green hold piece instance 1');
-				animation.addByPrefix('redhold', 'red hold piece instance 1');
-				animation.addByPrefix('bluehold', 'blue hold piece instance 1');
+			// 	animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+			// 	animation.addByPrefix('greenhold', 'green hold piece instance 1');
+			// 	animation.addByPrefix('redhold', 'red hold piece instance 1');
+			// 	animation.addByPrefix('bluehold', 'blue hold piece instance 1');
 
-				setGraphicSize(Std.int(width * 0.7));
-				updateHitbox();
-				antialiasing = true;
+			// 	setGraphicSize(Std.int(width * 0.7));
+			// 	updateHitbox();
+			// 	antialiasing = true;
 
 			default:
 				frames = Paths.getSparrowAtlas('NOTE_assets');
